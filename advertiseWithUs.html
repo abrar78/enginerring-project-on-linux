@@ -20,149 +20,81 @@
 
 <body>
   <!-- !nav bar for logged in users start from here -->
-  <!-- <nav class="sticky-top readMoreNavBar" id="navBar">
-    <div class="logo">
-      <img src="images/logoWhite.png" style="height: 40px; color: #F2C36B;" alt="">
-    </div>                                                    
+  <nav class="sticky-top readMoreNavBar" id="navBar">
+    <div classs="logo">
+        <img src="images/logoWhite.png" style="height: 50px; color: #F2C36B;" alt="">
+    </div>
 
     <div class="content">
-      <ul class="list">
-        <li class="nav-item ">
+        <ul class="list ">
+            <li class="nav-item ">
+                <a id="home" class="nav-link active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+                    style="color:#F2C36B;font-size: 18px;font-family: 'Roboto Slab', serif;" href="#">Home</a>
+            </li>
+            <li class="nav-item dropdown ">
+                <a id="projects" class="nav-link dropdown-toggle" onmouseover="hower(this.id)"
+                    onmouseout="howerLeave(this.id)"
+                    style="color:#F2C36B; font-size: 18px;font-family: 'Roboto Slab', serif" data-toggle="dropdown"
+                    href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
+                    <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
+                    <a class="dropdown-item" href="#basicElectronics">basic Electronics projects</a>
 
-          <a id="home" class="nav-link active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-            style="color:#F2C36B;font-size: 15px;font-family: 'Roboto Slab', serif;" href="#">Home</a>
-        </li>
-        <li class="nav-item dropdown ">
-          <a id="projects" class="nav-link dropdown-toggle" onmouseover="hower(this.id)"
-            onmouseout="howerLeave(this.id)" style="color:#F2C36B; font-size: 15px;font-family: 'Roboto Slab', serif"
-            data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
-            <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
-            <a class="dropdown-item" href="#basicElectronics">basic Electronics projects</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a id="otherPost" class="nav-link  " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+                    style="color:#F2C36B;  font-size: 18px;font-family: 'Roboto Slab', serif"
+                    href="#otherPost">Other Posts</a>
+            </li>
+            <li class="nav-item ">
+                <a id="aboutMe" class="nav-link- active" onmouseover="hower(this.id)"
+                    onmouseout="howerLeave(this.id)"
+                    style="color:#F2C36B;; font-size: 18px;font-family: 'Roboto Slab', serif;"
+                    href="#about">About</a>
+            </li>
+            <li class="nav-item">
+                <a id="add" class="nav-link" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+                    style="color:#F2C36B; font-size: 18px; font-family: 'Roboto Slab', serif" href="advertiseWithUs.html">Advertise
+                    with us</a>
+            </li>
+            <!-- <li class="nav-item">
+              <button class="btn btn-sm btn-warning" type="button">Login</button>
+            </li> -->
+            
+            <li class="nav-item mt-3 ">
+                <h4> <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><i class="material-icons">
+                        comment
+                    </i></button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item">
 
-          </div>
-        </li>
-        <li class="nav-item">
-          <a id="otherPost" class="nav-link  " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-            style="color:#F2C36B;  font-size: 15px;font-family: 'Roboto Slab', serif" href="#otherPost">Other Posts</a>
-        </li>
-        <li class="nav-item ">
-          <a id="aboutMe" class="nav-link- active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-            style="color:#F2C36B;; font-size: 15px;font-family: 'Roboto Slab', serif;" href="#about">About</a>
-        </li>
-        <li class="nav-item">
-          <a id="add" class="nav-link" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-            style="color:#F2C36B; font-size: 15px; font-family: 'Roboto Slab', serif"
-            href="advertiseWithUs.html">Advertise
-            with us</a>
-        </li>
-
-
-        <li class="nav-item mt-3 ">
-          <h4> <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false"><i class="material-icons">
-                comment
-              </i></button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item">
-
-              </a>
-            </div> <span class="badge badge-warning">abrar222</span>
-          </h4>
-        </li>
-        <li class="nav-item ml-5 mt-2">
-          <button class="btn btn-sm  btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
-            id="button-addon2">LogOut</button>
-        </li>
-      </ul>
+                    </a>
+                </div> <span class="badge badge-warning">abrar222</span></h4>
+            </li>
+            <li class="nav-item ml-5 mt-2">
+                <button class="btn btn-sm  btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
+                id="button-addon2">LogOut</button>
+            </li>
+        </ul>
     </div>
 
     <div class="searchBar">
-      <div class="input-group mb-3 my-3">
-        <input type="text" class="form-control" placeholder="Search projects/post here"
-          aria-label="Recipient's username" aria-describedby="button-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
-            id="button-addon2">Search</button>
+        <div class="input-group mb-3 my-3">
+            <input type="text" class="form-control" placeholder="Search projects/post here"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
+                    id="button-addon2">Search</button>
+            </div>
         </div>
-      </div>
     </div>
 
-  </nav> -->
-  <!-- ! enf of logged in nvbar -->
-
-  <!-- ?start -->
-  <!--code here -->
-  <nav class="sticky-top loggedInNavBar">
-    <div class="logoLoggedIn">
-      <img src="images/logoWhite.png" style="height: 40px; margin-left:20px; color: #F2C36B;" alt="">
-    </div>
-    <div class="content">
-    <ul class="list">
-      <li class="nav-item ">
-
-        <a id="home" class="nav-link active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-          style="color:#F2C36B;font-size: 18px;font-family: 'Roboto Slab', serif;" href="#">Home</a>
-      </li>
-      <li class="nav-item dropdown ">
-        <a id="projects" class="nav-link dropdown-toggle" onmouseover="hower(this.id)"
-          onmouseout="howerLeave(this.id)" style="color:#F2C36B; font-size: 18px;font-family: 'Roboto Slab', serif"
-          data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
-          <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
-          <a class="dropdown-item" href="#basicElectronics">basic Electronics projects</a>
-
-        </div>
-      </li>
-      <li class="nav-item">
-        <a id="otherPost" class="nav-link  " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-          style="color:#F2C36B;  font-size: 18px;font-family: 'Roboto Slab', serif" href="#otherPost">Other Posts</a>
-      </li>
-      <li class="nav-item ">
-        <a id="aboutMe" class="nav-link- active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-          style="color:#F2C36B;; font-size: 18px;font-family: 'Roboto Slab', serif;" href="#about">About</a>
-      </li>
-      <li class="nav-item">
-        <a id="add" class="nav-link" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-          style="color:#F2C36B; font-size: 18px; font-family: 'Roboto Slab', serif"
-          href="advertiseWithUs.html">Advertise
-          with us</a>
-      </li>
-
-
-      <li class="nav-item mt-3 ">
-        <h4> <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false"><i class="material-icons">
-              comment
-            </i></button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item">
-
-            </a>
-          </div> <span class="badge badge-secondary">abrar222</span>
-        </h4>
-      </li>
-      <li class="nav-item ml-3 mt-2">
-        <button class="btn btn-sm  btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
-          id="button-addon2">LogOut</button>
-      </li>
-    </ul>
-  </div>
-    <div class="searchBar">
-      <div class="input-group mb-3 my-3">
-        <input type="text" class="form-control" placeholder="Search projects/post here"
-          aria-label="Recipient's username" aria-describedby="button-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
-            id="button-addon2">Search</button>
-        </div>
-      </div>
-    </div>
-   </nav>
+</nav>
   <!-- ?end -->
-  <!--Start of lnavbar for guest user  -->
+  <!--Start of navbar for guest user  -->
 
 
 
@@ -253,7 +185,7 @@
   <script src="advertise.js">
 
   </script>
-  <script src="animate.js"></script>
+  
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

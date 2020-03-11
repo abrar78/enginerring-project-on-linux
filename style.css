@@ -26,7 +26,7 @@ nav {
 }
 .readMoreNavBar{
     display: flex;
-    background: rgb(1, 41, 65, .8);
+    background: rgba(0, 0, 0, 0.8);
     transition: .3sec;
     height: 60px;
     justify-content: space-around;
@@ -57,22 +57,7 @@ nav {
     
 }
 
-/* ! navbar for logged in user  */
-/* ?start*/
-.loggedInNavBar{
-    background: rgb(1, 41, 65, .8);
-    height: 60px;
-    justify-content: space-around;
-    align-items: center;
-    display: flex;
-}
-.logoLoggedIn{
-   
-    width: 25%;
-}
-/* ?end */
 
-/*! Type Write Css*/
 #typeWriter {
     position: relative;
 }

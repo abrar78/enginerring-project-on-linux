@@ -1,0 +1,1240 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- ?Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- ?Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- ?custom css -->
+  <link rel="stylesheet" href="style.css">
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+
+  <!-- animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+  <title>Hello, world!</title>
+</head>
+
+<body>
+  <!-- nav-bar -->
+  <nav class="fixed-top" id="navBar">
+    <div class="logo">
+      <img src="images/logoWhite.png" style="height: 50px; color: #F2C36B;" alt="">
+    </div>
+
+    <div class="content">
+      <ul class="list ">
+        <li class="nav-item ">
+          <a id="home" class="nav-link active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+            style="color:#F2C36B;; font-size: 20px;font-family: 'Roboto Slab', serif;" href="#">Home</a>
+        </li>
+        <li class="nav-item dropdown ">
+          <a id="projects" class="nav-link dropdown-toggle" onmouseover="hower(this.id)"
+            onmouseout="howerLeave(this.id)"
+            style="color:#F2C36B; font-size: 20px;font-family: 'Roboto Slab', serif"
+            data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
+            <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
+            <a class="dropdown-item" href="#basicElectronics">basic Electronics projects</a>
+
+          </div>
+        </li>
+        <li class="nav-item">
+          <a id="aboutUs" class="nav-link  " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+            style="color:#F2C36B;  font-size: 20px;font-family: 'Roboto Slab', serif" href="#otherPost">Other Posts</a>
+        </li>
+        <li class="nav-item ">
+          <a id="aboutMe" class="nav-link- active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+            style="color:#F2C36B;; font-size: 20px;font-family: 'Roboto Slab', serif;" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a id="add" class="nav-link" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+            style="color:#F2C36B; font-size: 20px; font-family: 'Roboto Slab', serif" href="advertiseWithUs.html">Advertise with us</a>
+        </li>
+        <li class="nav-item">
+          <!-- log in form -->
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Log In</button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalLabel">SignUp form</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                   </button>
+                 </div>
+                 <div class="modal-body">
+                       
+                     
+                     <input type="email" class="my-2 form-control" placeholder="E-mail">
+                     <input type="password" class="my-2 form-control" placeholder="Password">
+                     <input type="password" class="my-2 form-control" placeholder="Re-Enter Password">
+                 </div>
+                 <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   <button type="button" class="btn btn-primary">LogIn</button>
+                 </div>
+               </div>
+             </div>
+           </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="searchBar">
+      <div class="input-group mb-3 my-3">
+        <input type="text" class="form-control" placeholder="Search projects/post here"
+          aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
+            id="button-addon2">Search</button>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+  <!-- end navbar -->
+
+  <!-- Parallex effect -->
+  <div class="parallexOne">
+    <div class="typing">
+      <h1 class="text-center" style="color: #F2C36B; font-size: 60px; position: relative; top:500px;
+      font-family: 'Roboto Slab', serif;">Welcome</h1>
+    </div>
+    <div class="text-center" style="color: #F2C36B; font-size: 60px; position: relative; top:480px;
+  font-family: 'Roboto Slab', serif;">
+      <h1 id="typeWriter">:</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col" style="margin-top: 500px;">
+
+          <input type="text" class="form-control" placeholder="User Name">
+        </div>
+        <div class="col" style="margin-top: 500px;">
+
+          <input type="email" class="form-control" placeholder="E-mail">
+        </div>
+        <div class="col" style="margin-top: 500px;">
+          <input type="password" class="form-control" placeholder="Password">
+        </div>
+        <div class="col" style="margin-top: 500px;">
+          <input type="password" class="form-control" placeholder="Re-Enter Password">
+        </div>
+      </div>
+      <div class="text-center ">
+
+        <button type="button" class="btn btn-outline-warning"
+          style="font-family: 'Roboto Slab', serif; margin-top: 20px;">SIgn Up</button>
+      </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Latest POst Section Start ---------------------------------------------------------------->
+  <div class="jumbotron jumbotron-fluid" style="margin-top: 50px; height: 250px;">
+    <div class="container">
+      <h1 class="display-4">Latest Posts</h1>
+      <p class="lead">Get the latest Tech-Post Here</p>
+
+    </div>
+  </div>
+
+  <div class="container" style="height: 430px;">
+    <div class="card-deck animated" id="1Latest" style="display:null">
+      <div class="card howerAnimation border-warning " id='card1' style="max-width: 18rem; margin: 80px 12px 0px 12px;">
+        <div class="card-header">Header</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+
+      <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
+        <div class="card-header">Header</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+
+      <div class="card howerAnimation  border-warning " style="max-width: 18rem; margin-top: 80px;">
+        <div class="card-header">Header</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+
+      <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
+        <div class="card-header">Header</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+
+    </div>
+    <div class="card-deck animated" id="2Latest" style="display: none;">
+      <div class="card howerAnimation border-warning " id='card1' style="max-width: 18rem; margin: 80px 12px 0px 12px;">
+        <div class="card-header">Header2</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+      <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
+        <div class="card-header">Header2</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+      <div class="card howerAnimation  border-warning " id='card3' onmouseover=" (this.id)" onmouseout="  (this.id)"
+        style="max-width: 18rem; margin-top: 80px;">
+        <div class="card-header">Header</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+      <div class="card howerAnimation  border-warning " style="max-width: 18rem; margin-top: 80px;">
+        <div class="card-header">Header</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+
+    </div>
+
+    <div class="card-deck animated" id="3Latest" style="display: none;">
+      <div class="card howerAnimation border-warning " id='card1' style="max-width: 18rem; margin: 80px 12px 0px 12px;">
+        <div class="card-header">Header3</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+      <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
+        <div class="card-header">Header3</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+      <div class="card howerAnimation  border-warning " id='card3' onmouseover=" (this.id)" onmouseout="  (this.id)"
+        style="max-width: 18rem; margin-top: 80px;">
+        <div class="card-header">Header</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+      <div class="card howerAnimation  border-warning " style="max-width: 18rem; margin-top: 80px;">
+        <div class="card-header">Header</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+        </div>
+        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+  <nav aria-label="Page navigation example " style="margin-bottom: 100px;">
+    <ul class="pagination justify-content-center">
+      <li class="Latest page-item-custom">
+        <a class="page-link btn disabled" id="prevLatest" onclick="prevPage(this.id,'nextLatest')"
+          aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="Latest page-item-custom active" id="1Latest_" onclick="customPage(this.id)"><a class="page-link">1</a></li>
+      <li class="Latest page-item-custom " id="2Latest_" onclick="customPage(this.id)"><a class="page-link" >2</a></li>
+      <li class="Latest page-item-custom" id="3Latest_" onclick="customPage(this.id)"><a class="page-link" >3</a></li>
+      <li class="Latest page-item-custom">
+        <a class="page-link btn" id="nextLatest" onclick="nextPage(this.id,'nextLatest')" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- ------------------------------------------------------------------------------------------------ -->
+
+  <!-- arduino Project Section------------------------------------------------------------------------------>
+  <div class="parallexTwo">
+    <div class="jumbotron jumbotron-fluid" id="arduinoProject" style="position:relative; height: 250px;">
+      <div class="container">
+        <h1 class="display-4">Arduino Projects</h1>
+        <p class="lead">Get the Arduino-projects here</p>
+
+      </div>
+      <div class="container">
+        <!-- 1ard----------------- -->
+        <div class="card-deck my-5 animated" id="1Ard">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header1</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+        </div>
+
+        <!-- 2Ard -->
+        <div class="card-deck my-5 animated" id="2Ard" style="display:none">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header2</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+        </div>
+
+        <!-- 3Ard------------- -->
+        <div class="card-deck my-5 animated" id="3Ard" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+        </div>
+        <div class="card-deck my-5 animated" id="2Ard" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+    <nav aria-label="Page navigation example " style="margin-top: 450px;">
+      <ul class="pagination justify-content-center">
+        <li class="Ard page-item-custom ">
+          <!-- ard for arduino area -->
+          <a class="page-link btn disabled" id="prevArd" aria-label="Previous" onclick="prevPage(this.id, 'nextArd' )">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="Ard page-item-custom active"  id="1Ard_" onclick="customPage(this.id)"><a class="page-link">1</a></li>
+        <li class="Ard page-item-custom "  id="2Ard_" onclick="customPage(this.id)"><a class="page-link" >2</a></li>
+        <li class="Ard page-item-custom "  id="3Ard_" onclick="customPage(this.id)"><a class="page-link" >3</a></li>
+        <li class="Ard page-item-custom  " >
+          <a class="Ard page-link btn" id="nextArd" onclick="nextPage(this.id, 'nextArd' )" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+
+  <!-- ---------------------------------------------------------------------------------------endArduino projects -->
+  <!-- Start basic projects -->
+  <div class="parallex3">
+    <div class="jumbotron jumbotron-fluid" id="basicElectronics" style="position:relative; height: 250px;">
+      <div class="container">
+        <h1 class="display-4">Basic Electronics</h1>
+        <p class="lead">Get the basic electronics projects here using 555IC , OP-Amp, Transistors, and many more </p>
+
+      </div>
+
+      <div class="container">
+        <!-- 1Basic----------------- -->
+        <div class="card-deck my-5 animated" id="1Basic">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+        </div>
+
+
+        <!-- 2Basic------------- -->
+        <div class="card-deck my-5 animated" id="2Basic" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+        </div>
+        <div class="card-deck my-5 animated" id="2Ard" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+        </div>
+
+
+        <!-- 3Basic -->
+        <div class="card-deck my-5 animated" id="3Basic" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+        </div>
+        <div class="card-deck my-5 animated" id="2Ard" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a></div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <nav aria-label="Page navigation example " style="margin-top: 450px;">
+      <ul class="pagination justify-content-center">
+        <li class="Basic page-item-custom">
+          <a class="page-link btn disabled" id="prevBasic" onclick="prevPage(this.id,'nextBasic')"
+            aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="Basic page-item-custom active"   id="1Basic_" onclick="customPage(this.id)"><a class="page-link">1</a></li>
+        <li class="Basic page-item-custom"   id="2Basic_" onclick="customPage(this.id)"><a class="page-link">2</a></li>
+        <li class="Basic page-item-custom"   id="3Basic_" onclick="customPage(this.id)"><a class="page-link">3</a></li>
+        <li class="Basic page-item-custom">
+          <a class="page-link btn " aria-label="Next" id="nextBasic" onclick="nextPage(this.id,'nextBasic')" <span
+            aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- end of basic -->
+    <!-- iot start -->
+    <div class="parallex4">
+      <div class="jumbotron jumbotr0on-fluid" id="IOTProjects" style="position:relative; height: 250px;">
+        <div class="container">
+          <h1 class="display-4 animated">IOT Projects</h1>
+          <p class="lead">Get the IOT related projects here</p>
+        </div>
+      </div>
+      <div class="container">
+        <!-- 1IOT----------------- -->
+        <div class="card-deck my-1 animated" id="1IOT">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 2IOT------------- -->
+        <div class="card-deck my-1 animated" id="2IOT" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-deck my-5 animated" id="2Ard" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 3IOT -->
+        <div class="card-deck my-1 animated" id="3IOT" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-deck my-5 animated" id="2Ard" style="display: none;">
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+          <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-info">
+              <h5 class="card-title">Warning card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            </div>
+            <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-info">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center">
+          <li class="IOT page-item-custom">
+            <a class="page-link btn disabled" id="prevIOT" aria-label="Previous" onclick="prevPage(this.id,'nextIOT')">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="IOT page-item-custom active"    id="1IOT_" onclick="customPage(this.id)"><a class="page-link">1</a></li>
+          <li class="IOT page-item-custom"   id="2IOT_" onclick="customPage(this.id)"><a class="page-link">2</a></li>
+          <li class="IOT page-item-custom"   id="3IOT_" onclick="customPage(this.id)"><a class="page-link">3</a></li>
+          <li class="IOT page-item-custom">
+            <a class="page-link btn" aria-label="Next" id="nextIOT" onclick="nextPage(this.id,'nextIOT')" <span
+              aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- end of Iot -->
+    <div class="jumbotron jumbotron-fluid" id="otherPost" style="margin-top: 50px; height: 250px;">
+      <div class="container">
+        <h1 class="display-4">Other Posts</h1>
+        <p class="lead">Get the Other Tech-Post Here</p>
+
+      </div>
+    </div>
+
+    <div class="container" style="height: 430px;">
+      <div class="card-deck animated" id="1Other" style="display:null">
+        <div class="card howerAnimation border-warning " id='card1'
+          style="max-width: 18rem; margin: 80px 12px 0px 12px;">
+          <div class="card-header">Header</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+
+        <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
+          <div class="card-header">Header</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+
+        <div class="card howerAnimation  border-warning " style="max-width: 18rem; margin-top: 80px;">
+          <div class="card-header">Header</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+
+        <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
+          <div class="card-header">Header</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="card-deck animated" id="2Other" style="display: none;">
+        <div class="card howerAnimation border-warning " id='card1'
+          style="max-width: 18rem; margin: 80px 12px 0px 12px;">
+          <div class="card-header">Header2</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+        <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
+          <div class="card-header">Header2</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+        <div class="card howerAnimation  border-warning " id='card3' onmouseover=" (this.id)" onmouseout="  (this.id)"
+          style="max-width: 18rem; margin-top: 80px;">
+          <div class="card-header">Header</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+        <div class="card howerAnimation  border-warning " style="max-width: 18rem; margin-top: 80px;">
+          <div class="card-header">Header</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-deck animated" id="3Other" style="display: none;">
+        <div class="card howerAnimation border-warning " id='card1'
+          style="max-width: 18rem; margin: 80px 12px 0px 12px;">
+          <div class="card-header">Header3</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+        <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
+          <div class="card-header">Header3</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+        <div class="card howerAnimation  border-warning " id='card3' onmouseover=" (this.id)" onmouseout="  (this.id)"
+          style="max-width: 18rem; margin-top: 80px;">
+          <div class="card-header">Header</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+        <div class="card howerAnimation  border-warning " style="max-width: 18rem; margin-top: 80px;">
+          <div class="card-header">Header</div>
+          <div class="card-body text-warning">
+            <h5 class="card-title">Warning card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+          <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <nav aria-label="Page navigation example ">
+      <ul class="pagination justify-content-center">
+        <li class="Other page-item-custom">
+          <a class="page-link btn disabled" id="prevOther" onclick="prevPage(this.id,'nextOther')"
+            aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="Other page-item-custom active"   id="1Other_" onclick="customPage(this.id)"><a class="page-link">1</a></li>
+        <li class="Other page-item-custom "   id="2Other_" onclick="customPage(this.id)"><a class="page-link">2</a></li>
+        <li class="Other page-item-custom"   id="3Other_" onclick="customPage(this.id)"><a class="page-link">3</a></li>
+        <li class="Other page-item-custom">
+          <a class="page-link btn" id="nextOther" onclick="nextPage(this.id,'nextOther')" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- endParallex -->
+    <!-- other tech poststart -->
+
+
+    <!-- About Me page -->
+    <div class="jumbotron" id="about" style="margin-top: 20px;">
+      <h1 class="display-4 text-center">About me</h1>
+      <p class="lead text-center">This is a simple hero unit, a simple jumbotron-style component for calling extra
+        attention to featured content or information.</p>
+
+
+      
+<div class="text-center">
+        <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">contact</button>
+      </div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Your E-mail</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+    
+
+    <!-- Footer -->
+
+    <div class="footer">
+      <i class="material-icons" id="icons">
+        copyright
+      </i>
+      engineeringproject.net
+      <div class="socilMedia"></div>
+    </div>
+    
+    <!-- Optional JavaScript -->
+
+    <script src="animate.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script>
+      
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- custom css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+    <title>readmor.html</title>
+</head>
+
+<body>
+    <nav class="sticky-top readMoreNavBar" id="navBar">
+        <div classs="logo">
+            <img src="images/logoWhite.png" style="height: 50px; color: #F2C36B;" alt="">
+        </div>
+
+        <div class="content">
+            <ul class="list ">
+                <li class="nav-item ">
+                    <a id="home" class="nav-link active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+                        style="color:#F2C36B;font-size: 20px;font-family: 'Roboto Slab', serif;" href="#">Home</a>
+                </li>
+                <li class="nav-item dropdown ">
+                    <a id="projects" class="nav-link dropdown-toggle" onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)"
+                        style="color:#F2C36B; font-size: 20px;font-family: 'Roboto Slab', serif" data-toggle="dropdown"
+                        href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
+                        <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
+                        <a class="dropdown-item" href="#basicElectronics">basic Electronics projects</a>
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a id="otherPost" class="nav-link  " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+                        style="color:#F2C36B;  font-size: 20px;font-family: 'Roboto Slab', serif"
+                        href="#otherPost">Other Posts</a>
+                </li>
+                <li class="nav-item ">
+                    <a id="aboutMe" class="nav-link- active" onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)"
+                        style="color:#F2C36B;; font-size: 20px;font-family: 'Roboto Slab', serif;"
+                        href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a id="add" class="nav-link" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+                        style="color:#F2C36B; font-size: 20px; font-family: 'Roboto Slab', serif" href="advertiseWithUs.html">Advertise
+                        with us</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <button class="btn btn-sm btn-warning" type="button">Login</button>
+                </li> -->
+                
+                <li class="nav-item mt-3 ">
+                    <h4> <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="material-icons">
+                            comment
+                        </i></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item">
+
+                        </a>
+                    </div> <span class="badge badge-warning">abrar222</span></h4>
+                </li>
+                <li class="nav-item ml-5 mt-2">
+                    <button class="btn btn-sm  btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
+                    id="button-addon2">LogOut</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="searchBar">
+            <div class="input-group mb-3 my-3">
+                <input type="text" class="form-control" placeholder="Search projects/post here"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
+                        id="button-addon2">Search</button>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+    <!-- end of nav-Bar -->
+    <!-- start of jumbotorn for heading of re4ad more secdtion -->
+    <div class="jumbotron  text-info jumbotron-fluid my-3">
+        <div class="container">
+            <h1 class="display-4 ">Title</h1>
+            <p class="lead">Short Discription.....................................</p>
+        </div>
+
+    </div>
+    <div class="content container">
+
+
+    </div>
+
+    <hr>
+    <div class="container">
+<!-- if not loggwed in thw this -->
+<div>
+ <h1>You must be loged In to write a comments </h1>
+ <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">SignUp</button>
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">SignUp form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              
+            <input type="text" class="my-2 form-control" placeholder="User Name">
+            <input type="email" class="my-2 form-control" placeholder="E-mail">
+            <input type="password" class="my-2 form-control" placeholder="Password">
+            <input type="password" class="my-2 form-control" placeholder="Re-Enter Password">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+       <!-- if logged in then below one else above one -->
+        <div class="form-group " style="display: none;">
+            <label for="exampleFormControlTextarea1 "><h2>write your feed back here</h2></label>
+            <textarea class="form-control " id="exampleFormControlTextarea1" rows="3"></textarea>
+            <button class="btn btn-outline-warning mt-3" type="button" style="font-family: 'Roboto Slab', serif"
+            id="button-addon2">Add comment</button>
+          </div>
+    </div>
+    <!-- toast for comments -->
+    <div class="container my-5">
+        <h1>All Comments</h1>
+        <div class="toast" role="alert" data-autohide="false" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              
+              <strong class="mr-auto">abrar222</strong>
+              <small>11 mins ago</small>
+              
+              </button>
+            </div>
+            <div class="toast-body">
+              Hello, world! This is a toast message.
+            </div>
+            <p>
+                <button class="mx-3 btn btn-outline-info btn-sm " type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                 ShowReplies
+            </button>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <h5>user 1</h5>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+                <div class="card card-body">
+                    <h5>user 2</h5>
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                  </div>
+                  <div class="card card-body">
+                      <h5>user 3</h5>
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                  </div>
+                  <div class="card card-body">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Write your reply</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <button class="btn btn-outline-warning mt-3" type="button" style="font-family: 'Roboto Slab', serif"
+                        id="button-addon2">Add reply</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+
+
+    <!-- end of comment toast -->
+
+    <!-- Optional JavaScript -->
+
+    <script src="readMore.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script>
+   $(document).ready(function(){
+  $('.toast').toast('show');
+});
+    </script>
+</body>
+
+</html>

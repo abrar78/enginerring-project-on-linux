@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+.modal-backdrop {
+    z-index: -1;
+  }
+  
+  
+html{
+    scroll-behavior: smooth;
+}
+nav {
+    display: flex;
+    background: rgb(1, 41, 65, 0);
+    transition: .3sec;
+    height: 60px;
+    justify-content: space-around;
+    align-items: center;
+    /* box-shadow: 0px 1px 200px 1px  #F2C36B; */
+}
+.readMoreNavBar{
+    display: flex;
+    background: rgb(1, 41, 65, .8);
+    transition: .3sec;
+    height: 60px;
+    justify-content: space-around;
+    align-items: center;
+}
+.logo {
+
+    width: 25%;
+}
+
+.content {
+
+    width: 60%;
+}
+
+.searchBar {
+
+    width: 20%;
+}
+
+.list {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 10px;
+
+    
+}
+
+/* ! navbar for logged in user  */
+/* ?start*/
+.loggedInNavBar{
+    background: rgb(1, 41, 65, .8);
+    height: 60px;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+.logoLoggedIn{
+   
+    width: 25%;
+}
+/* ?end */
+
+/*! Type Write Css*/
+#typeWriter {
+    position: relative;
+}
+
+#typeWriter::after {
+    content: "";
+    position: absolute;
+    margin-top: 10px;
+    width: 10px;
+    height: 35px;
+    border-right: 2px solid white;
+    animation: blink 0.5s infinite ease;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* parallex effect */
+.parallexOne {
+    width: 100%;
+    height: 800px;
+    background-image: url(images/back.jpg);
+
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+
+}
+
+.parallexTwo {
+    width: 100%;
+    height: 900px;
+    background-image: url(images/arduinolighten.jpg);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.parallex3 {
+    width: 100%;
+    height: 900px;
+    background-image: url(images/lightBasicElectronics.jpg);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.parallex4 {
+    width: 100%;
+    height: 900px;
+    background-image: url(images/IOTlighten.jpg);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.form-control:focus {
+    border-color: #F2C36B;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F2C36B;
+}
+/* footrer */
+.footer{
+    display: flex;
+    background:rgb(0, 0, 0,0.8);
+    color: #F2C36B;
+   width: 100%;
+    height: 60px;
+  justify-content: center;
+    align-items: center;
+}
+/* card hover effect */
+.card:hover {
+    -webkit-box-shadow: 7px 38px 54px 1px rgba(0, 0, 0, 0.52);
+    -moz-box-shadow: 7px 38px 54px 1px rgba(0, 0, 0, 0.52);
+    box-shadow: 7px 38px 54px 1px rgba(0, 0, 0, 0.52);
+   
+}
+.pagination ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .pagination li {
+    display: inline;
+  }
+  
+  .pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  /*  */
+  .pagination li.active a {
+    background-color: #F2C36B;
+    color: white;
+  }
+  
+  .pagination li:hover:not(.active) a {
+    background-color: #ddd;
+  }
+  .activePage a {
+	color:black !important
+}
+@media only screen and (max-width: 600px) {}

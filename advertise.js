@@ -30,18 +30,21 @@ var optLabel = document.getElementById("optLabel")
 var dontHave=document.getElementById("dontHave")
 var haveImage=document.getElementById("have")
 var haveImageInp=document.getElementById("haveImageInp")
+var dontHaveLabel=document.getElementById("dontHaveLab")
 // todo make one for you?
 var yesMakeInp = document.getElementById("yes");
 var dontMakeInp = document.getElementById("no");
 
 // ? checking for the type of advertisement
 withImage.addEventListener("click", () => {
- 
+  dontHave.checked=false;
   if (withImage.checked == true) {
     console.log("with image is sielsected");
     chooseFile.style.display = "";
     pleaseSpecifyDiv.style.display = "none";
     noImage.style.display = "";
+    dontHave.style.display = "";
+    dontHaveLabel.style.display = "";
     noImageOpt1.style.display = "none";
     noImageOpt2.style.display = "nome";
     optLabel.style.display = "none";
@@ -82,6 +85,8 @@ other.addEventListener("click", () => {
     chooseFile.style.display = "none";
     pleaseSpecifyDiv.style.display = "";
     haveImage.style.display = "none";
+    dontHave.style.display = "none";
+    dontHaveLabel.style.display = "none";
     noImageOpt1.style.display = "none";
     noImageOpt2.style.display = "none";
     optLabel.style.display = "none";  
@@ -113,3 +118,10 @@ if (withImage.checked == true) {
 if (other.checked == true) {
   console.log("other");
 }
+// !end of form working---------------------------------------------------------------------------------------------------------------------------end of form working
+
+// todo>>>>> regular expression form validation start from here
+
+var firstNameRegExp=/[a-zA-Z]{3,10}/g
+var lastNameRegExp=/[a-zA-Z]{3,10}/g
+var emailRegExp=/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi

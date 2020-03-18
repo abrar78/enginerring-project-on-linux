@@ -93,6 +93,9 @@
     </div>
 
 </nav>
+<div class="alertFileUpload alert alert-warning" role="alert">
+  too lasrge file size
+</div>
   <!-- ?end -->
   <!--Start of navbar for guest user  -->
 
@@ -102,7 +105,7 @@
 
   <!-- form  start-->
   <div class="container my-5">
-    <form class="form-group"  role="form" data-toggle="validator">
+    <form class="form-group" action="form.py"  onclickgidd="validateForm" name="advertForm" role="form" data-toggle="validator" >
       <label for="nameinput">
         <h4>Your name</h4>
       </label>
@@ -110,19 +113,19 @@
       <div class="row">
         <div class="col" id="nameinput">
           
-        <input type="text" id="firstName" class="successInput form-control" placeholder="First name">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>       
+        <input type="text required" id="firstName" class="form-control" placeholder="First name" autocomplete="off" required>
+        <small id="emailHelp" class="form-text text-muted">minimum three character long</small>       
       </div>
         <div class="col">
-          <input type="text" id="lastName" class="wrongInput form-control" placeholder="Last name">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <input type="text" id="lastName" class="form-control" placeholder="Last name" autocomplete="off" required>
+          <small id="emailHelp" class="form-text text-muted">minimum three character long</small>
         </div>
       </div>
       <div class="form-group my-3">
         <label for="exampleInputEmail1 my-3">
           <h5>Email address</h5>
         </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <div class="label">
@@ -142,18 +145,22 @@
         </label>
       </div>
       <!-- option for image -->
-      <form>
+      
         <div id="File" class="form-group">
           <label for="XFile">Please select the image</label>
-          <input type="file" class="form-control-file" id="XFile">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="form-control-file" id="XFile">
+          <small id="file" class="form-text text-muted">only one .jpeg, .jpg, .png, .pdf files are allowed upto 10Mb of size </small>
+          <label class="wrongInputFile" style="display:none;" for="tooLarge">*Too Large</label>
+         
         </div>
-      </form>
+     
       <!-- text area for other type of  advertisement-->
       <div id="pleaseSpecifyInputDiv" class="form-group my-3">
         <label for="exampleFormControlTextarea1">
           <h4>Please specify</h4>
         </label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <textarea class="form-control" id="Specify" rows="3"></textarea>
+         <small id="chrCountSpecify" class="form-text text-muted">50 to 200 characters are allowed [0] </small>  
       </div>
       <div id="noImage">
       <div class="form-check" >
@@ -187,10 +194,11 @@
         <label for="exampleFormControlTextarea1">
           <h4>Please tell something about your advertisement?</h4>
         </label>
-        <textarea class="form-control" id="tellSomething" rows="3"></textarea>
+        <textarea class="form-control" id="tellSomething" rows="3" required></textarea>
+        <small id="chrCountTellSomething" class="form-text text-muted">50 to 200 characters are allowed [0] </small>  
       </div>
 
-      <button type="submit" class="btn btn-warning">Submit</button>
+      <button type="submit" id="submit" onsubmit="validateForm" class="btn btn-warning">Submit</button>
     </form>
   </div>
   <!-- form end -->

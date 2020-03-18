@@ -168,6 +168,9 @@ nav {
   border-color: green;
   opacity: 0.5;
 }
+.wrongInputFile{
+  color: red;
+}
 .wrongInput{
   border-color: red;
   opacity: 0.5;

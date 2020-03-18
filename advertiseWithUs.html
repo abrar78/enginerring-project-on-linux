@@ -93,9 +93,13 @@
     </div>
 
 </nav>
-<div class="alertFileUpload alert alert-warning" role="alert">
-  too lasrge file size
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
+
   <!-- ?end -->
   <!--Start of navbar for guest user  -->
 
@@ -105,7 +109,7 @@
 
   <!-- form  start-->
   <div class="container my-5">
-    <form class="form-group" action="form.py"  onclickgidd="validateForm" name="advertForm" role="form" data-toggle="validator" >
+    <form class="form-group" action="form.py"  onsubmit="return validateForm()" method="POST" name="advertForm" role="form" data-toggle="validator" >
       <label for="nameinput">
         <h4>Your name</h4>
       </label>
@@ -150,7 +154,7 @@
           <label for="XFile">Please select the image</label>
           <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="form-control-file" id="XFile">
           <small id="file" class="form-text text-muted">only one .jpeg, .jpg, .png, .pdf files are allowed upto 10Mb of size </small>
-          <label class="wrongInputFile" style="display:none;" for="tooLarge">*Too Large</label>
+          <label class="wrongInputFile" id="tooLarge" style="display:none;" for="tooLarge">*Too Large</label>
          
         </div>
      
@@ -198,7 +202,7 @@
         <small id="chrCountTellSomething" class="form-text text-muted">50 to 200 characters are allowed [0] </small>  
       </div>
 
-      <button type="submit" id="submit" onsubmit="validateForm" class="btn btn-warning">Submit</button>
+      <button  id="submit"  class="btn btn-warning">Submit</button>
     </form>
   </div>
   <!-- form end -->
@@ -219,6 +223,7 @@
     crossorigin="anonymous"></script>
     <script>
       $('.custom-control-input').prop('determinate', true)
+    
     </script>
 </body>
 

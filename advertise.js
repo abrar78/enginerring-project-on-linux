@@ -134,7 +134,7 @@ var resultLastName = false;
 var resultEMail = false;
 var resultSpecify = false;
 var resultTellSomething = false;
-var resultFile = false;
+var resultImage = false;
 
 firstName.addEventListener("focus", () => {
   resultFirstName = false;
@@ -201,10 +201,21 @@ eMail.addEventListener("blur", e => {
 var charCounterTellSomething = 0;
 var counterDisplayTellSomething = document.getElementById("chrCountTellSomething")
 var key1;
+tellSomething.addEventListener("focus", () => {
+  tellSomething.onkeydown = function() {
+    key1 = event.keyCode || event.charCode;
+    if (key1 == 13) {
+      return false;
+    }
+    
+  };
+  infoOfAdvertRegEx.lastIndex = 0;
+  resultSpecify = false;
+});
 tellSomething.addEventListener("blur", e => {
   resultTellSomething = false;
   resultTellSomething = infoOfAdvertRegEx.test(tellSomething.value);
-
+  
   if (resultTellSomething == true) {
     tellSomething.classList.add("successInput");
     tellSomething.classList.remove("wrongInput");
@@ -289,38 +300,96 @@ specifyInput.addEventListener("input", function() {
 var fileInput=document.getElementById("XFile")
 var tooLarge=document.getElementById("tooLarge")
 fileInput.onchange=function(){
-if(fileInput.files[0].size<=10485760){
-  resultFile=true;
-  tooLarge.style.display="none";
+
+  if (!dontHave.checked) {
+    console.log("inMain");
+    if(fileInput.files[0].size<=10485760){
+      resultImage=true;
+      tooLarge.style.display="none";
+    }
+    if (fileInput.files[0].size>10485760 ) {
+      resultImage=false;
+      tooLarge.style.display="";
+    }
+  }}
+dontHave.onclick=function(){
+if (dontHave.checked) {
+resultImage=true;  
+tooLarge.style.display="none";
 }
-else{
-  resultFile=false;
-  tooLarge.style.display="";
+
 }
-console.log(fileInput.files[0].size);
+haveImage.onclick=function(){
+  console.log("clicked22222222----------------");
+  if (!dontHave.checked) {
+    resultImage=false;  
+   
+    }
 }
+
 // var resultFirstName = false;
 // var resultLastName = false;
 // var resultEMail = false;
 // var resultSpecify = false;
 // var resultTellSomething = false;
 // var resultFile = false;
-function validateForm() {
+
+var submit=document.getElementById("submit") 
+// submit.onsubmit=()=>{
+//   console.log("insubmt");
+//   var result = true;
+
+//   if (resultFirstName==false) {
+//     result=false;
+//   }
+//   if (resultLastName==false) {
+//     result=false;
+//   }
+//   if (resultEMail==false) {
+//     result=false;
+//   }
+//   if (resultTellSomething==false) {
+//     result=false;
+//   }
+//   if(withImage.checked){
+//            if(resultImage==false){
+//              result=false;
+//            }
+
+//   }
+//   if(other.checked){
+//            if(resultSpecify==false){
+//              result=false;
+//            }
+//   }
+//   console.log("firstName",resultFirstName)
+//   console.log("lastName",resultLastName)
+//   console.log("email",resultEMail)
+//   console.log("tellsomething",resultTellSomething)
+//   console.log("image",resultImage)
+//   console.log("specify",resultSpecify)
+//   console.log("total",result)
+//   return result;
+// }
+
+function validateForm(){
+  console.log("insubmt");
   var result = true;
+
   if (resultFirstName==false) {
     result=false;
   }
   if (resultLastName==false) {
     result=false;
   }
-  if (resultEmailtName==false) {
+  if (resultEMail==false) {
     result=false;
   }
   if (resultTellSomething==false) {
     result=false;
   }
   if(withImage.checked){
-           if(resultFile==false){
+           if(resultImage==false){
              result=false;
            }
 
@@ -337,5 +406,9 @@ function validateForm() {
   console.log("image",resultImage)
   console.log("specify",resultSpecify)
   console.log("total",result)
+  if (result==false) {
+    
+  }
   return result;
+
 }

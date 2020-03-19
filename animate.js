@@ -1,5 +1,10 @@
 console.log("this ios custom for read more jS");
-
+function myFunction() {
+    var w = window.outerWidth;
+    var h = window.outerHeight;
+    var txt = "Window size: width=" + w + ", height=" + h;
+    console.log(txt);
+  }
 function hower(i) {
 
     document.getElementById(i).style.color = 'white'

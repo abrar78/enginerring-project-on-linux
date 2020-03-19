@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -20,7 +21,7 @@
 
 <body>
   <!-- !nav bar for logged in users start from here -->
-  <nav class="sticky-top readMoreNavBar" id="navBar">
+  <nav class=" sticky-top readMoreNavBar" id="navBar">
     <div classs="logo">
         <img src="images/logoWhite.png" style="height: 40px; color: #F2C36B;" alt="">
     </div>
@@ -93,13 +94,16 @@
     </div>
 
 </nav>
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+<div class="animated bounceIn alert alert-warning show" id="alertError" role="alert" style="display:none;">
+  <strong>Hey user!</strong> please complete the form properly as the instructions menstioned.
+ 
+</div>
+<div class="animated zoomIn alert alert-success show" id="alertDone" role="alert" style="display:none;">
+  <strong>Thankyou</strong>form submitted succesfully we willl contact you within 24hrs. 
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-
   <!-- ?end -->
   <!--Start of navbar for guest user  -->
 

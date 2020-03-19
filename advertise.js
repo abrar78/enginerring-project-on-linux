@@ -371,23 +371,16 @@ var submit=document.getElementById("submit")
 //   console.log("total",result)
 //   return result;
 // }
-
+var alertError=document.getElementById("alertError");
+var alertDone=document.getElementById("alertDone");
 function validateForm(){
-  console.log("insubmt");
   var result = true;
+  console.log("insubmt");
 
-  if (resultFirstName==false) {
+  if (resultFirstName==false || resultLastName==false || resultEMail==false || resultTellSomething==false) {
     result=false;
   }
-  if (resultLastName==false) {
-    result=false;
-  }
-  if (resultEMail==false) {
-    result=false;
-  }
-  if (resultTellSomething==false) {
-    result=false;
-  }
+  
   if(withImage.checked){
            if(resultImage==false){
              result=false;
@@ -407,7 +400,12 @@ function validateForm(){
   console.log("specify",resultSpecify)
   console.log("total",result)
   if (result==false) {
-    
+    alertError.style.display="";
+    alertDone.style.display="none"
+  }
+  else{
+    alertError.style.display="none";
+    alertDone.style.display=""
   }
   return result;
 

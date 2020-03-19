@@ -2,8 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ 
 }
 
+#main{
+  height:100%;
+  
+  
+}
 .modal-backdrop {
   z-index: -1;
 }
@@ -14,7 +20,7 @@ html {
 nav {
   display: flex;
   background: rgb(1, 41, 65, 0);
-  transition: 0.3sec;
+  margin-top: 0px;
   height: 60px;
   justify-content: space-around;
   align-items: center;
@@ -50,6 +56,7 @@ nav {
 
 #typeWriter {
   position: relative;
+  font-size: 40px;
 }
 
 #typeWriter::after {
@@ -75,12 +82,15 @@ nav {
 /* parallex effect */
 .parallexOne {
   width: 100%;
-  height: 550px;
+  height: 570px;
   background-image: url(images/back.jpg);
-
+  background-repeat: no-repeat;
   clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
-  background-size: 100% 100%;
+  background-size: cover;
   background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .parallexTwo {

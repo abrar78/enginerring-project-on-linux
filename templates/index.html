@@ -12,15 +12,16 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <!-- ?custom css -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/static/style.css">
   <!-- google fonts -->
   <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
 
   <!-- animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
    
-   <!-- * normalize.css attachement-->
-   <link rel="stylesheet" href="normalize.css">
+ 
+
+   <link rel="stylesheet" href=/static/normalize.css>
   <title>Hello, world!</title>
 </head>
 
@@ -29,20 +30,20 @@
   <!-- nav-bar -->
   
   <nav class="fixed-top" id="navBar">
-    <div class="logo">
-      <img src="images/logoWhite.png" style="margin-left:60px;height:40px;color: #F2C36B;" alt="">
+    <div class="logo ">
+      <img src="/static/images/logoWhite.png" style="margin-left:60px;height:40px;color: #F2C36B;" alt="">
     </div>
 
     <div class="content">
-      <ul class="list ">
-        <li class="nav-item ">
-          <a id="home" class="nav-link active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-            style="color:#F2C36B;; font-size: 15px; letter-spacing:2px; font-family: 'Roboto Slab', serif;" href="#">Home</a>
+      <ul class="list">
+        <li class="nav-item nav-links">
+          <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)"  onmouseout="howerLeave(this.id)"
+              href="/templates/index.html">Home</a>
         </li>
-        <li class="nav-item dropdown ">
-          <a id="projects" class="nav-link dropdown-toggle" onmouseover="hower(this.id)"
+        <li class="nav-item dropdown  nav-links">
+          <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)"
             onmouseout="howerLeave(this.id)"
-            style="color:#F2C36B; font-size: 15px; letter-spacing:2px; font-family: 'Roboto Slab', serif"
+           
             data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
@@ -51,17 +52,17 @@
 
           </div>
         </li>
-        <li class="nav-item">
-          <a id="aboutUs" class="nav-link  " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-            style="color:#F2C36B;  font-size: 15px; letter-spacing:2px; font-family: 'Roboto Slab', serif" href="#otherPost">Other Posts</a>
+        <li class="nav-item nav-links">
+          <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+             href="#otherPost">Other Posts</a>
         </li>
-        <li class="nav-item ">
-          <a id="aboutMe" class="nav-link " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-            style="color:#F2C36B;; font-size: 15px; letter-spacing:2px; font-family: 'Roboto Slab', serif;" href="#about">About</a>
+        <li class="nav-item  nav-links">
+          <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+            href="#about">About</a>
         </li>
-        <li class="nav-item">
-          <a id="add" class="nav-link" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-            style="color:#F2C36B; font-size: 15px; letter-spacing:2px; font-family: 'Roboto Slab', serif" href="advertiseWithUs.html">Advertise with us</a>
+        <li class="nav-item nav-links">
+          <a id="add" class="nav-link mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+             href="/templates/advertiseWithUs.html">Advertise with us</a>
         </li>
         <li class="nav-item">
           <!-- log in form -->
@@ -104,21 +105,104 @@
         </div>
       </div>
     </div>
+</nav>
+  <!-- ! mobile Nav bar--- =====----=====-----=====-=--=-=--=-=-=-=-=-=-=-=-=-=========== -->
+   <nav class="fixed-top animated fadeInDown" id="mobileNav">
+      <div id="top">
+        <div class="burger" id="burger">
+          <span class="material-icons" style="margin-left: 5px;">
+            menu
+          </span>
+          <img src="/static/images/logoWhite.png" style="margin-left:20px;height:27px;color: #F2C36B;" alt=""> 
+        </div>
+        <div id="search" class="search">
 
-  </nav>
-  <!-- end navbar -->
+          <span class="material-icons" style="height: 30px; color: #F2C36B;margin-right:10px">
+            search
+          </span>
+        </div>
+        </div>
+    </nav>
+     
+    <nav class="fixed-top animated fadeInDown" id="mobileSearchBar">
+      <div class="input-group mb-3" style="margin-top: 10px;">
+        <input style="height: 32px;" type="text" class="form-control" placeholder="search project/post here" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-warning" type="button" id="button-addon2" style="height: 32px;">
+            <span class="material-icons" style="margin-bottom: 8px;">
+              search
+            </span></button>
+            <!-------------------------------------------------------------------------------- -->
+            <span class="material-icons" id="closeSearch" style="margin-left:15px; color:#F2C36B;margin-top:4px;">
+              close
+            </span>
+            <!-------------------------------------------------------------------------------- -->
+        </div>
+      </div>
+    </nav>
+    
+    <nav class="animated  fixed-top" id="slider">
+          
+    <div class="content animated slideInRight" >
+      <ul class="mobilelist">
+        <li class="nav-item nav-links" id="closeSlider">
+          <!-- log in form -->
+          <span class="material-icons" style="margin-left:15px; margin-top:20px">
+            close
+          </span>
+        
+        </li>
+
+        <li class="nav-item nav-links">
+          <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)"  onmouseout="howerLeave(this.id)"
+              href="#">Home</a>
+              
+        </li>
+        <li class="nav-item dropdown  nav-links">
+          <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)"
+            onmouseout="howerLeave(this.id)"
+           
+            data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
+          <div class="dropdown-menu animated fadeIn">
+            <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
+            <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
+            <a class="dropdown-item" href="#basicElectronics">basic Electronics projects</a>
+
+          </div>
+        </li>
+        <li class="nav-item nav-links">
+          <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+             href="#otherPost">Other Posts</a>
+        </li>
+        <li class="nav-item  nav-links">
+          <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+            href="#about">About</a>
+        </li>
+        <li class="nav-item nav-links">
+          <a id="add" class="nav-link mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+             href="/templates/advertiseWithUs.html">Advertise with us</a>
+        </li>
+        <li class="nav-item nav-links" href="login.html">
+          <!-- log in form -->
+          <button class="btn btn-outline-warning" onclick="window.location.href='/login.html'" type="button" id="button-addon2 logIn" style="margin-left: 15px; margin-top:20px">Log In</button>
+          <!-- Button trigger modal -->
+        
+        </li>
+       
+      </ul>
+    </div>
+
+    </nav><!-- end navbar -->
 
   <!-- Parallex effect -->
   <div class="parallexOne">
     <div class="typing">
-      <h1 class="text-center" style="color: #F2C36B; font-size: 60px; position: relative; top:250px;
-      font-family: 'Roboto Slab', serif;">Welcome</h1>
+      <h1 class="text-center welcome" >Welcome</h1>
     </div>
-    <div class="text-center" style="color: #F2C36B; font-size: 30px; position: relative; top:200px;
-  font-family: 'Roboto Slab', serif;">
+    <div class="text-center typeWriterDiv" >
       <h1 id="typeWriter">:</h1>
     </div>
-    <div class="container">
+    <div class="container desktopViewSignUpForm">
       <div class="row">
         <div class="col" style="margin-top: 200px;">
 
@@ -137,23 +221,51 @@
       </div>
       <div class="text-center ">
 
-        <button type="button" class="btn btn-outline-warning"
+        <button type="submit" class="btn btn-outline-warning"
           style="font-family: 'Roboto Slab', serif; margin-top: 20px;">SIgn Up</button>
       </div>
       </form>
     </div>
+<div class="container mobileViewSignUpForm">
+  <form action="">
+  <div class="row">
+    <div class="col" style="margin-top: 150px;">
+       <input type="text" class="form-control" placeholder="User Name">
+    </div>
+      <div class="col"  style="margin-top: 150px;">
+        <input type="email" class="form-control" placeholder="E-mail">
+      </div>
+  </div>
+  <div class="row">
+
+    <div class="col" style="margin-top: 10px;">
+      <input type="password" class="form-control" placeholder="Password">
+    </div>
+    <div class="col" style="margin-top: 10px;">
+      <input type="password" class="form-control" placeholder="Re-Enter Password">
+    </div>
+
+  </div>
+  <div class="text-center ">
+
+    <button type="submit" class="btn btn-outline-warning"
+      style="font-family: 'Roboto Slab', serif; margin-top: 30px;">SIgn Up</button>
+  </div>
+</form>
+</div>
+
   </div>
 
   <!-- ?Latest POst Section Start ---------------------------------------------------------------->
-  <div class="jumbotron jumbotron-fluid" style="margin-top: 50px; height: 250px;">
+  <div class="jumbotron jumbotron-fluid" style="margin-top: 50px; height: 200px;">
     <div class="container">
-      <h1 class="display-5">Latest Posts</h1>
+      <h1 class="display-6">Latest Posts</h1>
       <p class="lead">Get the latest Tech-Post Here</p>
 
     </div>
   </div>
 
-  <div class="container" style="height: 430px;">
+  <div class="container desktopViewLatestPost" style="height: 430px;">
     <div class="card-deck animated" id="1Latest" style="display:null">
       <div class="card howerAnimation border-warning " id='card1' style="max-width: 15rem; margin: 80px 12px 0px 12px;">
         <div class="card-header">Header</div>
@@ -279,8 +391,37 @@
     </div>
 
   </div>
+  <div class="container-fluid active mobileViewLatestPost">
+    <div class="media">
+      <img src="..." class="align-self-start mr-3" alt="...">
+      <div class="media-body">
+        <h5 class="mt-0">Top-aligned media</h5>
+        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+        <p> <a href="#" class="card-link warning">Read more</a></p>
+      </div>
+    </div>
+    <div class="media">
+      <img src="..." class="align-self-start mr-3" alt="...">
+      <div class="media-body">
+        <h5 class="mt-0">Top-aligned media</h5>
+        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+        <p> <a href="#" class="card-link warning">Read more</a></p>
+      </div>
+    </div>
+    <div class="media">
+      <img src="..." class="align-self-start mr-3" alt="...">
+      <div class="media-body">
+        <h5 class="mt-0">Top-aligned media</h5>
+        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+        <p> <a href="#" class="card-link warning">Read more</a></p>
+      </div>
+    </div>
+    <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
+  </div>
   
-  <nav aria-label="Page navigation example " style="margin-bottom: 100px;">
+  
+</div>
+  <nav aria-label="Page navigation example " class="page" >
     <ul class="pagination justify-content-center">
       <li class="Latest page-item-custom">
         <a class="page-link btn disabled" id="prevLatest" onclick="prevPage(this.id,'nextLatest')"
@@ -302,13 +443,14 @@
 
   <!-- arduino Project Section------------------------------------------------------------------------------>
   <div class="parallexTwo">
-    <div class="jumbotron jumbotron-fluid" id="arduinoProject" style="position:relative; height: 250px;">
+    <div class="jumbotron jumbotron-fluid" id="arduinoProject">
       <div class="container">
         <h1 class="display-5">Arduino Projects</h1>
         <p class="lead">Get the Arduino-projects here</p>
 
       </div>
-      <div class="container">
+    </div>
+      <div class="container arduino">
         <!-- 1ard----------------- -->
         <div class="card-deck my-5 animated" id="1Ard">
           <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
@@ -468,11 +610,41 @@
         </div>
 
       </div>
-
-
-
+<!-- ! arduino end end end end end end ned nd nd ne dne dne dne dne dne dne dne end end -->
+<div class="container mobileViewArduinoProject">
+ 
+  <div class="media">
+    <img src="..." class="align-self-start mr-3" alt="...">
+    <div class="media-body">
+      <h4 class="mt-0"><b>Heading of project</b>  </h4>
+      
+      <p>Cras sit amet nibh libero, in ndimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+      <p> <a href="#" class="card-link warning">Read more</a></p>
     </div>
-    <nav aria-label="Page navigation example " style="margin-top: 450px;">
+  </div>
+  <div class="media">
+    <img src="..." class="align-self-start mr-3" alt="...">
+    <div class="media-body">
+      <h4 class="mt-0"><b>Heading of project</b></h4>
+      <p>Cras sit amet nibh libero, in ndimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+      <p> <a href="#" class="card-link warning">Read more</a></p>
+    </div>
+  </div>
+  <div class="media">
+    <img src="..." class="align-self-start mr-3" alt="...">
+    <div class="media-body">
+      <h4 class="mt-0"><b>Heading of project</b></h4>
+      <p>Cras sit amet nibh libero, in ndimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+      <p> <a href="#" class="card-link warning">Read more</a></p>
+    </div>
+  </div>
+ 
+  <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
+  
+</div>
+
+   
+    <nav aria-label="Page navigation example " class=" page" >
       <ul class="pagination justify-content-center">
         <li class="Ard page-item-custom ">
           <!-- ard for arduino area -->
@@ -502,8 +674,8 @@
         <p class="lead">Get the basic electronics projects here using 555IC , OP-Amp, Transistors, and many more </p>
 
       </div>
-
-      <div class="container">
+    </div>
+      <div class="container basic">
         <!-- 1Basic----------------- -->
         <div class="card-deck my-5 animated" id="1Basic">
           <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
@@ -702,12 +874,37 @@
           </div>
         </div>
       </div>
+      <div class="container mobileViewBasic">
 
+        <div class="media">
+          <img src="..." class="align-self-start mr-3" alt="...">
+          <div class="media-body">
+            <h4 class="mt-0"><b>Heading of project</b></h4>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+            <p> <a href="#" class="card-link warning">Read more</a></p>
+          </div>
+        </div>
+        <div class="media">
+          <img src="..." class="align-self-start mr-3" alt="...">
+          <div class="media-body">
+            <h5 class="mt-0">Top-aligned media</h5>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+            <p> <a href="#" class="card-link warning">Read more</a></p>
+          </div>
+        </div>
+        <div class="media">
+          <img src="..." class="align-self-start mr-3" alt="...">
+          <div class="media-body">
+            <h5 class="mt-0">Top-aligned media</h5>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+            <p> <a href="#" class="card-link warning">Read more</a></p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
+      
+      </div>
 
-
-    </div>
-
-    <nav aria-label="Page navigation example " style="margin-top: 450px;">
+    <nav aria-label="Page navigation example " class="page" >
       <ul class="pagination justify-content-center">
         <li class="Basic page-item-custom">
           <a class="page-link btn disabled" id="prevBasic" onclick="prevPage(this.id,'nextBasic')"
@@ -735,7 +932,7 @@
           <p class="lead">Get the IOT related projects here</p>
         </div>
       </div>
-      <div class="container">
+      <div class="container IOT">
         <!-- 1IOT----------------- -->
         <div class="card-deck my-1 animated" id="1IOT">
           <div class="card howerAnimation  border-info mb-3" style="max-width: 18rem; margin-top: 150px;">
@@ -974,12 +1171,40 @@
           </div>
         </div>
       </div>
+      <div class="container mobileViewIOT">
+
+        <div class="media">
+          <img src="..." class="align-self-start mr-3 img" alt="...">
+          <div class="media-body">
+            <h4 class="mt-0"><b>Heading of project</b></h4>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+            <p> <a href="#" class="btn btn-warning">Read more</a></p>
+          </div>
+        </div>
+        <div class="media">
+          <img src="..." class="align-self-start mr-3" alt="...">
+          <div class="media-body">
+            <h5 class="mt-0">Top-aligned media</h5>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+            <p> <a href="#" class="card-link warning">Read more</a></p>
+          </div>
+        </div>
+        <div class="media">
+          <img src="..." class="align-self-start mr-3" alt="...">
+          <div class="media-body">
+            <h5 class="mt-0">Top-aligned media</h5>
+            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+            <p> <a href="#" class="card-link warning">Read more</a></p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
+      
+      </div>
 
 
 
 
-
-      <nav aria-label="Page navigation example ">
+      <nav aria-label="Page navigation example " class="page" style="margin-top: 40px;"> 
         <ul class="pagination justify-content-center">
           <li class="IOT page-item-custom">
             <a class="page-link btn disabled" id="prevIOT" aria-label="Previous" onclick="prevPage(this.id,'nextIOT')">
@@ -998,7 +1223,7 @@
       </nav>
     </div>
     <!-- end of Iot -->
-    <div class="jumbotron jumbotron-fluid" id="otherPost" style="margin-top: 50px; height: 250px;">
+    <div class="jumbotron jumbotron-fluid" id="otherPost" style="height: 250px;">
       <div class="container">
         <h1 class="display-5">Other Posts</h1>
         <p class="lead">Get the Other Tech-Post Here</p>
@@ -1006,7 +1231,7 @@
       </div>
     </div>
 
-    <div class="container" style="height: 430px;">
+    <div class="container other" style="height: 430px;">
       <div class="card-deck animated" id="1Other" style="display:null">
         <div class="card howerAnimation border-info " id='card1'
           style="max-width: 18rem; margin: 80px 12px 0px 12px;">
@@ -1147,8 +1372,36 @@
       </div>
 
     </div>
+    <div class="container mobileViewOther">
 
-    <nav aria-label="Page navigation example ">
+      <div class="media">
+        <img src="..." class="align-self-start mr-3" alt="...">
+        <div class="media-body">
+          <h4 class="mt-0"><b>Heading of project</b></h4>
+          <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+          <p> <a href="#" class="card-link warning">Read more</a></p>
+        </div>
+      </div>
+      <div class="media">
+        <img src="..." class="align-self-start mr-3" alt="...">
+        <div class="media-body">
+          <h5 class="mt-0">Top-aligned media</h5>
+          <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+          <p> <a href="#" class="card-link warning">Read more</a></p>
+        </div>
+      </div>
+      <div class="media">
+        <img src="..." class="align-self-start mr-3" alt="...">
+        <div class="media-body">
+          <h5 class="mt-0">Top-aligned media</h5>
+          <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+          <p> <a href="#" class="card-link warning">Read more</a></p>
+        </div>
+      </div>
+      <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
+    
+    </div>
+    <nav aria-label="Page navigation example " class="page">
       <ul class="pagination justify-content-center">
         <li class="Other page-item-custom">
           <a class="page-link btn disabled" id="prevOther" onclick="prevPage(this.id,'nextOther')"
@@ -1172,8 +1425,9 @@
 
 
     <!-- About Me page -->
-    <div class="jumbotron" id="about" style="margin-top: 20px;">
-      <h1 class="display-4 text-center">About me</h1>
+    <div class="jumbotron about" id="about">
+      <h1 class="display-4 text-center headingDesktop">About me</h1>
+      <h6 class="display-4 text-center headingMobileView">About me</h6>
       <p class="lead text-center">This is a simple hero unit, a simple jumbotron-style component for calling extra
         attention to featured content or information.</p>
 
@@ -1226,7 +1480,7 @@
 
     <!-- Optional JavaScript -->
 
-    <script src="animate.js"></script>
+    <script src="/static/animate.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
@@ -1239,7 +1493,15 @@
     </script>
     <script>
       
-
+      $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+      })
     </script>
 </body>
 

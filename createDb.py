@@ -25,9 +25,9 @@ class Arduinoproject_posts(db.Model):
     reading_time=db.Column(db.String(50), nullable=False);
     heading=db.Column(db.String(100), nullable=False);
     
-    content_parts=db.relationship('Content',backref='post_name');
+    content_parts=db.relationship('Content_arduino',backref='post_name');
    
-    comment=db.relationship('Comments',backref='post_name');
+    comment=db.relationship('Comments_arduino',backref='post_name');
     
     
 class Content_arduino(db.Model):
@@ -64,7 +64,7 @@ class Comments_arduino(db.Model):
     
     arduinopost_nameid=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
     
-    replies=db.relationship('Comment_replies',backref='comment_name');
+    replies=db.relationship('Comment_replies_arduino',backref='comment_name');
     
     
 class Comment_replies_arduino(db.Model):
@@ -80,9 +80,9 @@ class Basicproject_posts(db.Model):
     reading_time=db.Column(db.String(50), nullable=False);
     heading=db.Column(db.String(100), nullable=False);
     
-    content_parts=db.relationship('Content',backref='post_name');
+    content_parts=db.relationship('Content_basic',backref='post_name');
     
-    comment=db.relationship('Comments',backref='post_name');
+    comment=db.relationship('Comments_basic',backref='post_name');
     
     
 class Content_basic(db.Model):
@@ -119,7 +119,7 @@ class Comments_basic(db.Model):
     
     basicpost_nameid=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
     
-    replies=db.relationship('Comment_replies',backref='comment_name');
+    replies=db.relationship('Comment_replies_basic',backref='comment_name');
     
     
 class Comment_replies_basic(db.Model):
@@ -135,9 +135,9 @@ class Iotproject_posts(db.Model):
     reading_time=db.Column(db.String(50), nullable=False);
     heading=db.Column(db.String(100), nullable=False);
     
-    content_parts=db.relationship('Content',backref='post_name');
+    content_parts=db.relationship('Content_iot',backref='post_name');
    
-    comment=db.relationship('Comments',backref='post_name');
+    comment=db.relationship('Comments_iot',backref='post_name');
     
     
 class Content_iot(db.Model):
@@ -174,7 +174,7 @@ class Comments_iot(db.Model):
     
     iotpost_nameid=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
     
-    replies=db.relationship('Comment_replies',backref='comment_name');
+    replies=db.relationship('Comment_replies_iot',backref='comment_name');
     
     
 class Comment_replies_iot(db.Model):
@@ -190,9 +190,9 @@ class Other_posts(db.Model):
     reading_time=db.Column(db.String(50), nullable=False);
     heading=db.Column(db.String(100), nullable=False);
     
-    content_parts=db.relationship('Content',backref='post_name');
+    content_parts=db.relationship('Content_other',backref='post_name');
    
-    comment=db.relationship('Comments',backref='post_name');
+    comment=db.relationship('Comments_other',backref='post_name');
     
     
 class Content_other(db.Model):
@@ -229,7 +229,7 @@ class Comments_other(db.Model):
     
     other_nameid=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
     
-    replies=db.relationship('Comment_replies',backref='comment_name');
+    replies=db.relationship('Comment_replies_other',backref='comment_name');
     
     
 class Comment_replies_other(db.Model):

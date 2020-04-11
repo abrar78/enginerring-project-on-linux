@@ -3,7 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.fadeIn {
+  animation-duration: 2s;
+  animation-delay: 0.5s;
+  animation-iteration-count: 1;
+}
 #main {
   height: 100%;
 }
@@ -120,7 +124,7 @@ html {
 
 .parallexTwo {
   width: 100%;
-  height: 900px;
+  height: 800px;
   background-image: url(images/arduinolighten.jpg);
 
   background-size: cover;

@@ -24,6 +24,7 @@ class Arduinoproject_posts(db.Model):
     date=db.Column(db.String(50), nullable=False);
     reading_time=db.Column(db.String(50), nullable=False);
     heading=db.Column(db.String(100), nullable=False);
+    description=db.Column(db.String(100), nullable=False);
     
     content_parts=db.relationship('Content_arduino',backref='post_name');
    
@@ -79,6 +80,7 @@ class Basicproject_posts(db.Model):
     date=db.Column(db.String(50), nullable=False);
     reading_time=db.Column(db.String(50), nullable=False);
     heading=db.Column(db.String(100), nullable=False);
+    description=db.Column(db.String(100), nullable=False);
     
     content_parts=db.relationship('Content_basic',backref='post_name');
     
@@ -134,6 +136,7 @@ class Iotproject_posts(db.Model):
     date=db.Column(db.String(50), nullable=False);
     reading_time=db.Column(db.String(50), nullable=False);
     heading=db.Column(db.String(100), nullable=False);
+    description=db.Column(db.String(100), nullable=False);
     
     content_parts=db.relationship('Content_iot',backref='post_name');
    
@@ -189,6 +192,7 @@ class Other_posts(db.Model):
     date=db.Column(db.String(50), nullable=False);
     reading_time=db.Column(db.String(50), nullable=False);
     heading=db.Column(db.String(100), nullable=False);
+    description=db.Column(db.String(100), nullable=False);
     
     content_parts=db.relationship('Content_other',backref='post_name');
    

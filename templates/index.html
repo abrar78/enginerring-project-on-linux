@@ -22,7 +22,7 @@
  
 
    <link rel="stylesheet" href=/static/normalize.css>
-  <title>Hello, world!</title>
+  <title>EngineeringProject</title>
 </head>
 
 <body onresize="myFunction()">
@@ -446,7 +446,7 @@
             <h5 class="card-title" id="Ardhead{{loop.index}}">{{arduinoProject.heading}}</h5>
             <p class="card-text" id='Arddesc{{loop.index}}' >{{arduinoProject.description}}</p>
           </div>
-          <div class="card-footer bg-transparent border-info"> <a href="#" class="btn btn-info">Read More</a></div>
+          <div class="card-footer bg-transparent border-info"> <a href="/Read_more_arduino_post/{{arduinoProject.id}}" id="Ardid{{loop.index}}" class="btn btn-info">Read More</a></div>
         </div>
           
         
@@ -485,7 +485,7 @@
         <h4 class="mt-0"><b>{{db.heading}}</b>  </h4>
         
         <p>{{db.description}}</p>
-        <p> <a href="#" class="card-link warning">Read more</a></p>
+        <p> <a href="/Read_more_arduino_post/{{db.id}}" id="Ard{{loop.index}}" class="card-link warning">Read more</a></p>
       </div>
 
     </div>
@@ -507,7 +507,7 @@
 
       </div>
     </div>
-    <div class="container basic">
+    <div class="container Basic">
     
       <div class="card-deck my-2 animated" id="Basic">
         {% for basicProject in basic_project.items %}
@@ -519,7 +519,7 @@
             <h5 class="card-title" id="Basichead{{loop.index}}">{{basicProject.heading}}</h5>
             <p class="card-text" id='Basicdesc{{loop.index}}' >{{basicProject.description}}</p>
           </div>
-          <div class="card-footer bg-transparent border-info"> <a href="#" class="btn btn-info">Read More</a></div>
+          <div class="card-footer bg-transparent border-info"> <a  href="/Read_more_basic/{{basicProject.id}}" id="Basicid{{loop.index}}" class="btn btn-info">Read More</a></div>
         </div>
           
         
@@ -550,7 +550,7 @@
   </div>
   <div class="container mobileViewBasic">
     
-    <
+    
       
       {% for db in basic_project.items %}
     <div class="media">
@@ -558,7 +558,7 @@
         <h4 class="mt-0"><b>{{db.heading}}</b>  </h4>
         
         <p>{{db.description}}</p>
-        <p> <a href="#" class="card-link warning">Read more</a></p>
+        <p> <a  href="/Read_more_basic/{{db.id}}" id="Basicid{{loop.index}}" class="card-link warning">Read more</a></p>
       </div>
 
     </div>
@@ -589,7 +589,7 @@
             <h5 class="card-title" id="Iothead{{loop.index}}">{{iotProject.heading}}</h5>
             <p class="card-text" id='Iotdesc{{loop.index}}' >{{iotProject.description}}</p>
           </div>
-          <div class="card-footer bg-transparent border-info"> <a href="#" class="btn btn-info">Read More</a></div>
+          <div class="card-footer bg-transparent border-info"> <a  href="/Read_more_iot/{{iotProject.id}}" id="Iotid{{loop.index}}" class="btn btn-info">Read More</a></div>
         </div>
           
         
@@ -626,7 +626,7 @@
             <h4 class="mt-0"><b>{{db.heading}}</b>  </h4>
             
             <p>{{db.description}}</p>
-            <p> <a href="#" class="card-link warning">Read more</a></p>
+            <p> <a  href="/Read_more_iot/{{db.id}}" id="Ardid{{loop.index}}" class="card-link warning">Read more</a></p>
           </div>
     
         </div>
@@ -660,7 +660,7 @@
                 <h5 class="card-title" id="Otherhead{{loop.index}}">{{otherProject.heading}}</h5>
                 <p class="card-text" id='Otherdesc{{loop.index}}' >{{otherProject.description}}</p>
               </div>
-              <div class="card-footer bg-transparent border-info"> <a href="#" class="btn btn-info">Read More</a></div>
+              <div class="card-footer bg-transparent border-info"> <a  href="/Read_more_other/{{otherProject.id}}" id="Otherid{{loop.index}}" class="btn btn-info">Read More</a></div>
             </div>
           
         
@@ -697,7 +697,7 @@
           <h4 class="mt-0"><b>{{db.heading}}</b>  </h4>
           
           <p>{{db.description}}</p>
-          <p> <a href="#" class="card-link warning">Read more</a></p>
+          <p> <a  href="/Read_more_other/{{db.id}}" id="Otherid{{loop.index}}" class="card-link warning">Read more</a></p>
         </div>
   
       </div>

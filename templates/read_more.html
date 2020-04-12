@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <!-- ?Required meta tags -->
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- ?Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- ?custom css -->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+
+
+    <link rel="stylesheet" href=/static/normalize.css>
+    <title>Read_Post</title>
+</head>
+
+<body>
+    <!-- ! Nav Bar -->
+    <nav class="fixed-top" id="navBar" style="background-color: black;">
+        <div class="logo ">
+            <img src="/static/images/logoWhite.png" style="margin-left:60px;height:40px;color: #F2C36B;" alt="">
+        </div>
+
+        <div class="content">
+            <ul class="list">
+                <li class="nav-item nav-links">
+                    <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)" href="/templates/index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown  nav-links">
+                    <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">projects</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/templates/index.html#arduinoProject">Arduino based projects </a>
+                        <a class="dropdown-item" href="/templates/index.htm#IOTProjects">IOT projects</a>
+                        <a class="dropdown-item" href="/templates/index.htm#basicElectronics">basic Electronics projects</a>
+
+                    </div>
+                </li>
+                <li class="nav-item nav-links">
+                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)" href="/templates/index.htm#otherPost">Other Posts</a>
+                </li>
+                <li class="nav-item  nav-links">
+                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)" href="/templates/index.htm#about">About</a>
+                </li>
+                <li class="nav-item nav-links">
+                    <a id="add" class="nav-link mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+                        href="/templates/advertiseWithUs.html">Advertise with us</a>
+                </li>
+                <li class="nav-item">
+                    <!-- log in form -->
+                    <div class="input-group mt-2">
+                        <input type="text" class="form-control" placeholder="search project/post here" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-warning" type="button" id="button-addon2">Search</button>
+                        </div>
+                      </div>
+                   
+                </li>
+            </ul>
+        </div>
+
+       
+    </nav>
+    <!-- ! mobile Nav bar--- =====----=====-----=====-=--=-=--=-=-=-=-=-=-=-=-=-=========== -->
+    <nav class="fixed-top animated fadeInDown" id="mobileNav">
+        <div id="top">
+            <div class="burger" id="burger">
+                <span class="material-icons" style="margin-left: 5px;">
+                    menu
+                </span>
+                <img src="/static/images/logoWhite.png" style="margin-left:20px;height:27px;color: #F2C36B;" alt="">
+            </div>
+            <div id="search" class="search">
+
+                <span class="material-icons" style="height: 30px; color: #F2C36B;margin-right:10px">
+                    search
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="fixed-top animated fadeInDown" id="mobileSearchBar">
+        <div class="input-group mb-3" style="margin-top: 10px;">
+            <input style="height: 32px;" type="text" class="form-control" placeholder="search project/post here"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-warning" type="button" id="button-addon2" style="height: 32px;">
+                    <span class="material-icons" style="margin-bottom: 8px;">
+                        search
+                    </span></button>
+                <!-------------------------------------------------------------------------------- -->
+                <span class="material-icons" id="closeSearch" style="margin-left:15px; color:#F2C36B;margin-top:4px;">
+                    close
+                </span>
+                <!-------------------------------------------------------------------------------- -->
+            </div>
+        </div>
+    </nav>
+
+    <nav class="animated  fixed-top" id="slider">
+
+        <div class="content animated slideInRight">
+            <ul class="mobilelist">
+                <li class="nav-item nav-links" id="closeSlider">
+                    <!-- log in form -->
+                    <span class="material-icons" style="margin-left:15px; margin-top:20px">
+                        close
+                    </span>
+
+                </li>
+
+                <li class="nav-item nav-links">
+                    <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)" href="#">Home</a>
+
+                </li>
+                <li class="nav-item dropdown  nav-links">
+                    <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">projects</a>
+                    <div class="dropdown-menu animated fadeIn">
+                        <a class="dropdown-item" href="/templates/index.htm#arduinoProject">Arduino based projects </a>
+                        <a class="dropdown-item" href="/templates/index.htm#IOTProjects">IOT projects</a>
+                        <a class="dropdown-item" href="/templates/index.htm#basicElectronics">basic Electronics projects</a>
+
+                    </div>
+                </li>
+                <li class="nav-item nav-links">
+                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)" href="/templates/index.htm#otherPost">Other Posts</a>
+                </li>
+                <li class="nav-item  nav-links">
+                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)"
+                        onmouseout="howerLeave(this.id)" href="/templates/index.htm#about">About</a>
+                </li>
+                <li class="nav-item nav-links">
+                    <a id="add" class="nav-link mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
+                        href="/templates/advertiseWithUs.html">Advertise with us</a>
+                </li>
+              
+
+            </ul>
+        </div>
+
+    </nav>
+    <!-- end navbar -->
+{% block content %}
+ 
+
+{% endblock %}
+
+
+
+
+</body>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+<script src="/static/readMore.js"></script>
+
+</html>

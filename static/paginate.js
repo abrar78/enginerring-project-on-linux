@@ -86,6 +86,12 @@ function changePage(id){
     var description3=document.getElementById(`${code}desc3`)
     var description4=document.getElementById(`${code}desc4`)
 
+    var id1=document.getElementById(`${code}id1`)
+    var id2=document.getElementById(`${code}id2`)
+    var id3=document.getElementById(`${code}id3`)
+    var id4=document.getElementById(`${code}id4`)
+
+
 if (pageNo==1) {
       prev.classList.remove("active")
       prev.classList.add("disabled")
@@ -159,7 +165,10 @@ if(pageNo==lastPage) {
             description3.innerHTML=data['description'][3];
             description4.innerHTML=data['description'][4];
             //    container.style.display="none"
-            
+            id1.href=data['id'][1];
+            id2.href=data['id'][2];
+            id3.href=data['id'][3];
+            id4.href=data['id'][4];
             container.classList.add('fadeIn')
             
         //    container.style.display=""   
@@ -190,6 +199,12 @@ function nextPage(type,code){
     var description3=document.getElementById(`${code}desc3`)
     var description4=document.getElementById(`${code}desc4`)
     
+    var id1=document.getElementById(`${code}id1`)
+    var id2=document.getElementById(`${code}id2`)
+    var id3=document.getElementById(`${code}id3`)
+    var id4=document.getElementById(`${code}id4`)
+
+
     if (code=='Ard' && countArd<lastPage) {
         lastVisitPageArd=countArd
         console.log('In If block')
@@ -304,7 +319,10 @@ document.getElementById(`${code}${pageNo}`).classList.add('active')
           description3.innerHTML=data['description'][3];
           description4.innerHTML=data['description'][4];
         //      container.style.display="none"
-          
+        id1.href=data['id'][1];
+        id2.href=data['id'][2];
+        id3.href=data['id'][3];
+        id4.href=data['id'][4];
           container.classList.add('fadeIn')
           
         //  container.style.display=""   
@@ -336,6 +354,12 @@ function prevPage(type,code){
     var description3=document.getElementById(`${code}desc3`)
     var description4=document.getElementById(`${code}desc4`)
     
+    var id1=document.getElementById(`${code}id1`)
+    var id2=document.getElementById(`${code}id2`)
+    var id3=document.getElementById(`${code}id3`)
+    var id4=document.getElementById(`${code}id4`)
+
+
     if (code=='Ard' && countArd>0) {
         lastVisitPageArd=countArd
         document.getElementById(`${code}${lastVisitPageArd}`).classList.remove('active')
@@ -449,7 +473,10 @@ document.getElementById(`${code}${pageNo}`).classList.add('active')
           description3.innerHTML=data['description'][3];
           description4.innerHTML=data['description'][4];
         //      container.style.display="none"
-          
+        id1.href=data['id'][1];
+        id2.href=data['id'][2];
+        id3.href=data['id'][3];
+        id4.href=data['id'][4];
           container.classList.add('fadeIn')
           
         //  container.style.display=""   

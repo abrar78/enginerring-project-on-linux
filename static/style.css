@@ -45,7 +45,8 @@ html {
 
 .searchBar {
   width: 20%;
-  display: block;
+  display: flex;
+  flex-direction: row;
 }
 
 .list {
@@ -250,10 +251,6 @@ html {
 #mobileNav {
   display: none;
 }
-.searchBar{
-  display: none;
-
-}
 .desktopViewSignUpForm{
   display: block;
 }
@@ -270,21 +267,27 @@ html {
 }
 .headingMobileView{
   display: none;
-
+  
   }
   .headingDesktop{
     display: block;
   }
-@media screen and (max-width: 1061px) {
-  #mobileNav{
-    display:flex;
-    width: 100%;
-    justify-content: start;
-    height: 60px;
-    background-color: black;
-  }
-  .logo{
-    width: 20%;
+  /* .searchBar{
+    display: none;
+  
+  } */
+  
+  /* *-------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+  @media screen and (max-width: 1061px) {
+    #mobileNav{
+      display:flex;
+      width: 100%;
+      justify-content: start;
+      height: 60px;
+      background-color: black;
+    }
+    .logo{
+      width: 20%;
     }
   .search{
     display: flex;

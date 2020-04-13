@@ -257,7 +257,7 @@ specifyInput.addEventListener("focus", () => {
     if (key2 == 13) {
       return false;
     }
-    console.log("key:", key2);
+    
   };
   infoOfAdvertRegEx.lastIndex = 0;
   resultSpecify = false;
@@ -373,7 +373,7 @@ var submit=document.getElementById("submit")
 // }
 var alertError=document.getElementById("alertError");
 var alertDone=document.getElementById("alertDone");
-function validateForm(){
+function validateForm(e){
   var result = true;
   console.log("insubmt");
 
@@ -400,13 +400,59 @@ function validateForm(){
   console.log("specify",resultSpecify)
   console.log("total",result)
   if (result==false) {
-    alertError.style.display="";
-    alertDone.style.display="none"
-  }
-  else{
-    alertError.style.display="none";
-    alertDone.style.display=""
-  }
-  return result;
+       alertError.style.display="block";
 
+  }
+ else{
+submitForm();
+  }
+  
+
+}
+function submitForm(){
+  console.log('In submit function')
+  
+  var url=`${window.origin}/form`
+    var entry={
+        first_name:firstName.value,
+        last_name:lastName.value,
+        email:eMail.value,
+        
+        with_only_text:onlyText.checked,
+        image:withImage.checked,
+        have_image:haveImage.checked,
+        dont_have_image:dontHave.checked,
+        make_image:yesMakeInp.checked,
+        dont_make_imag:dontMakeInp.checked,
+        other:other.checked,
+        specification_forOther:specifyInput.value,
+        something_about_add:tellSomething.value,
+
+       
+     }
+     var params={
+        method:'POST',
+        body:JSON.stringify(entry),
+        cache:'no-cache',
+        headers:new Headers({
+            "content-type":"application/json"
+        })
+    }
+
+    fetch(url,params).then(response=>{
+        if(response.status==200){
+            console.log("succesfully_posted")
+            alertDone.style.display="block"
+        }
+        else{
+            console.log("eroor 404, data not posted")
+        }
+        response.json().then(data=>{
+           
+            console.log(data)
+        //   var heading1=document.getElementById(`${code}head1`)
+          
+        //  container.style.display=""   
+        })
+    })
 }

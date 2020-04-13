@@ -1,0 +1,16 @@
+{
+    "params":
+    {
+      "local_server":"True",
+      "local_uri_all_post": "mysql://root:Abrar.786@localhost/all_post",
+      "local_uri_other":"mysql://root:Abrar.786@localhost/other_details",
+      "fb_url":"https://facebook.com/codingthunder",
+      "tw_url":"https://twitter.com/codingthunder",
+      "gh_url": "https://github.com/codingthunder",
+      "blog_name": "Coding Thunder",
+      "tag_line": "Heaven for programmers",
+      "gmail-user":"abrar.ahmed8875288788@gmail.com",
+      "gmail-password":"Abrar.786ahmed",
+      "recipient":"9529693800aa@gmail.com"
+    }
+  }

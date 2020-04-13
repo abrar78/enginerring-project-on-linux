@@ -1,10 +1,17 @@
 from createDb import *
 from flask import jsonify,make_response,request
-import jinja2
+from flask_mail import Mail
 
 
-
-
+app.config.update(
+   
+    MAIL_SERVER = 'smtp.gmail.com',
+    MAIL_PORT = '465',
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = params["gmail-user"],
+    MAIL_PASSWORD =  params["gmail-password"]
+    );
+mail=Mail(app);
 @app.route('/')
 def index():
      arduino=Arduinoproject_posts.query.paginate(per_page=4,page=1,error_out=True)
@@ -155,7 +162,31 @@ def otherRead(num):
 def advertise():
     return render_template('advertiseWithUs.html')
 
-@app.route('/dashboard')
+
+@app.route('/form',methods = ['GET', 'POST'])
+def form_submit():
+    req=request.get_json();
+    print(req)
+    content={"response":"Thankyou"}
+    response=make_response(jsonify(content))
+    return response
+
+@app.route('/message',methods = ['GET', 'POST'])
+def message():
+    req=request.get_json();
+    print(req)
+    message=Messages(send_by=req['sender_name'],email=req['e_mail'],message=req['message'])
+    db.session.add(message)
+    db.session.commit()
+    mail.send_message('new message from blog'+'  name:'+req['sender_name'],
+                      sender=req['e_mail'],
+                      recipients=[params("recipent_mail")],
+                      body=req['message'])
+    content={"response":"Thankyou"}
+    response=make_response(jsonify(content))
+    return response
+    
+@app.route('/dashboard',methods = ['GET', 'POST'])
 def dashboard():
     
     return render_template('dashboard.html')

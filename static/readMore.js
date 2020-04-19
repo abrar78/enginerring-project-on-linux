@@ -53,3 +53,17 @@ closeSlider.onclick=function(){
     slider.classList.add("slideOutLeft")
     
 }
+
+var w;
+var h;
+function myFunction() {
+    w = window.outerWidth;
+    h = window.outerHeight;
+    var txt = "Window size: width=" + w + ", height=" + h;
+    if(w>1061){
+        location.reload()
+    }
+
+
+    console.log(txt);
+    }

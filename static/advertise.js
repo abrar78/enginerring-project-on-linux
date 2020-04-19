@@ -1,5 +1,60 @@
-console.log("succesfully attached");
+console.log("succesfully attached advertise.js file");
+function myFunction() {
+  w = window.outerWidth;
+  h = window.outerHeight;
+  var txt = "Window size: width=" + w + ", height=" + h;
+  if(w>1000){
+      location.reload()
+  }
 
+
+  console.log(txt);
+  }
+var search=document.getElementById("search")
+
+var closeSearch=document.getElementById("closeSearch");
+var lock=true;
+search.onclick= function(){
+    console.log("seacrh clicked");
+    mobileSearchBar.style.display="flex";
+    mobileNav.style.display="none";
+    lock=false;
+    searchBarOpen=true
+
+}
+
+
+var burger=document.getElementById("burger")
+var slider=document.getElementById("slider")
+var closeSlider=document.getElementById("closeSlider")
+var lockSlider=true
+burger.onclick=function(){
+    slider.style.display="flex";
+    slider.classList.add("slideInLeft")
+    slider.classList.remove("slideOutLeft")
+    // slider.classList.remove="slideOutLeft"
+    lockSlider=false;
+}
+closeSearch.onclick=function(){
+    console.log("clicked parallex function");
+    if(lock==false) {
+        
+        mobileSearchBar.style.display="none";
+        mobileNav.style.display="flex";
+        searchBarOpen=false
+        lock=true;
+    }
+  if (lockSlider==false) {
+      slider.style.display="none";
+      lockSlider=true;
+  }    
+}
+closeSlider.onclick=function(){
+    console.log("clicked close");
+    slider.classList.remove("slideInLeft")
+    slider.classList.add("slideOutLeft")
+    
+}
 function hower(i) {
   document.getElementById(i).style.color = "white";
 }
@@ -126,7 +181,7 @@ var emailRegExp = new RegExp(
   "gi"
 );
 // new RegExp("[a-zA-Z0-9]{30,}", "g");
-var infoOfAdvertRegEx = /[a-zA-Z0-9\s]{50,200}$/gy;
+var infoOfAdvertRegEx = /[a-zA-Z0-9\s!.,?\-+=\$()\{\}\[\]]{50,200}$/gy;
 var specificationOfAdvertRegEx = new RegExp("[a-zA-Z0-9s]{30,100}$", "gy");
 // !firstName lastName eMail txtArea(specify) tellSomething
 var resultFirstName = false;
@@ -373,6 +428,7 @@ var submit=document.getElementById("submit")
 // }
 var alertError=document.getElementById("alertError");
 var alertDone=document.getElementById("alertDone");
+var addBtnSpinner=document.getElementById('add_btn_spinner')
 function validateForm(e){
   var result = true;
   console.log("insubmt");
@@ -410,6 +466,7 @@ submitForm();
 
 }
 function submitForm(){
+  addBtnSpinner.style.display="block"
   console.log('In submit function')
   
   var url=`${window.origin}/form`
@@ -443,9 +500,14 @@ function submitForm(){
         if(response.status==200){
             console.log("succesfully_posted")
             alertDone.style.display="block"
+  addBtnSpinner.style.display="none"
+
         }
         else{
-            console.log("eroor 404, data not posted")
+          console.log("eroor 404, data not posted")
+          addBtnSpinner.style.display="none"
+          alert("error 404 ,DATA NOT POSTED :: please check your connection and try again, Thankyou!")
+
         }
         response.json().then(data=>{
            
@@ -456,3 +518,16 @@ function submitForm(){
         })
     })
 }
+var w;
+var h;
+function myFunction() {
+    w = window.outerWidth;
+    h = window.outerHeight;
+    var txt = "Window size: width=" + w + ", height=" + h;
+    if(w>1061){
+        location.reload()
+    }
+
+
+    console.log(txt);
+    }

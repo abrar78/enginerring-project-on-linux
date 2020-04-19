@@ -1,95 +1,15 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <!-- custom css -->
-  <link rel="stylesheet" href="/static/style.css">
-  <!-- google fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-  <title>advertise with us</title>
-
-</head>
-
-<body>
-  <!-- !nav bar for logged in users start from here -->
-  <nav class=" sticky-top readMoreNavBar" id="navBar" style="background: black;">
-    <div classs="logo">
-        <img src="/static/images//logoWhite.png" style="height: 40px; color: #F2C36B; margin-left:10px;" alt="">
-    </div>
-
-    <div class="content">
-        <ul class="list ">
-            <li class="nav-item ">
-                <a id="home" class="nav-link active" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-                    style="color:#F2C36B;font-size: 18px;font-family: 'Roboto Slab', serif;" href="/templates/index.html">Home</a>
-            </li>
-            <li class="nav-item dropdown ">
-                <a id="projects" class="nav-link dropdown-toggle" onmouseover="hower(this.id)"
-                    onmouseout="howerLeave(this.id)"
-                    style="color:#F2C36B; font-size: 18px;font-family: 'Roboto Slab', serif" data-toggle="dropdown"
-                    href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/templates/index.html#arduinoProject">Arduino based projects </a>
-                    <a class="dropdown-item" href="/templates/index.html#IOTProjects">IOT projects</a>
-                    <a class="dropdown-item" href="/templates/index.html#basicElectronics">basic Electronics projects</a>
-
-                </div>
-            </li>
-            <li class="nav-item">
-                <a id="otherPost" class="nav-link  " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-                    style="color:#F2C36B;  font-size: 18px;font-family: 'Roboto Slab', serif"
-                    href="/templates/index.html#otherPost">Other Posts</a>
-            </li>
-            <li class="nav-item ">
-                <a id="aboutMe" class="nav-link- active" onmouseover="hower(this.id)"
-                    onmouseout="howerLeave(this.id)"
-                    style="color:#F2C36B;; font-size: 18px;font-family: 'Roboto Slab', serif;"
-                    href="/templates/index.html#about">About</a>
-            </li>
-            <li class="nav-item">
-                <a id="add" class="nav-link" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-                    style="color:#F2C36B; font-size: 18px; font-family: 'Roboto Slab', serif" href="#">Advertise
-                    with us</a>
-            </li>
-            <!-- <li class="nav-item">
-              <button class="btn btn-sm btn-warning" type="button">Login</button>
-            </li> -->
-            
-           
-           
-        </ul>
-    </div>
-
-    <div class="searchBar" style="margin-right: 20px;"> 
-        <div class="input-group mb-3 my-3">
-            <input type="text" class="form-control" placeholder="Search projects/post here"
-                aria-label="Recipient's username" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-warning" type="button" style="font-family: 'Roboto Slab', serif"
-                    id="button-addon2">Search</button>
-            </div>
-        </div>
-    </div>
-
-</nav>
+{% extends "template.html" %}
+{% block title %} Advertise with us {% endblock %}
+{% block content %}
 <div class="animated bounceIn alert alert-warning  sticky-top" id="alertError" role="alert" style=" display:none;">
-  <strong>Hey user!</strong> please complete the form properly as the instructions menstioned.
+  <strong>Hey user!</strong> please complete the form properly as the instructions menstioned.</strong>
  
-</div>
-<div class="animated zoomIn alert alert-success show sticky-top" id="alertDone" role="alert" style="display:none;">
-  <strong>Thankyou!!</strong>form submitted succesfully we willl contact you within 24hrs. 
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
+</div>
+<div class="animated bounceIn alert alert-success show sticky-top" id="alertDone" role="alert" style="display:none;">
+  <strong>Thankyou!!</strong>form submitted succesfully we willl contact you within 24hrs. 
 </div>
   <!-- ?end -->
   <!--Start of navbar for guest user  -->
@@ -193,29 +113,22 @@
         <small id="chrCountTellSomething" class="form-text text-muted">50 to 200 characters are allowed [0] </small>  
       </div>
 
-      <button  id="submit" type="button" onclick="validateForm()" class="btn btn-warning">Submit</button>
+      <button  id="submit" type="button" onclick="validateForm()" class="btn btn-warning">
+
+        <div>Submit</div>
+          <div class="spinner-border spinner-border-sm " id="add_btn_spinner" style="display:none; margin:0 auto;" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+      </button>
     <!-- </form> -->
   </div>
-  <!-- form end -->
+{% endblock %}  
   <!-- Optional JavaScript -->
-  <script src="/static/advertise.js">
+  {% block script %}
+ 
+  
+  <script src="/static/advertise.js"></script>
 
-  </script>
-  <!-- <script src="/static/animate.js"></script> -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-    <script>
-      $('.custom-control-input').prop('determinate', true)
-    
-    </script>
-</body>
 
-</html>
+  <script>$('.custom-control-input').prop('determinate', true) </script>
+  {% endblock %}

@@ -133,7 +133,7 @@ html {
 
 .parallexTwo {
   width: 100%;
-  height: auto;
+  height: 100vh;
   display: block;
   background:linear-gradient(rgba(0 ,0 ,0 ,0.5),rgba(0,0,0,0.5)), url(images/arduinolighten.jpg);
 

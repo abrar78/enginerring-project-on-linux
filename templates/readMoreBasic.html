@@ -114,6 +114,53 @@
 {% endif %}
 
 
+<div class="desktop">
+
+  <div class="container mt-3">
+    
+  <h1><b>Realted Posts</b></h1>
+  <div class="row conten-center">
+
+    {% for db in related_post %}
+    <div class="col">
+      <div class="card" id="Basiccard{{loop.index}}" style="width: 14rem; ">
+        <img src="/static/images/{{db.thumbnail}}" style="height:20%;"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h3 id="Iothead{{loop.index}}">{{db.heading}}</h3>
+          <p class="card-text" id='Basicdesc{{loop.index}}'>{{db.description}}</p>
+          <a href="/Read_more_iot/{{db.id}}" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+    
+  </div>
+</div>
+  
+
+<div class="mobile">
+<!-- todo FOR mobile same as index page -->
+<div class="mobileViewAll">
+
+  <div class="mobContainer mobBasic" id="mobBasic">
+    {%for db in related_post %}
+    <div class="postMobile mt-3">
+      <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob "alt="">
+      <div class="mobViewContent" >
+        <h3>{{db.heading}}
+        </h3>
+        <p>{{db.description}}</p>
+        <a href="/Read_more_basic/{{db.id}}" class="streached-link">Read More..</a>
+      </div>
+    </div>
+    {% endfor %}  
+    
+  </div>
+</div>
+</div>
+
 {% endblock  %}
 
 {% block script %}

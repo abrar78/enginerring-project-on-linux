@@ -45,12 +45,15 @@ class Arduinoproject_posts(db.Model):
     faq=db.relationship('Faq_arduino',backref='post_name');
     
     
+    
     comment=db.relationship('Comments_arduino',backref='post_name');  #! currently this comment fuunctuanilitiy is not added
 class Index_arduino(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     topic=db.Column(db.String(100),nullable=True)
 
     arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
+
+
 
 class Quick_answers_arduino(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)

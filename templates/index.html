@@ -1,45 +1,49 @@
 {% extends  "template.html" %}
 
-{% block title %}  Engineering Project   {% endblock %}
-    {% block content %}
-  <!-- Parallex effect -->
-  <div class="parallexOne">
-    <div class="typing">
-      <h1 class="text-center welcome" >Welcome</h1>
-    </div>
-    <div class="text-center typeWriterDiv" >
-      <h1 id="typeWriter">:</h1>
-    </div>
-    <div class="container desktopViewSignUpForm">
-      <div class="row">
-        <div class="col" style="margin-top: 200px;">
+{% block title %} Engineering Project {% endblock %}
+{% block content %}
+<!-- Parallex effect -->
+<div class="parallexOne">
+  <div class="typing">
+    <h1 class="text-center welcome">Welcome</h1>
+  </div>
+  <div class="text-center typeWriterDiv">
+    <h1 id="typeWriter">:</h1>
+  </div>
+  <div class="container desktopViewSignUpForm">
+    <div class="row">
+      <div class="col" style="margin-top: 30vh">
 
-          <input type="text" onblur="validateName(this.id,'subscribeBtn')" id="sName" class="form-control" placeholder="User Name">
-        </div>
-        <div class="col" style="margin-top: 200px;">
-
-          <input type="email" onblur="validateEmail(this.id,'subscribeBtn')" id="sEmail"class="form-control" placeholder="E-mail">
-        </div>
-        
+        <input type="text" onblur="validateName(this.id,'subscribeBtn')" id="sName" class="form-control"
+          placeholder="User Name">
       </div>
-      <div class="text-center ">
+      <div class="col" style="margin-top: 30vh;">
 
-        <button type="button" id="subscribeBtn" onclick="subscribe('D')" class="btn btn-outline-warning"
-          style="font-family: 'Roboto Slab', serif; margin-top: 20px;">
-         <div>Subscribe</div>
-          <div class="spinner-border spinner-border-sm " id="subs_btn_spinner" style="display:none; margin:0 auto;" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-
-        </button>
+        <input type="email" onblur="validateEmail(this.id,'subscribeBtn')" id="sEmail" class="form-control"
+          placeholder="E-mail">
       </div>
-      </form>
+
     </div>
+    <div class="text-center ">
 
+      <button type="button" id="subscribeBtn" onclick="subscribe('D')" class="btn btn-outline-warning"
+        style="font-family: 'Roboto Slab', serif; margin-top: 20px;">
+        <div>Subscribe</div>
+        <div class="spinner-border spinner-border-sm " id="subs_btn_spinner" style="display:none; margin:0 auto;"
+          role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
 
+      </button>
+    </div>
+    </form>
   </div>
 
-  <!-- ?Latest POst Section Start ---------------------------------------------------------------->
+
+</div>
+
+<!-- ?Latest POst Section Start ---------------------------------------------------------------->
+<div class="desktop">
   <div class="jumbotron jumbotron-fluid" style="margin-top: 50px; height: 200px;">
     <div class="container">
       <h1 class="display-6">Latest Posts</h1>
@@ -47,239 +51,119 @@
 
     </div>
   </div>
+  <div class="container text-center desktopViewLatestPost" style="margin-top:100px; height: 400px; ">
+    <div class="row " style="margin: 0 auto;">
 
-  <div class="container desktopViewLatestPost" style="height: 430px;">
-    <div class="card-deck animated" id="1Latest" style="display:null">
-      <div class="card howerAnimation border-warning " id='card1' style="max-width: 15rem; margin: 80px 12px 0px 12px;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+      <div class="col">
+        <div class="card" style="width: 14rem; ">
+          <img src="/static/images/arduino-1128227_1920.jpg" style="height:20%;" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h3>heading</h3>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+            <a href="#" class="btn btn-primary">Read More</a>
+          </div>
         </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
-      </div>
-
-      <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
       </div>
 
-      <div class="card howerAnimation  border-warning " style="max-width: 18rem; margin-top: 80px;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+
+      <div class="col">
+        <div class="card" style="width: 14rem; ">
+          <img src="/static/images/action-blur-bulb-dark-355904.jpg" style="height:20%;" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
         </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
       </div>
 
-      <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+
+      <div class="col">
+        <div class="card" style="width: 14rem;">
+          <img src="/static/images/action-blur-bulb-dark-355904.jpg" style="height:20%;" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
         </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
       </div>
 
-    </div>
-    <div class="card-deck animated" id="2Latest" style="display: none;">
-      <div class="card howerAnimation border-warning " id='card1' style="max-width: 18rem; margin: 80px 12px 0px 12px;">
-        <div class="card-header">Header2</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
+
+      <div class="col">
+        <div class="card" style="width: 14rem; ">
+          <img src="/static/images/action-blur-bulb-dark-355904.jpg" style="height:20%;" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
         </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
-      </div>
-      <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
-        <div class="card-header">Header2</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
-      </div>
-      <div class="card howerAnimation  border-warning " id='card3' onmouseover=" (this.id)" onmouseout="  (this.id)"
-        style="max-width: 18rem; margin-top: 80px;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
-      </div>
-      <div class="card howerAnimation  border-warning " style="max-width: 18rem; margin-top: 80px;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
       </div>
 
     </div>
-
-    <div class="card-deck animated" id="3Latest" style="display: none;">
-      <div class="card howerAnimation border-warning " id='card1' style="max-width: 18rem; margin: 80px 12px 0px 12px;">
-        <div class="card-header">Header3</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
-      </div>
-      <div class="card howerAnimation  border-warning " id='card2' style="max-width: 18rem; margin-top: 80px;">
-        <div class="card-header">Header3</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
-      </div>
-      <div class="card howerAnimation  border-warning " id='card3' onmouseover=" (this.id)" onmouseout="  (this.id)"
-        style="max-width: 18rem; margin-top: 80px;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
-      </div>
-      <div class="card howerAnimation  border-warning " style="max-width: 18rem; margin-top: 80px;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-warning">
-          <h5 class="card-title">Warning card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        </div>
-        <div class="card-footer bg-transparent border-warning"> <a href="#" class="btn btn-warning">Read More</a></div>
-      </div>
-
-    </div>
-
   </div>
-  <div class="container-fluid active mobileViewLatestPost">
-    <div class="media">
-      
-      <div class="media-body">
-        <h5 class="mt-0">Top-aligned media</h5>
-        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-        <p> <a href="#" class="card-link warning">Read more</a></p>
-      </div>
-    </div>
-    <div class="media">
-      
-      <div class="media-body">
-        <h5 class="mt-0">Top-aligned media</h5>
-        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-        <p> <a href="#" class="card-link warning">Read more</a></p>
-      </div>
-    </div>
-    <div class="media">
-      
-      <div class="media-body">
-        <h5 class="mt-0">Top-aligned media</h5>
-        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-        <p> <a href="#" class="card-link warning">Read more</a></p>
-      </div>
-    </div>
-    <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
-  </div>
-  
-  
-</div>
- 
-  <!-- ------------------------------------------------------------------------------------------------ -->
+
+
+
+
+
 
   <!-- arduino Project Section------------------------------------------------------------------------------>
-  
+
   <div class="parallexTwo">
     <div class="jumbotron jumbotron-fluid" id="arduinoProject">
       <div class="container">
         <h1 class="display-5">Arduino Projects</h1>
         <p class="lead">Get the Arduino-projects here</p>
-        
+
       </div>
     </div>
-    <div class="container arduino">
-    
-      <div class="card-deck my-2 animated" id="Ard">
-        {% for arduinoProject in arduino_project.items %}
-
-
-        <div class="card howerAnimation  border-info mb-3 " id="Ardcard{{loop.index}}" style="max-width: 18rem; margin-top:100px;">
-          <div class="card-header" id="Ardread{{loop.index}}" >{{arduinoProject.reading_time}}</div>
-          <div class="card-body text-info">
-            <h5 class="card-title" id="Ardhead{{loop.index}}">{{arduinoProject.heading}}</h5>
-            <p class="card-text" id='Arddesc{{loop.index}}' >{{arduinoProject.description}}</p>
+    <div class="container arduino desktopViewArduinoPost">
+      <div class="row" id="Ard">
+        {% for db in arduino_project.items %}
+        <div class="col">
+          <div class="card" id="Ardcard{{loop.index}}" style="width: 14rem; ">
+            <img src="/static/images/{{db.thumbnail}}" style="height:20%;"
+              class="card-img-top" alt="...">
+            <div class="card-body">
+              <h3 id="Ardhead{{loop.index}}">{{db.heading}}</h3>
+              <p class="card-text" id='Arddesc{{loop.index}}'>{{db.description}}</p>
+              <a href="/Read_more_arduino_post/{{db.id}}" class="btn btn-primary">Read More</a>
+            </div>
           </div>
-          <div class="card-footer bg-transparent border-info"> <a href="/Read_more_arduino_post/{{arduinoProject.id}}" id="Ardid{{loop.index}}" class="btn btn-info">Read More</a></div>
         </div>
-          
-        
         {% endfor %}
       </div>
-     
-        
-        <nav aria-label="Page navigation example " class=" page" >
-          <ul class="pagination justify-content-center">
-            <li class="Ard page-item-custom ">
-              <!-- ard for arduino area -->
-              <a class="page-link btn disabled" id="prevArd" aria-label="Previous" onclick="prevPage('prev','Ard')">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            {% for page_no in  arduino_project.iter_pages() %}
-                
-                    <li class="Ard page-item-custom "  id="Ard{{page_no}}" onclick="changePage(this.id)"><a class="page-link">{{page_no}}</a></li>
-            
-            {% endfor %}
-            <li class="Ard page-item-custom  " >
-            
-          <a class="Ard page-link btn" name={{arduino_project.pages}} id="nextArd" onclick="nextPage('next','Ard' )" aria-label="Next">
+
+    </div>
+
+
+    <nav aria-label="Page navigation example " class=" page">
+      <ul class="pagination justify-content-center">
+        <li class="Ard page-item-custom ">
+          <!-- ard for arduino area -->
+          <a class="page-link btn disabled" id="prevArd" aria-label="Previous" onclick="prevPage('prev','Ard')">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% for page_no in  arduino_project.iter_pages() %}
+
+        <li class="Ard page-item-custom " id="Ard{{page_no}}" onclick="changePage(this.id)"><a
+            class="page-link">{{page_no}}</a></li>
+
+        {% endfor %}
+        <li class="Ard page-item-custom  ">
+
+          <a class="Ard page-link btn" name={{arduino_project.pages}} id="nextArd" onclick="nextPage('next','Ard' )"
+            aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
       </ul>
     </nav>
+
   </div>
 
-  <div class="container mobileViewArduinoProject">
-    
-    {% for db in arduino_project.items %}
-    <div class="media">
-      <div class="media-body">
-        <h4 class="mt-0"><b>{{db.heading}}</b>  </h4>
-        
-        <p>{{db.description}}</p>
-        <p> <a href="/Read_more_arduino_post/{{db.id}}" id="Ard{{loop.index}}" class="card-link warning">Read more</a></p>
-      </div>
 
-    </div>
-    {% endfor%} 
-   
-    
-    <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
-    
-  </div>
-</div>
-  
   <!-- ---------------------------------------------------------------------------------------endArduino projects -->
   <!-- Start basic projects -->
   <div class="parallex3">
@@ -291,294 +175,406 @@
       </div>
     </div>
     <div class="container Basic">
-    
-      <div class="card-deck my-2 animated" id="Basic">
-        {% for basicProject in basic_project.items %}
 
-
-        <div class="card howerAnimation  border-info mb-3 " id="Basiccard{{loop.index}}" style="max-width: 18rem; margin-top:100px;">
-          <div class="card-header" id="Basicread{{loop.index}}" >{{basicProject.reading_time}}</div>
-          <div class="card-body text-info">
-            <h5 class="card-title" id="Basichead{{loop.index}}">{{basicProject.heading}}</h5>
-            <p class="card-text" id='Basicdesc{{loop.index}}' >{{basicProject.description}}</p>
-          </div>
-          <div class="card-footer bg-transparent border-info"> <a  href="/Read_more_basic/{{basicProject.id}}" id="Basicid{{loop.index}}" class="btn btn-info">Read More</a></div>
-        </div>
-          
-        
-        {% endfor %}
-      </div>
-     
-        
-        <nav aria-label="Page navigation example " class=" page" >
-          <ul class="pagination justify-content-center">
-            <li class="Basic page-item-custom ">
-              <!-- ard for arduino area -->
-              <a class="page-link btn disabled" id="prevBasic" aria-label="Previous" onclick="prevPage('prev','Basic')">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            {% for page_no in  basic_project.iter_pages() %}
-            <li class="Basic page-item-custom "  id="Basic{{page_no}}" onclick="changePage(this.id)"><a class="page-link">{{page_no}}</a></li>
-            
-            {% endfor %}
-            <li class="Basic page-item-custom  " >
-            
-          <a class="Basic page-link btn" name={{basic_project.pages}} id="nextBasic" onclick="nextPage('next','Basic' )" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-  <div class="container mobileViewBasic">
-    
-    
-      
-      {% for db in basic_project.items %}
-    <div class="media">
-      <div class="media-body">
-        <h4 class="mt-0"><b>{{db.heading}}</b>  </h4>
-        
-        <p>{{db.description}}</p>
-        <p> <a  href="/Read_more_basic/{{db.id}}" id="Basicid{{loop.index}}" class="card-link warning">Read more</a></p>
-      </div>
-
-    </div>
-    {% endfor%} 
-    <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
-    
-  
-</div>
-
-    <!-- end of basic -->
-    <!-- ? iot start -->
-    <div class="parallex4">
-      <div class="jumbotron jumbotron-fluid" id="IOTProjects" style="position:relative; height: 250px;">
-        <div class="container">
-          <h1 class="display-5 animated">IOT Projects</h1>
-          <p class="lead">Get the IOT related projects here</p>
-        </div>
-      </div>
-         <div class="container IOT">
-    
-      <div class="card-deck my-2 animated" id="Iot">
-        {% for iotProject in iot_project.items %}
-
-
-        <div class="card howerAnimation  border-info mb-3 " id="Iotcard{{loop.index}}" style="max-width: 18rem; margin-top:100px;">
-          <div class="card-header" id="Iotread{{loop.index}}" >{{iotProject.reading_time}}</div>
-          <div class="card-body text-info">
-            <h5 class="card-title" id="Iothead{{loop.index}}">{{iotProject.heading}}</h5>
-            <p class="card-text" id='Iotdesc{{loop.index}}' >{{iotProject.description}}</p>
-          </div>
-          <div class="card-footer bg-transparent border-info"> <a  href="/Read_more_iot/{{iotProject.id}}" id="Iotid{{loop.index}}" class="btn btn-info">Read More</a></div>
-        </div>
-          
-        
-        {% endfor %}
-      </div>
-     
-        
-        <nav aria-label="Page navigation example " class=" page" >
-          <ul class="pagination justify-content-center">
-            <li class="Basic page-item-custom ">
-              <!-- ard for arduino area -->
-              <a class="page-link btn disabled" id="prevIot" aria-label="Previous" onclick="prevPage('prev','Iot')">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            {% for page_no in  iot_project.iter_pages() %}
-
-                 <li class="Iot page-item-custom "  id="Iot{{page_no}}" onclick="changePage(this.id)"><a class="page-link">{{page_no}}</a></li>
-            
-            {% endfor %}
-            <li class="Iot page-item-custom  " >
-            
-          <a class="Iot page-link btn" name={{iot_project.pages}} id="nextIot" onclick="nextPage('next','Iot' )" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-      <div class="container mobileViewIOT">
-        {% for db in iot_project.items %}
-        <div class="media">
-          <div class="media-body">
-            <h4 class="mt-0"><b>{{db.heading}}</b>  </h4>
-            
-            <p>{{db.description}}</p>
-            <p> <a  href="/Read_more_iot/{{db.id}}" id="Ardid{{loop.index}}" class="card-link warning">Read more</a></p>
-          </div>
-    
-        </div>
-        {% endfor%} 
-        <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
-      
-      </div>
-
-
-
-
-    </div>
-    <!-- end of Iot -->
-    <div class="jumbotron jumbotron-fluid" id="otherPost" style="height: 250px;">
-      <div class="container">
-        <h1 class="display-5">Other Posts</h1>
-        <p class="lead">Get the Other Tech-Post Here</p>
-
-      </div>
-    </div>
-
-    <div class="container other">
-    
-      <div class="card-deck my-2 animated" id="Other">
-        {% for otherProject in other_project.items %}
-
-
-            <div class="card howerAnimation  border-info mb-3 " id="Othercard{{loop.index}}" style="max-width: 18rem; margin-top:100px;">
-              <div class="card-header" id="Otherread{{loop.index}}" >{{otherProject.reading_time}}</div>
-              <div class="card-body text-info">
-                <h5 class="card-title" id="Otherhead{{loop.index}}">{{otherProject.heading}}</h5>
-                <p class="card-text" id='Otherdesc{{loop.index}}' >{{otherProject.description}}</p>
-              </div>
-              <div class="card-footer bg-transparent border-info"> <a  href="/Read_more_other/{{otherProject.id}}" id="Otherid{{loop.index}}" class="btn btn-info">Read More</a></div>
+      <div class="row" id="Basic">
+        {% for db in basic_project.items %}
+        <div class="col">
+          <div class="card" id="Basiccard{{loop.index}}" style="width: 14rem; ">
+            <img src="/static/images/lightBasicElectronics.jpg" style="height:20%;" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h3 id="Basichead{{loop.index}}">{{db.heading}}</h3>
+              <p class="card-text" id='Basicdesc{{loop.index}}'>{{db.description}}</p>
+              <a href="/Read_more_basic/{{db.id}}" class="btn btn-primary">Read More</a>
             </div>
-          
-        
+          </div>
+        </div>
         {% endfor %}
       </div>
-     
-        
-        <nav aria-label="Page navigation example " class=" page" >
-          <ul class="pagination justify-content-center">
-            <li class="Other page-item-custom ">
-              <!-- ard for arduino area -->
-              <a class="page-link btn disabled" id="prevOther" aria-label="Previous" onclick="prevPage('prev','Other')">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            {% for page_no in  other_project.iter_pages() %}
 
-                <li class="Basic page-item-custom "  id="Other{{page_no}}" onclick="changePage(this.id)"><a class="page-link">{{page_no}}</a></li>
-            
-            {% endfor %}
-            <li class="Basic page-item-custom  " >
-            
-          <a class="Other page-link btn" name={{other_project.pages}} id="nextOther" onclick="nextPage('next','Other' )" aria-label="Next">
+
+      <nav aria-label="Page navigation example " class=" page">
+        <ul class="pagination justify-content-center">
+          <li class="Basic page-item-custom ">
+            <!-- ard for arduino area -->
+            <a class="page-link btn disabled" id="prevBasic" aria-label="Previous" onclick="prevPage('prev','Basic')">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {% for page_no in  basic_project.iter_pages() %}
+          <li class="Basic page-item-custom " id="Basic{{page_no}}" onclick="changePage(this.id)"><a
+              class="page-link">{{page_no}}</a></li>
+
+          {% endfor %}
+          <li class="Basic page-item-custom  ">
+
+            <a class="Basic page-link btn" name={{basic_project.pages}} id="nextBasic"
+              onclick="nextPage('next','Basic' )" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- end of basic -->
+  <!-- ? iot start -->
+  <div class="parallex4">
+    <div class="jumbotron jumbotron-fluid" id="IOTProjects" style="position:relative; height: 250px;">
+      <div class="container">
+        <h1 class="display-5 animated">IOT Projects</h1>
+        <p class="lead">Get the IOT related projects here</p>
+      </div>
+    </div>
+    <div class="container IOT">
+
+      <div class="row" id="Iot">
+        {% for db in iot_project.items %}
+        <div class="col">
+          <div class="card" id="Iotcard{{loop.index}}" style="width: 14rem; ">
+            <img src="/static/images/action-blur-bulb-dark-355904.jpg" style="height:20%;" class="card-img-top"
+              alt="...">
+            <div class="card-body">
+              <h3 id="Iothead{{loop.index}}">{{db.heading}}</h3>
+              <p class="card-text" id='Iotdesc{{loop.index}}'>{{db.description}}</p>
+              <a href="/Read_more_iot/{{db.id}}" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+
+      <nav aria-label="Page navigation example " class=" page">
+        <ul class="pagination justify-content-center">
+          <li class="Basic page-item-custom ">
+            <!-- ard for arduino area -->
+            <a class="page-link btn disabled" id="prevIot" aria-label="Previous" onclick="prevPage('prev','Iot')">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {% for page_no in  iot_project.iter_pages() %}
+
+          <li class="Iot page-item-custom " id="Iot{{page_no}}" onclick="changePage(this.id)"><a
+              class="page-link">{{page_no}}</a></li>
+
+          {% endfor %}
+          <li class="Iot page-item-custom  ">
+
+            <a class="Iot page-link btn" name={{iot_project.pages}} id="nextIot" onclick="nextPage('next','Iot' )"
+              aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- end of Iot -->
+  <div class="jumbotron jumbotron-fluid" id="otherPost" style="height: 250px;">
+    <div class="container">
+      <h1 class="display-5">Other Posts</h1>
+      <p class="lead">Get the Other Tech-Post Here</p>
+
+    </div>
+  </div>
+
+  <div class="container other">
+
+    <div class="row" id="Other">
+      {% for db in other_project.items %}
+      <div class="col">
+        <div class="card" id="Othercard{{loop.index}}" style="width: 14rem; ">
+          <img src="/static/images/baseline_arrow_right_alt_black_18dp.png" style="height:20%;" class="card-img-top"
+            alt="...">
+          <div class="card-body">
+            <h3 id="Otherhead{{loop.index}}">{{db.heading}}</h3>
+            <p class="card-text" id='Otherdesc{{loop.index}}'>{{db.description}}</p>
+            <a href="/Read_more_other/{{db.id}}" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+
+    <nav aria-label="Page navigation example " class=" page">
+      <ul class="pagination justify-content-center">
+        <li class="Other page-item-custom ">
+          <!-- ard for arduino area -->
+          <a class="page-link btn disabled" id="prevOther" aria-label="Previous" onclick="prevPage('prev','Other')">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% for page_no in  other_project.iter_pages() %}
+
+        <li class="Basic page-item-custom " id="Other{{page_no}}" onclick="changePage(this.id)"><a
+            class="page-link">{{page_no}}</a></li>
+
+        {% endfor %}
+        <li class="Basic page-item-custom  ">
+
+          <a class="Other page-link btn" name={{other_project.pages}} id="nextOther" onclick="nextPage('next','Other' )"
+            aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
       </ul>
     </nav>
   </div>
-    <div class="container mobileViewOther">
-      {% for db in other_project.items %}
-      <div class="media">
-        <div class="media-body">
-          <h4 class="mt-0"><b>{{db.heading}}</b>  </h4>
-          
-          <p>{{db.description}}</p>
-          <p> <a  href="/Read_more_other/{{db.id}}" id="Otherid{{loop.index}}" class="card-link warning">Read more</a></p>
-        </div>
-  
-      </div>
-      {% endfor%} 
-      <button type="button" class="btn btn-warning btn-lg btn-block btn-sm"><b>See More</b></button>
-    
+
+
+</div>
+<!-- endParallex -->
+<!-- other tech poststart -->
+<div class="mobile mt-3">
+
+  <div class="mobileView">
+    <div class="jumbotron " style="height: 30vh;">
+      <h1 class="display-4 text-left" style="font-size: 5vh;">Latest Posts</h1>
+
+      <p class="lead text-left" style="font-size: 3vh;">See the latest post here</p>
+
+
     </div>
-  
+  <div class="mobileViewAll">
 
-    <!-- endParallex -->
-    <!-- other tech poststart -->
-
-
-    <!-- About Me page -->
-    <div class="jumbotron about" id="about">
-      <h1 class="display-4 text-center headingDesktop">About me</h1>
-      <h6 class="display-4 text-center headingMobileView">About me</h6>
-      <p class="lead text-center">This is a simple hero unit, a simple jumbotron-style component for calling extra
-        attention to featured content or information.</p>
-
-
+    <div class="mobContainer latestMob">
+      <div class="postMobile mt-3">
+        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob "alt="">
+        <div class="mobViewContent" >
+          <h3>Heading</h3>
+          <p> fdfdsfds fdsf sd fdf s</p>
+          <a href="" class="streached-link">Read Mor..</a>
+        </div>
+        
+      </div>
+      <div class="postMobile mt-3">
+        <img src="/static/images/bandwidth-close-up-computer-connection-1148820.jpg" class="thumbnailMob "alt="">
+        <div class="mobViewContent" >
+          <h3>Heading</h3>
+          <p> fdfdsfds fdsf sd fdf s</p>
+          <a href="" class="streached-link">Read Mor..</a>
+        </div>
+        
+      </div>
+      <div class="postMobile mt-3">
+        <img src="/static/images/action-blur-bulb-dark-355904.jpg" class="thumbnailMob "alt="">
+        <div class="mobViewContent" >
+          <h3>Heading</h3>
+          <p> fdfdsfds fdsf sd fdf s</p>
+          <a href="" class="streached-link">Read Mor..</a>
+        </div>
+        
+      </div>
       
-<div class="text-center">
-        <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">contact</button>
-      </div>
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
-  <div class="modal-dialog" role="document">
- 
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" >
-        <form>
-          
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label" >Your name</label>
-            <input type="text" onblur="validateName(this.id,'messageBtn')"  class="form-control" id="message-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-mail" class="col-form-label" >Your E-mail</label>
-            <input type="email" onblur="validateEmail(this.id,'messageBtn')"  class="form-control" id="message-mail">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control"  onblur="validateMessage(this.id,'messageBtn')" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="messsageBtn" class="btn btn-primary" onclick="sendMessage()">
-          <div>send message</div>
-          <div class="spinner-border spinner-border-sm " id="msg_btn_spinner" style="display:none; margin:0 auto;" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
+    </div>
+    </div>
+  </div>
+<!-- !Arduino post mobile view -->
+  <div class="mobileView">
+    <div class="jumbotron" style="height: 30vh;">
+      <h1 class="display-4 text-left" style="font-size: 5vh;">Arduino Post</h1>
 
-        </button>
+      <p class="lead text-left" style="font-size: 3vh;">Arduino related project</p>
+
+
+    </div>
+  <div class="mobileViewAll">
+
+    <div class="mobContainer mobArd" id="mobArd">
+      {%for db in arduino_project.items %}
+      <div class="postMobile mt-3">
+        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob "alt="">
+        <div class="mobViewContent" >
+          <h3>{{db.heading}}
+          </h3>
+          <p>{{db.description}}</p>
+          <a href="/Read_more_arduino_post/{{db.id}}" class="streached-link">Read More..</a>
+        </div>
+      </div>
+      {% endfor %}  
+      
+    </div>
+    <button type="button" id="seeMoreBtnArd" name="{{arduino_project.pages}}" onclick="seeMore('Ard')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
+  </div>
+</div>
+
+
+<!-- * Basic electronics posts  -->
+<div class="mobileView">
+  <div class="jumbotron" style="height: 30vh;">
+    <h1 class="display-4 text-left" style="font-size: 5vh;">Basic electronics Projects</h1>
+
+    <p class="lead text-left" style="font-size: 3vh;">Get project related to 555ic opamp Transistors etc here</p>
+
+
+  </div>
+<div class="mobileViewAll">
+
+  <div class="mobContainer mobBasic" id="mobBasic">
+    {%for db in basic_project.items %}
+    <div class="postMobile mt-3">
+      <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob "alt="">
+      <div class="mobViewContent" >
+        <h3>{{db.heading}}</h3>
+        <p>  {{db.description}}</p>
+        <a href="/Read_more_basic/{{db.id}}" class="streached-link">Read More..</a>
+      </div>
+    </div>
+    {% endfor %}  
+    
+  </div>
+  <button type="button" name="{{basic_project.pages}}" id="seeMoreBtnBasic" onclick="seeMore('Basic')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
+</div>
+</div>
+
+<!-- ? iot related project here -->
+<div class="mobileView">
+  <div class="jumbotron" style="height: 30vh;">
+    <h1 class="display-4 text-left" style="font-size: 5vh;">IOT Projects</h1>
+
+    <p class="lead text-left" style="font-size: 3vh;">Get project related to IOT  here</p>
+
+
+  </div>
+<div class="mobileViewAll">
+
+  <div class="mobContainer mobIot" id="mobIot">
+    {%for db in iot_project.items %}
+    <div class="postMobile mt-3">
+      <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob "alt="">
+      <div class="mobViewContent" >
+        <h3>{{db.heading}}</h3>
+        <p> {{db.description}}</p>
+        <a href="/Read_more_iot/{{db.id}}" class="streached-link">Read More..</a>
+      </div>
+    </div>
+    {% endfor %}  
+    
+  </div>
+  <button type="button" name="{{iot_project.pages}}" id="seeMoreBtnIot" onclick="seeMore('Iot')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
+</div>
+</div>
+<!-- todo OTHER post here -->
+<div class="mobileView">
+  <div class="jumbotron" style="height: 30vh;">
+    <h1 class="display-4 text-left" style="font-size: 5vh;">Other posts</h1>
+
+    <p class="lead text-left" style="font-size: 3vh;">Get other tech related articles here</p>
+
+
+  </div>
+<div class="mobileViewAll">
+
+  <div class="mobContainer mobOther" id="mobOther">
+    {%for db in other_project.items %}
+    <div class="postMobile mt-3">
+      <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob "alt="">
+      <div class="mobViewContent" >
+        <h3>{{db.heading}}</h3>
+        <p>{{db.description}}</p>
+        <a href="/Read_more_other/{{db.id}}" class="streached-link">Read More..</a>
+      </div>
+    </div>
+    {% endfor %}  
+    
+  </div>
+  <button type="button" name="{{other_project.pages}}" id="seeMoreBtnOther" onclick="seeMore('Other')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
+</div>
+</div>
+</div>
+  <!-- !-------ABOUT ME PAGE--------------------------------------------------------------------------------------------------About Me page -->
+  <div class="jumbotron about" id="about">
+    <h1 class="display-4 text-center" style="font-size: 5vh;">About me</h1>
+
+    <p class="lead text-center" style="font-size: 2.5vh;">This is a simple hero unit, a simple jumbotron-style component
+      for calling extra
+      attention to featured content or information.</p>
+
+
+
+    <div class="text-center">
+      <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#exampleModal1"
+        data-whatever="@mdo">contact</button>
+    </div>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Your name</label>
+                <input type="text" onblur="validateName(this.id,'messageBtn')" class="form-control" id="message-name">
+              </div>
+              <div class="form-group">
+                <label for="recipient-mail" class="col-form-label">Your E-mail</label>
+                <input type="email" onblur="validateEmail(this.id,'messageBtn')" class="form-control" id="message-mail">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Message:</label>
+                <textarea class="form-control" onblur="validateMessage(this.id,'messageBtn')"
+                  id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="messsageBtn" class="btn btn-primary" onclick="sendMessage()">
+              <div>send message</div>
+              <div class="spinner-border spinner-border-sm " id="msg_btn_spinner" style="display:none; margin:0 auto;"
+                role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-      </div>
-    
-
-    <!-- Footer -->
-    
-    <div class="footer">
-      <i class="material-icons" id="icons">
-        copyright
-      </i>
-      engineeringproject.net
-      <div class="socilMedia"></div>
-    </div>
 
 
-    <!-- Optional JavaScript -->
-{% endblock %}
-{% block script %}
+  <!-- Footer -->
 
-<script src="/static/main.js"></script>
-<script src="/static/paginate.js"></script>
-<script src="/static/message.js"></script> 
-    <script>     
-      $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) 
-        var recipient = button.data('whatever') 
-        var modal = $(this)
-        modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body input').val(recipient)
-      })
-    </script>
+  <div class="footer">
+    <i class="material-icons" id="icons">
+      copyright
+    </i>
+    engineeringproject.net
+    <div class="socilMedia"></div>
+  </div>
 
-{% endblock %}
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+
+  <!-- Optional JavaScript -->
+  {% endblock %}
+  {% block script %}
+
+  <script src="/static/main.js"></script>
+  <script src="/static/paginate.js"></script>
+  <script src="/static/message.js"></script>
+  <script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      var recipient = button.data('whatever')
+      var modal = $(this)
+      modal.find('.modal-title').text('New message to ' + recipient)
+      modal.find('.modal-body input').val(recipient)
+    })
+  </script>
+
+  {% endblock %}
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

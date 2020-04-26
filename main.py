@@ -1,9 +1,12 @@
 from createDb import *
-from flask import jsonify,make_response,request
-
+from sqlalchemy import or_
+import math
+from flask import jsonify,make_response,request,redirect
+import os
+from werkzeug import secure_filename
 from flask_mail import Mail
 
-
+app.config['UPLOAD_FOLDER']=params["upload_location"]
 app.config.update(
    
     MAIL_SERVER = 'smtp.gmail.com',
@@ -13,30 +16,16 @@ app.config.update(
     MAIL_PASSWORD =  params["gmail-password"]
     
     );
-
+results=[]
 mail=Mail(app);
 @app.route('/')
 def index():
+     
      arduino=Arduinoproject_posts.query.paginate(per_page=4,page=1,error_out=True)
      basic=Basicproject_posts.query.paginate(per_page=4,page=1,error_out=True)
      iot=Iotproject_posts.query.paginate(per_page=4,page=1,error_out=True)
      other=Other_posts.query.paginate(per_page=4,page=1,error_out=True)
      return render_template('index.html',arduino_project=arduino,basic_project=basic,iot_project=iot,other_project=other)
-
-@app.route('/load_more_posts')
-def load_more_posts():
-    req=request.get_json();
-    print(req);
-    if req['code']=='Ard':
-         content={'heading':{}, 'readingTime':{},'description':{}}
-         arduino=Arduinoproject_posts.query.paginate(per_page=4+req['pageArd'], page=1,error_out=True)
-         for db,i in zip(arduino.items,range(1,5)):
-             content['heading'][str(i)]=db.heading
-             content['readingTime'][str(i)]=db.reading_time
-             content['description'][str(i)]=db.description
-             
-         response=make_response(jsonify(content),200)
-         return response
 
 @app.route('/paginate', methods = ['GET', 'POST'])
 def paginate():
@@ -46,12 +35,12 @@ def paginate():
     if req['code']=='Ard':
           
         if req['jump_page']==True:
-         content={'heading':{}, 'readingTime':{},'description':{},'id':{}}
+         content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
          current_page=int(req['page_no'])
          arduino=Arduinoproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
          for arduino_db,i in zip(arduino.items,range(1,5)):
              content['heading'][str(i)]=arduino_db.heading
-             content['readingTime'][str(i)]=arduino_db.reading_time
+             content['thumbnail'][str(i)]=arduino_db.thumbnail
              content['description'][str(i)]=arduino_db.description
              content['id'][str(i)]="/Read_more_arduino_post/"+str(arduino_db.id)
          print(req['page_no'])    
@@ -59,11 +48,12 @@ def paginate():
          return response
      
         if req['next']==True or req['prev']==True:
-          content={'heading':{}, 'readingTime':{},'description':{},'id':{}}  
+          content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}  
+          print(req)
           arduino=Arduinoproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
           for arduino_db,i in zip(arduino.items,range(1,5)):
              content['heading'][str(i)]=arduino_db.heading
-             content['readingTime'][str(i)]=arduino_db.reading_time
+             content['thumbnail'][str(i)]=arduino_db.thumbnail
              content['description'][str(i)]=arduino_db.description
              content['id'][str(i)]="/Read_more_arduino_post/"+str(arduino_db.id)
              
@@ -71,12 +61,12 @@ def paginate():
     if req['code']=='Basic':
           
         if req['jump_page']==True:
-         content={'heading':{}, 'readingTime':{},'description':{},'id':{}}
+         content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
          current_page=int(req['page_no'])
          basic=Basicproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
          for basic_db,i in zip(basic.items,range(1,5)):
              content['heading'][str(i)]=basic_db.heading
-             content['readingTime'][str(i)]=basic_db.reading_time
+             content['thumbnail'][str(i)]=basic_db.thumbnail
              content['description'][str(i)]=basic_db.description
              content['id'][str(i)]="/Read_more_basic/"+str(basic_db.id)
          print(req['page_no'])    
@@ -84,22 +74,22 @@ def paginate():
          return response
      
         if req['next']==True or req['prev']==True:
-          content={'heading':{}, 'readingTime':{},'description':{},'id':{}}  
+          content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}  
           basic=Basicproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
           for basic_db,i in zip(basic.items,range(1,5)):
              content['heading'][str(i)]=basic_db.heading
-             content['readingTime'][str(i)]=basic_db.reading_time
+             content['thumbnail'][str(i)]=basic_db.thumbnail
              content['description'][str(i)]=basic_db.description
              content['id'][str(i)]='/Read_more_basic/'+str(basic_db.id)
              
     if req['code']=='Iot':
          if req['jump_page']==True:
-             content={'heading':{}, 'readingTime':{},'description':{},'id':{}}
+             content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
              current_page=int(req['page_no'])
              iot=Iotproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
              for iot_db,i in zip(iot.items,range(1,5)):
                 content['heading'][str(i)]=iot_db.heading
-                content['readingTime'][str(i)]=iot_db.reading_time
+                content['thumbnail'][str(i)]=iot_db.thumbnail
                 content['description'][str(i)]=iot_db.description
                 content['id'][str(i)]='/Read_more_iot/'+str(iot_db.id)
              print(req['page_no'])    
@@ -107,23 +97,23 @@ def paginate():
              return response
      
          if req['next']==True or req['prev']==True:
-            content={'heading':{}, 'readingTime':{},'description':{},'id':{}}  
+            content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}  
             iot=Iotproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
             for iot_db,i in zip(iot.items,range(1,5)):
                 content['heading'][str(i)]=iot_db.heading
-                content['readingTime'][str(i)]=iot_db.reading_time
+                content['thumbnail'][str(i)]=iot_db.thumbnail
                 content['description'][str(i)]=iot_db.description
                 content['id'][str(i)]='/Read_more_iot/'+str(iot_db.id)
                 
                 
     if req['code']=='Other':
          if req['jump_page']==True:
-             content={'heading':{}, 'readingTime':{},'description':{},'id':{}}
+             content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
              current_page=int(req['page_no'])
              other=Other_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
              for other_db,i in zip(other.items,range(1,5)):
                 content['heading'][str(i)]=other_db.heading
-                content['readingTime'][str(i)]=other_db.reading_time
+                content['thumbnail'][str(i)]=other_db.thumbnail
                 content['description'][str(i)]=other_db.description
                 content['id'][str(i)]='/Read_more_other/'+str(other_db.id)
              print(req['page_no'])    
@@ -131,11 +121,11 @@ def paginate():
              return response
      
          if req['next']==True or req['prev']==True:
-            content={'heading':{}, 'readingTime':{},'description':{},'id':{}}  
+            content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}  
             other=Other_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
             for other_db,i in zip(other.items,range(1,5)):
                 content['heading'][str(i)]=other_db.heading
-                content['readingTime'][str(i)]=other_db.reading_time
+                content['thumbnail'][str(i)]=other_db.thumbnail
                 content['description'][str(i)]=other_db.description
                 content['id'][str(i)]='/Read_more_other/'+str(other_db.id)
                 
@@ -146,22 +136,34 @@ def paginate():
     
 @app.route('/Read_more_arduino_post/<int:num>')
 def arduinoRead(num):
-    topics={}
     arduino_post=Arduinoproject_posts.query.filter_by(id=num).first()
-    
-    return render_template('readMoreArduino.html', arduino_post_db=arduino_post)
+    search_value=arduino_post.keyword
+    search="%{0}%".format(search_value)
+    print(search)
+    related=Arduinoproject_posts.query.filter(or_(Arduinoproject_posts.description.like(search), Arduinoproject_posts.heading.like(search))).all()
+    return render_template('readMoreArduino.html', arduino_post_db=arduino_post,related_post=related[0:4])
 @app.route('/Read_more_basic/<int:num>')
 def basicRead(num):
     basic_post=Basicproject_posts.query.filter_by(id=num).first()
-    return render_template('readMoreBasic.html', basic_post_db=basic_post)
+    search_value=basic_post.keyword
+    search="%{0}%".format(search_value)
+    related=Basicproject_posts.query.filter(or_(Basicproject_posts.description.like(search), Basicproject_posts.heading.like(search))).all()
+    return render_template('readMoreBasic.html', basic_post_db=basic_post,related_post=related[0:4])
 @app.route('/Read_more_iot/<int:num>')
 def iotRead(num):
     iot_post=Iotproject_posts.query.filter_by(id=num).first()
-    return render_template('readMoreIot.html', iot_post_db=iot_post)
+    search_value=iot_post.keyword
+    search="%{0}%".format(search_value)
+    related=Iotproject_posts.query.filter(or_(Iotproject_posts.description.like(search), Iotproject_posts.heading.like(search))).all()
+    return render_template('readMoreIot.html', iot_post_db=iot_post,related_post=related[0:4])
 @app.route('/Read_more_other/<int:num>')
 def otherRead(num):
     other_post=Other_posts.query.filter_by(id=num).first()
-    return render_template('readMoreOther.html', other_post_db=other_post)
+    search_value=other_post.keyword
+    search="%{0}%".format(search_value)
+    related=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+    
+    return render_template('readMoreOther.html', other_post_db=other_post,related_post=related[0:4])
 
 @app.route('/templates/advertiseWithUs.html')
 def advertise():
@@ -233,17 +235,50 @@ def subscriber():
     response=make_response(jsonify(content))
     return response
 
-@app.route('/search',methods=['GET','POST'])
-def search():
-     if request.method=='POST':
-         form=request.form
-         search_value=form['search_string']
-         search="%{0}%".format(search_value)
-         print(search)
-         results=Arduinoproject_posts.query.filter(Arduinoproject_posts.description.like(search)).all()
-         
-         print(results[0].description)
-     return render_template('search.html')  
+@app.route('/search/<int:page>',methods=['GET','POST'])
+def search(page):
+    per_page=10
+    next=2;
+    prev=0;
+    current=page;
+    if request.method=="POST":
+        
+        form=request.form
+        search_value=form['search_string']
+        search="%{0}%".format(search_value)
+        print(search)
+        result1=Arduinoproject_posts.query.filter(or_(Arduinoproject_posts.description.like(search), Arduinoproject_posts.heading.like(search))).all()
+        result2=Iotproject_posts.query.filter(or_(Iotproject_posts.description.like(search), Iotproject_posts.heading.like(search))).all()
+        result3=Basicproject_posts.query.filter(or_(Basicproject_posts.description.like(search), Basicproject_posts.heading.like(search))).all()
+        result4=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+        global results
+        results=result1+result2+result3+result4
+    pages=math.ceil(len(results)/per_page)
+    
+    if current==1:
+        prev=0
+        next=current+1
+        
+    if current>1:
+        prev=current-1;
+        next=current+1;
+        
+    if current==pages:
+        next=0;
+        prev=current-1;
+        
+    result=results[per_page*page-per_page : per_page*page]
+    print(type(results))
+    data={"next":next,"prev":prev,"current":current}     
+    return render_template('search.html',result=result,totalPages=pages,next=next,prev=prev,data=json.dumps(data))  
+
+@app.route('/upload',methods=['GET','POST'])
+def upload():
+       f=request.files['file'];
+       f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(f.filename)))
+      
+       return "SUCCESS"
+    
 @app.route('/dashboard',methods = ['GET', 'POST'])
 def dashboard():
     

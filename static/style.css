@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+.desktop{
+  display: block;
+}
 .fadeIn {
   animation-duration: 2s;
   animation-delay: 0.5s;
@@ -12,6 +15,9 @@
   height: 100%;
 }
 
+.desktopViewLatestPost{
+  display:block;
+}
 .modal-backdrop {
   z-index: -1;
 }
@@ -61,14 +67,14 @@ html {
   color: #F2C36B;
    font-size:60px;
     position: relative; 
-    top:250px;
+    top:38vh;
     font-family: 'Roboto Slab', serif;
 }
 .typeWriterDiv{
   color: #F2C36B; 
   font-size: 30px; 
   position: relative; 
-  top:200px;
+  top:30vh;
   font-family: 'Roboto Slab', serif;
 }
 #typeWriter {
@@ -85,7 +91,7 @@ html {
   border-right: 2px solid white;
   animation: blink 0.5s infinite ease;
 }
-.mobileViewLatestPost{
+.mobileViewAll{
   display: none;
 }
 .mobileViewArduinoProject{
@@ -113,7 +119,8 @@ html {
 /* parallex effect */
 .parallexOne {
   width: 100%;
-  height: 570px;
+  
+  height: 90vh;
   background-image: url(images/back.jpg);
   background-repeat: no-repeat;
   clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
@@ -126,8 +133,9 @@ html {
 
 .parallexTwo {
   width: 100%;
-  height: 800px;
-  background-image: url(images/arduinolighten.jpg);
+  height: auto;
+  display: block;
+  background:linear-gradient(rgba(0 ,0 ,0 ,0.5),rgba(0,0,0,0.5)), url(images/arduinolighten.jpg);
 
   background-size: cover;
   background-repeat: no-repeat;
@@ -266,13 +274,10 @@ html {
   height: 250px;
   
 }
-.headingMobileView{
+.mobile{
   display: none;
-  
-  }
-  .headingDesktop{
-    display: block;
-  }
+}
+
   /* .searchBar{
     display: none;
   
@@ -280,6 +285,9 @@ html {
   
   /* *-------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
   @media screen and (max-width: 1061px) {
+    .mobile{
+      display: block;
+    }
     #mobileNav{
       display:flex;
       width: 100%;
@@ -348,54 +356,19 @@ html {
 .jumbotron{
   height: 150px;
 }
-.desktopViewLatestPost{
-  display:none;
-}
-.mobileViewLatestPost{
+
+.mobileViewAll{
   display: block;
   width: 100%;
-  height: 350px;
-  overflow: hidden;
-  overflow-y: scroll;
-}
-.parallexTwo{
-  height:600px ;
-}
-.parallex3{
-  height:600px ;
-}
-.parallex4{
-  height:600px ;
-}
-.mobileViewArduinoProject{
-  display: block;
-  width: 100%;
-  height: 300px;
- 
+  height: 70vh;
   overflow: hidden;
   overflow-y: scroll;
  
-}.mobileViewIOT{
-  display: block;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  overflow-y: scroll;
 }
-.mobileViewBasic{
-  display: block;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  overflow-y: scroll;
+.desktop{
+  display: none;
 }
-.mobileViewOther{
-  display: block;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  overflow-y: scroll;
-}
+
 .page{
   margin-bottom: 250px;
   display: none;
@@ -426,19 +399,29 @@ html {
   }
   #about{
  margin-top: 40px;
- height: 300px;
+ height: 40vh;
   }
-  .headingDesktop
-  {
-    display: none;
-  }
-  .headingMobileView{
-    display: block;
-  
-    }
+
     .img{
       height: 50px;
     }
-  
+  .thumbnailMob{
+    width: 100%;
+  }
+  .mobContainer{
+    display: flex;
+    flex-direction: column;
+   
     
-}
+  }
+   .postMobile{
+     display: grid;
+     grid-template-columns: 50% 50%;
+   }
+   .mobViewContent{
+     display: flex;
+     flex-direction: column;
+     margin-left: 10px;
+   }
+   
+  }

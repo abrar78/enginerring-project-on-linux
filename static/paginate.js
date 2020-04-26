@@ -3,7 +3,10 @@ var Ard1=document.getElementById('Ard1')
 var Basic1=document.getElementById('Basic1')
 var Iot1=document.getElementById('Iot1')
 var Other1=document.getElementById('Other1')
-
+var mobileCountArd_=1
+var mobileCountBasic_=1
+var mobileCountOther_=1
+var mobileCountIot_=1
 Basic1.classList.add('active')
 Ard1.classList.add('active')
 Iot1.classList.add('active')
@@ -69,17 +72,17 @@ function changePage(id){
         lastVisitPageOther=parseInt(pageNo)
     }
     var container=document.getElementById(`${code}`)
-    container.classList.remove('fadeIn')
+    container.classList.remove('bounceIn')
     // console.log(heading1);
     var heading1=document.getElementById(`${code}head1`)
     var heading2=document.getElementById(`${code}head2`)
     var heading3=document.getElementById(`${code}head3`)
     var heading4=document.getElementById(`${code}head4`)
 
-    var readTime1=document.getElementById(`${code}read1`)
-    var readTime2=document.getElementById(`${code}read2`)
-    var readTime3=document.getElementById(`${code}read3`)
-    var readTime4=document.getElementById(`${code}read4`)
+   
+  
+    
+    
 
     var description1=document.getElementById(`${code}desc1`)
     var description2=document.getElementById(`${code}desc2`)
@@ -155,10 +158,10 @@ if(pageNo==lastPage) {
             heading3.innerHTML=data['heading'][3];
             heading4.innerHTML=data['heading'][4];
 
-            readTime1.innerHTML=data['heading'][1];
-            readTime2.innerHTML=data['heading'][2];
-            readTime3.innerHTML=data['heading'][3];
-            readTime4.innerHTML=data['heading'][4];
+            
+            
+            
+            
             
             description1.innerHTML=data['description'][1];
             description2.innerHTML=data['description'][2];
@@ -169,7 +172,7 @@ if(pageNo==lastPage) {
             id2.href=data['id'][2];
             id3.href=data['id'][3];
             id4.href=data['id'][4];
-            container.classList.add('fadeIn')
+            container.classList.add('bounceIn')
             
         //    container.style.display=""   
           })
@@ -180,7 +183,7 @@ function nextPage(type,code){
     console.log(code)
     var pageNo=0
     var container=document.getElementById(`${code}`)
-    container.classList.remove('fadeIn')
+    container.classList.remove('bounceIn')
     var next=document.getElementById(`next${code}`)
     var lastPage=parseInt(next.name);
     console.log('NextPage clciked',type)
@@ -189,10 +192,10 @@ function nextPage(type,code){
     var heading3=document.getElementById(`${code}head3`)
     var heading4=document.getElementById(`${code}head4`)
 
-    var readTime1=document.getElementById(`${code}read1`)
-    var readTime2=document.getElementById(`${code}read2`)
-    var readTime3=document.getElementById(`${code}read3`)
-    var readTime4=document.getElementById(`${code}read4`)
+   
+  
+    
+    
 
     var description1=document.getElementById(`${code}desc1`)
     var description2=document.getElementById(`${code}desc2`)
@@ -309,10 +312,10 @@ document.getElementById(`${code}${pageNo}`).classList.add('active')
           heading3.innerHTML=data['heading'][3];
           heading4.innerHTML=data['heading'][4];
 
-          readTime1.innerHTML=data['heading'][1];
-          readTime2.innerHTML=data['heading'][2];
-          readTime3.innerHTML=data['heading'][3];
-          readTime4.innerHTML=data['heading'][4];
+          
+          
+          
+          
           
           description1.innerHTML=data['description'][1];
           description2.innerHTML=data['description'][2];
@@ -323,7 +326,7 @@ document.getElementById(`${code}${pageNo}`).classList.add('active')
         id2.href=data['id'][2];
         id3.href=data['id'][3];
         id4.href=data['id'][4];
-          container.classList.add('fadeIn')
+          container.classList.add('bounceIn')
           
         //  container.style.display=""   
         })
@@ -335,7 +338,7 @@ document.getElementById(`${code}${pageNo}`).classList.add('active')
 function prevPage(type,code){
     var pageNo=0
     var container=document.getElementById(`${code}`)
-    container.classList.remove('fadeIn')
+    container.classList.remove('bounceIn')
     var next=document.getElementById(`next${code}`)
     var lastPage=parseInt(next.name);
     console.log('prevPage clciked',type)
@@ -344,10 +347,10 @@ function prevPage(type,code){
     var heading3=document.getElementById(`${code}head3`)
     var heading4=document.getElementById(`${code}head4`)
 
-    var readTime1=document.getElementById(`${code}read1`)
-    var readTime2=document.getElementById(`${code}read2`)
-    var readTime3=document.getElementById(`${code}read3`)
-    var readTime4=document.getElementById(`${code}read4`)
+   
+  
+    
+    
 
     var description1=document.getElementById(`${code}desc1`)
     var description2=document.getElementById(`${code}desc2`)
@@ -463,10 +466,10 @@ document.getElementById(`${code}${pageNo}`).classList.add('active')
           heading3.innerHTML=data['heading'][3];
           heading4.innerHTML=data['heading'][4];
 
-          readTime1.innerHTML=data['heading'][1];
-          readTime2.innerHTML=data['heading'][2];
-          readTime3.innerHTML=data['heading'][3];
-          readTime4.innerHTML=data['heading'][4];
+          
+          
+          
+          
           
           description1.innerHTML=data['description'][1];
           description2.innerHTML=data['description'][2];
@@ -477,10 +480,99 @@ document.getElementById(`${code}${pageNo}`).classList.add('active')
         id2.href=data['id'][2];
         id3.href=data['id'][3];
         id4.href=data['id'][4];
-          container.classList.add('fadeIn')
+          container.classList.add('bounceIn')
           
         //  container.style.display=""   
         })
     })
 
+}
+var seeMoreBtnArduino=document.getElementById("seeMoreBtnArd")
+var seeMoreBtnBasic=document.getElementById("seeMoreBtnBasic")
+var seeMoreBtnIot=document.getElementById("seeMoreBtnIot")
+var seeMoreBtnOther=document.getElementById("seeMoreBtnOther")
+
+seeMoreBtnArduino.disabled=false
+seeMoreBtnBasic.disabled=false
+seeMoreBtnIot.disabled=false
+seeMoreBtnOther.disabled=false
+
+
+function seeMore(code){
+    var totalPages=document.getElementById(`seeMoreBtn${code}`).name
+    totalPages=parseInt(totalPages);
+    var page_no_=0
+    if (code=="Ard") {
+        mobileCountArd_++
+        page_no_=mobileCountArd_;
+        if (mobileCountArd_>totalPages) {
+            seeMoreBtnArduino.disabled=true
+        }
+    }
+    if (code=="Basic") {
+        mobileCountBasic_++
+        page_no_=mobileCountBasic_;
+        if (mobileCountBasic_>totalPages) {
+            seeMoreBtnBasic.disabled=true
+        }
+    }
+    if (code=="Iot") {
+        mobileCountIot_= mobileCountIot_++
+        page_no_=mobileCountIot_;
+        if (mobileCountIot_>totalPages) {
+            seeMoreBtnIot.disabled=true
+        }
+    }
+    if (code=="Other") {
+        mobileCountOther_++
+        page_no_= mobileCountOther_;
+        if (mobileCountOther_>totalPages) {
+            seeMoreBtnOther.disabled=true
+        }
+    }
+    console.log("Arduino Basic IOT OThER",mobileCountArd_,mobileCountBasic_,mobileCountIot_,mobileCountOther_)
+    console.log("page no is ",page_no_)
+
+    var url=`${window.origin}/paginate`
+    var entry={
+        page_no:page_no_,
+        code:code,
+        next:true,
+        jump_page:false
+      
+        
+     }
+     var params={
+        method:'POST',
+        body:JSON.stringify(entry),
+        cache:'no-cache',
+        headers:new Headers({
+            "content-type":"application/json"
+        })
+    }
+
+    fetch(url,params).then(response=>{
+        if(response.status==200){
+            console.log("succesfully_posted")
+        }
+        else{
+            console.log("eroor 404, data not posted")
+        }
+        response.json().then(data=>{
+           
+            console.log(data)
+            for (let index = 1; index < 5; index++) {
+              
+                
+                document.getElementById(`mob${code}`).innerHTML+=`  <div class="postMobile mt-3">
+                <img src="/static/images/${data[thumbnail][index]}" class="thumbnailMob "alt="">
+                <div class="mobViewContent" >
+                <h3>${data[heading][index]}</h3>
+                <p> ${data[description][index]}</p>
+                <a href="" class="streached-link">Read Mor..</a>
+                </div>
+                </div>`      
+            }
+            })
+    })
 }

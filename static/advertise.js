@@ -354,6 +354,15 @@ specifyInput.addEventListener("input", function() {
 
 var fileInput=document.getElementById("XFile")
 var tooLarge=document.getElementById("tooLarge")
+var formData=new FormData;
+var file
+var spinnerUpload=document.getElementById("uploadSpinner")
+var errorUploading=document.getElementById("error")
+var uploadName=document.getElementById("upload")
+var done=document.getElementById("done")
+var uploadBtn=document.getElementById("uploadBtn")
+uploadBtn.disabled=true
+
 fileInput.onchange=function(){
 
   if (!dontHave.checked) {
@@ -361,12 +370,40 @@ fileInput.onchange=function(){
     if(fileInput.files[0].size<=10485760){
       resultImage=true;
       tooLarge.style.display="none";
+      uploadBtn.disabled=false
+      // uploadBtn.className.add('disabled')
     }
     if (fileInput.files[0].size>10485760 ) {
       resultImage=false;
       tooLarge.style.display="";
     }
   }}
+  function upload(){
+   
+    uploadName.style.display="none"
+    spinnerUpload.style.display="block"
+    formData=new FormData();
+    file=fileInput.files[0]
+    console.log(file)
+    formData.append("file",fileInput.files[0])
+   
+    fetch(`${window.origin}/upload`, {method: "POST", body: formData}).then((response)=>{
+      if (response.status==200) {
+        spinnerUpload.style.display="none"
+        done.style.display="block"
+        error.style.display="none"
+        uploadBtn.disabled=true  
+        
+              
+      }
+      else{
+        spinnerUpload.style.display="none"
+        done.style.display="none"
+        error.style.display="block"
+        uploadBtn.disabled=false     
+      }
+    });
+  }
 dontHave.onclick=function(){
 if (dontHave.checked) {
 resultImage=true;  
@@ -430,6 +467,7 @@ var alertError=document.getElementById("alertError");
 var alertDone=document.getElementById("alertDone");
 var addBtnSpinner=document.getElementById('add_btn_spinner')
 function validateForm(e){
+
   var result = true;
   console.log("insubmt");
 

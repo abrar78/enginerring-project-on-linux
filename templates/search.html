@@ -1,10 +1,58 @@
-{% extends  "template.html" %}
-{% block content %}
- 
+{% extends "template.html" %} {% block titel %} Engineering Project {% endblock
+%} {% block content %}
+<div class="container">
+  <h1><b>Search resuts</b></h1>
+  <hr>
+  {% if result %}
+  <div class="mt-5" id="results">
+      {% for result_db in result  %}
+      <div class="wrapper">
+          <div class="media mt-3">
+              <div class="media-body">
+                  <h5 class="mt-0"><b>{{result_db.heading}}</b></h5>
+                 
+                  {{result_db.description}}
 
+              </div>
+          </div>
+          <a href="/Read_more_{{result_db.type}}/{{result_db.id}}"  class="btn btn-warning">Read More...</a>
+      </div>
+      {% endfor %}
+    {% else %}
+      <h2>No result found</h2>  
+
+  {% endif %}
+    
+    </div>
+    <nav class="mt-5" style="margin:0 auto;" aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="/search/{{prev}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {% for page_no in range(1,totalPages+1) %}
+             <li class="page-item custom" id="li{{page_no}}"><a class="page-link" name="{{totalPages}}" onclick="trackPage(this.id)" id="{{page_no}}" href="/search/{{page_no}}" >{{page_no}}</a></li>
+          {% endfor %}
+          <li class="page-item">
+            <a class="page-link" href="/search/{{next}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+</div>
 {% endblock %}
+
 {% block script %}
 
+<script src="/static/search.js"></script>
+<script>
+var data='{{data|safe}}'
+data2=JSON.parse(data)
+console.log(typeof(data2))
+console.log(data2.current)
+document.getElementById(`li${data2.current}`).classList.add("active")
 
-
+</script>
 {% endblock %}

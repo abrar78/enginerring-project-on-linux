@@ -29,10 +29,12 @@ class Arduinoproject_posts(db.Model):
     
     id=db.Column(db.Integer ,primary_key=True, nullable=False);
     date=db.Column(db.String(50), nullable=False);
-    reading_time=db.Column(db.String(50), nullable=False);
+    thumbnail=db.Column(db.String(100), nullable=False);
+    keyword=db.Column(db.String(100), nullable=False);
+    type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
-    # * one to many relationship tables down
+        # * one to many relationship tables down
     
     quick_answers=db.relationship('Quick_answers_arduino', backref='post_name')
     
@@ -80,7 +82,7 @@ class Faq_arduino(db.Model):
 class Content_arduino(db.Model):
    
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
-    cover_img=db.Column(db.String(100),nullable=True)
+    
     heading=db.Column(db.String(100),nullable=True)
     img=db.Column(db.String(100),nullable=True)
     para=db.Column(db.String(500),nullable=True)
@@ -109,7 +111,9 @@ class Basicproject_posts(db.Model):
    
     id=db.Column(db.Integer ,primary_key=True, nullable=False);
     date=db.Column(db.String(50), nullable=False);
-    reading_time=db.Column(db.String(50), nullable=False);
+    thumbnail=db.Column(db.String(100), nullable=False);
+    keyword=db.Column(db.String(100), nullable=False);
+    type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
     
@@ -153,7 +157,7 @@ class Faq_basic(db.Model):
 class Content_basic(db.Model):
    
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
-    cover_img=db.Column(db.String(100),nullable=True)
+    
     heading=db.Column(db.String(100),nullable=True)
     img=db.Column(db.String(500),nullable=True)
     para=db.Column(db.String(500),nullable=True)
@@ -185,7 +189,9 @@ class Iotproject_posts(db.Model):
     
     id=db.Column(db.Integer ,primary_key=True, nullable=False);
     date=db.Column(db.String(50), nullable=False);
-    reading_time=db.Column(db.String(50), nullable=False);
+    thumbnail=db.Column(db.String(100), nullable=False);
+    keyword=db.Column(db.String(100), nullable=False);
+    type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
     
@@ -235,7 +241,7 @@ class Faq_iot(db.Model):
 class Content_iot(db.Model):
    
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
-    cover_img=db.Column(db.String(100),nullable=True)
+    
     heading=db.Column(db.String(100),nullable=True)
     img=db.Column(db.String(500),nullable=True)
     para=db.Column(db.String(500),nullable=True)
@@ -271,7 +277,9 @@ class Other_posts(db.Model):
     
     id=db.Column(db.Integer ,primary_key=True, nullable=False);
     date=db.Column(db.String(50), nullable=False);
-    reading_time=db.Column(db.String(50), nullable=False);
+    thumbnail=db.Column(db.String(100), nullable=False);
+    keyword=db.Column(db.String(100), nullable=False);
+    type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
     quick_answers=db.relationship('Quick_answers_other', backref='post_name')
@@ -315,7 +323,7 @@ class Faq_other(db.Model):
 class Content_other(db.Model):
    
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
-    cover_img=db.Column(db.String(100),nullable=True)
+    
     heading=db.Column(db.String(100),nullable=True)
     img=db.Column(db.String(500),nullable=True)
     para=db.Column(db.String(500),nullable=True)

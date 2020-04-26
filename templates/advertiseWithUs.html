@@ -63,10 +63,21 @@
       
         <div id="File" class="form-group">
           <label for="XFile">Please select the image</label>
-          <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="form-control-file" id="XFile">
-          <small id="file" class="form-text text-muted">only one .jpeg, .jpg, .png, .pdf files are allowed upto 10Mb of size </small>
-          <label class="wrongInputFile" id="tooLarge" style="display:none;" for="tooLarge">*Too Large</label>
-         
+          
+
+            <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="form-control-file" id="XFile">
+            <small id="file" class="form-text text-muted">only one .jpeg, .jpg, .png, .pdf files are allowed upto 10Mb of size </small>
+            <label class="wrongInputFile" id="tooLarge" style="display:none;" for="tooLarge">*Too Large</label>
+            <button onclick="upload(this.id)" id="uploadBtn"  type="button" class="btn btn-secondary btn-sm"> 
+               <div id="upload">upload</div>
+               <div id="error" style="display:none;">Error</div>
+               <div id="done" style="display: none;">Done!</div>
+              <div class="spinner-border" style="display: none;" id="uploadSpinner" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </button>
+       
+          <!-- <form action=""></form> -->
         </div>
      
       <!-- text area for other type of  advertisement-->

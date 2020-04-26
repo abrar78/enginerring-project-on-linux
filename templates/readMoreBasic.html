@@ -1,19 +1,121 @@
-
 {% extends  "template.html" %}
 {% block content %}
-        
+
 <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">{{basic_post_db.heading}}</h1>
-      <p class="lead">{{basic_post_db.descripton}}</p>
+    <div class="container text-center">
+      <h1 class="display-4" style="font-size: 5vw;">{{basic_post_db.heading}}</h1>
+      <p class="lead" style="font-size: 2vw;">{{basic_post_db.description}}</p>
     </div>
   </div>
+
+
+{% if basic_post_db.content_parts[0].cover_img %}
+<div class="text-center">
+
+  <img class="img-fluid" src="/static/images/{{basic_post_db.content_parts[0].cover_img}}" alt="Responsive_image" srcset="" style="width: 50%" >
+</div>
+ {% endif %}
+
+
+{% if basic_post_db.quick_answers%}
+<div class="container mt-5" id="quick_answers"> 
+ {% for QA in basic_post_db.quick_answers %}
+  <div class="media">    
+     <div class="media-body mt-4">
+      <h5 class="mt-0"><b> QA.ques</b></h5>
+      QA.ans
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endif %}
+
+<div class="container mt-5" id="index">
+  <h1><b>    Contents</b> </h1>
+  <ul class="ml-4">
+       {%  for index in basic_post_db.index %}
+        <li>
+            <a href="#topic{{loop.index}}" >{{index.topic}}</a>
+       </li>
+      {% endfor %}
+
+  </ul>
+</div>
+
+<div class="container mt-5" id="content">
+{% for content in basic_post_db.content_parts %}
+<h1 id="topic{{loop.index}}" >{{content.heading}}</h1>
+<p>{{content.para}}</p>
+{% if content.img  %}
+<img src="" alt="" style="height: 300px;">
+<img src="/static/images/{{content.img}}" class="img-fluid" alt="Responsive image"  style="height: 300px;">
+{% endif %}
+{% endfor %}
+</div>
+
+{% if basic_post_db.comparison_table %}
+ <div class="container mt-5" id="table">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Sno</th>
+        <th scope="col">basic_post_db.comparison_table[0].heading1</th>
+        <th scope="col">basic_post_db.comparison_table[0].heading2</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for table in basic_post_db.comparison_table %}
+         <tr>
+           <th scope="row">{{loop.index}}</th>
+            <td>{{table.heading1_point}}</td>
+           <td>{{table.heading2_point}}</td>
+        
+         </tr>
+      {% endfor %}
+     
+    </tbody>
+  </table>
+ </div>
+{% endif %}
+
+<div class="container mt-5" id="conclusion" >
+  <h1 style="color:#f2c36b"><b>Conclusion</b></h1> 
+  <p><i>{{basic_post_db.conclusion[0].text}}</i></p>
   
+</div>
+<hr>
 
+{% if basic_post_db.faq %}
+<div class="container mt-5"id=faq >
+<h1>FAQ</h1>
+{% for faq in basic_post_db.faq %}
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="heading{{loop.index}}">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
+          {{faq.faq_q}}
+        </button>
+      </h2>
+    </div>
 
+    <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        
+        {{faq.faq_ans}}
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
 
 
 {% endblock  %}
+
 {% block script %}
 
 <script src="/static/readMore.js"></script>

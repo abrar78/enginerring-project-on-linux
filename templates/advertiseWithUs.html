@@ -1,15 +1,19 @@
 {% extends "template.html" %}
 {% block title %} Advertise with us {% endblock %}
 {% block content %}
-<div class="animated bounceIn alert alert-warning  sticky-top" id="alertError" role="alert" style=" display:none;">
+<div class="animated bounceIn alert alert-warning sticky-top" id="alertError" role="alert" style="height:80px; display:none;">
   <strong>Hey user!</strong> please complete the form properly as the instructions menstioned.</strong>
  
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="animated bounceIn alert alert-success show sticky-top" id="alertDone" role="alert" style="display:none;">
-  <strong>Thankyou!!</strong>form submitted succesfully we willl contact you within 24hrs. 
+<div class="animated bounceIn alert alert-success show sticky-top" id="alertDone" role="alert" style="height:80px;display:block;">
+  <strong>Thankyou!!</strong> Form submitted succesfully we willl contact you within 24hrs. 
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
   <!-- ?end -->
   <!--Start of navbar for guest user  -->

@@ -2,18 +2,18 @@
 {% extends  "template.html" %}
 {% block content %}
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid" style="height: 50vh;">
     <div class="container text-center">
-      <h1 class="display-4" style="font-size: 5vw;">{{arduino_post_db.heading}}</h1>
-      <p class="lead" style="font-size: 2vw;">{{arduino_post_db.description}}</p>
+      <h1 class="display-4" style="font-size: 7vh;"><b>{{arduino_post_db.heading}}</b></h1>
+      <p class="lead" style="font-size: 3vh;">{{arduino_post_db.description}}</p>
     </div>
   </div>
 
 
-{% if arduino_post_db.content_parts[0].cover_img %}
+{% if arduino_post_db.thumbnail %}
 <div class="text-center">
 
-  <img class="img-fluid" src="/static/images/{{arduino_post_db.content_parts[0].cover_img}}" alt="Responsive_image" srcset="" style="width: 50%" >
+  <img class="img-fluid" src="/static/images/{{arduino_post_db.thumbnail}}" alt="Responsive_image" srcset="" style="width: 100vh" >
 </div>
  {% endif %}
 
@@ -49,8 +49,8 @@
 <h1 id="topic{{loop.index}}" >{{content.heading}}</h1>
 <p>{{content.para}}</p>
 {% if content.img  %}
-<img src="" alt="" style="height: 300px;">
-<img src="/static/images/{{content.img}}" class="img-fluid" alt="Responsive image"  style="height: 300px;">
+
+<img src="/static/images/{{content.img}}" class="img-fluid" alt="Responsive image"  id="contentArdImg{{content.id}}" style="height:300px;">
 {% endif %}
 {% endfor %}
 </div>
@@ -80,12 +80,12 @@
   </table>
  </div>
 {% endif %}
-
+{% if arduino_post_db.conclusion %}
 <div class="container mt-5" id="conclusion" >
   <h1 style="color:#f2c36b"><b>Conclusion</b></h1> 
-  <p><i>{{arduino_post_db.conclusion[0].text}}</i></p>
-  
+  <p><i>{{arduino_post_db.conclusion.text}}</i></p>
 </div>
+{% endif %}  
 <hr>
 
 {% if arduino_post_db.faq %}
@@ -117,11 +117,15 @@
 <!--  <div class="container mt-5">
   <button class="btn btn-outline-warning"> <h3><b>Shop components now</b></h3> </button>
 </div> -->
+<div class="container">
+
+  <h1><b>Realted Posts</b></h1>
+
+</div>
 <div class="desktop">
 
-  <div class="container mt-3">
+  <div class="container mt-5">
     
-  <h1><b>Realted Posts</b></h1>
   <div class="row conten-center">
 
     {% for db in related_post %}
@@ -132,7 +136,7 @@
         <div class="card-body">
           <h3 id="Ardhead{{loop.index}}">{{db.heading}}</h3>
           <p class="card-text" id='Arddesc{{loop.index}}'>{{db.description}}</p>
-          <a href="/Read_more_arduino_post/{{db.id}}" class="btn btn-primary">Read More</a>
+          <a href="/Read_more_Ard/{{db.id}}" class="btn btn-primary">Read More</a>
         </div>
       </div>
     </div>
@@ -143,25 +147,25 @@
 </div>
   
 
-<div class="mobile">
+<div class="mobile container">
 <!-- todo FOR mobile same as index page -->
 <div class="mobileViewAll">
 
   <div class="mobContainer mobArd" id="mobArd">
     {%for db in related_post %}
     <div class="postMobile mt-3">
-      <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob "alt="">
+      <img src="/static/images/{{db.thumbnail}}"  class="thumbnailMob "alt="">
       <div class="mobViewContent" >
         <h3>{{db.heading}}
         </h3>
         <p>{{db.description}}</p>
-        <a href="/Read_more_arduino_post/{{db.id}}" class="streached-link">Read More..</a>
+        <a href="/Read_more_Ard/{{db.id}}" class="streached-link">Read More..</a>
       </div>
     </div>
     {% endfor %}  
     
   </div>
-  <button type="button" id="seeMoreBtnArd" name="{{arduino_project.pages}}" onclick="seeMore('Ard')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
+
 </div>
 </div>
 

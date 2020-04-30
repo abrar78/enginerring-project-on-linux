@@ -9,10 +9,10 @@
   </div>
 
 
-{% if basic_post_db.content_parts[0].cover_img %}
+{% if basic_post_db.thumbnail %}
 <div class="text-center">
 
-  <img class="img-fluid" src="/static/images/{{basic_post_db.content_parts[0].cover_img}}" alt="Responsive_image" srcset="" style="width: 50%" >
+  <img class="img-fluid" src="/static/images/{{basic_post_db.thumbnail}}" alt="Responsive_image" srcset="" style="width: 50%" >
 </div>
  {% endif %}
 
@@ -49,7 +49,7 @@
 <p>{{content.para}}</p>
 {% if content.img  %}
 <img src="" alt="" style="height: 300px;">
-<img src="/static/images/{{content.img}}" class="img-fluid" alt="Responsive image"  style="height: 300px;">
+<img src="/static/images/{{content.img}}" class="img-fluid" id="contentBsicImg{{content.id}}" alt="Responsive image"  style="height: 300px;">
 {% endif %}
 {% endfor %}
 </div>
@@ -79,12 +79,13 @@
   </table>
  </div>
 {% endif %}
-
+{%if basic_post_db.conslusion %}
 <div class="container mt-5" id="conclusion" >
   <h1 style="color:#f2c36b"><b>Conclusion</b></h1> 
-  <p><i>{{basic_post_db.conclusion[0].text}}</i></p>
+  <p><i>{{basic_post_db.conclusion.text}}</i></p>
   
 </div>
+{% endif %}
 <hr>
 
 {% if basic_post_db.faq %}
@@ -112,13 +113,15 @@
 {% endfor %}
 </div>
 {% endif %}
+<div class="container">
 
+  <h1><b>Realted Posts</b></h1>
+</div>
 
 <div class="desktop">
 
   <div class="container mt-3">
     
-  <h1><b>Realted Posts</b></h1>
   <div class="row conten-center">
 
     {% for db in related_post %}
@@ -129,7 +132,7 @@
         <div class="card-body">
           <h3 id="Iothead{{loop.index}}">{{db.heading}}</h3>
           <p class="card-text" id='Basicdesc{{loop.index}}'>{{db.description}}</p>
-          <a href="/Read_more_iot/{{db.id}}" class="btn btn-primary">Read More</a>
+          <a href="/Read_more_Iot/{{db.id}}" class="btn btn-primary">Read More</a>
         </div>
       </div>
     </div>
@@ -140,7 +143,7 @@
 </div>
   
 
-<div class="mobile">
+<div class="mobile container">
 <!-- todo FOR mobile same as index page -->
 <div class="mobileViewAll">
 
@@ -152,7 +155,7 @@
         <h3>{{db.heading}}
         </h3>
         <p>{{db.description}}</p>
-        <a href="/Read_more_basic/{{db.id}}" class="streached-link">Read More..</a>
+        <a href="/Read_more_Basic/{{db.id}}" class="streached-link">Read More..</a>
       </div>
     </div>
     {% endfor %}  

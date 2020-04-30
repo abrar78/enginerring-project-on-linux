@@ -18,11 +18,6 @@
           <a href="/Read_more_{{result_db.type[0:-4]}}/{{result_db.id}}"  class="btn btn-warning">Read More...</a>
       </div>
       {% endfor %}
-    {% else %}
-      <h2>No result found</h2>  
-
-  {% endif %}
-    
     </div>
     <nav class="mt-5" style="margin:0 auto;" aria-label="Page navigation example">
         <ul class="pagination">
@@ -41,6 +36,11 @@
           </li>
         </ul>
       </nav>
+    {% else %}
+      <h2>No result found</h2>  
+
+  {% endif %}
+    
 </div>
 {% endblock %}
 

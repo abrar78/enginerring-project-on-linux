@@ -5,6 +5,8 @@ from flask import jsonify,make_response,request,redirect
 import os
 from werkzeug import secure_filename
 from flask_mail import Mail
+from jinja2 import Undefined
+JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 
 app.config['UPLOAD_FOLDER']=params["upload_location"]
 app.config.update(
@@ -42,7 +44,7 @@ def paginate():
              content['heading'][str(i)]=arduino_db.heading
              content['thumbnail'][str(i)]=arduino_db.thumbnail
              content['description'][str(i)]=arduino_db.description
-             content['id'][str(i)]="/Read_more_arduino_post/"+str(arduino_db.id)
+             content['id'][str(i)]="/Read_more_Ard/"+str(arduino_db.id)
          print(req['page_no'])    
          response=make_response(jsonify(content),200)
          return response
@@ -55,7 +57,7 @@ def paginate():
              content['heading'][str(i)]=arduino_db.heading
              content['thumbnail'][str(i)]=arduino_db.thumbnail
              content['description'][str(i)]=arduino_db.description
-             content['id'][str(i)]="/Read_more_arduino_post/"+str(arduino_db.id)
+             content['id'][str(i)]="/Read_more_Ard/"+str(arduino_db.id)
              
              
     if req['code']=='Basic':
@@ -68,7 +70,7 @@ def paginate():
              content['heading'][str(i)]=basic_db.heading
              content['thumbnail'][str(i)]=basic_db.thumbnail
              content['description'][str(i)]=basic_db.description
-             content['id'][str(i)]="/Read_more_basic/"+str(basic_db.id)
+             content['id'][str(i)]="/Read_more_Basic/"+str(basic_db.id)
          print(req['page_no'])    
          response=make_response(jsonify(content),200)
          return response
@@ -80,7 +82,7 @@ def paginate():
              content['heading'][str(i)]=basic_db.heading
              content['thumbnail'][str(i)]=basic_db.thumbnail
              content['description'][str(i)]=basic_db.description
-             content['id'][str(i)]='/Read_more_basic/'+str(basic_db.id)
+             content['id'][str(i)]='/Read_more_Basic/'+str(basic_db.id)
              
     if req['code']=='Iot':
          if req['jump_page']==True:
@@ -91,7 +93,7 @@ def paginate():
                 content['heading'][str(i)]=iot_db.heading
                 content['thumbnail'][str(i)]=iot_db.thumbnail
                 content['description'][str(i)]=iot_db.description
-                content['id'][str(i)]='/Read_more_iot/'+str(iot_db.id)
+                content['id'][str(i)]='/Read_more_Iot/'+str(iot_db.id)
              print(req['page_no'])    
              response=make_response(jsonify(content),200)
              return response
@@ -103,7 +105,7 @@ def paginate():
                 content['heading'][str(i)]=iot_db.heading
                 content['thumbnail'][str(i)]=iot_db.thumbnail
                 content['description'][str(i)]=iot_db.description
-                content['id'][str(i)]='/Read_more_iot/'+str(iot_db.id)
+                content['id'][str(i)]='/Read_more_Iot/'+str(iot_db.id)
                 
                 
     if req['code']=='Other':
@@ -115,7 +117,7 @@ def paginate():
                 content['heading'][str(i)]=other_db.heading
                 content['thumbnail'][str(i)]=other_db.thumbnail
                 content['description'][str(i)]=other_db.description
-                content['id'][str(i)]='/Read_more_other/'+str(other_db.id)
+                content['id'][str(i)]='/Read_more_Other/'+str(other_db.id)
              print(req['page_no'])    
              response=make_response(jsonify(content),200)
              return response
@@ -127,14 +129,14 @@ def paginate():
                 content['heading'][str(i)]=other_db.heading
                 content['thumbnail'][str(i)]=other_db.thumbnail
                 content['description'][str(i)]=other_db.description
-                content['id'][str(i)]='/Read_more_other/'+str(other_db.id)
+                content['id'][str(i)]='/Read_more_Other/'+str(other_db.id)
                 
     response=make_response(jsonify(content),200)
     return response 
     # return response
     
     
-@app.route('/Read_more_arduino_post/<int:num>')
+@app.route('/Read_more_Ard/<int:num>')
 def arduinoRead(num):
     arduino_post=Arduinoproject_posts.query.filter_by(id=num).first()
     search_value=arduino_post.keyword
@@ -142,21 +144,21 @@ def arduinoRead(num):
     print(search)
     related=Arduinoproject_posts.query.filter(or_(Arduinoproject_posts.description.like(search), Arduinoproject_posts.heading.like(search))).all()
     return render_template('readMoreArduino.html', arduino_post_db=arduino_post,related_post=related[0:4])
-@app.route('/Read_more_basic/<int:num>')
+@app.route('/Read_more_Basic/<int:num>')
 def basicRead(num):
     basic_post=Basicproject_posts.query.filter_by(id=num).first()
     search_value=basic_post.keyword
     search="%{0}%".format(search_value)
     related=Basicproject_posts.query.filter(or_(Basicproject_posts.description.like(search), Basicproject_posts.heading.like(search))).all()
     return render_template('readMoreBasic.html', basic_post_db=basic_post,related_post=related[0:4])
-@app.route('/Read_more_iot/<int:num>')
+@app.route('/Read_more_Iot/<int:num>')
 def iotRead(num):
     iot_post=Iotproject_posts.query.filter_by(id=num).first()
     search_value=iot_post.keyword
     search="%{0}%".format(search_value)
     related=Iotproject_posts.query.filter(or_(Iotproject_posts.description.like(search), Iotproject_posts.heading.like(search))).all()
     return render_template('readMoreIot.html', iot_post_db=iot_post,related_post=related[0:4])
-@app.route('/Read_more_other/<int:num>')
+@app.route('/Read_more_Other/<int:num>')
 def otherRead(num):
     other_post=Other_posts.query.filter_by(id=num).first()
     search_value=other_post.keyword

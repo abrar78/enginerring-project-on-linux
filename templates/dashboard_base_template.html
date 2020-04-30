@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- ?Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+        <!-- ?Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- ?custom css -->
+        <link rel="stylesheet" href="/static/style.css">
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+      
+        <!-- animate.css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+         
+       
+      
+         <link rel="stylesheet" href=/static/normalize.css>
+        <title>{% block title %}    {% endblock %}</title>
+    </head>
+    <body>
+        
+       
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark" style=" display: flex;justify-content:space-around;width:100%;">
+         
+                <img src="/static/images/logoWhite.png" style="height:50px;" alt="">
+
+                <button class="btn"><a href="dashboard.html" class="btn btn-outline-warning">  Analytics </a></button>
+                <button class="btn"><a href="all_post.html" class="btn btn-outline-warning">  All post </a></button>
+                <button class="btn"><a href="create_post.html" class="btn btn-outline-warning">  create new post </a></button>
+                <button class="btn"><a href="#" class="btn btn-outline-warning">  Log out </a></button>
+          
+            
+        </nav>
+         {% block content %}
+
+         {% endblock %}
+         <div class="footer fixed-bottom">
+            <i class="material-icons" id="icons">
+              copyright
+            </i>
+            engineeringproject.net
+            <div class="socilMedia"></div>
+          </div>
+    </body>
+    
+        {% block script %}
+        {% endblock %}
+    
+</html>

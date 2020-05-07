@@ -180,7 +180,7 @@
         {% for db in basic_project.items %}
           {%if db.heading is defined %}
         <div class="col">
-          <div class="card" id="Basiccard{{loop.index}}" style="width: 14rem; ">
+          <div class="card" id="Basiccard{{loop.index}}">
             <img src="/static/images/lightBasicElectronics.jpg" id="Basicthumb{{loop.index}}" style="height:20%;" class="card-img-top" alt="...">
             <div class="card-body">
               <h3 id="Basichead{{loop.index}}">{{db.heading}}</h3>

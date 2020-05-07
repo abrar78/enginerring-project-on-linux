@@ -1,13 +1,13 @@
 {% extends "dashboard_base_template.html" %} {% block all_posts %}
 <li class="nav-item active">
-    <a class="btn btn-sm btn-light mx-1 active" href="#">Arduino post <span class="sr-only">(current)</span></a>
+    <a class="btn btn-sm btn-light mx-1" href="/all_post/1">Arduino post <span class="sr-only">(current)</span></a>
 </li>
 <li class="nav-item active">
     <a class="btn btn-sm btn-light mx-1" href="/dashboard_basic/1">Basic Electroniocs post <span
             class="sr-only">(current)</span></a>
 </li>
 <li class="nav-item active">
-    <a class="btn btn-sm btn-light mx-1" href="/dashboard_iot/1">IOT project post <span
+    <a class="btn btn-sm btn-light mx-1 active" href="/dashboard_iot/1">IOT project post <span
             class="sr-only">(current)</span></a>
 </li>
 <li class="nav-item active">
@@ -20,9 +20,9 @@
 </form>
 {% endblock %} {% block content %}
 <div class="container text-secondary text-center Basic" style="width: 85%; margin-left:15%;">
-    <div class="text-secondary" style="margin-top: 20px;font-weight:bold;font-size:8vh;">Arduino posts</div>
+    <div class="text-secondary" style="margin-top: 20px;font-weight:bold;font-size:8vh;">IOT project posts</div>
     <div class="row" style="margin-top: 50px;" id="Basic">
-        {% for db in arduino_project.items %} {%if db.heading is defined %}
+        {% for db in iot_project.items %} {%if db.heading is defined %}
         <div class="col my-3">
             <div class="card" id="Basiccard{{loop.index}}" style="width: 14rem; ">
                 <img src="/static/images/{{db.thumbnail}}" id="Basicthumb{{loop.index}}" style="height:20%;" class="card-img-top" alt="...">
@@ -30,8 +30,7 @@
                     <h3 id="Basichead{{loop.index}}">{{db.heading}}</h3>
                     <p class="card-text" id='Basicdesc{{loop.index}}'>{{db.description}}</p>
                     <a href="/Read_more_Basic/{{db.id}}" id="Basicid{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2 btn-block mx-2">Read-more</a>
-                    <a href="/Edit/{{db.id}}" id="BasicidEd{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2 btn-block mx-2">Edit</a>
-                    <!-- Button trigger modal -->
+                    <a href="/Edit_Basic/{{db.id}}" id="BasicidEd{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2 btn-block mx-2">Edit</a>
                     <button type="button" class="ml-2 btn btn-outline-secondary btn-sm btn-block" data-toggle="modal" data-target="#delete">
                         Delete
                     </button>
@@ -51,7 +50,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">Cancel</button>
-                                    <button type="button" onclick="conferm('Ard','{{db.id}}')" class="btn btn-outline-danger">Delete</button>
+                                    <button type="button" onclick="conferm('Iot','{{db.id}}')" class="btn btn-outline-danger">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -65,9 +64,10 @@
     </div>
     <nav class="navbar navbar-dark">
         <ul class="pagination pagination-warning pagination-sm">
-            {% for page_no in arduino_project.iter_pages() %}
-            <li class="page-item page-secondary " id='{{page_no}}'><a onclick="addActive('Ard','{{page_no}}')" class="btn btn-secondary page-link" href="/all_post/{{page_no}}">{{page_no}}</a></li>
+            {% for page_no in iot_project.iter_pages() %}
+            <li class="page-item page-secondary " id='{{page_no}}'><a onclick="addActive('Ard','{{page_no}}')" class="btn btn-secondary page-link" href="/dashboard_basic/{{page_no}}">{{page_no}}</a></li>
             {% endfor %}
+        </ul>
     </nav>
 </div>
 {% endblock %} {% block script %}
@@ -79,4 +79,5 @@
     console.log(current)
     document.getElementById(current).classList.add('active')
 </script>
+
 {% endblock %}

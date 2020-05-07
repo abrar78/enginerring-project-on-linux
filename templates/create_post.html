@@ -1,0 +1,205 @@
+{% extends "dashboard_base_template.html" %} {% block content %}
+<div class="container mt-4 text-center" style="margin-left: 15%; width: 85%;">
+    <div class="my-5 text-secondary" style="font-size: 8vh; font-weight: bold;">
+        Create New Post
+    </div>
+    <div class="col" style="margin: 0 auto;">
+        <div class="row my-3">
+            <div class="btn-group btn-group-toggle" style="margin-left: 27.5%;" data-toggle="buttons">
+                <h4 class="text-secondary"><b>Type: </b></h4>
+                <label class="ml-2 btn btn-outline-secondary active">
+          <input type="radio" name="options" id="option1" />Arduino project
+        </label>
+                <label class="btn btn-outline-secondary">
+          <input type="radio" name="options" id="option2" /> Basic Electronic
+          project
+        </label>
+                <label class="btn btn-outline-secondary active">
+          <input type="radio" name="options" id="option3" />Iot project
+        </label>
+                <label class="btn btn-outline-secondary">
+          <input type="radio" name="options" id="option4" /> Other
+        </label>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="btn-group btn-group-toggle" style="margin-left: 26%;" data-toggle="buttons">
+                <h4 class="text-secondary"><b>Intend: </b></h4>
+                <label class="ml-2 btn btn-outline-secondary active">
+          <input type="radio" name="options" id="option1" />Informational
+        </label>
+                <label class="btn btn-outline-secondary">
+          <input type="radio" name="options" id="option2" /> Tutorial
+        </label>
+            </div>
+        </div>
+    </div>
+    <img src="/static/images/blur-coffee-cold-cup-209500.jpg" width="50%" alt="Responsive-image" />
+    <!-- !-----------File upload -->
+    <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">Upload Image</span
+      >
+    </div>
+    <div class="custom-file">
+      <input
+        type="file"
+        class="custom-file-input"
+        id="inputGroupFile01"
+        aria-describedby="inputGroupFileAddon01"
+      />
+      <label class="custom-file-label" for="inputGroupFile01"
+        >Choose file</label
+      >
+    </div>
+  </div>
+  <!-- !-------------Heading -->
+  <div class="form-group my-5">
+    <label class="text-secondary" for="description"><b>Heading</b></label>
+    <textarea
+      class="form-control"
+      style="width: 50%; margin: 0 auto; border-width: 5px;"
+      id="description"
+      rows="1"
+    ></textarea>
+    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+  </div>
+  <!-- !---------Description -->
+  <div class="form-group">
+    <label class="text-secondary" for="description"><b>Description</b></label>
+    <textarea
+      class="form-control"
+      style="width: 50%; margin: 0 auto; border-width: 5px;"
+      id="description"
+      rows="3"
+    ></textarea>
+    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+  </div>
+  <!-- !-----------Quick questions -->
+  <div class="form-group mt-5">
+    <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">
+      Quick questions
+    </div>
+
+    <label class="text-secondary mt-2" for="description"><b>Question</b></label>
+    <textarea
+      class="form-control"
+      style="width: 50%; margin: 0 auto; border-width: 5px;"
+      id="description"
+      rows="1"
+    ></textarea>
+    <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
+    <textarea
+      class="form-control"
+      style="width: 50%; margin: 0 auto; border-width: 5px;"
+      id="description"
+      rows="2"
+    ></textarea>
+    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+    <button class="mt-3 btn btn-dark btn-sm">+</button>
+  </div>
+  <!-- ! ------------------Index------>
+  <div class="form-group">
+    <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">
+      Index
+    </div>
+
+    <div class="input-group mb-2 mr-sm-2" style="width: 50%; margin-left: 26%;">
+      <div class="input-group-prepend">
+        <div class="input-group-text">1</div>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        id="inlineFormInputGroupUsername2"
+        placeholder="Heading"
+      />
+    </div>
+    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+    <button class="mt-3 btn btn-dark btn-sm">+</button>
+  </div>
+<!-- !-------paragraph -->
+  <div class="form-group mt-5">
+    <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Paragraphs/Steps</div>
+
+    <label class="text-secondary mt-2" for="description"><b>Subheading</b></label>
+    <textarea class="form-control" style="width: 50%; margin:0 auto;border-width:5px;" id="description" rows="1"></textarea>
+    <label class="text-secondary mt-3 " for="description"><b>Para</b></label>
+    <textarea class="form-control" style="width: 50%; margin:0 auto;border-width:5px;" id="description" rows="4"></textarea>
+  <!-- *---upload image -->
+  <img class="mt-3" src="/static/images/action-blur-bulb-dark-355904.jpg"  width="20%" alt="Responsive-image">
+  <h5 class="text-secondary mt-1">Preview</h5>
+    <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
+      <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload Image</span
+    >
+  </div>
+  <div class="custom-file">
+    <input
+      type="file"
+      class="custom-file-input"
+      id="inputGroupFile01"
+      aria-describedby="inputGroupFileAddon01"
+    />
+    <label class="custom-file-label" for="inputGroupFile01"
+      >Choose file</label
+    >
+  </div>
+</div>
+    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+    <button class="mt-3 btn btn-dark btn-sm">+</button>
+</div>
+
+<!-- ! Coclusion -->
+<div class="form-group mt-5">
+  <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Conclusion</div>
+  
+  <textarea
+    class="form-control"
+    style="width: 50%; margin: 0 auto; border-width: 5px;"
+    id="description"
+    rows="3"
+  ></textarea>
+  <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+</div>
+<!-- !-----------------FAQ  -->
+<div class="form-group mt-5">
+  <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">
+  FAQ
+  </div>
+
+  <label class="text-secondary mt-2" for="description"><b>Question</b></label>
+  <textarea
+    class="form-control"
+    style="width: 50%; margin: 0 auto; border-width: 5px;"
+    id="description"
+    rows="1"
+  ></textarea>
+  <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
+  <textarea
+    class="form-control"
+    style="width: 50%; margin: 0 auto; border-width: 5px;"
+    id="description"
+    rows="2"
+  ></textarea>
+  <!-- ? <label class="text-secondary mt-5" for="description"><b>Question</b></label>
+  <textarea
+    class="form-control"
+    style="width: 50%; margin: 0 auto; border-width: 5px;"
+    id="description"
+    rows="1"
+  ></textarea>
+  <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
+  <textarea
+    class="form-control"
+    style="width: 50%; margin: 0 auto; border-width: 5px;"
+    id="description"
+    rows="2"
+  ? ></textarea> -->
+  <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+  <button class="mt-3 btn btn-dark btn-sm">+</button>
+</div>
+
+
+
+{% endblock %}

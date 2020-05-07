@@ -1,7 +1,13 @@
 from flask import Flask, render_template,request
 from flask_sqlalchemy import SQLAlchemy
+from flask_security import Security,SQLAlchemyUserDatastore,UserMixin, RoleMixin, login_required
+from flask_security.utils import hash_password
+
+
 
 import json
+
+
 
 with open('config.json', 'r') as c:
     params = json.load(c)["params"]
@@ -9,7 +15,11 @@ with open('config.json', 'r') as c:
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']=params['local_uri_all_post']
 app.config['SQLALCHEMY_BINDS']={'other_details':params['local_uri_other']}
-db=SQLAlchemy(app);
+app.config["SECRET_KEY"]="###@@@***786786"
+app.config["SECURITY_PASSWORD_SALT"]="###@@@***abrar"
+# app.config['SECURITY_LOGIN_USER_TEMPLATE'] = '/security/login_user.html'
+app.app_context().push()
+db=SQLAlchemy(app)
 
 
 # ! all_post Table starts---------------------------------------------------------------------------------------
@@ -24,6 +34,34 @@ db=SQLAlchemy(app);
 # ?                                   00
 # ?                          ----___     ___----
 #?                                  -----  
+
+# !----------------------Admin pannel setup-------------------------------------------------
+roles_users=db.Table('roles_users',
+                     db.Column('user_id',db.Integer,db.ForeignKey('user.id')),
+                     db.Column('role_id',db.Integer,db.ForeignKey('role.id'))
+                     )
+class User(UserMixin,db.Model):
+    
+    id=db.Column(db.Integer,primary_key=True)
+    email=db.Column(db.String(100),unique=True)
+    password=db.Column(db.String(255))
+    active=db.Column(db.Boolean)
+    confirmed_at=db.Column(db.DateTime)
+    roles=db.relationship('Role',
+                          secondary=roles_users,
+                          backref=db.backref('users',lazy='dynamic')
+                          )
+    
+class Role(db.Model,RoleMixin):
+    
+    id=db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String(100))
+    description=db.Column(db.String(200))
+    
+user_datastore=SQLAlchemyUserDatastore(db,User,Role)
+security=Security(app,user_datastore)
+
+# !--------------------------------------------------------------------------------------------------------------------------
 
 class Arduinoproject_posts(db.Model):
     

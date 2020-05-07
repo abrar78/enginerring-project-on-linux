@@ -1,55 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <!-- ?Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      
-        <!-- ?Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!-- ?custom css -->
-        <link rel="stylesheet" href="/static/style.css">
-        <!-- google fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-      
-        <!-- animate.css -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-         
-       
-      
-         <link rel="stylesheet" href=/static/normalize.css>
-        <title>{% block title %}    {% endblock %}</title>
-    </head>
-    <body>
-        
-       
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark" style=" display: flex;justify-content:space-around;width:100%;">
-         
-                <img src="/static/images/logoWhite.png" style="height:50px;" alt="">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-                <button class="btn"><a href="dashboard.html" class="btn btn-outline-warning">  Analytics </a></button>
-                <button class="btn"><a href="all_post.html" class="btn btn-outline-warning">  All post </a></button>
-                <button class="btn"><a href="create_post.html" class="btn btn-outline-warning">  create new post </a></button>
-                <button class="btn"><a href="#" class="btn btn-outline-warning">  Log out </a></button>
-          
-            
-        </nav>
-         {% block content %}
+    <!-- ?Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-         {% endblock %}
-         <div class="footer fixed-bottom">
-            <i class="material-icons" id="icons">
+    <!-- ?Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- ?custom css -->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+
+
+    <link rel="stylesheet" href=/static/normalize.css>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+    <nav class="sticky-top navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">EngineeringProject</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% block all_posts %} {% endblock%}
+
+            </ul>
+            <h5> <span class="badge badge-dark mx-3 mt-2">Management Mode</span></h5>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-sm btn-outline-success active">
+                  <input type="radio" name="options" id="option1" checked> off
+                </label>
+                <label class="btn btn-sm btn-outline-danger">
+                  <input type="radio" name="options" id="option2"> on
+                </label>
+
+            </div>
+            {% block searchBar %} {% endblock %}
+        </div>
+    </nav>
+
+    <div class=sideBar>
+        <div class="ml-4"> <a href="/dashboard@@@" style="color: aliceblue;">Home</a></div>
+        <div class="ml-4"><a href="/create_post" style="color: aliceblue;"> Create new post</a> </div>
+        <div class="ml-4"> <a href="/all_post/1" style="color: aliceblue;"> Edit post</a> </div>
+
+        <div class="ml-4 mb-5">
+            <form action="/logout"><button class="btn btn-outline-light btn-sm">LogOut</button></form>
+        </div>
+    </div>
+    {% block content %} {% endblock %}
+    <div style="width:85%;margin-left:15%" class="footer sticky-bottom">
+        <i class="material-icons" style="margin-right: 5px;" id="icons">
               copyright
-            </i>
-            engineeringproject.net
-            <div class="socilMedia"></div>
-          </div>
-    </body>
-    
-        {% block script %}
-        {% endblock %}
-    
+            </i> engineeringproject.net 2020-2021
+        <div class="socilMedia"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+<script src="/static//dashboard.js"></script>
+
+{% block script %} {% endblock %}
+
 </html>

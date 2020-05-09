@@ -8,17 +8,17 @@
             <div class="btn-group btn-group-toggle" style="margin-left: 27.5%;" data-toggle="buttons">
                 <h4 class="text-secondary"><b>Type: </b></h4>
                 <label class="ml-2 btn btn-outline-secondary active">
-          <input type="radio" name="options" id="option1" />Arduino project
+          <input type="radio" onclick="typeChecked()"  name="options" id="type_ard" />Arduino project
         </label>
                 <label class="btn btn-outline-secondary">
-          <input type="radio" name="options" id="option2" /> Basic Electronic
+          <input type="radio" onclick="typeChecked()"  name="options" id="type_basic" /> Basic Electronic
           project
         </label>
                 <label class="btn btn-outline-secondary active">
-          <input type="radio" name="options" id="option3" />Iot project
+          <input type="radio" onclick="typeChecked()"  name="options" id="type_iot" />Iot project
         </label>
                 <label class="btn btn-outline-secondary">
-          <input type="radio" name="options" id="option4" /> Other
+          <input type="radio"  onclick="typeChecked()" name="options" id="type_other" /> Other
         </label>
             </div>
         </div>
@@ -26,33 +26,35 @@
             <div class="btn-group btn-group-toggle" style="margin-left: 26%;" data-toggle="buttons">
                 <h4 class="text-secondary"><b>Intend: </b></h4>
                 <label class="ml-2 btn btn-outline-secondary active">
-          <input type="radio" name="options" id="option1" />Informational
+          <input type="radio" onclick="intendChecked()" name="options" id="intend_info" />Informational
         </label>
                 <label class="btn btn-outline-secondary">
-          <input type="radio" name="options" id="option2" /> Tutorial
+          <input type="radio" onclick="intendChecked()" name="options" id="intend_tuto" /> Tutorial
         </label>
             </div>
         </div>
     </div>
-    <img src="/static/images/blur-coffee-cold-cup-209500.jpg" width="50%" alt="Responsive-image" />
+    <img width="50%" id="test" alt="Cover image not uploaded" />
     <!-- !-----------File upload -->
     <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
         <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupFileAddon01">Upload Image</span
+            <span class="input-group-text" id="cover_image_uploaderLabel">Upload Image</span
       >
     </div>
     <div class="custom-file">
       <input
         type="file"
         class="custom-file-input"
-        id="inputGroupFile01"
+        id="cover_image_uploader"
         aria-describedby="inputGroupFileAddon01"
+        
       />
-      <label class="custom-file-label" for="inputGroupFile01"
+      <label class="custom-file-label" for="cover_image_uploader"
         >Choose file</label
       >
     </div>
   </div>
+  <button class="mt-1 btn btn-secondary btn-sm" onclick="uploadCoverImg()">upload</button>
   <!-- !-------------Heading -->
   <div class="form-group my-5">
     <label class="text-secondary" for="description"><b>Heading</b></label>
@@ -200,6 +202,16 @@
   <button class="mt-3 btn btn-dark btn-sm">+</button>
 </div>
 
-
+</div>
 
 {% endblock %}
+{% block script %}
+<script>
+  $('#cover_image_uploader').on('change',function(){
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next('.custom-file-label').html(fileName);
+  })
+</script>
+{% endblock%}

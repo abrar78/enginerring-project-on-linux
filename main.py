@@ -9,9 +9,11 @@ from flask_mail import Mail
 from flask_login import LoginManager
 from jinja2 import Undefined
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
-app.config['UPLOAD_FOLDER']=params["upload_location"]
+app.config['UPLOAD_FOLDER']={'upload':params["upload_location"],
+                             'cover_image':params["upload_location_coverImg"] }
 
-
+global thumbnail
+thumbnail="0"
 app.app_context().push()
 app.config.update(
 
@@ -281,8 +283,17 @@ def search(page):
 @app.route('/upload',methods=['GET','POST'])
 def upload():
        f=request.files['file'];
-       f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(f.filename)))
-
+       f.save(os.path.join(app.config['UPLOAD_FOLDER']['upload'],secure_filename(f.filename)))
+       return "SUCCESS"
+@app.route('/dashboard_upload',methods=['GET','POST'])
+@login_required
+def dashboard_upload():
+       f=request.files['file'];
+       file_name=f.filename
+       file_name=file_name.replace(" ","_")
+       thumbnail=file_name
+       print(thumbnail)
+       f.save(os.path.join(app.config['UPLOAD_FOLDER']['cover_image'],secure_filename(f.filename)))
        return "SUCCESS"
 
 
@@ -365,6 +376,21 @@ def logout():
 def dashboard():
  return render_template("dashboard.html") 
 
+@app.route('/search/<string:type>/<int:page>',methods=['POST','GET'])
+@login_required
+def search_dashboard(type,page):
+    if type=='Ard':
+         if request.method=="POST":
+
+            form=request.form
+            search_value=form['search_string']
+            search="%{0}%".format(search_value)
+            print(search)
+            result=Arduinoproject_posts.query.filter(Arduinoproject_posts.heading.like(search)).paginate(per_page=12,page=page,error_out=True)
+            return render_template("dashboard_search.html",result_ard=result)
+        
+      
+    return render_template('dashboard_search.html')
 @app.before_request
 def before_request():
     session.permanent = True

@@ -1,20 +1,20 @@
 {
-    "params":
-    {
-      "local_server":"True",
-      "local_uri_all_post": "mysql://root:Abrar.786@localhost/all_post",
-      "local_uri_other":"mysql://root:Abrar.786@localhost/other_details",
-      "fb_url":"https://facebook.com/codingthunder",
-      "tw_url":"https://twitter.com/codingthunder",
-      "gh_url": "https://github.com/codingthunder",
-      "blog_name": "Coding Thunder",
-      "tag_line": "Heaven for programmers",
-      "gmail-user":"abrar.ahmed8875288788@gmail.com",
-      "gmail-password":"Abrar.786ahmed",
-      "recipient":"9529693800aa@gmail.com",
-      "upload_location":"/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/static/uploads",
-      "uname":"9529693800aa@gmail.com",
-      "password":"Abrar.786ahmed",
-      "test":"Te"
+    "params": {
+        "local_server": "True",
+        "local_uri_all_post": "mysql://root:Abrar.786@localhost/all_post",
+        "local_uri_other": "mysql://root:Abrar.786@localhost/other_details",
+        "fb_url": "https://facebook.com/codingthunder",
+        "tw_url": "https://twitter.com/codingthunder",
+        "gh_url": "https://github.com/codingthunder",
+        "blog_name": "Coding Thunder",
+        "tag_line": "Heaven for programmers",
+        "gmail-user": "abrar.ahmed8875288788@gmail.com",
+        "gmail-password": "Abrar.786ahmed",
+        "recipient": "9529693800aa@gmail.com",
+        "upload_location": "/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/static/uploads",
+        "upload_location_coverImg": "/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/static/images",
+        "uname": "9529693800aa@gmail.com",
+        "password": "Abrar.786ahmed",
+        "test": "Te"
     }
-  }
+}

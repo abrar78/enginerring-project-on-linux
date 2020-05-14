@@ -1,0 +1,95 @@
+{% extends "template.html" %} {% block content %}
+
+<div class="jumbotron jumbotron-fluid" style="height: 50vh;">
+    <div class="container text-center">
+        <h1 class="display-4" style="font-size: 7vh;"><b>{{heading}}</b></h1>
+        <p class="lead" style="font-size: 3vh;">{{description}}</p>
+    </div>
+</div>
+
+
+{% if thumbnail %}
+<div class="text-center">
+
+    <img class="img-fluid" src="/static/images/{{thumbnail}}" alt="Responsive_image" srcset="" style="width: 100vh">
+</div>
+{% endif %} {% if quick_answers %}
+<div class="container mt-5" id="quick_answers">
+    {% for index in quick_answers['ques']%}
+    <div class="media">
+        <div class="media-body mt-4">
+            <h5 class="mt-0"><b> {{quick_answers['ques'][loop.index0]}}</b></h5>
+            {{quick_answers['ans'][loop.index0]}}
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endif %}
+
+<div class="container mt-5" id="index">
+    <h1><b>    Contents</b> </h1>
+    <ul class="ml-4">
+        {% for index in index %}
+        <li>
+            <a href="#topic{{loop.index}}">{{index}}</a>
+        </li>
+        {% endfor %}
+
+    </ul>
+</div>
+
+<div class="container mt-5" id="content">
+    {% for index in para['para_subheading'] %}
+    <h1 id="topic{{loop.index}}">{{para['para_subheading'][loop.index0]}}</h1>
+    <p>{{para['para'][loop.index0]}}</p>
+
+    {% if para['para_thumbnail'][loop.index0] %}
+
+    <img src="/static/images/{{para['para_thumbnail'][loop.index0]}}" class="img-fluid" alt="Responsive image" id="contentArdImg{{loop.index0}}" style="height:300px;"> {% endif %} {% endfor %}
+</div>
+{% if conclusion %}
+<div class="container mt-5" id="conclusion">
+    <h1 style="color:#f2c36b"><b>Conclusion</b></h1>
+    <p><i>{{conclusion}}</i></p>
+</div>
+{% endif %}
+<hr>
+<div class="container mt-5" id=faq>
+    <h1>FAQ</h1>
+    {% for ind in faq['ques'] %}
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="heading{{loop.index}}">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
+          {{faq['ques'][loop.index0]}}
+        </button>
+                </h2>
+            </div>
+
+            <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+
+                    {{faq['ans'][loop.index0]}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <form action="/publish" method="POST">
+        <button id="publishBtn" class="btn btn-dark btn-block mt-5 btn-lg" style="width: 60%;margin:0 auto;">Publish</button>
+
+    </form>
+    <form action="/save_draft" method="post">
+        <button id="publishBtn" type="submit" class="btn btn-warning btn-block my-2 btn-lg" style="width: 60%; margin:0 auto;">Save As Draft</button>
+    </form>
+</div>
+{% endblock %} {% block script %}
+
+
+
+
+<script src="/static/readMore.js"></script>
+
+{% endblock %}

@@ -54,17 +54,33 @@
       >
     </div>
   </div>
-  <button class="mt-1 btn btn-secondary btn-sm" onclick="uploadCoverImg()">upload</button>
+  <button class="mt-1 btn btn-secondary btn-sm" id="coverS" onclick="uploadImg('cover','0')">upload</button>
+  <!-- !--------------------keyword-------------- -->
+
+  
+  <div class="form-group my-5">
+    <label class="text-secondary" for="description"><b>keyword</b></label>
+    <textarea
+     placeholder="This keyword is used to suggest related posts"
+     
+      class="form-control"
+      style="width: 50%; margin: 0 auto; border-width: 5px;"
+      id="keyword"
+      rows="1"
+    ></textarea>
+    <button id="keywordS"  onclick="submitCreatePost('keyword')" class="mt-3 btn btn-secondary btn-sm">Submit</button>
   <!-- !-------------Heading -->
+
   <div class="form-group my-5">
     <label class="text-secondary" for="description"><b>Heading</b></label>
     <textarea
+      id="heading"
       class="form-control"
       style="width: 50%; margin: 0 auto; border-width: 5px;"
-      id="description"
+      
       rows="1"
     ></textarea>
-    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+    <button id="headingS"  onclick="submitCreatePost('heading')" class="mt-3 btn btn-secondary btn-sm">Submit</button>
   </div>
   <!-- !---------Description -->
   <div class="form-group">
@@ -75,83 +91,86 @@
       id="description"
       rows="3"
     ></textarea>
-    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+    <button id="descriptionS" onclick="submitCreatePost('description')" class="mt-3 btn btn-secondary btn-sm">Submit</button>
   </div>
   <!-- !-----------Quick questions -->
-  <div class="form-group mt-5">
-    <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">
-      Quick questions
-    </div>
-
-    <label class="text-secondary mt-2" for="description"><b>Question</b></label>
-    <textarea
-      class="form-control"
-      style="width: 50%; margin: 0 auto; border-width: 5px;"
-      id="description"
-      rows="1"
-    ></textarea>
-    <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
-    <textarea
-      class="form-control"
-      style="width: 50%; margin: 0 auto; border-width: 5px;"
-      id="description"
-      rows="2"
-    ></textarea>
-    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
-    <button class="mt-3 btn btn-dark btn-sm">+</button>
+  <div class="text-secondary mt-5" style="font-size: 6vh; font-weight: bold;">
+    Quick questions
   </div>
+  <div class="form-group mt-2" id="conta_quick_answers">
+    <div id="quickAnswers1">
+
+      <label class="text-secondary" for="description"><b>Question</b></label>
+      <textarea
+      id="quick_question1"
+      class="form-control"
+      style="width: 50%; margin: 0 auto; border-width: 5px;"
+      id="description"
+      onblur="backup('quick_question','1')"
+      rows="1"
+      ></textarea>
+      <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
+      <textarea
+      id="quick_answer1"
+      class="form-control"
+      style="width: 50%; margin: 0 auto; border-width: 5px;"
+      id="description"
+      onblur="backup('quick_answer','1')"
+      rows="2"
+      ></textarea>
+
+    </div>
+  </div>
+  <button onclick="deletePrev('quickAnswers')" id="quickAnswersDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
+    <button id="quickAnswersS" onclick="submitCreatePost('quickAnswers')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
+    <button onclick="addNew('quickAnswers')" class="mb-3 btn btn-dark btn-sm">+</button>
   <!-- ! ------------------Index------>
-  <div class="form-group">
+  <div class="form-group" id="conta_index">
     <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">
       Index
     </div>
 
-    <div class="input-group mb-2 mr-sm-2" style="width: 50%; margin-left: 26%;">
+    <div class="input-group mb-2 mr-sm-2" id="indexDiv1" style="width: 50%; margin-left: 26%;">
       <div class="input-group-prepend">
         <div class="input-group-text">1</div>
       </div>
       <input
         type="text"
+        id="index1"
+        onblur="backup('index','1')"
         class="form-control"
         id="inlineFormInputGroupUsername2"
         placeholder="Heading"
       />
     </div>
-    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
-    <button class="mt-3 btn btn-dark btn-sm">+</button>
   </div>
+   <button onclick="deletePrev('index')" id="indexDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
+   <button id="indexS" onclick="submitCreatePost('index')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
+   <button onclick="addNew('index')" class="mb-3 btn btn-dark btn-sm">+</button>
 <!-- !-------paragraph -->
-  <div class="form-group mt-5">
+  <div class="form-group mt-5" id="contaPara">
     <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Paragraphs/Steps</div>
+<div id="paraDiv1">
 
-    <label class="text-secondary mt-2" for="description"><b>Subheading</b></label>
-    <textarea class="form-control" style="width: 50%; margin:0 auto;border-width:5px;" id="description" rows="1"></textarea>
-    <label class="text-secondary mt-3 " for="description"><b>Para</b></label>
-    <textarea class="form-control" style="width: 50%; margin:0 auto;border-width:5px;" id="description" rows="4"></textarea>
+  <label class="text-secondary mt-2" for="para_heading1"><b>Subheading</b></label>
+  <textarea class="form-control" onblur="backup('para_heading','1')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_heading1" rows="1"></textarea>
+  <label class="text-secondary mt-3 " for="para1"><b>Para</b></label>
+  <textarea class="form-control" onblur="backup('para',1)" style="width: 50%; margin:0 auto;border-width:5px;" id="para1" rows="4"></textarea>
   <!-- *---upload image -->
-  <img class="mt-3" src="/static/images/action-blur-bulb-dark-355904.jpg"  width="20%" alt="Responsive-image">
+  <img class="mt-3" id="paraImg1"   width="40%" alt="upload image">
   <h5 class="text-secondary mt-1">Preview</h5>
-    <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
-      <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupFileAddon01">Upload Image</span
-    >
-  </div>
-  <div class="custom-file">
-    <input
-      type="file"
-      class="custom-file-input"
-      id="inputGroupFile01"
-      aria-describedby="inputGroupFileAddon01"
-    />
-    <label class="custom-file-label" for="inputGroupFile01"
-      >Choose file</label
-    >
+  <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
+    
+      
+      <input type="file" class="form-control-file" id="paraImgUploader1">
+      <button class="mt-1 btn btn-secondary btn-sm"  onclick="uploadImg('para','1')">upload</button>
+    </div>
+  
   </div>
 </div>
-    <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
-    <button class="mt-3 btn btn-dark btn-sm">+</button>
-</div>
-
+<button onclick="deletePrev('para')" id="paraDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
+   <button id="paraS" onclick="submitCreatePost('para')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
+   <button onclick="addNew('para')" class="mb-3 btn btn-dark btn-sm">+</button>
 <!-- ! Coclusion -->
 <div class="form-group mt-5">
   <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Conclusion</div>
@@ -159,59 +178,65 @@
   <textarea
     class="form-control"
     style="width: 50%; margin: 0 auto; border-width: 5px;"
-    id="description"
+    id="conclusion"
     rows="3"
   ></textarea>
-  <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
+  <button id="conclusionS" onclick='submitCreatePost("conclusion")' class="mt-3 btn btn-secondary btn-sm">Submit</button>
 </div>
 <!-- !-----------------FAQ  -->
-<div class="form-group mt-5">
+<div class="form-group mt-5" id="contaFaq"> 
   <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">
   FAQ
   </div>
+<div id="faq1">
 
   <label class="text-secondary mt-2" for="description"><b>Question</b></label>
   <textarea
-    class="form-control"
-    style="width: 50%; margin: 0 auto; border-width: 5px;"
+  id="faq_q1"
+  class="form-control"
+  style="width: 50%; margin: 0 auto; border-width: 5px;"
     id="description"
     rows="1"
-  ></textarea>
-  <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
-  <textarea
+    onblur="backup('faq_q','1')"
+    ></textarea>
+    <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
+    <textarea
+    id="faq_ans1"
     class="form-control"
     style="width: 50%; margin: 0 auto; border-width: 5px;"
     id="description"
+    onblur="backup('faq_ans','1')"
     rows="2"
-  ></textarea>
-  <!-- ? <label class="text-secondary mt-5" for="description"><b>Question</b></label>
-  <textarea
-    class="form-control"
-    style="width: 50%; margin: 0 auto; border-width: 5px;"
-    id="description"
-    rows="1"
-  ></textarea>
-  <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
-  <textarea
-    class="form-control"
-    style="width: 50%; margin: 0 auto; border-width: 5px;"
-    id="description"
-    rows="2"
-  ? ></textarea> -->
-  <button class="mt-3 btn btn-secondary btn-sm">Submit</button>
-  <button class="mt-3 btn btn-dark btn-sm">+</button>
-</div>
+    ></textarea>
+    
+      
+    </div>
+  </div>
+  <button onclick="deletePrev('faq')" id="faqDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
+  <button onclick="submitCreatePost('faq')" id="faqS" class="mb-3 btn btn-secondary btn-sm">Submit</button>
+  <button onclick="addNew('faq')" class="mb-3 btn btn-dark btn-sm">+</button>
+  <form action="/publish" method="post">
+    
+    <button id="publishBtn" class="btn btn-outline-dark btn-block mt-5 btn-lg"  style="width: 60%; margin-left:20%;">Publish</button>
 
+  </form>
+  <form action="/preview" method="post">
+    <button id="publishBtn" type="submit" class="btn btn-outline-secondary btn-block mt-2 btn-lg" style="width: 60%; margin-left:20%;">Preview</button>
+  </form>
+  <form action="/save_draft" method="post">
+    <button id="publishBtn" type="submit" class="btn btn-outline-dark btn-block my-2 btn-lg" style="width: 60%; margin-left:20%;">Save As Draft</button>
+  </form>
 </div>
 
 {% endblock %}
 {% block script %}
 <script>
-  $('#cover_image_uploader').on('change',function(){
+  $('#cover_image_uploader ').on('change',function(){
       //get the file name
       var fileName = $(this).val();
       //replace the "Choose a file" label
       $(this).next('.custom-file-label').html(fileName);
   })
 </script>
-{% endblock%}
+
+{% endblock %}

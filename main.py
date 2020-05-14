@@ -8,12 +8,42 @@ from werkzeug.utils import secure_filename
 from flask_mail import Mail
 from flask_login import LoginManager
 from jinja2 import Undefined
+from time import gmtime, strftime
+
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app.config['UPLOAD_FOLDER']={'upload':params["upload_location"],
                              'cover_image':params["upload_location_coverImg"] }
-
+global type_
+type_=''
 global thumbnail
-thumbnail="0"
+thumbnail=""
+global para_thumbnail
+para_thumbnail=[]
+global keyword
+keyword=""
+global heading
+heading=""
+global description
+description=""
+global quick_questions
+quick_questions=[]
+global quick_asnwers
+quick_answers=[]
+global index
+index=[]
+global para
+para=[]
+global para_subheading
+para_subheading=[]
+global para_img
+para_img=[]
+global conclusion
+conclusion=""
+global faq_q
+faq_q=[]
+global faq_ans
+faq_ans=[]
+
 app.app_context().push()
 app.config.update(
 
@@ -27,7 +57,7 @@ app.config.update(
 results=[]
 mail=Mail(app);
 @app.route('/')
-def index():
+def index_file():
 
      arduino=Arduinoproject_posts.query.paginate(per_page=4,page=1,error_out=True)
      basic=Basicproject_posts.query.paginate(per_page=4,page=1,error_out=True)
@@ -285,18 +315,82 @@ def upload():
        f=request.files['file'];
        f.save(os.path.join(app.config['UPLOAD_FOLDER']['upload'],secure_filename(f.filename)))
        return "SUCCESS"
-@app.route('/dashboard_upload',methods=['GET','POST'])
+   
+@app.route('/dashboard_upload/<string:type>',methods=['GET','POST'])
 @login_required
-def dashboard_upload():
+def dashboard_upload(type):
+    if type=='cover':
        f=request.files['file'];
        file_name=f.filename
        file_name=file_name.replace(" ","_")
+       global thumbnail
        thumbnail=file_name
        print(thumbnail)
        f.save(os.path.join(app.config['UPLOAD_FOLDER']['cover_image'],secure_filename(f.filename)))
-       return "SUCCESS"
+    if type=='para':
+       f=request.files['file'];
+       file_name=f.filename
+    #    file_name=file_name.replace(" ","_")
+    #    global para_thumbnail
+    #    para_thumbnail.append(file_name)
+    #    print(para_thumbnail)
+       f.save(os.path.join(app.config['UPLOAD_FOLDER']['cover_image'],secure_filename(f.filename)))
+    return "SUCCESS"
 
-
+@app.route('/dashboard_create_post/<string:type>',methods=['GET','POST'])
+@login_required
+def dashboard_create_post(type):
+    # type='description
+    # '
+     if type=="keyword":
+      req=request.get_json()
+      global keyword
+      description=req['keyword']
+    if type=="heading":
+      req=request.get_json()
+      global heading
+      global type_
+      heading=req['heading']
+      type_=req['type_']
+    
+    if type=="description":
+      req=request.get_json()
+      global description
+      description=req['description']
+   
+    if type=="quickAnswers":
+      req=request.get_json()
+      global quick_answers
+      global quick_questions
+      quick_answers=req['quick_answers']
+      quick_questions=req['quick_questions']
+    
+    if type=="index":
+      req=request.get_json()
+      global index
+      index=req['index']
+    if type=="para":
+      req=request.get_json()
+      global para
+      global para_subheading
+      global para_thumbnail
+      para=req['para']
+      para_subheading=req['subheading']
+      para_thumbnail=req['thumbnail']
+    if type=="conclusion":
+      req=request.get_json()
+      global conclusion
+      conclusion=req['conclusion']
+      
+    if type=="faq":
+      req=request.get_json()
+      global faq_q
+      global faq_ans
+      faq_q=req['faq_q']
+      faq_ans=req['faq_ans']
+      
+    
+    return "SUCCESS"
 @app.route('/all_post/<int:page_no>')
 @login_required
 def all_post(page_no):
@@ -391,7 +485,70 @@ def search_dashboard(type,page):
         
       
     return render_template('dashboard_search.html')
-@app.before_request
+@app.route('/test')
+def test():
+    
+    print('type=',type_)
+    print("heading=",heading)
+    print("thumbnail=",thumbnail)
+    print("description=",description)
+    print("index=",index)
+    print("quickQuestions=",quick_questions)
+    print("quickAnsweers=",quick_answers)
+    print("para=",para)
+    print("para_subheading=",para_subheading)
+    print("para_thumbnail=",para_thumbnail)
+    print("conclusion=",conclusion)
+    print("faq_q=",faq_q)
+    print("faq_ans=",faq_ans)
+    return "test"
+@app.route('/preview', methods=['GET','POST'])
+@login_required
+def preview():
+    quick_answersDict={'ques':quick_questions, 'ans':quick_answers}
+    faqDict={'ques':faq_q, 'ans':faq_ans}
+    paraDict={'para':para,'para_subheading':para_subheading,'para_thumbnail':para_thumbnail}
+    
+
+    return render_template('preview.html',
+                           heading=heading,
+                           thumbnail=thumbnail,
+                           description=description,
+                           index=index,
+                          
+                           quick_answers=quick_answersDict,
+                           para=paraDict,
+                           
+                           conclusion=conclusion,
+                           faq=faqDict
+                           )
+    
+@app.route('/save_as_draft')
+def save_as_draft():
+    current_date=strftime("%Y-%m-%d ", gmtime())
+    draft=Draft(date=current_date,thumbnail=thumbnail,keyword=keyword,type=type,heading=heading,description=description)
+    db.session.add(draft)
+    db.session.commit()
+    for Q,A in zip(quick_question, quick_answers) :
+        draftQA=Quick_answers_draft(ques=Q,ans=A,post_name=draft)
+        db.session.add(draftQA)
+        db.session.commit()
+    for Q,A in zip(faq_q, faq_ans) :
+        draftQA=Faq_draft(faq_q=Q,faq_ans=A,post_name=draft)
+        db.session.add(draftQA)
+        db.session.commit()
+    for ind in index:
+        indexDraft=Index_draft(topic=ind,post_name=draft)
+        db.session.add(indexDraft)
+        db.session.commit()
+    for content,heading,img in zip(para,para_subheading,para_thumbnail):
+        conent=Content_draft(heading=heading,img=img,para=content,post_name=draft)
+        db.session.add(content)
+        db.session.commit()
+    
+        
+    
+    return redirect('/preview')
 def before_request():
     session.permanent = True
     app.permanent_session_lifetime = datetime.timedelta(seconds=200)

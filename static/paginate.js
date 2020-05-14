@@ -78,7 +78,7 @@ function changePage(id) {
     }
     var container = document.getElementById(`${code}`)
     container.classList.remove('bounceIn')
-    // console.log(heading1);
+        // console.log(heading1);
     var heading1 = document.getElementById(`${code}head1`)
     var heading2 = document.getElementById(`${code}head2`)
     var heading3 = document.getElementById(`${code}head3`)
@@ -150,41 +150,36 @@ function changePage(id) {
     fetch(url, params).then(response => {
         if (response.status == 200) {
             console.log("succesfully_posted")
-        }
-        else {
+        } else {
             console.log("eroor 404, data not posted")
         }
         response.json().then(data => {
             console.log(data)
-            //   console.log(heading1)
-            // var heading1=document.getElementById(`${code}head1`)
+                //   console.log(heading1)
+                // var heading1=document.getElementById(`${code}head1`)
             if (data['heading'][1] == undefined) {
                 document.getElementById(`${code}card1`).style.display = 'none'
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card1`).style.display = ""
             }
             if (data['heading'][2] == undefined) {
                 document.getElementById(`${code}card2`).style.display = 'none'
 
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card2`).style.display = ''
 
             }
             if (data['heading'][3] == undefined) {
                 document.getElementById(`${code}card3`).style.display = 'none'
 
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card3`).style.display = ''
 
             }
             if (data['heading'][4] == undefined) {
                 document.getElementById(`${code}card4`).style.display = 'none'
 
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card4`).style.display = ''
 
             }
@@ -342,41 +337,36 @@ function nextPage(type, code) {
     fetch(url, params).then(response => {
         if (response.status == 200) {
             console.log("succesfully_posted")
-        }
-        else {
+        } else {
             console.log("eroor 404, data not posted")
         }
         response.json().then(data => {
 
             console.log(data)
-            //   var heading1=document.getElementById(`${code}head1`)
+                //   var heading1=document.getElementById(`${code}head1`)
             if (data['heading'][1] == undefined) {
                 document.getElementById(`${code}card1`).style.display = 'none'
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card1`).style.display = ""
             }
             if (data['heading'][2] == undefined) {
                 document.getElementById(`${code}card2`).style.display = 'none'
 
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card2`).style.display = ''
 
             }
             if (data['heading'][3] == undefined) {
                 document.getElementById(`${code}card3`).style.display = 'none'
 
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card3`).style.display = ''
 
             }
             if (data['heading'][4] == undefined) {
                 document.getElementById(`${code}card4`).style.display = 'none'
 
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card4`).style.display = ''
 
             }
@@ -533,41 +523,36 @@ function prevPage(type, code) {
     fetch(url, params).then(response => {
         if (response.status == 200) {
             console.log("succesfully_posted")
-        }
-        else {
+        } else {
             console.log("eroor 404, data not posted")
         }
         response.json().then(data => {
 
             console.log(data)
-            //   var heading1=document.getElementById(`${code}head1`)
+                //   var heading1=document.getElementById(`${code}head1`)
             if (data['heading'][1] == undefined) {
                 document.getElementById(`${code}card1`).style.display = 'none'
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card1`).style.display = ""
             }
             if (data['heading'][2] == undefined) {
                 document.getElementById(`${code}card2`).style.display = 'none'
 
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card2`).style.display = ''
 
             }
             if (data['heading'][3] == undefined) {
                 document.getElementById(`${code}card3`).style.display = 'none'
 
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card3`).style.display = ''
 
             }
             if (data['heading'][4] == undefined) {
                 document.getElementById(`${code}card4`).style.display = 'none'
 
-            }
-            else {
+            } else {
                 document.getElementById(`${code}card4`).style.display = ''
 
             }
@@ -632,7 +617,7 @@ function seeMore(code) {
     }
     if (code == "Iot") {
         mobileCountIot_ = mobileCountIot_++
-        page_no_ = mobileCountIot_;
+            page_no_ = mobileCountIot_;
         if (mobileCountIot_ == totalPages) {
             seeMoreBtnIot.disabled = true
         }
@@ -640,7 +625,7 @@ function seeMore(code) {
     if (code == "Other") {
         mobileCountOther_++
         page_no_ = mobileCountOther_;
-        if (mobileCountOther_ ==totalPages) {
+        if (mobileCountOther_ == totalPages) {
             seeMoreBtnOther.disabled = true
         }
     }
@@ -668,8 +653,7 @@ function seeMore(code) {
     fetch(url, params).then(response => {
         if (response.status == 200) {
             console.log("succesfully_posted")
-        }
-        else {
+        } else {
             console.log("eroor 404, data not posted")
         }
         response.json().then(data => {
@@ -677,15 +661,16 @@ function seeMore(code) {
             // console.log(data[thumbnail])
             for (let index = 1; index < 5; index++) {
 
-               if(data['heading'][index]){                
-                document.getElementById(`mob${code}`).innerHTML += `  <div class="postMobile mt-3">
+                if (data['heading'][index]) {
+                    document.getElementById(`mob${code}`).innerHTML += `  <div class="postMobile mt-3">
                 <img src="/static/images/${data['thumbnail'][index]}" class="thumbnailMob "alt="">
                 <div class="mobViewContent" >
                 <h3>${data['heading'][index]}</h3>
                 <p> ${data['description'][index]}</p>
                 <a href="" class="streached-link">Read Mor..</a>
                 </div>
-                </div>`}
+                </div>`
+                }
             }
         })
     })

@@ -395,7 +395,68 @@ class Index_other(db.Model):
     topic=db.Column(db.String(100),nullable=True)
    
     otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
+   
+#!----------------Draft database---------------------------------------------!    #  
+class Draft(db.Model):
+   
+    id=db.Column(db.Integer ,primary_key=True, nullable=False);
+    date=db.Column(db.String(50), nullable=False);
+    thumbnail=db.Column(db.String(100), nullable=False);
+    keyword=db.Column(db.String(100), nullable=False);
+    type=db.Column(db.String(100), nullable=True);
+    heading=db.Column(db.String(100), nullable=False);
+    description=db.Column(db.String(100), nullable=False);
+    
+    quick_answers=db.relationship('Quick_answers_draft', backref='post_name')
+    
+    index=db.relationship('Index_draft',backref='post_name');
+    comparison_table=db.relationship('Comparison_table_draft',backref='post_name');
+    conclusion=db.relationship('Conclusion_draft',backref='post_name');
+    faq=db.relationship('Faq_draft',backref='post_name');
+    
+class Quick_answers_draft(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False)
+    ques=db.Column(db.String(100),nullable=True)
+    ans=db.Column(db.String(300),nullable=True)
+   
+    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
+
+class Comparison_table_draft(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False)
+    heading1=db.Column(db.String(100),nullable=False)        
+    heading2=db.Column(db.String(100),nullable=False)
+    head1_point=db.Column(db.String(200),nullable=True)
+    head2_point=db.Column(db.String(200),nullable=True)
+    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
+    
+class Conclusion_draft(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False)
+    text=db.Column(db.String(500),nullable=False)
+    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))   
+    
+class Faq_draft(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False);
+    faq_q=db.Column(db.String(100),nullable=True)
+    faq_ans=db.Column(db.String(100),nullable=True)
+    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))   
+       
+    
+class Content_draft(db.Model):
+   
+    id=db.Column(db.Integer ,primary_key=True, nullable=False)
+    
+    heading=db.Column(db.String(100),nullable=True)
+    img=db.Column(db.String(500),nullable=True)
+    para=db.Column(db.String(500),nullable=True)
+    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
         
+    
+     
+class Index_draft(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False)
+    topic=db.Column(db.String(100),nullable=True)
+    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
+
            
 #!--all_post tables END-----|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 

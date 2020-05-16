@@ -12,7 +12,7 @@ var quickAnswers = [];
 var backupQuest = [];
 var backupAnswer = [];
 var contaQuickAnswers = document.getElementById("conta_quick_answers");
-var countQuickAnswers = 1;
+window.countQuickAnswers = 1;
 
 var countIndex = 1;
 var contaIndex = document.getElementById("conta_index");
@@ -50,13 +50,49 @@ var formData;
 var html = "";
 var returnHtml = "";
 
+var heading1 = ""
+var heading2 = ""
+var col1_arr = []
+var col2_arr = []
+var tableRow = ''
+var tableHtml = ""
 console.log("dashboard js connected succesfully");
+
+// document.getElementById(`li${data2.current}`).classList.add("active")
 
 function conferm(type, id) {
     window.location.assign(`${window.origin}/Delete/${type}/${id}`);
 }
-document.getElementById('coverS').disabled = true
+
+function addTable() {
+    document.getElementById('tableDiv').style.display = ""
+}
+
+function enterTableRows() {
+    tableRow = document.getElementById('rowNo').value
+    document.getElementById('tableMain').style.display = ""
+    document.getElementById('tableS').style.display = ""
+    for (let index = 1; index <= tableRow; index++) {
+        tableHtml += `       <tr>
+        <th scope="row">${index}</th>
+        <td><input id="row${index}_1" class="form-control" type="text" name="" value=""></td>
+        <td><input id="row${index}_2" class="form-control" type="text" name="" value=""></td>
+
+    </tr>`
+
+    }
+    document.getElementById('tableContent').innerHTML = tableHtml
+}
+if (document.getElementById('coverS')) {
+
+    document.getElementById('coverS').disabled = true
+}
 var check = 0
+
+function testG() {
+    console.log("In dashboard.js", countQuickAnswers)
+
+}
 
 function typeChecked() {
     if (typeArdBtn.checked) {
@@ -159,7 +195,7 @@ function addNew(type) {
         class="form-control"
         style="width: 50%; margin: 0 auto; border-width: 5px;"
         onblur="backup('quick_question','${countQuickAnswers}')"
-        id="description"
+        
       rows="1"
       ></textarea>
       <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
@@ -169,7 +205,6 @@ function addNew(type) {
       style="width: 50%; margin: 0 auto; border-width: 5px;"
       onblur="backup('quick_answer','${countQuickAnswers}')"
 
-      id="description"
       rows="2"
       ></textarea>
       
@@ -426,9 +461,12 @@ function submitCreatePost(type_) {
             paras_arr.push(para_val);
             let para_subheading_val = document.getElementById(`para_heading${index}`).value;
             para_subheadings.push(para_subheading_val);
-            let para_thumbnail_val = document.getElementById(`paraImg${index}`).name
-            para_thumbnail_val.replace(/ /g, "_")
+            let para_thumbnail_val = document.getElementById(`paraImg${index}`)
+            para_thumbnail_val = para_thumbnail_val.src.split("/").pop()
+            console.log(para_thumbnail_val)
+                // para_thumbnail_val.replace(/ /g, "_")
             para_thumbnail_arr.push(para_thumbnail_val)
+            console.log(para_thumbnail_arr)
         }
         entry = {
             subheading: para_subheadings,
@@ -451,6 +489,23 @@ function submitCreatePost(type_) {
         entry = {
             faq_q: faq_q_arr,
             faq_ans: faq_ans_arr,
+        };
+    }
+    if (type_ == "table") {
+        heading1 = document.getElementById('heading1').value
+        heading2 = document.getElementById('heading2').value
+        for (let index = 1; index <= tableRow; index++) {
+            let col1_val = document.getElementById(`row${index}_1`).value;
+            col1_arr.push(col1_val);
+            let col2_val = document.getElementById(`row${index}_2`).value;
+            col2_arr.push(col2_val);
+        }
+        console.log(col1_arr, col2_arr)
+        entry = {
+            heading1: heading1,
+            heading2: heading2,
+            col1: col1_arr,
+            col2: col2_arr
         };
     }
 

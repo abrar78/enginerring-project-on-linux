@@ -9,12 +9,22 @@ from flask_mail import Mail
 from flask_login import LoginManager
 from jinja2 import Undefined
 from time import gmtime, strftime
+import jinja2
 
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app.config['UPLOAD_FOLDER']={'upload':params["upload_location"],
                              'cover_image':params["upload_location_coverImg"] }
+
 global type_
 type_=''
+global heading1
+heading1=""
+global heading2
+heading2=""
+global table_col1
+table_col1=None
+global table_col2
+table_col2=None
 global thumbnail
 thumbnail=""
 global para_thumbnail
@@ -179,21 +189,21 @@ def arduinoRead(num):
     search="%{0}%".format(search_value)
     print(search)
     related=Arduinoproject_posts.query.filter(or_(Arduinoproject_posts.description.like(search), Arduinoproject_posts.heading.like(search))).all()
-    return render_template('readMoreArduino.html', arduino_post_db=arduino_post,related_post=related[0:4])
+    return render_template('readMoreOther.html', other_post_db=arduino_post,related_post=related[0:4])
 @app.route('/Read_more_Basic/<int:num>')
 def basicRead(num):
     basic_post=Basicproject_posts.query.filter_by(id=num).first()
     search_value=basic_post.keyword
     search="%{0}%".format(search_value)
     related=Basicproject_posts.query.filter(or_(Basicproject_posts.description.like(search), Basicproject_posts.heading.like(search))).all()
-    return render_template('readMoreBasic.html', basic_post_db=basic_post,related_post=related[0:4])
+    return render_template('readMoreOther.html', other_post_db=basic_post,related_post=related[0:4])
 @app.route('/Read_more_Iot/<int:num>')
 def iotRead(num):
     iot_post=Iotproject_posts.query.filter_by(id=num).first()
     search_value=iot_post.keyword
     search="%{0}%".format(search_value)
     related=Iotproject_posts.query.filter(or_(Iotproject_posts.description.like(search), Iotproject_posts.heading.like(search))).all()
-    return render_template('readMoreIot.html', iot_post_db=iot_post,related_post=related[0:4])
+    return render_template('readMoreOther.html', other_post_db=iot_post,related_post=related[0:4])
 @app.route('/Read_more_Other/<int:num>')
 def otherRead(num):
     other_post=Other_posts.query.filter_by(id=num).first()
@@ -202,6 +212,34 @@ def otherRead(num):
     related=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
 
     return render_template('readMoreOther.html', other_post_db=other_post,related_post=related[0:4])
+@app.route('/Read_more_draft/<int:num>')
+def draftRead(num):
+    draft_post=Draft.query.filter_by(id=num).first()
+    draft_type=draft_post.type
+    draft_type=draft_type[0:-4]
+    search_value=draft_post.keyword
+    search="%{0}%".format(search_value)
+    print(draft_type)
+    if draft_type=="Ard":
+            print("im Ard")
+            related=Arduinoproject_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+
+    if draft_type=="Iot":
+             related=Iotproject_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+
+    if draft_type=="Basic":
+             related=Basicproject_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+
+    if draft_type=="Other":
+             related=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+    # else:
+    #      search_value="head"
+    #      search="%{0}%".format(search_value)
+        
+    #      related=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+
+
+    return render_template('readMoreOther.html', other_post_db=draft_post,related_post=related[0:4])
 
 @app.route('/templates/advertiseWithUs.html')
 def advertise():
@@ -342,10 +380,10 @@ def dashboard_upload(type):
 def dashboard_create_post(type):
     # type='description
     # '
-     if type=="keyword":
+    if type=="keyword":
       req=request.get_json()
       global keyword
-      description=req['keyword']
+      keyword=req['keyword']
     if type=="heading":
       req=request.get_json()
       global heading
@@ -388,6 +426,16 @@ def dashboard_create_post(type):
       global faq_ans
       faq_q=req['faq_q']
       faq_ans=req['faq_ans']
+    if type=="table":
+      req=request.get_json()
+      global heading1
+      global heading2
+      global table_col1
+      global table_col2
+      table_col1=req['col1']
+      table_col2=req['col2']
+      heading1=req['heading1']
+      heading2=req['heading2']
       
     
     return "SUCCESS"
@@ -455,6 +503,11 @@ def delete(id,type):
         db.session.delete(delete)
         db.session.commit()
         return redirect('/dashboard_other/1') 
+    if type=='draft':
+        delete=Draft.query.filter_by(id=id).first()
+        db.session.delete(delete)
+        db.session.commit()
+        return redirect('/draft') 
     
 @app.route('/create_post')
 @login_required
@@ -468,7 +521,8 @@ def logout():
 @app.route('/dashboard@@@',methods = ['GET', 'POST'])
 @login_required
 def dashboard():
- return render_template("dashboard.html") 
+ savedPost=Draft.query.filter().count()
+ return render_template("dashboard.html",postNo=savedPost) 
 
 @app.route('/search/<string:type>/<int:page>',methods=['POST','GET'])
 @login_required
@@ -482,6 +536,33 @@ def search_dashboard(type,page):
             print(search)
             result=Arduinoproject_posts.query.filter(Arduinoproject_posts.heading.like(search)).paginate(per_page=12,page=page,error_out=True)
             return render_template("dashboard_search.html",result_ard=result)
+    if type=='Other':
+         if request.method=="POST":
+
+            form=request.form
+            search_value=form['search_string']
+            search="%{0}%".format(search_value)
+            print(search)
+            result=Other_posts.query.filter(Other_posts.heading.like(search)).paginate(per_page=12,page=page,error_out=True)
+            return render_template("dashboard_search.html",result_ard=result)
+    if type=='Basic':
+         if request.method=="POST":
+
+            form=request.form
+            search_value=form['search_string']
+            search="%{0}%".format(search_value)
+            print(search)
+            result=Basicproject_posts.query.filter(Basicproject_posts.heading.like(search)).paginate(per_page=12,page=page,error_out=True)
+            return render_template("dashboard_search.html",result_ard=result)
+    if type=='Iot':
+         if request.method=="POST":
+
+            form=request.form
+            search_value=form['search_string']
+            search="%{0}%".format(search_value)
+            print(search)
+            result=Iotproject_posts.query.filter(Iotproject_posts.heading.like(search)).paginate(per_page=12,page=page,error_out=True)
+            return render_template("dashboard_search.html",result_ard=result)
         
       
     return render_template('dashboard_search.html')
@@ -491,6 +572,8 @@ def test():
     print('type=',type_)
     print("heading=",heading)
     print("thumbnail=",thumbnail)
+    print("keyword=",keyword)
+    
     print("description=",description)
     print("index=",index)
     print("quickQuestions=",quick_questions)
@@ -501,6 +584,8 @@ def test():
     print("conclusion=",conclusion)
     print("faq_q=",faq_q)
     print("faq_ans=",faq_ans)
+    print("col1=",table_col1)
+    print("col2=",table_col2)
     return "test"
 @app.route('/preview', methods=['GET','POST'])
 @login_required
@@ -508,7 +593,7 @@ def preview():
     quick_answersDict={'ques':quick_questions, 'ans':quick_answers}
     faqDict={'ques':faq_q, 'ans':faq_ans}
     paraDict={'para':para,'para_subheading':para_subheading,'para_thumbnail':para_thumbnail}
-    
+    tableDict={'col1':table_col1,'col2':table_col2}
 
     return render_template('preview.html',
                            heading=heading,
@@ -517,23 +602,38 @@ def preview():
                            index=index,
                           
                            quick_answers=quick_answersDict,
-                           para=paraDict,
+                           para=para,
+                           para_subheading=para_subheading,
+                           para_thumbnail=para_thumbnail,
                            
                            conclusion=conclusion,
-                           faq=faqDict
+                           faq=faqDict,
+                           table=tableDict,
+                           heading1=heading1,
+                           heading2=heading2,
+                           col1=table_col1,
+                           col2=table_col2
                            )
     
-@app.route('/save_as_draft')
+@app.route('/save_draft',methods=['GET','POST'])
 def save_as_draft():
     current_date=strftime("%Y-%m-%d ", gmtime())
-    draft=Draft(date=current_date,thumbnail=thumbnail,keyword=keyword,type=type,heading=heading,description=description)
+    global heading
+    global type_
+    global quick_questions
+    global heading1
+    global faq_q
+    draft=Draft(date=current_date,thumbnail=thumbnail,keyword=keyword,type=type_,heading=heading,description=description,Tableheading1=heading1,Tableheading2=heading2)
     db.session.add(draft)
     db.session.commit()
-    for Q,A in zip(quick_question, quick_answers) :
+    if quick_questions:
+      for Q,A in zip(quick_questions, quick_answers) :
         draftQA=Quick_answers_draft(ques=Q,ans=A,post_name=draft)
         db.session.add(draftQA)
         db.session.commit()
-    for Q,A in zip(faq_q, faq_ans) :
+        
+    if faq_q:
+      for Q,A in zip(faq_q, faq_ans) :
         draftQA=Faq_draft(faq_q=Q,faq_ans=A,post_name=draft)
         db.session.add(draftQA)
         db.session.commit()
@@ -542,13 +642,122 @@ def save_as_draft():
         db.session.add(indexDraft)
         db.session.commit()
     for content,heading,img in zip(para,para_subheading,para_thumbnail):
-        conent=Content_draft(heading=heading,img=img,para=content,post_name=draft)
+        content=Content_draft(heading=heading,img=img,para=content,post_name=draft)
         db.session.add(content)
         db.session.commit()
+  
+    if heading1:
+      for col1,col2 in zip(table_col1,table_col2):
+            table=Comparison_table_draft(head1_point=col1,head2_point=col2,post_name=draft)
+            db.session.add(table)
+            db.session.commit()
+  
+    if conclusion:
+      
+            table=Conclusion_draft(text=conclusion,post_name=draft)
+            db.session.add(table)
+            db.session.commit()
     
         
     
-    return redirect('/preview')
+    return redirect('/draft')
+@app.route('/draft' ,methods=['GET','POST'])
+def draft():
+    draft=Draft.query.filter().paginate(per_page=12,page=1,error_out=True)
+    print(draft)
+    return render_template('draft.html' ,draft=draft)
+@app.route('/Edit/<string:type>/<int:id>')
+def EditPost(type,id):
+    if type=="Ard":
+        post=Arduinoproject_posts.query.filter_by(id=id).first()
+    if type=="Basic":
+        post=Basicproject_posts.query.filter_by(id=id).first()
+    if type=="Iot":
+        post=Iotproject_posts.query.filter_by(id=id).first()
+    if type=="Other":
+        post=Other_posts.query.filter_by(id=id).first()
+    if type=="draft":
+        post=Draft.query.filter_by(id=id).first()
+    heading=post.heading
+    description=post.description
+    thumbnail=post.thumbnail
+    Tableheading1=post.Tableheading1
+    Tableheading2=post.Tableheading2
+    keyword=post.keyword
+    postType=type
+    Index=[]
+    quickAnswers=[]
+    quickQuestions=[]
+    faq_q=[]
+    faq_ans=[]
+    column1=[]
+    column2=[]
+    content_Headings=[]
+    content_img=[]
+    content_para=[]
+    for db in post.index:
+        Index.append(db.topic)
+    for db in post.quick_answers:
+        quickAnswers.append(db.ans)
+        quickQuestions.append(db.ques)
+    for db in post.faq:
+        faq_q.append(db.faq_q)
+        faq_ans.append(db.faq_ans)
+    for db in post.comparison_table:
+        column1.append(db.head1_point)
+        column2.append(db.head2_point)
+    conclusion=post.conclusion
+    for db in post.content_parts:
+        content_Headings.append(db.heading)
+        content_img.append(db.img)
+        content_para.append(db.para)
+    print('type=',type)
+    print("heading=",heading)
+    post_type=post.type[0:-4]
+    intend=post.type[len(post_type):]
+    print("thumbnail=",thumbnail)
+    print("description=",description)
+    print("index=",Index)
+    print("post_type=",post_type)
+    print("quickQuestions=",quickQuestions)
+    print("quickAnsweers=",quickAnswers)
+    print("para=",content_para)
+    print("para_subheading=",content_Headings)
+    print("para_thumbnail=",content_img)
+    print("conclusion=",conclusion)
+    print("faq_q=",faq_q)
+    print("faq_ans=",faq_ans)
+    print("col1=",column1)
+    
+    return render_template('edit_post.html',
+                           countQuickQuestions=json.dumps(len(quickQuestions)),
+                           countQuickAnswers=json.dumps(len(quickAnswers)),
+                           countFaq_q=json.dumps(len(faq_q)),
+                           countFaq_ans=json.dumps(len(faq_ans)),
+                           countIndex=json.dumps(len(Index)),
+                           countPara=json.dumps(len(content_para)),
+                           countContentHeading=json.dumps(len(content_Headings)),
+                           countContentThumbnail=json.dumps(len(content_img)),
+                           type=type,
+                           post_type=post_type,
+                           keyword=keyword,
+                           intend=intend,
+                           heading=heading,
+                           thumbnail=thumbnail,
+                           description=description,
+                           index=Index,
+                           quickQuestions=quickQuestions,
+                           quickAnswers=quickAnswers,
+                           para=content_para,
+                           para_subheading=content_Headings,
+                           para_thumbnail=content_img,
+                           conclusion=conclusion,
+                           faq_q=faq_q,
+                           faq_ans=faq_ans,
+                           col1=column1,
+                           col2=column2
+                           )
+
 def before_request():
     session.permanent = True
     app.permanent_session_lifetime = datetime.timedelta(seconds=200)

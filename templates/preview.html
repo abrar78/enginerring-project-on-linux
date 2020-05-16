@@ -11,7 +11,7 @@
 {% if thumbnail %}
 <div class="text-center">
 
-    <img class="img-fluid" src="/static/images/{{thumbnail}}" alt="Responsive_image" srcset="" style="width: 100vh">
+    <img class="img-fluid" src="/static/images/{{thumbnail}}" alt="Responsive_image" srcset="" style="height:120vh">
 </div>
 {% endif %} {% if quick_answers %}
 <div class="container mt-5" id="quick_answers">
@@ -40,15 +40,42 @@
 </div>
 
 <div class="container mt-5" id="content">
-    {% for index in para['para_subheading'] %}
-    <h1 id="topic{{loop.index}}">{{para['para_subheading'][loop.index0]}}</h1>
-    <p>{{para['para'][loop.index0]}}</p>
+    {% for index in para %}
+    <h1 id="topic{{loop.index}}">{{para_subheading[loop.index0]}}</h1>
+    <p>{{para[loop.index0]}}</p>
 
-    {% if para['para_thumbnail'][loop.index0] %}
+    {% if para_thumbnail[loop.index0] %}
 
-    <img src="/static/images/{{para['para_thumbnail'][loop.index0]}}" class="img-fluid" alt="Responsive image" id="contentArdImg{{loop.index0}}" style="height:300px;"> {% endif %} {% endfor %}
+    <img src="/static/images/{{para_thumbnail[loop.index0]}}" class="img-fluid" alt="Responsive image" id="contentArdImg{{loop.index0}}" style="height:100vh;margin:0 auto;display:block;"> {% endif %} {% endfor %}
 </div>
-{% if conclusion %}
+{% if heading1 %}
+<div class="container mt-5" id="table">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Sno</th>
+                <th scope="col">{{heading1}}</th>
+                <th scope="col">{{heading2}}</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for ind in table['col1'] %}
+
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{col1[loop.index0]}}</td>
+                <td>{{col2[loop.index0]}}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endif %} {% if conclusion %}
 <div class="container mt-5" id="conclusion">
     <h1 style="color:#f2c36b"><b>Conclusion</b></h1>
     <p><i>{{conclusion}}</i></p>
@@ -56,8 +83,10 @@
 {% endif %}
 <hr>
 <div class="container mt-5" id=faq>
+    {% if faq['ques'] %}
+
     <h1>FAQ</h1>
-    {% for ind in faq['ques'] %}
+    {% endif %} {% for ind in faq['ques'] %}
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="heading{{loop.index}}">
@@ -77,6 +106,7 @@
         </div>
     </div>
     {% endfor %}
+
     <form action="/publish" method="POST">
         <button id="publishBtn" class="btn btn-dark btn-block mt-5 btn-lg" style="width: 60%;margin:0 auto;">Publish</button>
 

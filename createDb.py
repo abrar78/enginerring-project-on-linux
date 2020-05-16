@@ -72,6 +72,8 @@ class Arduinoproject_posts(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
+    Tableheading1=db.Column(db.String(100),nullable=True)        
+    Tableheading2=db.Column(db.String(100),nullable=True)
         # * one to many relationship tables down
     
     quick_answers=db.relationship('Quick_answers_arduino', backref='post_name')
@@ -102,8 +104,7 @@ class Quick_answers_arduino(db.Model):
 
 class Comparison_table_arduino(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
-    heading1=db.Column(db.String(100),nullable=False)        
-    heading2=db.Column(db.String(100),nullable=False)
+    
     head1_point=db.Column(db.String(200),nullable=True)
     head2_point=db.Column(db.String(200),nullable=True)
     arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
@@ -157,6 +158,8 @@ class Basicproject_posts(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
+    Tableheading1=db.Column(db.String(100),nullable=True)        
+    Tableheading2=db.Column(db.String(100),nullable=True)
     
     quick_answers=db.relationship('Quick_answers_basic', backref='post_name')
     
@@ -177,8 +180,7 @@ class Quick_answers_basic(db.Model):
 
 class Comparison_table_basic(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
-    heading1=db.Column(db.String(100),nullable=False)        
-    heading2=db.Column(db.String(100),nullable=False)
+    
     head1_point=db.Column(db.String(200),nullable=True)
     head2_point=db.Column(db.String(200),nullable=True)
     basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
@@ -235,9 +237,10 @@ class Iotproject_posts(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
+    Tableheading1=db.Column(db.String(100),nullable=True)        
+    Tableheading2=db.Column(db.String(100),nullable=True)
     
     quick_answers=db.relationship('Quick_answers_iot', backref='post_name')
-    
     index=db.relationship('Index_iot',backref='post_name');
     content_parts=db.relationship('Content_iot',backref='post_name');
     comparison_table=db.relationship('Comparison_table_iot',backref='post_name');
@@ -257,13 +260,12 @@ class Quick_answers_iot(db.Model):
 
 class Comparison_table_iot(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
-    heading1=db.Column(db.String(100),nullable=False)        
-    heading2=db.Column(db.String(100),nullable=False)
     
-    head1_poin1=db.Column(db.String(200),nullable=True)
+    
+    head1_point=db.Column(db.String(200),nullable=True)
    
     
-    head2_poin1=db.Column(db.String(200),nullable=True)
+    head2_point=db.Column(db.String(200),nullable=True)
     
     iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
 class Conclusion_iot(db.Model):
@@ -323,8 +325,10 @@ class Other_posts(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
-    quick_answers=db.relationship('Quick_answers_other', backref='post_name')
+    Tableheading1=db.Column(db.String(100),nullable=True)        
+    Tableheading2=db.Column(db.String(100),nullable=True)
     
+    quick_answers=db.relationship('Quick_answers_other', backref='post_name')
     index=db.relationship('Index_other',backref='post_name');
     content_parts=db.relationship('Content_other',backref='post_name');
     comparison_table=db.relationship('Comparison_table_other',backref='post_name');
@@ -342,10 +346,9 @@ class Quick_answers_other(db.Model):
 
 class Comparison_table_other(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
-    heading1=db.Column(db.String(100),nullable=False)        
-    heading2=db.Column(db.String(100),nullable=False)
-    head1_poin1=db.Column(db.String(200),nullable=True)
-    head2_poin1=db.Column(db.String(200),nullable=True)
+    
+    head1_point=db.Column(db.String(200),nullable=True)
+    head2_point=db.Column(db.String(200),nullable=True)
     otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
 
 class Conclusion_other(db.Model):
@@ -406,9 +409,11 @@ class Draft(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
+    Tableheading1=db.Column(db.String(100),nullable=True)        
+    Tableheading2=db.Column(db.String(100),nullable=True)
     
     quick_answers=db.relationship('Quick_answers_draft', backref='post_name')
-    
+    content_parts=db.relationship('Content_draft',backref='post_name');
     index=db.relationship('Index_draft',backref='post_name');
     comparison_table=db.relationship('Comparison_table_draft',backref='post_name');
     conclusion=db.relationship('Conclusion_draft',backref='post_name');
@@ -423,8 +428,7 @@ class Quick_answers_draft(db.Model):
 
 class Comparison_table_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
-    heading1=db.Column(db.String(100),nullable=False)        
-    heading2=db.Column(db.String(100),nullable=False)
+  
     head1_point=db.Column(db.String(200),nullable=True)
     head2_point=db.Column(db.String(200),nullable=True)
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))

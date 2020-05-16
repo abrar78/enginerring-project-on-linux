@@ -8,16 +8,35 @@
             <div class="btn-group btn-group-toggle" style="margin-left: 27.5%;" data-toggle="buttons">
                 <h4 class="text-secondary"><b>Type: </b></h4>
                 <label class="ml-2 btn btn-outline-secondary active">
-          <input type="radio" onclick="typeChecked()"  name="options" id="type_ard" />Arduino project
+                    {% if post_type=='Ard' %}
+                    
+                    <input type="radio" onclick="typeChecked()"  checked name="options" id="type_ard" />Arduino project
+                    {% else %}
+                    <input type="radio" onclick="typeChecked()"  name="options" id="type_ard" />Arduino project
+                    {% endif %}
         </label>
                 <label class="btn btn-outline-secondary">
-          <input type="radio" onclick="typeChecked()"  name="options" id="type_basic" /> Basic Electronic
-          project
+                    {% if post_type=="Basic" %}
+                    
+                    <input type="radio" onclick="typeChecked()" checked  name="options" id="type_basic" /> Basic Electronic project
+                    {% else %}
+                    <input type="radio" onclick="typeChecked()"   name="options" id="type_basic" /> Basic Electronic project
+                    {% endif %}
         </label>
                 <label class="btn btn-outline-secondary active">
-          <input type="radio" onclick="typeChecked()"  name="options" id="type_iot" />Iot project
+                    {% if post_type=="Iot" %}
+                    
+                    <input type="radio" onclick="typeChecked()" checked  name="options" id="type_iot" />Iot project
+                    {% else %}
+                    <input type="radio" onclick="typeChecked()" name="options" id="type_iot" />Iot project
+                    {% endif %}
         </label>
                 <label class="btn btn-outline-secondary">
+                    {% if post_type=='Other' %}
+          <input type="radio"  onclick="typeChecked()" checked name="options" id="type_other" /> Other
+          {% else%}
+          <input type="radio"  onclick="typeChecked()"  name="options" id="type_other" /> Other
+                    {% endif %}
           <input type="radio"  onclick="typeChecked()" name="options" id="type_other" /> Other
         </label>
             </div>
@@ -26,15 +45,27 @@
             <div class="btn-group btn-group-toggle" style="margin-left: 26%;" data-toggle="buttons">
                 <h4 class="text-secondary"><b>Intend: </b></h4>
                 <label class="ml-2 btn btn-outline-secondary active">
-          <input type="radio" onclick="intendChecked()" name="options" id="intend_info" />Informational
+                    {% if intend=='Info' %}
+                    
+                    <input type="radio" checked  onclick="intendChecked()" name="options" id="intend_info" />Informational
+                    {% else %}
+                    <input type="radio" onclick="intendChecked()" name="options" id="intend_info" />Informational
+                    
+                    {% endif %}
         </label>
                 <label class="btn btn-outline-secondary">
-          <input type="radio" onclick="intendChecked()" name="options" id="intend_tuto" /> Tutorial
+                    {% if intend=='Tuto' %}
+                    
+                    <input type="radio" checked onclick="intendChecked()" name="options" id="intend_tuto" /> Tutorial
+                    {% else %}
+                    
+                    <input type="radio" onclick="intendChecked()" name="options" id="intend_tuto" /> Tutorial
+                    {% endif %}
         </label>
             </div>
         </div>
     </div>
-    <img width="50%" id="test" alt="Cover image not uploaded" />
+    <img width="50%" src="/static/images/{{thumbnail}}" id="test" alt="Cover image not uploaded" />
     <!-- !-----------File upload -->
     <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
         <div class="input-group-prepend">
@@ -62,12 +93,12 @@
     <label class="text-secondary" for="description"><b>keyword</b></label>
     <textarea
      placeholder="This keyword is used to suggest related posts"
-     
+    
       class="form-control"
       style="width: 50%; margin: 0 auto; border-width: 5px;"
       id="keyword"
       rows="1"
-    ></textarea>
+    >{{keyword}}</textarea>
     <button id="keywordS"  onclick="submitCreatePost('keyword')" class="mt-3 btn btn-secondary btn-sm">Submit</button>
   <!-- !-------------Heading -->
 
@@ -77,9 +108,9 @@
       id="heading"
       class="form-control"
       style="width: 50%; margin: 0 auto; border-width: 5px;"
-      
+      value='{{heading}}'
       rows="1"
-    ></textarea>
+    >{{heading}}</textarea>
     <button id="headingS"  onclick="submitCreatePost('heading')" class="mt-3 btn btn-secondary btn-sm">Submit</button>
   </div>
   <!-- !---------Description -->
@@ -90,7 +121,7 @@
       style="width: 50%; margin: 0 auto; border-width: 5px;"
       id="description"
       rows="3"
-    ></textarea>
+    >{{description}}</textarea>
     <button id="descriptionS" onclick="submitCreatePost('description')" class="mt-3 btn btn-secondary btn-sm">Submit</button>
   </div>
   <!-- !-----------Quick questions -->
@@ -98,8 +129,10 @@
     Quick questions
   </div>
   <div class="form-group mt-2" id="conta_quick_answers">
-    <div id="quickAnswers1">
-
+    
+    {% for QA in quickAnswers %}
+    <div id="quickAnswers{{loop.index}}">
+      
       <label class="text-secondary" for="description"><b>Question</b></label>
       <textarea
       id="quick_question1"
@@ -108,7 +141,7 @@
       id="description"
       onblur="backup('quick_question','1')"
       rows="1"
-      ></textarea>
+      >{{quickQuestions[loop.index0]}}</textarea>
       <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
       <textarea
       id="quick_answer1"
@@ -117,9 +150,11 @@
       id="description"
       onblur="backup('quick_answer','1')"
       rows="2"
-      ></textarea>
-
+      >{{quickAnswers[loop.index0]}}</textarea>
+      
     </div>
+
+    {% endfor %}
   </div>
   <button onclick="deletePrev('quickAnswers')" id="quickAnswersDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
     <button id="quickAnswersS" onclick="submitCreatePost('quickAnswers')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
@@ -251,18 +286,15 @@ rows="1"
   <button onclick="deletePrev('faq')" id="faqDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
   <button onclick="submitCreatePost('faq')" id="faqS" class="mb-3 btn btn-secondary btn-sm">Submit</button>
   <button onclick="addNew('faq')" class="mb-3 btn btn-dark btn-sm">+</button>
-  <form action="/publish" method="post">
+  <form action="/save/{{type}}" method="post">
     
-    <button id="publishBtn" class="btn btn-outline-dark btn-block mt-5 btn-lg"  style="width: 60%; margin-left:20%;">Publish</button>
+    <button id="publishBtn" class="btn btn-outline-dark btn-block mt-5 btn-lg"  style="width: 60%; margin-left:20%;">Save</button>
 
   </form>
-  <form action="/preview" method="post">
-    <button id="publishBtn" type="submit" class="btn btn-outline-secondary btn-block mt-2 btn-lg" style="width: 60%; margin-left:20%;">Preview</button>
-  </form>
-  <form action="/save_draft" method="post">
-    <button id="publishBtn" type="submit" class="btn btn-outline-dark btn-block my-2 btn-lg" style="width: 60%; margin-left:20%;">Save As Draft</button>
-  </form>
+ 
+ 
 </div>
+<button onclick="testG()">Test</button>
 </div>
 
 {% endblock %}
@@ -275,5 +307,15 @@ rows="1"
       $(this).next('.custom-file-label').html(fileName);
   })
 </script>
+<script>
+var data = '{{countQuickAnswers|safe}}'
+  var data2=JSON.parse(data)
+console.log(typeof(data2))
+console.log(data2)
+countQuickAnswers=data2
+
+
+</script>
+
 
 {% endblock %}

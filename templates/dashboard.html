@@ -1,25 +1,30 @@
-{% extends "dashboard_base_template.html" %} {% block content%}
-<div style="width:80%; margin-left:18%;" >
-
-  <div class="mt-2 jumbotron jumbotron-fluid">
-    <div class="container">
-      <h3 class="display-4 text-center">Welcome Abrar</h3>
-      <p class="lead text-center">
-        This is the admin page of website electronicproject.net
-      </p>
-    </div>
-  </div>
-  <div class=" container fluid">
-    <div class="col">
-      <div class="row">
-
+{% extends "dashboard_base_template.html" %} {% block postNo %}
+<form action="/draft" action="POST">
+    <button type="submit" class="mx-5 btn btn-outline-light">
+    Saved Post <span class="mx-2 badge badge-light">{{postNo}} 
       
-        <iframe width="500" height="371" seamless frameborder="0" scrolling="no"
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTRUgZ5aMJ5U8Ycs7aoFDiWaEzBxKd4ztYJyyjCykCVX36wWCrxg1cAu7bHyMfGtbw5m6yuo8vKZMaM/pubchart?oid=412546865&amp;format=interactive"></iframe>
-    
-      </div>
+    </form>
+    {% endblock postNo %}{% block content%}
+<div style="width:80%; margin-left:18%;">
+
+    <div class="mt-2 jumbotron jumbotron-fluid">
+        <div class="container">
+            <h3 class="display-4 text-center">Welcome Abrar</h3>
+            <p class="lead text-center">
+                This is the admin page of website electronicproject.net
+            </p>
+        </div>
     </div>
-    
-  </div>
+    <div class=" container fluid">
+        <div class="col">
+            <div class="row">
+
+
+                <iframe width="500" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTRUgZ5aMJ5U8Ycs7aoFDiWaEzBxKd4ztYJyyjCykCVX36wWCrxg1cAu7bHyMfGtbw5m6yuo8vKZMaM/pubchart?oid=412546865&amp;format=interactive"></iframe>
+
+            </div>
+        </div>
+
+    </div>
 </div>
 {% endblock%}

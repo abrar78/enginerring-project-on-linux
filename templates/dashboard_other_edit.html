@@ -15,8 +15,8 @@
             class="sr-only">(current)</span></a>
 </li>
 {% endblock %} {% block searchBar %}
-<form class="form-inline mx-5 my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+<form action="/search/Other/1" method="POST" class="form-inline mx-5 my-2 my-lg-0">
+    <input name='search_string' class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
         Search
     </button>
@@ -78,7 +78,7 @@
         <ul class="pagination pagination-warning pagination-sm">
             {% for page_no in other_project.iter_pages() %}
             <li class="page-item page-secondary" id="{{page_no}}">
-                <a onclick="addActive('Ard','{{page_no}}')" class="btn btn-secondary page-link" href="/dashboard_basic/{{page_no}}">{{page_no}}</a>
+                <a onclick="addActive('Ard','{{page_no}}')" class="btn btn-secondary page-link" href="/dashboard_other/{{page_no}}">{{page_no}}</a>
             </li>
             {% endfor %}
         </ul>

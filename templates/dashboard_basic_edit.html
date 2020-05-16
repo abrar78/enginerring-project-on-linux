@@ -14,8 +14,8 @@
     <a class="btn btn-sm btn-light mx-1" href="/dashboard_other/1">Other post <span class="sr-only">(current)</span></a>
 </li>
 {% endblock %} {% block searchBar %}
-<form class="form-inline mx-5 my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+<form action="/search/Basic/1" method="POST" class="form-inline mx-5 my-2 my-lg-0">
+    <input name='search_string' class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>
 {% endblock %} {% block content %}

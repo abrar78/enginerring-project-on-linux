@@ -1,172 +1,171 @@
-{% extends  "template.html" %}
-{% block content %}
+{% extends "template.html" %} {% block content %}
 
-<div class="jumbotron jumbotron-fluid">
+<div style="height: 40vh;" class="jumbotron jumbotron-fluid text-dark">
     <div class="container text-center">
-      <h1 class="display-4" style="font-size: 5vw;">{{other_post_db.heading}}</h1>
-      <p class="lead" style="font-size: 2vw;">{{other_post_db.description}}</p>
+        <div class="display-4" style="font-size: 10vh;"> <strong>
+
+            {{other_post_db.heading}}
+        </strong>
+        </div>
+        <p class="lead" style="font-size: 5vh;">{{other_post_db.description}}</p>
     </div>
-  </div>
+</div>
 
 
 {% if other_post_db.thumbnail %}
 <div class="text-center">
 
-  <img class="img-fluid" src="/static/images/{{other_post_db.thumbnail}}" alt="Responsive_image" srcset="" style="width: 50%" >
+    <img class="img-fluid" src="/static/images/{{other_post_db.thumbnail}}" alt="Responsive_image" srcset="" style="height:90vh">
 </div>
- {% endif %}
+{% endif %} {% if other_post_db.quick_answers %}
+<div class="container my-5 text-left" id="quick_answers">
+    {% for QA in other_post_db.quick_answers %}
+    <div class="media text-secondary">
+        <div class="media-body mt-4">
+            <blockquote class="blockquote">
+                <h5><b> {{QA.ques}}</b></h5>
 
-
-{% if other_post_db.quick_answers%}
-<div class="container mt-5" id="quick_answers"> 
- {% for QA in other_post_db.quick_answers %}
-  <div class="media">    
-     <div class="media-body mt-4">
-      <h5 class="mt-0"><b> QA.ques</b></h5>
-      QA.ans
+                {{ QA.ans}}
+            </blockquote>
+        </div>
     </div>
-  </div>
-  {% endfor %}
+    {% endfor %}
 
 </div>
 {% endif %}
 
-<div class="container mt-5" id="index">
-  <h1><b>    Contents</b> </h1>
-  <ul class="ml-4">
-       {%  for index in other_post_db.index %}
+<div class="text-left container mt-5" id="index">
+    <div style="font-size: 7vh;" class="text-dark "><strong>    Contents</strong> </div>
+    <ul class="ml-4 mt-3 list-styled ">
+        {% for index in other_post_db.index %}
         <li>
-            <a href="#topic{{loop.index}}" >{{index.topic}}</a>
-       </li>
-      {% endfor %}
+            <a style="font-size: 4vh;" href="#topic{{loop.index}}" class="text-dark strecthed-link">{{index.topic}}</a>
+        </li>
+        {% endfor %}
 
-  </ul>
+    </ul>
 </div>
 
-<div class="container mt-5" id="content">
-{% for content in other_post_db.content_parts %}
-<h1 id="topic{{loop.index}}" >{{content.heading}}</h1>
-<p>{{content.para}}</p>
-{% if content.img  %}
-<img src="" alt="" style="height: 300px;">
-<img src="/static/images/{{content.img}}" class="img-fluid" id="contentOtherImg{{content.id}}" alt="Responsive image"  style="height: 300px;">
-{% endif %}
-{% endfor %}
+<div class="container my-5" id="content">
+    {% for content in other_post_db.content_parts %}
+    <div style="font-size: 8vh;" class="text-dark mt-5" id="topic{{loop.index}}">{{content.heading}}</div>
+    <p>{{content.para}}</p>
+    {% if content.img %}
+
+    <img src="/static/images/{{content.img}}" class="mt-2 img-fluid" id="contentOtherImg{{content.id}}" alt="Responsive image" style="height:80vh;margin:0 auto;display:block;"> {% endif %} {% endfor %}
 </div>
 
 {% if other_post_db.comparison_table %}
- <div class="container mt-5" id="table">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Sno</th>
-        <th scope="col">other_post_db.comparison_table[0].heading1</th>
-        <th scope="col">other_post_db.comparison_table[0].heading2</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      {% for table in other_post_db.comparison_table %}
-         <tr>
-           <th scope="row">{{loop.index}}</th>
-            <td>{{table.heading1_point}}</td>
-           <td>{{table.heading2_point}}</td>
-        
-         </tr>
-      {% endfor %}
-     
-    </tbody>
-  </table>
- </div>
-{% endif %}
-{% if other_post_db.conclusion %}
-<div class="container mt-5" id="conclusion" >
-  <h1 style="color:#f2c36b"><b>Conclusion</b></h1> 
-  <p><i>{{other_post_db.conclusion.text}}</i></p>
-  
+
+<div class="container mt-5" id="table">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Sno</th>
+                <th scope="col">{{other_post_db.Tableheading1}}</th>
+                <th scope="col">{{other_post_db.Tableheading2}}</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for table in other_post_db.comparison_table %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{table.head1_point}}</td>
+                <td>{{table.head2_point}}</td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endif %} {% if other_post_db.conclusion %}
+<div class="container mt-5" id="conclusion">
+    <div class="text-secondary " style="font-size: 7vh;"><b>Conclusion</b></div>
+    <p><i>{{other_post_db.conclusion.text}}</i></p>
+
 </div>
 {% endif %}
-<hr>
-
-{% if other_post_db.faq %}
-<div class="container mt-5"id=faq >
-<h1>FAQ</h1>
-{% for faq in other_post_db.faq %}
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="heading{{loop.index}}">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
-          {{faq.faq_q}}
+<hr> {% if other_post_db.faq %}
+<div class="container mt-5" id=faq>
+    <h1 class="text-dark ml-1">FAQ</h1>
+    {% for faq in other_post_db.faq %}
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="heading{{loop.index}}">
+                <h2 class="mb-0">
+                    <button class="text-secondary btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
+         Q. {{faq.faq_q}}
         </button>
-      </h2>
-    </div>
+                </h2>
+            </div>
 
-    <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-        
-        {{faq.faq_ans}}
-      </div>
-    </div>
-  </div>
-</div>
-{% endfor %}
-</div>
-{% endif %}
-<div class="container">
+            <div id="collapse{{loop.index}}" class="collapse ml-3" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
 
-  <h1><b>Realted Posts</b></h1>
-</div>
-<div class="desktop">
-
-  <div class="container mt-3">
-    
-  <div class="row conten-center">
-
-    {% for db in related_post %}
-    <div class="col">
-      <div class="card" id="Othercard{{loop.index}}" style="width: 14rem; ">
-        <img src="/static/images/{{db.thumbnail}}" style="height:20%;"
-          class="card-img-top" alt="...">
-        <div class="card-body">
-          <h3 id="Otherhead{{loop.index}}">{{db.heading}}</h3>
-          <p class="card-text" id='Otherdesc{{loop.index}}'>{{db.description}}</p>
-          <a href="/Read_more_Other/{{db.id}}" class="btn btn-primary">Read More</a>
+                    {{faq.faq_ans}}
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     {% endfor %}
-    </div>
-    
-  </div>
 </div>
-  
+{% endif %} {% if related_post %}
 
+<div class="container">
+
+    <h1><b>Realted Posts</b></h1>
+</div>
+{% endif %}
+
+<div class="desktop">
+
+    <div class="container mt-3">
+
+        <div class="row conten-center">
+
+            {% for db in related_post %}
+            <div class="col">
+                <div class="card" id="Othercard{{loop.index}}" style="width: 14rem; ">
+                    <img src="/static/images/{{db.thumbnail}}" style="height:20%;" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 id="Otherhead{{loop.index}}">{{db.heading}}</h3>
+                        <p class="card-text" id='Otherdesc{{loop.index}}'>{{db.description}}</p>
+                        <a href="/Read_more_Other/{{db.id}}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+
+{% if related_post %}
 <div class="mobile container">
-<!-- todo FOR mobile same as index page -->
-<div class="mobileViewAll">
+    <!-- todo FOR mobile same as index page -->
+    <div class="mobileViewAll">
 
-  <div class="mobContainer mobArd" id="mobOther">
-    {%for db in related_post %}
-    <div class="postMobile mt-3">
-      <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob "alt="">
-      <div class="mobViewContent" >
-        <h3>{{db.heading}}
-        </h3>
-        <p>{{db.description}}</p>
-        <a href="/Read_more_Other/{{db.id}}" class="streached-link">Read More..</a>
-      </div>
+        <div class="mobContainer mobArd" id="mobOther">
+            <div class="postMobile mt-3">
+                {%for db in related_post %}
+                <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob " alt="">
+                <div class="mobViewContent">
+                    <h3>{{db.heading}}
+                    </h3>
+                    <p>{{db.description}}</p>
+                    <a href="/Read_more_Other/{{db.id}}" class="streached-link">Read More..</a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
     </div>
-    {% endfor %}  
-    
-  </div>
-  <button type="button" id="seeMoreBtnArd" name="{{arduino_project.pages}}" onclick="seeMore('Ard')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
 </div>
-</div>
-
-{% endblock  %}
-
-{% block script %}
+{% endif %} {% endblock %} {% block script %}
 
 <script src="/static/readMore.js"></script>
 

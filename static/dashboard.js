@@ -2,6 +2,7 @@
 console.log('dashboard.js connected succesfully')
 var type = "";
 var intend = ""
+window.totalType = ""
 var heading = document.getElementById("heading");
 var descsription = document.getElementById("description");
 
@@ -14,7 +15,7 @@ var backupAnswer = [];
 var contaQuickAnswers = document.getElementById("conta_quick_answers");
 window.countQuickAnswers = 1;
 
-var countIndex = 1;
+window.countIndex = 1;
 var contaIndex = document.getElementById("conta_index");
 var index_arr = [];
 var backupIndex = [];
@@ -24,7 +25,7 @@ var backupPara = [];
 var backupParaSubheading = [];
 var paras_arr = [];
 var para_thumbnail_arr = [];
-var countPara = 1;
+window.countPara = 1;
 var contaPara = document.getElementById("contaPara");
 
 var conclusion = document.getElementById("conclusion");
@@ -34,8 +35,7 @@ var backupFaqQ = [];
 var backupFaqAns = [];
 var faq_ans_arr = [];
 var countFaq = 1;
-
-var contaFaq = document.getElementById("contaFaq");
+window.contaFaq = document.getElementById("contaFaq");
 
 var typeArdBtn = document.getElementById("type_ard");
 var typeBasicBtn = document.getElementById("type_basic");
@@ -54,7 +54,7 @@ var heading1 = ""
 var heading2 = ""
 var col1_arr = []
 var col2_arr = []
-var tableRow = ''
+window.tableRow = 0
 var tableHtml = ""
 console.log("dashboard js connected succesfully");
 
@@ -90,7 +90,10 @@ if (document.getElementById('coverS')) {
 var check = 0
 
 function testG() {
-    console.log("In dashboard.js", countQuickAnswers)
+    console.log("In dashboard.js QuickAbswers", countQuickAnswers)
+    console.log("In dashboard.js FAq", countFaq)
+    console.log("In dashboard.js Para", countPara)
+    console.log("In dashboard.js Index", countIndex)
 
 }
 
@@ -419,11 +422,11 @@ function submitCreatePost(type_) {
         }
     }
     if (type_ == "heading") {
-        let x = type + intend
-        console.log(x)
+        totalType = type + intend
+        console.log(totalType)
         entry = {
             heading: heading.value,
-            type_: x
+            type_: totalType
         };
     }
     if (type_ == "description") {
@@ -432,6 +435,8 @@ function submitCreatePost(type_) {
         };
     }
     if (type_ == "quickAnswers") {
+        quickQuestions = []
+        quickAnswers = []
         for (let index = 1; index <= countQuickAnswers; index++) {
             console.log(index);
             // console.log(document.getElementById('quick_question1'))
@@ -446,6 +451,7 @@ function submitCreatePost(type_) {
         };
     }
     if (type_ == "index") {
+        index_arr = []
         for (let index = 1; index <= countIndex; index++) {
             let index_val = document.getElementById(`index${index}`).value;
             index_arr.push(index_val);
@@ -456,6 +462,10 @@ function submitCreatePost(type_) {
     }
 
     if (type_ == "para") {
+        paras_arr = []
+        para_subheadings = []
+        para_thumbnail_arr = []
+        console.log(countPara)
         for (let index = 1; index <= countPara; index++) {
             let para_val = document.getElementById(`para${index}`).value;
             paras_arr.push(para_val);
@@ -480,6 +490,8 @@ function submitCreatePost(type_) {
         };
     }
     if (type_ == "faq") {
+        faq_q_arr = []
+        faq_ans_arr = []
         for (let index = 1; index <= countFaq; index++) {
             let faq_q_val = document.getElementById(`faq_q${index}`).value;
             faq_q_arr.push(faq_q_val);
@@ -494,6 +506,8 @@ function submitCreatePost(type_) {
     if (type_ == "table") {
         heading1 = document.getElementById('heading1').value
         heading2 = document.getElementById('heading2').value
+        col1_arr = []
+        col2_arr = []
         for (let index = 1; index <= tableRow; index++) {
             let col1_val = document.getElementById(`row${index}_1`).value;
             col1_arr.push(col1_val);
@@ -529,6 +543,10 @@ function submitCreatePost(type_) {
         }
     });
 }
+
+// function newTable() {
+//     document.getElementById('tableDiv').remove()
+// }
 
 function backup(type, num) {
     let val = document.getElementById(`${type}${num}`).value

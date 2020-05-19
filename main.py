@@ -45,8 +45,7 @@ global para
 para=[]
 global para_subheading
 para_subheading=[]
-global para_img
-para_img=[]
+
 global conclusion
 conclusion=""
 global faq_q
@@ -484,30 +483,73 @@ def dashboard_other(page_no):
 def delete(id,type):
     if type=='Ard':
         delete=Arduinoproject_posts.query.filter_by(id=id).first()
-        db.session.delete(delete)
-        db.session.commit()
-        return redirect('/all_post/1') 
+        deleteContent=Content_arduino.query.filter_by(arduinopost_id=id).all()
+        deleteIndex=Index_arduino.query.filter_by(arduinopost_id=id).all()
+        deleteTable=Comparison_table_arduino.query.filter_by(arduinopost_id=id).all()
+        deleteFaq=Faq_arduino.query.filter_by(arduinopost_id=id).all()
+        deleteQuickanswers=Quick_answers_arduino.query.filter_by(arduinopost_id=id).all()
+        returnPath="/all_post/1"
     if type=='Basic':
         delete=Basicproject_posts.query.filter_by(id=id).first()
-        db.session.delete(delete)
-        db.session.commit()
-        return redirect('/dashboard_basic/1') 
+        deleteContent=Content_basic.query.filter_by(basicpost_id=id).all()
+        deleteIndex=Index_basic.query.filter_by(basicpost_id=id).all()
+        deleteTable=Comparison_table_basic.query.filter_by(basicpost_id=id).all()
+        deleteFaq=Faq_basic.query.filter_by(basicpost_id=id).all()
+        deleteQuickanswers=Quick_answers_basic.query.filter_by(basicpost_id=id).all()
+        returnPath="/dashboard_basic/1"
         
     if type=='Iot':
         delete=Iotproject_posts.query.filter_by(id=id).first()
-        db.session.delete(delete)
-        db.session.commit()
-        return redirect('/dashboard_iot/1') 
+        deleteContent=Content_iot.query.filter_by(iotpost_id=id).all()
+        deleteIndex=Index_iot.query.filter_by(iotpost_id=id).all()
+        deleteTable=Comparison_table_iot.query.filter_by(iotpost_id=id).all()
+        deleteFaq=Faq_iot.query.filter_by(iotpost_id=id).all()
+        deleteQuickanswers=Quick_answers_iot.query.filter_by(iotpost_id=id).all()
+        returnPath="/dashboard_iot/1"
     if type=='Other':
         delete=Other_posts.query.filter_by(id=id).first()
-        db.session.delete(delete)
-        db.session.commit()
-        return redirect('/dashboard_other/1') 
+        deleteContent=Content_other.query.filter_by(otherpost_id=id).all()
+        deleteIndex=Index_other.query.filter_by(otherpost_id=id).all()
+        deleteTable=Comparison_table_other.query.filter_by(otherpost_id=id).all()
+        deleteFaq=Faq_other.query.filter_by(otherpost_id=id).all()
+        deleteQuickanswers=Quick_answers_other.query.filter_by(otherpost_id=id).all()
+        returnPath="/dashboard_other/1"
+    
     if type=='draft':
         delete=Draft.query.filter_by(id=id).first()
-        db.session.delete(delete)
-        db.session.commit()
-        return redirect('/draft') 
+        deleteContent=Content_draft.query.filter_by(draft_id=id).all()
+        deleteIndex=Index_draft.query.filter_by(draft_id=id).all()
+        deleteTable=Comparison_table_draft.query.filter_by(draft_id=id).all()
+        deleteFaq=Faq_draft.query.filter_by(draft_id=id).all()
+        deleteQuickanswers=Quick_answers_draft.query.filter_by(draft_id=id).all()
+        returnPath="/draft"
+    if deleteContent:
+            for d in deleteContent:
+                db.session.delete(d)
+                db.session.commit()
+    if deleteIndex:
+            for d in deleteTable:
+             db.session.delete(d)
+             db.session.commit()
+            
+    if deleteTable:
+         for d in deleteTable:
+            db.session.delete(d)
+            db.session.commit()
+            
+    if deleteFaq:
+            for d in deleteFaq:
+                db.session.delete(d)
+                db.session.commit()
+       
+    if deleteQuickanswers:
+            for d in deleteQuickanswers:
+                db.session.delete(d)
+                db.session.commit()
+        
+    db.session.delete(delete)
+    db.session.commit()
+    return redirect(returnPath) 
     
 @app.route('/create_post')
 @login_required
@@ -616,23 +658,38 @@ def preview():
                            )
     
 @app.route('/save_draft',methods=['GET','POST'])
+@login_required
 def save_as_draft():
     current_date=strftime("%Y-%m-%d ", gmtime())
     global heading
     global type_
     global quick_questions
     global heading1
+    global heading2
     global faq_q
-    draft=Draft(date=current_date,thumbnail=thumbnail,keyword=keyword,type=type_,heading=heading,description=description,Tableheading1=heading1,Tableheading2=heading2)
+    global faq_ans
+    global conclusion
+    global description
+    global keyword
+    global para
+    global para_subheading
+    global para_thumbnail
+    global thumbnail
+    global index
+    
+    
+    draft=Draft(date=current_date,thumbnail=thumbnail,keyword=keyword,type=type_,heading=heading,description=description,Tableheading1=heading1,Tableheading2=heading2,conclusion=conclusion)
     db.session.add(draft)
     db.session.commit()
+    print("quick_amswrs=",quick_answers)
+    print("quick_questions=",quick_questions)
     if quick_questions:
       for Q,A in zip(quick_questions, quick_answers) :
         draftQA=Quick_answers_draft(ques=Q,ans=A,post_name=draft)
         db.session.add(draftQA)
         db.session.commit()
         
-    if faq_q:
+    if faq_q or faq_ans:
       for Q,A in zip(faq_q, faq_ans) :
         draftQA=Faq_draft(faq_q=Q,faq_ans=A,post_name=draft)
         db.session.add(draftQA)
@@ -646,17 +703,12 @@ def save_as_draft():
         db.session.add(content)
         db.session.commit()
   
-    if heading1:
+    if heading1 or heading2 or table_col1 or table_col2:
       for col1,col2 in zip(table_col1,table_col2):
             table=Comparison_table_draft(head1_point=col1,head2_point=col2,post_name=draft)
             db.session.add(table)
             db.session.commit()
   
-    if conclusion:
-      
-            table=Conclusion_draft(text=conclusion,post_name=draft)
-            db.session.add(table)
-            db.session.commit()
     
         
     
@@ -670,74 +722,104 @@ def draft():
 def EditPost(type,id):
     if type=="Ard":
         post=Arduinoproject_posts.query.filter_by(id=id).first()
+        
     if type=="Basic":
         post=Basicproject_posts.query.filter_by(id=id).first()
     if type=="Iot":
         post=Iotproject_posts.query.filter_by(id=id).first()
+        
     if type=="Other":
         post=Other_posts.query.filter_by(id=id).first()
+        
     if type=="draft":
         post=Draft.query.filter_by(id=id).first()
-    heading=post.heading
-    description=post.description
+        
+        
+    global type_
+    type_=post.type
+    global heading1
+    heading1=post.Tableheading1
+    global heading2
+    heading2=post.Tableheading2
+    
+    global table_col1
+    global table_col2
+    table_col1=[]
+    table_col2=[]
+    for db in post.comparison_table:
+        table_col1.append(db.head1_point)
+        table_col2.append(db.head2_point)
+    #! todo----------------------------------------
+    #! todo----------------------------------------
+    
+    global thumbnail
     thumbnail=post.thumbnail
-    Tableheading1=post.Tableheading1
-    Tableheading2=post.Tableheading2
+    global keyword
     keyword=post.keyword
-    postType=type
-    Index=[]
-    quickAnswers=[]
-    quickQuestions=[]
+    global heading
+    heading=post.heading
+    global description
+    description=post.description
+    
+    global quick_questions
+    global quick_asnwers
+    quick_questions=[]
+    quick_answers=[]
+    for db in post.quick_answers:
+        quick_answers.append(db.ans)
+        quick_questions.append(db.ques)
+    #! todo --------------------------------------------
+    #! todo --------------------------------------------
+    
+    global index
+    index=[]
+    # ! todo --------------------------------------------
+    for db in post.index:
+        index.append(db.topic)
+        
+    global para_thumbnail
+    global para
+    global para_subheading
+    para_thumbnail=[]
+    para=[]
+    para_subheading=[]
+    for db in post.content_parts:
+        para_subheading.append(db.heading)
+        para_thumbnail.append(db.img)
+        para.append(db.para)
+    # ! todo -------------------------------------------
+    # ! todo -----------------------------------------
+    # ! todo --------------------------------------------
+    
+    global conclusion
+    conclusion=post.conclusion
+    
+    global faq_q
+    global faq_ans
     faq_q=[]
     faq_ans=[]
-    column1=[]
-    column2=[]
-    content_Headings=[]
-    content_img=[]
-    content_para=[]
-    for db in post.index:
-        Index.append(db.topic)
-    for db in post.quick_answers:
-        quickAnswers.append(db.ans)
-        quickQuestions.append(db.ques)
     for db in post.faq:
         faq_q.append(db.faq_q)
         faq_ans.append(db.faq_ans)
-    for db in post.comparison_table:
-        column1.append(db.head1_point)
-        column2.append(db.head2_point)
+    #! todo --------------------------------------------
+    #! todo --------------------------------------------
     conclusion=post.conclusion
-    for db in post.content_parts:
-        content_Headings.append(db.heading)
-        content_img.append(db.img)
-        content_para.append(db.para)
-    print('type=',type)
-    print("heading=",heading)
-    post_type=post.type[0:-4]
-    intend=post.type[len(post_type):]
-    print("thumbnail=",thumbnail)
-    print("description=",description)
-    print("index=",Index)
-    print("post_type=",post_type)
-    print("quickQuestions=",quickQuestions)
-    print("quickAnsweers=",quickAnswers)
-    print("para=",content_para)
-    print("para_subheading=",content_Headings)
-    print("para_thumbnail=",content_img)
-    print("conclusion=",conclusion)
-    print("faq_q=",faq_q)
-    print("faq_ans=",faq_ans)
-    print("col1=",column1)
-    
+  
+    post_type=type_[0:-4]
+    intend=type_[len(post_type):]
+    print("para:",para)
+    print("para_subheading:",para_subheading)
+    print("para_thumbnail:",para_thumbnail)
     return render_template('edit_post.html',
-                           countQuickQuestions=json.dumps(len(quickQuestions)),
-                           countQuickAnswers=json.dumps(len(quickAnswers)),
+                           totalType=json.dumps(type_),
+                           countQuickQuestions=json.dumps(len(quick_questions)),
+                           countQuickAnswers=json.dumps(len(quick_answers)),
                            countFaq_q=json.dumps(len(faq_q)),
                            countFaq_ans=json.dumps(len(faq_ans)),
-                           countIndex=json.dumps(len(Index)),
-                           countPara=json.dumps(len(content_para)),
-                           countContentHeading=json.dumps(len(content_Headings)),
-                           countContentThumbnail=json.dumps(len(content_img)),
+                           countIndex=json.dumps(len(index)),
+                           countPara=json.dumps(len(para)),
+                           countContentHeading=json.dumps(len(para_subheading)),
+                           countContentThumbnail=json.dumps(len(para_thumbnail)),
                            type=type,
                            post_type=post_type,
                            keyword=keyword,
@@ -745,19 +827,243 @@ def EditPost(type,id):
                            heading=heading,
                            thumbnail=thumbnail,
                            description=description,
-                           index=Index,
-                           quickQuestions=quickQuestions,
-                           quickAnswers=quickAnswers,
-                           para=content_para,
-                           para_subheading=content_Headings,
-                           para_thumbnail=content_img,
+                           index=index,
+                           quickQuestions=quick_questions,
+                           quickAnswers=quick_answers,
+                           para=para,
+                           para_subheading=para_subheading,
+                           para_thumbnail=para_thumbnail,
                            conclusion=conclusion,
                            faq_q=faq_q,
                            faq_ans=faq_ans,
-                           col1=column1,
-                           col2=column2
+                           col1=table_col1,
+                           col2=table_col2,
+                           countCol1=json.dumps(len(table_col1)),
+                           countCol2=json.dumps(len(table_col2)),
+                           tableHeading1=post.Tableheading1,
+                           tableHeading2=post.Tableheading2,
+                           id=id
                            )
+@app.route('/save_edited/<string:type>/<int:id>',methods=['GET','POST'])
+@login_required
+def save_edited(type,id):
+    if type=='Ard':
+      post=Arduinoproject_posts.query.filter_by(id=id).first()
+      returnPath="/all_post/1"
+      
+    if type=='Basic':
+      post=Basicproject_posts.query.filter_by(id=id).first()
+      returnPath="/dashboard_basic/1"
+      
+    if type=='Iot':
+      post=Iotproject_posts.query.filter_by(id=id).first()
+      returnPath="/dashboard_iot/1"
+      
+    if type=='Other':
+      post=Other_posts.query.filter_by(id=id).first()
+      returnPath="/dashboard_other/1"
+      
+    if type=='draft':
+      post=Draft.query.filter_by(id=id).first()
+      returnPath="/draft"
+      
+    global heading
+    global type_
+    global description
+    global keyword
+    global quick_answers
+    global quick_questions
+    global index
+    global para
+    global para_subheading
+    global para_thumbnail
+    global conclusion
+    global faq_q
+    global faq_ans
+    global heading1
+    global heading2
+    global table_col1
+    global table_col2
+    global thumbnail
+    post.heading=heading
+    post.description=description
+    post.type=type_
+    post.thumbnail=thumbnail
+    post.Tableheading1=heading1
+    post.Tableheading2=heading2
+    post.keyword=keyword
+    post.conclusion=conclusion
+    db.session.commit()
+    
+    
+    if quick_answers or quick_questions:
+        
+      for ind in range(0,len(post.quick_answers)):
+          try:
+              post.quick_answers[ind].ans=quick_answers[ind]
+          except IndexError:
+              pass
+          try:
+              post.quick_answers[ind].ques=quick_questions[ind]
+              
+          except IndexError:
+              pass
+              
+          db.session.commit()  
+      if len(post.quick_answers)<len(quick_answers) or len(post.quick_answers)<len(quick_questions):
+           for i in range(len(post.quick_answers),len(quick_questions)):
+             if type=='Ard':
+                addedData=Quick_answers_arduino(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                 
+             if type=='Bsic':
+                addedData=Quick_answers_basic(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                 
+             if type=='Iot':
+                addedData=Quick_answers_iot(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                 
+             if type=='Other':
+                addedData=Quick_answers_other(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                 
+             if type=='draft':
+                 addedData=Quick_answers_draft(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                 
+             db.session.add(addedData)   
+             db.session.commit()   
+    
+    if faq_ans or faq_q:
+        
+      for ind in range(0,len(post.faq)):
+          try:
+              post.faq[ind].faq_ans=faq_ans[ind]
+          except IndexError:
+              pass
+          try:
+              post.faq[ind].faq_q=faq_q[ind]
+              
+          except IndexError:
+              pass
+              
+          db.session.commit()
+            
+      if len(post.faq)<len(faq_q) or len(post.faq)<len(faq_ans):
+           for i in range(len(post.faq),len(faq_q)):
+            if type=='Ard':
+                addedData=Faq_arduino(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+                 
+            if type=='Bsic':
+                addedData=Faq_basic(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+                 
+            if type=='Iot':
+                addedData=Faq_iot(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+                 
+            if type=='Other':
+                addedData=Faq_other(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+                 
+            if type=='draft':
+                 addedData=Faq_draft(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+            db.session.add(addedData)   
+            db.session.commit()   
 
+    if para or para_subheading:
+        
+      for ind in range(0,len(post.content_parts)):
+          try:
+              post.content_parts[ind].heading=para_subheading[ind]
+          except IndexError:
+              pass
+          try:
+              post.content_parts[ind].para=para[ind]
+              
+          except IndexError:
+              pass
+          
+          try:
+              post.content_parts[ind].img=para_thumbnail[ind]
+              
+          except IndexError:
+              pass
+              
+          db.session.commit()
+            
+      if len(post.content_parts)<len(para_subheading) or len(post.content_parts)<len(para):
+           print("legth post.content_parts",len(post.content_parts))
+           print("legth para_subheading",len(para_subheading))
+           for i in range(len(post.content_parts),len(para_subheading)):
+             if type=='Ard':
+                addedData=Content_arduino(heading=para_subheading[i],img=para_thumbnail[i],para=para[i],post_name=post)
+                 
+             if type=='Bsic':
+                addedData=Content_basic(heading=para_subheading[i],img=para_thumbnail[i],para=para[i],post_name=post)
+                 
+             if type=='Iot':
+                addedData=Content_iot(heading=para_subheading[i],img=para_thumbnail[i],para=para[i],post_name=post)
+                 
+             if type=='Other':
+                addedData=Content_other(heading=para_subheading[i],img=para_thumbnail[i],para=para[i],post_name=post)
+                 
+             if type=='draft':
+                 addedData=Content_draft(heading=para_subheading[i],img=para_thumbnail[i],para=para[i],post_name=post)
+             db.session.add(addedData)   
+             db.session.commit()   
+ 
+    if index:
+      for ind in range(0,len(post.index)):
+          try:
+            post.index[ind].topic=index[ind]
+          except IndexError:
+              pass
+          db.session.commit()   
+      if len(post.index)<len(index):
+         for i in range(len(post.index),len(index)):
+            if type=='Ard':
+                addedData=Index_arduino(topic=index[i],post_name=post)
+                 
+             if type=='Bsic':
+                addedData=Index_basic(topic=index[i],post_name=post)
+                 
+             if type=='Iot':
+                addedData=Index_iot(topic=index[i],post_name=post)
+                 
+             if type=='Other':
+                addedData=Index_other(topic=index[i],post_name=post)
+                 
+             if type=='draft':
+                 addedData=Index_draft(topic=index[i],post_name=post)
+             db.session.add(addedData)   
+             db.session.commit()    
+
+    if table_col1 or table_col2:
+      for ind in range(0,len(post.comparison_table)):
+          try:
+             post.comparison_table[ind].head1_point=table_col1[ind]
+          except IndexError:
+              pass
+          
+          try:
+              post.comparison_table[ind].head2_point=table_col2[ind]
+          except:
+             pass
+          db.session.commit()   
+      if len(post.comparison_table)<len(table_col1) or len(post.comparison_table)<len(table_col2):
+          for i in range(len(post.comparison_table),len(table_col1)):
+            if type=='Ard':
+                addedData=Comparison_table_arduino(head1_point=table_col1,head2_point=table_col2,post_name=post)
+                 
+             if type=='Bsic':
+                addedData=Comparison_table_basic(head1_point=table_col1,head2_point=table_col2,post_name=post)
+                 
+             if type=='Iot':
+                addedData=Comparison_table_iot(head1_point=table_col1,head2_point=table_col2,post_name=post)
+                 
+             if type=='Other':
+                addedData=Comparison_table_other(head1_point=table_col1,head2_point=table_col2,post_name=post)
+                 
+             if type=='draft':
+                 addedData=Comparison_table_draft(head1_point=table_col1,head2_point=table_col2,post_name=post)
+             db.session.add(addedData)   
+             db.session.commit()     
+             
+    return redirect(returnPath)
 def before_request():
     session.permanent = True
     app.permanent_session_lifetime = datetime.timedelta(seconds=200)

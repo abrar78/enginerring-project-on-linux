@@ -25,7 +25,7 @@
                     <h3 id="Basichead{{loop.index}}">{{db.heading}}</h3>
                     <p class="card-text" id='Basicdesc{{loop.index}}'>{{db.description}}</p>
                     <a href="/Read_more_Basic/{{db.id}}" id="Basicid{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2 btn-block mx-2">Read-more</a>
-                    <a href="/Edit_Basic/{{db.id}}" id="BasicidEd{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2 btn-block mx-2">Edit</a>
+                    <a href="/Edit/{{db.type[0:-4]}}/{{db.id}}" id="BasicidEd{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2 btn-block mx-2">Edit</a>
                     <button type="button" class="ml-2 btn btn-outline-secondary btn-sm btn-block" data-toggle="modal" data-target="#delete">
                         Delete
                     </button>

@@ -74,6 +74,7 @@ class Arduinoproject_posts(db.Model):
     description=db.Column(db.String(100), nullable=False);
     Tableheading1=db.Column(db.String(100),nullable=True)        
     Tableheading2=db.Column(db.String(100),nullable=True)
+    conclusion=db.Column(db.String(500),nullable=True)
         # * one to many relationship tables down
     
     quick_answers=db.relationship('Quick_answers_arduino', backref='post_name')
@@ -81,7 +82,7 @@ class Arduinoproject_posts(db.Model):
     index=db.relationship('Index_arduino',backref='post_name');
     content_parts=db.relationship('Content_arduino',backref='post_name');
     comparison_table=db.relationship('Comparison_table_arduino',backref='post_name');
-    conclusion=db.relationship('Conclusion_arduino',backref='post_name');
+  
     faq=db.relationship('Faq_arduino',backref='post_name');
     
     
@@ -108,10 +109,7 @@ class Comparison_table_arduino(db.Model):
     head1_point=db.Column(db.String(200),nullable=True)
     head2_point=db.Column(db.String(200),nullable=True)
     arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
-class Conclusion_arduino(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    text=db.Column(db.String(500),nullable=False)
-    arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))   
+
     
 class Faq_arduino(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
@@ -160,12 +158,13 @@ class Basicproject_posts(db.Model):
     description=db.Column(db.String(100), nullable=False);
     Tableheading1=db.Column(db.String(100),nullable=True)        
     Tableheading2=db.Column(db.String(100),nullable=True)
+    conclusion=db.Column(db.String(500),nullable=True)
+    
     
     quick_answers=db.relationship('Quick_answers_basic', backref='post_name')
     
     index=db.relationship('Index_basic',backref='post_name');
     comparison_table=db.relationship('Comparison_table_basic',backref='post_name');
-    conclusion=db.relationship('Conclusion_basic',backref='post_name');
     faq=db.relationship('Faq_basic',backref='post_name');
     content_parts=db.relationship('Content_basic',backref='post_name');
     
@@ -184,12 +183,7 @@ class Comparison_table_basic(db.Model):
     head1_point=db.Column(db.String(200),nullable=True)
     head2_point=db.Column(db.String(200),nullable=True)
     basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
-    
-class Conclusion_basic(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    text=db.Column(db.String(500),nullable=False)
-    basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))   
-    
+   
 class Faq_basic(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
@@ -239,12 +233,12 @@ class Iotproject_posts(db.Model):
     description=db.Column(db.String(100), nullable=False);
     Tableheading1=db.Column(db.String(100),nullable=True)        
     Tableheading2=db.Column(db.String(100),nullable=True)
+    conclusion=db.Column(db.String(500),nullable=True)
     
     quick_answers=db.relationship('Quick_answers_iot', backref='post_name')
     index=db.relationship('Index_iot',backref='post_name');
     content_parts=db.relationship('Content_iot',backref='post_name');
     comparison_table=db.relationship('Comparison_table_iot',backref='post_name');
-    conclusion=db.relationship('Conclusion_iot',backref='post_name');
     faq=db.relationship('Faq_iot',backref='post_name');
     content_parts=db.relationship('Content_iot',backref='post_name');
    
@@ -268,11 +262,7 @@ class Comparison_table_iot(db.Model):
     head2_point=db.Column(db.String(200),nullable=True)
     
     iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
-class Conclusion_iot(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    text=db.Column(db.String(500),nullable=False)
-    iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))   
-    
+
 class Faq_iot(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
@@ -327,12 +317,13 @@ class Other_posts(db.Model):
     description=db.Column(db.String(100), nullable=False);
     Tableheading1=db.Column(db.String(100),nullable=True)        
     Tableheading2=db.Column(db.String(100),nullable=True)
+    conclusion=db.Column(db.String(500),nullable=True)
+    
     
     quick_answers=db.relationship('Quick_answers_other', backref='post_name')
     index=db.relationship('Index_other',backref='post_name');
     content_parts=db.relationship('Content_other',backref='post_name');
     comparison_table=db.relationship('Comparison_table_other',backref='post_name');
-    conclusion=db.relationship('Conclusion_other',backref='post_name');
     faq=db.relationship('Faq_other',backref='post_name');
     content_parts=db.relationship('Content_other',backref='post_name');
    
@@ -351,11 +342,6 @@ class Comparison_table_other(db.Model):
     head2_point=db.Column(db.String(200),nullable=True)
     otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
 
-class Conclusion_other(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    text=db.Column(db.String(500),nullable=False)
-    otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))   
-    
 class Faq_other(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
@@ -411,12 +397,13 @@ class Draft(db.Model):
     description=db.Column(db.String(100), nullable=False);
     Tableheading1=db.Column(db.String(100),nullable=True)        
     Tableheading2=db.Column(db.String(100),nullable=True)
+    conclusion=db.Column(db.String(500),nullable=True)
+    
     
     quick_answers=db.relationship('Quick_answers_draft', backref='post_name')
     content_parts=db.relationship('Content_draft',backref='post_name');
     index=db.relationship('Index_draft',backref='post_name');
     comparison_table=db.relationship('Comparison_table_draft',backref='post_name');
-    conclusion=db.relationship('Conclusion_draft',backref='post_name');
     faq=db.relationship('Faq_draft',backref='post_name');
     
 class Quick_answers_draft(db.Model):
@@ -433,10 +420,7 @@ class Comparison_table_draft(db.Model):
     head2_point=db.Column(db.String(200),nullable=True)
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
     
-class Conclusion_draft(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    text=db.Column(db.String(500),nullable=False)
-    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))   
+
     
 class Faq_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);

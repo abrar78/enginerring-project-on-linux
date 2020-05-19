@@ -915,7 +915,7 @@ def save_edited(type,id):
              if type=='Ard':
                 addedData=Quick_answers_arduino(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
                  
-             if type=='Bsic':
+             if type=='Basic':
                 addedData=Quick_answers_basic(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
                  
              if type=='Iot':
@@ -950,7 +950,7 @@ def save_edited(type,id):
             if type=='Ard':
                 addedData=Faq_arduino(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
                  
-            if type=='Bsic':
+            if type=='Basic':
                 addedData=Faq_basic(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
                  
             if type=='Iot':
@@ -992,7 +992,7 @@ def save_edited(type,id):
              if type=='Ard':
                 addedData=Content_arduino(heading=para_subheading[i],img=para_thumbnail[i],para=para[i],post_name=post)
                  
-             if type=='Bsic':
+             if type=='Basic':
                 addedData=Content_basic(heading=para_subheading[i],img=para_thumbnail[i],para=para[i],post_name=post)
                  
              if type=='Iot':
@@ -1015,10 +1015,10 @@ def save_edited(type,id):
           db.session.commit()   
       if len(post.index)<len(index):
          for i in range(len(post.index),len(index)):
-            if type=='Ard':
+             if type=='Ard':
                 addedData=Index_arduino(topic=index[i],post_name=post)
                  
-             if type=='Bsic':
+             if type=='Basic':
                 addedData=Index_basic(topic=index[i],post_name=post)
                  
              if type=='Iot':
@@ -1046,10 +1046,10 @@ def save_edited(type,id):
           db.session.commit()   
       if len(post.comparison_table)<len(table_col1) or len(post.comparison_table)<len(table_col2):
           for i in range(len(post.comparison_table),len(table_col1)):
-            if type=='Ard':
+             if type=='Ard':
                 addedData=Comparison_table_arduino(head1_point=table_col1,head2_point=table_col2,post_name=post)
                  
-             if type=='Bsic':
+             if type=='Basic':
                 addedData=Comparison_table_basic(head1_point=table_col1,head2_point=table_col2,post_name=post)
                  
              if type=='Iot':

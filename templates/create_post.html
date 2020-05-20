@@ -33,6 +33,7 @@
         </label>
             </div>
         </div>
+        <button id="typeS" style="width: 50%; margin-left:33.5%;" onclick="submitCreatePost('type')" class=" mb-5 btn btn-outline-secondary btn-block btn-sm">Submit</button>
     </div>
     <img width="50%" id="test" alt="Cover image not uploaded" />
     <!-- !-----------File upload -->
@@ -251,11 +252,7 @@ rows="1"
   <button onclick="deletePrev('faq')" id="faqDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
   <button onclick="submitCreatePost('faq')" id="faqS" class="mb-3 btn btn-secondary btn-sm">Submit</button>
   <button onclick="addNew('faq')" class="mb-3 btn btn-dark btn-sm">+</button>
-  <form action="/publish" method="post">
-    
-    <button id="publishBtn" class="btn btn-outline-dark btn-block mt-5 btn-lg"  style="width: 60%; margin-left:20%;">Publish</button>
 
-  </form>
   <form action="/preview" method="post">
     <button id="publishBtn" type="submit" class="btn btn-outline-secondary btn-block mt-2 btn-lg" style="width: 60%; margin-left:20%;">Preview</button>
   </form>

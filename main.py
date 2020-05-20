@@ -664,6 +664,7 @@ def save_as_draft():
     global heading
     global type_
     global quick_questions
+    global quick_answers
     global heading1
     global heading2
     global faq_q
@@ -773,9 +774,13 @@ def EditPost(type,id):
     
     global index
     index=[]
-    # ! todo --------------------------------------------
     for db in post.index:
         index.append(db.topic)
+        
+   
+    # ! todo --------------------------------------------
+ 
+        
         
     global para_thumbnail
     global para
@@ -804,13 +809,20 @@ def EditPost(type,id):
     #! todo --------------------------------------------
     #! todo --------------------------------------------
     conclusion=post.conclusion
-  
+   
     post_type=type_[0:-4]
     intend=type_[len(post_type):]
+    
+   
     print("para:",para)
     print("para_subheading:",para_subheading)
     print("para_thumbnail:",para_thumbnail)
     return render_template('edit_post.html',
+                           quickAnswersDb=post.quick_answers,
+                           indexDb=post.index,
+                           paraDb=post.content_parts,
+                           faqDb=post.faq,
+                           tableDb=post.comparison_table,
                            totalType=json.dumps(type_),
                            countQuickQuestions=json.dumps(len(quick_questions)),
                            countQuickAnswers=json.dumps(len(quick_answers)),
@@ -1064,6 +1076,136 @@ def save_edited(type,id):
              db.session.commit()     
              
     return redirect(returnPath)
+@app.route('/delete_item', methods=['POST','GET'])
+@login_required
+def delete_item():
+       global heading
+       global type_
+       global quick_answers
+       global quick_questions
+       global heading1
+       global heading2
+       global faq_q
+       global faq_ans
+       global conclusion
+       global description
+       global keyword
+       global para
+       global para_subheading
+       global para_thumbnail
+       global thumbnail
+       global index
+       req=request.get_json()
+       post_type=req['post_type']
+       if post_type=="Ard":
+        
+          if req['type']=='index':
+              delete=Index_arduino.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='quickAnswers':
+              delete=Quick_answers_arduino.query.filter_by(id=req['id']).first()
+              quickAnswers=[]
+              quickQuestions=[]
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='para':
+              print('in para')
+              print(req['id'])
+              para=[]
+              para_subheading=[]
+              para_thumbnail=[]
+              delete=Content_arduino.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='faq':
+              delete=Faq_arduino.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+       if post_type=="Basic":
+           
+          if req['type']=='index':
+              delete=Index_basic.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='quickAnswers':
+              delete=Quick_answers_basic.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='para':
+              delete=Content_basic.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='faq':
+              delete=Faq_basic.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+       if post_type=="Iot":
+           
+          if req['type']=='index':
+              delete=Index_iot.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='quickAnswers':
+              delete=Quick_answers_iot.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='para':
+              delete=Content_iot.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='faq':
+              delete=Faq_iot.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+       if post_type=="Other":
+           
+          if req['type']=='index':
+              delete=Index_other.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='quickAnswers':
+              delete=Quick_answer_other.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='para':
+              delete=Content_other.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='faq':
+              delete=Faq_other.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+       if post_type=="draft":
+           
+          if req['type']=='index':
+              delete=Index_draft.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='quickAnswers':
+              delete=Quick_answers_draft.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='para':
+              delete=Content_draft.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+          if req['type']=='faq':
+              delete=Faq_draft.query.filter_by(id=req['id']).first()
+              db.session.delete(delete)
+              db.session.commit()
+       return "Success"     
+@app.route('/publish/<string:type>/<draft_id>', methods=['GET', 'POST'])
+@login_required
+def publish(type,draft_id):
+    current_date=strftime("%Y-%m-%d ", gmtime())
+    draft=Draft.query.filter_by(id=draft_id).first()
+    if type=="Ard":
+      add=Arduinoproject_posts(date=current_date,thumbnail=draft.thumbnail,keyword=draft.keyword,type=draft.type,heading=draft.heading,description=draft.description,Tableheading1=draft.Tableheading1,Tableheading2=draft.Tableheading2)
+      db.session.add(add)
+      db.session.commit()
+    return redirect('/draft')
+    #   todo: ----Tomorrow do complete this publish
 def before_request():
     session.permanent = True
     app.permanent_session_lifetime = datetime.timedelta(seconds=200)

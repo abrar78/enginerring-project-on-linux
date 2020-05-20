@@ -65,7 +65,7 @@
             </div>
         </div>
         <!-- <div class="row" style="margin-left: 26%;"> -->
-        <button id="headingS" style="width: 50%; margin-left:33.5%;" onclick="submitCreatePost('heading')" class=" mb-5 btn btn-outline-secondary btn-block btn-sm">Submit</button>
+        <button id="typeS" style="width: 50%; margin-left:33.5%;" onclick="submitCreatePost('type')" class=" mb-5 btn btn-outline-secondary btn-block btn-sm">Submit</button>
         <!-- </div> -->
     </div>
     <img width="50%" src="/static/images/{{thumbnail}}" id="test" alt="Cover image not uploaded" />
@@ -159,6 +159,7 @@
       rows="2"
       >{{quickAnswers[loop.index0]}}</textarea>
       
+      <button onclick="deleteThis('quickAnswers','{{loop.index}}','{{quickAnswersDb[loop.index0].id}}','{{post_type}}')" class="btn btn-sm btn-outline-secondary">delete</button>
     </div>
 
     {% endfor %}
@@ -187,6 +188,8 @@
   id="inlineFormInputGroupUsername2"
   placeholder="Heading"
   value="{{ind}}" />
+  <button onclick="deleteThis('index','{{loop.index}}','{{indexDb[loop.index0].id}}','{{post_type}}')" class="btn btn-sm btn-outline-secondary">delete</button>
+
   </div>
   {% endfor %}
 {% else %}
@@ -214,15 +217,19 @@
   <div class="form-group mt-5" id="contaPara">
     {% if para_subheading or para or para_thumbnail %}
     
-    {% for ind in para_subheading %}
-        
     <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Paragraphs/Steps</div>
+    {% for ind in para_subheading %}
+    
     <div id="paraDiv{{loop.index}}">
       
       <label class="text-secondary mt-2" for="para_heading{{loop.index}}"><b>Subheading</b></label>
-      <textarea class="form-control" onblur="backup('para_heading','{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_heading{{loop.index}}" rows="1">{{para_subheading[loop.index0]}}</textarea>
+      
+      <textarea class="form-control" onblur="backup('para_heading','{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_heading{{loop.index}}" rows="1">{{para_subheading[loop.index0]}}
+        
+      </textarea>
       <label class="text-secondary mt-3 " for="para{{loop.index}}"><b>Para</b></label>
       <textarea class="form-control" onblur="backup('para', '{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para{{loop.index}}" rows="4">{{para[loop.index0]}}</textarea>
+      <button style="width: 50%; margin-left:25%;" onclick="deleteThis('para','{{loop.index}}','{{paraDb[loop.index0].id}}','{{post_type}}')" class="mt-2 btn btn-sm btn-secondary btn-block">delete</button>
       <!-- *---upload image -->
       {% if para_thumbnail[loop.index0] %}
       
@@ -236,6 +243,8 @@
         
         <input type="file" class="form-control-file" id="paraImgUploader{{loop.index}}">
         <button class="mt-1 btn btn-secondary btn-sm"  onclick="uploadImg('para','{{loop.index}}')">upload</button>
+      
+       
       </div>
       
     </div>
@@ -301,6 +310,8 @@
   </table>
   <button  id="tableS" onclick="submitCreatePost('table')" class="mb-3 btn btn-secondary btn-sm">make changes</button>
 </div>
+<button onclick="deleteThis('table','{{loop.index}}','{{tableDb[loop.index0].id}}','{{post_type}}')" class="btn btn-sm btn-outline-secondary"> delete table </button>
+<button style="width: 50%; margin-left:25%;" onclick="deleteThis('table','{{loop.index}}','{{tableDb[loop.index0].id}}','{{post_type}}')" class="mt-2 btn btn-sm btn-secondary btn-block">new table</button>
 <!-- <button  id="newtableS" onclick="newTable()" class="mb-3 btn btn-secondary btn-sm">New Table</button> -->
 {% else %}
 
@@ -381,7 +392,7 @@ rows="1"
     onblur="backup('faq_ans','{{loop.index}}')"
     rows="2"
     >{{faq_ans[loop.index0]}}</textarea>
-    
+    <button style="width: 50%; margin-left:25%;" onclick="deleteThis('faq','{{loop.index}}','{{faqDb[loop.index0].id}}','{{post_type}}')" class="mt-2 btn btn-sm btn-secondary btn-block">delete</button>
     
   </div>
   {% endfor %}

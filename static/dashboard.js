@@ -83,9 +83,9 @@ function enterTableRows() {
     }
     document.getElementById('tableContent').innerHTML = tableHtml
 }
-if (document.getElementById('coverS')) {
+if (document.getElementById('typeS')) {
 
-    document.getElementById('coverS').disabled = true
+    document.getElementById('typeS').disabled = true
 }
 var check = 0
 
@@ -112,7 +112,7 @@ function typeChecked() {
     }
     check++
     if (check >= 2) {
-        document.getElementById('coverS').disabled = false
+        document.getElementById('typeS').disabled = false
     }
 
 }
@@ -129,7 +129,7 @@ function intendChecked() {
     }
     check++
     if (check >= 2) {
-        document.getElementById('coverS').disabled = false
+        document.getElementById('typeS').disabled = false
     }
 }
 
@@ -429,6 +429,14 @@ function submitCreatePost(type_) {
             type_: totalType
         };
     }
+    if (type_ == "type") {
+        totalType = type + intend
+        console.log(totalType)
+        entry = {
+            heading: heading.value,
+            type_: totalType
+        };
+    }
     if (type_ == "description") {
         entry = {
             description: descsription.value,
@@ -536,8 +544,10 @@ function submitCreatePost(type_) {
     fetch(url, params).then((response) => {
         if (response.status == 200) {
             console.log("succesfully_posted");
-            document.getElementById(`${type_}S`).classList.remove('btn-secondary')
-            document.getElementById(`${type_}S`).classList.add('btn-outline-success')
+            if (type_ == 'table' || type_ == 'faq' || type_ == 'para' || type_ == 'index' || type_ == 'type') {
+                document.getElementById(`${type_}S`).classList.remove('btn-secondary')
+                document.getElementById(`${type_}S`).classList.add('btn-outline-success')
+            }
         } else {
             console.log("eroor 404, data not posted");
         }
@@ -573,4 +583,46 @@ function backup(type, num) {
     if (type == "faq_ans") {
         backupFaqAns[num] = val
     }
+}
+
+function deleteThis(type_, num, id, post_type) {
+    if (type_ == 'index') {
+        countIndex--
+    }
+    if (type_ == 'para') {
+        countPara--
+    }
+    if (type_ == 'table') {
+        tableRow = 0
+    }
+    if (type_ == 'faq') {
+        countFaq--
+    }
+    if (type_ == 'quickAnswers') {
+        countQuickAnswers--
+    }
+    document.getElementById(`${type_}Div${num}`).remove()
+    entry = {
+        id: id,
+        type: type_,
+        post_type: post_type
+    }
+    var params = {
+        method: "POST",
+        body: JSON.stringify(entry),
+        cache: "no-cache",
+        headers: new Headers({
+            "content-type": "application/json",
+        }),
+    };
+    var url = `${window.origin}/delete_item`;
+    fetch(url, params).then((response) => {
+        if (response.status == 200) {
+            console.log("succesfully_posted");
+
+        } else {
+            console.log("eroor 404, data not posted");
+        }
+    });
+
 }

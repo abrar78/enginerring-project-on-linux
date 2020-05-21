@@ -444,8 +444,9 @@ class Index_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     topic=db.Column(db.String(100),nullable=True)
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
+# !-------------------------------------------------------------------------------------------------------------------------
 
-           
+    
 #!--all_post tables END-----|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 

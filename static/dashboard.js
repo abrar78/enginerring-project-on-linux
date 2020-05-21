@@ -69,6 +69,7 @@ function addTable() {
 }
 
 function enterTableRows() {
+    tableHtml = ""
     tableRow = document.getElementById('rowNo').value
     document.getElementById('tableMain').style.display = ""
     document.getElementById('tableS').style.display = ""
@@ -190,7 +191,7 @@ function addNew(type) {
 
         console.log(countQuickAnswers);
         contaQuickAnswers.innerHTML += `
-        <div id="quickAnswers${countQuickAnswers}">
+        <div id="quickAnswersDiv${countQuickAnswers}">
         
         <label class="text-secondary" for="description"><b>Question</b></label>
         <textarea
@@ -594,6 +595,7 @@ function deleteThis(type_, num, id, post_type) {
     }
     if (type_ == 'table') {
         tableRow = 0
+        tableHtml = ""
     }
     if (type_ == 'faq') {
         countFaq--
@@ -619,6 +621,9 @@ function deleteThis(type_, num, id, post_type) {
     fetch(url, params).then((response) => {
         if (response.status == 200) {
             console.log("succesfully_posted");
+            if (type_ == 'table') {
+                location.reload()
+            }
 
         } else {
             console.log("eroor 404, data not posted");

@@ -104,7 +104,7 @@
       rows="1"
       onblur="submitCreatePost('keyword')"
     >{{keyword}}</textarea>
-   
+  </div>
   <!-- !-------------Heading -->
 
   <div class="form-group my-5">
@@ -136,33 +136,60 @@
     Quick questions
   </div>
   <div class="form-group mt-2" id="conta_quick_answers">
+  {% if quickAnswers %}
+  
+  {% for QA in quickAnswers %}
+  <div id="quickAnswersDiv{{loop.index}}">
     
-    {% for QA in quickAnswers %}
-    <div id="quickAnswers{{loop.index}}">
-      
-      <label class="text-secondary" for="description"><b>Question</b></label>
-      <textarea
-      id="quick_question{{loop.index}}"
-      class="form-control"
-      style="width: 50%; margin: 0 auto; border-width: 5px;"
-      id="description"
-      onblur="backup('quick_question','{{loop.index}}')"
-      rows="1"
-      >{{quickQuestions[loop.index0]}}</textarea>
-      <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
-      <textarea
-      id="quick_answer{{loop.index}}"
-      class="form-control"
-      style="width: 50%; margin: 0 auto; border-width: 5px;"
-      id="description"
-      onblur="backup('quick_answer','{{loop.index}}')"
-      rows="2"
-      >{{quickAnswers[loop.index0]}}</textarea>
-      
-      <button onclick="deleteThis('quickAnswers','{{loop.index}}','{{quickAnswersDb[loop.index0].id}}','{{post_type}}')" class="btn btn-sm btn-outline-secondary">delete</button>
-    </div>
-
-    {% endfor %}
+    <label class="text-secondary" for="description"><b>Question</b></label>
+    <textarea
+    id="quick_question{{loop.index}}"
+    class="form-control"
+    style="width: 50%; margin: 0 auto; border-width: 5px;"
+    id="description"
+    onblur="backup('quick_question','{{loop.index}}')"
+    rows="1"
+    >{{quickQuestions[loop.index0]}}</textarea>
+    <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
+    <textarea
+    id="quick_answer{{loop.index}}"
+    class="form-control"
+    style="width: 50%; margin: 0 auto; border-width: 5px;"
+    id="description"
+    onblur="backup('quick_answer','{{loop.index}}')"
+    rows="2"
+    >{{quickAnswers[loop.index0]}}</textarea>
+    
+    <button onclick="deleteThis('quickAnswers','{{loop.index}}','{{quickAnswersDb[loop.index0].id}}','{{type}}')" class="btn btn-sm btn-outline-secondary">delete</button>
+  </div>
+  
+  {% endfor %}
+  {% else %}
+      <div id="quickAnswersDiv1">
+        
+        <label class="text-secondary" for="description"><b>Question</b></label>
+        <textarea
+        id="quick_question1"
+        class="form-control"
+        style="width: 50%; margin: 0 auto; border-width: 5px;"
+        id="description"
+        onblur="backup('quick_question','1')"
+        rows="1"
+        ></textarea>
+        <label class="text-secondary mt-3" for="description"><b>Answer</b></label>
+        <textarea
+        id="quick_answer1"
+        class="form-control"
+        style="width: 50%; margin: 0 auto; border-width: 5px;"
+        id="description"
+        onblur="backup('quick_answer','1')"
+        rows="2"
+        ></textarea>
+        
+     
+      </div>
+  
+  {% endif %}
   </div>
   <button onclick="deletePrev('quickAnswers')" id="quickAnswersDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
     <button id="quickAnswersS" onclick="submitCreatePost('quickAnswers')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
@@ -188,7 +215,7 @@
   id="inlineFormInputGroupUsername2"
   placeholder="Heading"
   value="{{ind}}" />
-  <button onclick="deleteThis('index','{{loop.index}}','{{indexDb[loop.index0].id}}','{{post_type}}')" class="btn btn-sm btn-outline-secondary">delete</button>
+  <button onclick="deleteThis('index','{{loop.index}}','{{indexDb[loop.index0].id}}','{{type}}')" class="btn btn-sm btn-outline-secondary">delete</button>
 
   </div>
   {% endfor %}
@@ -229,7 +256,7 @@
       </textarea>
       <label class="text-secondary mt-3 " for="para{{loop.index}}"><b>Para</b></label>
       <textarea class="form-control" onblur="backup('para', '{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para{{loop.index}}" rows="4">{{para[loop.index0]}}</textarea>
-      <button style="width: 50%; margin-left:25%;" onclick="deleteThis('para','{{loop.index}}','{{paraDb[loop.index0].id}}','{{post_type}}')" class="mt-2 btn btn-sm btn-secondary btn-block">delete</button>
+      <button style="width: 50%; margin-left:25%;" onclick="deleteThis('para','{{loop.index}}','{{paraDb[loop.index0].id}}','{{type}}')" class="mt-2 btn btn-sm btn-secondary btn-block">delete</button>
       <!-- *---upload image -->
       {% if para_thumbnail[loop.index0] %}
       
@@ -276,8 +303,8 @@
    <button id="paraS" onclick="submitCreatePost('para')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
    <button onclick="addNew('para')" class="mb-3 btn btn-dark btn-sm">+</button>
 <!-- !------------------Table--------------- -->
-  <div id="tableDiv">
 {% if col1 or col2 %}
+<div id="tableDiv">
 <table class="table table-bordered" id="tableMain">
   <thead>
       <tr id="head">
@@ -309,10 +336,10 @@
     </tbody>
   </table>
   <button  id="tableS" onclick="submitCreatePost('table')" class="mb-3 btn btn-secondary btn-sm">make changes</button>
+  
+  <button  id="tableS" onclick="deleteThis('table','','{{id}}','{{type}}')" class="mb-3 btn btn-secondary btn-sm">delete table</button>
 </div>
-<button onclick="deleteThis('table','{{loop.index}}','{{tableDb[loop.index0].id}}','{{post_type}}')" class="btn btn-sm btn-outline-secondary"> delete table </button>
-<button style="width: 50%; margin-left:25%;" onclick="deleteThis('table','{{loop.index}}','{{tableDb[loop.index0].id}}','{{post_type}}')" class="mt-2 btn btn-sm btn-secondary btn-block">new table</button>
-<!-- <button  id="newtableS" onclick="newTable()" class="mb-3 btn btn-secondary btn-sm">New Table</button> -->
+
 {% else %}
 
 
@@ -325,31 +352,28 @@ id="rowNo"
 rows="1"
 ></textarea>
 <button id="enter"  onclick="enterTableRows()" class="my-3 btn btn-secondary btn-sm ">Enter</button>
+<div class="tableDiv">
 
-<table class="table table-bordered" id="tableMain" style="display: none;">
-  <thead>
+  <table class="table table-bordered" id="tableMain" style="display: none;">
+    <thead>
       <tr id="head">
-          <th scope="col">Sno</th>
-          <th scope="col"><input id="heading1" class="form-control" type="text" placeholder="   Heading1" name="" value=""></th>
-          <th scope="col"><input id="heading2" class="form-control" type="text" placeholder="   Heading2" name="" value=""></th>
-
+        <th scope="col">Sno</th>
+        <th scope="col"><input id="heading1" class="form-control" type="text" placeholder="   Heading1" name="" value=""></th>
+        <th scope="col"><input id="heading2" class="form-control" type="text" placeholder="   Heading2" name="" value=""></th>
+        
       </tr>
-  </thead>
-  <tbody id="tableContent">
-      <tr>
-          <th scope="row">1</th>
-          <td><input id="row1_1" class="form-control" type="text" name="" value=""></td>
-          <td><input id="row1_2" class="form-control" type="text" name="" value=""></td>
-
-      </tr>
-     
-
-   
+    </thead>
+    <tbody id="tableContent">
+      
+      
+      
+      
     </tbody>
   </table>
-{% endif %}
   <button  style="display: none;" id="tableS" onclick="submitCreatePost('table')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
 </div>
+  {% endif %}
+
 <!-- ! Coclusion -->
 <div class="form-group mt-5">
   <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Conclusion</div>
@@ -392,7 +416,7 @@ rows="1"
     onblur="backup('faq_ans','{{loop.index}}')"
     rows="2"
     >{{faq_ans[loop.index0]}}</textarea>
-    <button style="width: 50%; margin-left:25%;" onclick="deleteThis('faq','{{loop.index}}','{{faqDb[loop.index0].id}}','{{post_type}}')" class="mt-2 btn btn-sm btn-secondary btn-block">delete</button>
+    <button style="width: 50%; margin-left:25%;" onclick="deleteThis('faq','{{loop.index}}','{{faqDb[loop.index0].id}}','{{type}}')" class="mt-2 btn btn-sm btn-secondary btn-block">delete</button>
     
   </div>
   {% endfor %}

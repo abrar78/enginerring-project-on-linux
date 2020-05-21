@@ -45,19 +45,25 @@
 
         </div>
     </div>
-    <div class="container text-center desktopViewLatestPost" style="margin-top:100px; height: 400px; ">
+    <div class="container text-center desktopViewLatestPost" style="margin-top:100px; height: 500px; ">
         <div class="row " style="margin: 0 auto;">
             {% for db in latest_posts %}
             <div class="col">
-                <div class="card" style="width: 14rem; ">
-                    <img src="/static/images/{{db.thumbnail}}" style="height:20%;" class="card-img-top" alt="Responsive-img">
+
+
+                <div class="card h-100" id="Latescard{{loop.index}}" style="width: 14rem; ">
+                    <img id="Latestthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
                     <div class="card-body">
-                        <h3>{{db.heading}}</h3>
-                        <p class="card-text">{{db.description}}
-                        </p>
-                        <a href="/Read_more_{{db.type[0:-4]}}" class="btn btn-secondary btn-sm">Read More</a>
+                        <h3 id="Latesthead{{loop.index}}">{{db.heading}}</h3>
+                        <p class="card-text" id='Latestdesc{{loop.index}}'>{{db.description}}</p>
+                    </div>
+                    <small class="text-muted">Posted on :{{db.date}}</small>
+                    <div class="text-center my-3">
+
+                        <a style="width: 90%; margin-left:5%;" href="/Read_more_{{db.type[0:-4]}}/{{db.id}}" id="Latestid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
                     </div>
                 </div>
+
             </div>
 
             {% endfor %}
@@ -85,14 +91,22 @@
             <div class="row" style="margin-top:100px;" id="Ard">
                 {% for db in arduino_project.items %}
                 <div class="col">
-                    <div class="card" id="Ardcard{{loop.index}}" style="width: 14rem; ">
-                        <img src="/static/images/{{db.thumbnail}}" id="Ardthumb{{loop.index}}" style="height:20%;" class="card-img-top" alt="...">
+
+
+                    <div class="card h-100" id="Ardcard{{loop.index}}" style="width: 14rem; ">
+                        <img id="Ardthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
                         <div class="card-body">
                             <h3 id="Ardhead{{loop.index}}">{{db.heading}}</h3>
                             <p class="card-text" id='Arddesc{{loop.index}}'>{{db.description}}</p>
-                            <a href="/Read_more_Ard/{{db.id}}" id="Ardid{{loop.index}}" class="btn btn-primary btn-sm">Read More</a>
+                        </div>
+                        <small class="text-muted">Posted on :{{db.date}}</small>
+
+                        <div class="text-center my-3">
+
+                            <a style="width: 90%; margin-left:5%;" href="/Read_more_Ard/{{db.id}}" id="Ardid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
                         </div>
                     </div>
+
                 </div>
                 {% endfor %}
             </div>
@@ -140,14 +154,22 @@
             <div class="row" style="margin-top: 100px;" id="Basic">
                 {% for db in basic_project.items %} {%if db.heading is defined %}
                 <div class="col">
-                    <div class="card" id="Basiccard{{loop.index}}">
-                        <img src="/static/images/lightBasicElectronics.jpg" id="Basicthumb{{loop.index}}" style="height:20%;" class="card-img-top" alt="...">
+
+
+                    <div class="card h-100" id="Basiccard{{loop.index}}" style="width: 14rem; ">
+                        <img id="Basicthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
                         <div class="card-body">
                             <h3 id="Basichead{{loop.index}}">{{db.heading}}</h3>
                             <p class="card-text" id='Basicdesc{{loop.index}}'>{{db.description}}</p>
-                            <a href="/Read_more_Basic/{{db.id}}" id="Basicid{{loop.index}}" class="btn btn-primary">Read More</a>
+                        </div>
+                        <small class="text-muted">Posted on :{{db.date}}</small>
+
+                        <div class="text-center my-3">
+
+                            <a style="width: 90%; margin-left:5%;" href="/Read_more_Basic/{{db.id}}" id="Basicid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
                         </div>
                     </div>
+
                 </div>
                 {% endif %} {% endfor %}
             </div>
@@ -185,19 +207,24 @@
                 <p class="lead">Get the IOT related projects here</p>
             </div>
         </div>
-        <div class="container IOT" style="margin-top: 100px;">
+        <div class="text-center container IOT" style="margin-top: 100px;">
 
             <div class="row" id="Iot">
                 {% for db in iot_project.items %}
                 <div class="col">
 
 
-                    <div class="card" id="Iotcard{{loop.index}}" style="width: 14rem; ">
-                        <img id="Iotthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" style="height:20%;" class="card-img-top" alt="...">
+                    <div class="card h-100" id="Iotcard{{loop.index}}" style="width: 14rem; ">
+                        <img id="Iotthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
                         <div class="card-body">
                             <h3 id="Iothead{{loop.index}}">{{db.heading}}</h3>
                             <p class="card-text" id='Iotdesc{{loop.index}}'>{{db.description}}</p>
-                            <a href="/Read_more_Iot/{{db.id}}" id="Iotid{{loop.index}}" class="btn btn-primary">Read More</a>
+                        </div>
+
+                        <small class="text-muted">Posted on :{{db.date}}</small>
+                        <div class="text-center my-3">
+
+                            <a style="width: 90%; margin-left:5%;" href="/Read_more_Iot/{{db.id}}" id="Iotid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
                         </div>
                     </div>
 
@@ -244,14 +271,22 @@
         <div class="row" id="Other">
             {% for db in other_project.items %}
             <div class="col">
-                <div class="card" id="Othercard{{loop.index}}" style="width: 35vh; ">
-                    <img src="/static/images/{{db.thumbnail}}" id="Otherthumb{{loop.index}}" style="height:20%;" class="card-img-top" alt="...">
+
+
+                <div class="card h-100" id="Othercard{{loop.index}}" style="width: 14rem; ">
+                    <img id="Otherthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
                     <div class="card-body">
                         <h3 id="Otherhead{{loop.index}}">{{db.heading}}</h3>
                         <p class="card-text" id='Otherdesc{{loop.index}}'>{{db.description}}</p>
-                        <a href="/Read_more_Other/{{db.id}}" id="Otherid{{loop.index}}" class="btn btn-primary">Read More</a>
+                    </div>
+                    <small class="text-muted">Posted on :{{db.date}}</small>
+
+                    <div class="text-center my-3">
+
+                        <a style="width: 90%; margin-left:5%;" href="/Read_more_Ard/{{db.id}}" id="Otherid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
                     </div>
                 </div>
+
             </div>
             {% endfor %}
         </div>
@@ -342,15 +377,29 @@
 
             <div class="mobContainer mobArd" id="mobArd">
                 {%for db in arduino_project.items %}
-                <div class="postMobile mt-3">
-                    <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob " alt="">
-                    <div class="mobViewContent">
-                        <h3>{{db.heading}}
-                        </h3>
-                        <p>{{db.description}}</p>
-                        <a href="/Read_more_Ard/{{db.id}}" class="streached-link">Read More..</a>
+                <a href="">
+
+                    <div class="postMobile mt-3">
+                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                        <div class="mobViewContent">
+                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
+                            <div>
+                                <span class="text-dark" style="font-size: 1.1em;">
+                                    <b>
+
+                                        {{db.heading}} is very good and also bad
+                                    </b>
+                                </span>
+                                <p class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
+                                </p>
+                            </div>
+                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
+                        </div>
+                        <!-- <button class="btn btn-block btn-sm"> -->
+                        <!-- 
+                        </button> -->
                     </div>
-                </div>
+                </a>
                 {% endfor %}
 
             </div>

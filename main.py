@@ -1369,7 +1369,7 @@ def publish(type,draft_id):
           addTable=Comparison_table_other(head1_point=i.head1_point,head2_point=i.head2_point,post_name=add)
           db.session.add(addTable)
           db.session.commit()
- # todo :------------------------------------------------------------------------------------
+ # todo : ------------------------------------------------------------------------------------
     print(draft_id)
     deleteSelf=Draft.query.filter_by(id=draft_id).first()
     print(deleteSelf)

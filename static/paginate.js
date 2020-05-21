@@ -663,9 +663,17 @@ function seeMore(code) {
 
                 if (data['heading'][index]) {
                     document.getElementById(`mob${code}`).innerHTML += `  <div class="postMobile mt-3">
-                <img src="/static/images/${data['thumbnail'][index]}" class="thumbnailMob "alt="">
+                <img src="/static/images/${data['thumbnail'][index]}" class="thumbnailMob image-fluid "alt="Responsive image">
                 <div class="mobViewContent" >
-                <h3>${data['heading'][index]}</h3>
+                <div>
+                <span style="font-size: 1.1em;">
+                <b>
+
+                ${data['heading'][index]}
+                </b>
+            </span>
+            </div>
+               
                 <p> ${data['description'][index]}</p>
                 <a href="" class="streached-link">Read Mor..</a>
                 </div>

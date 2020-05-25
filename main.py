@@ -101,7 +101,7 @@ def paginate():
              content['heading'][str(i)]=arduino_db.heading
              content['thumbnail'][str(i)]=arduino_db.thumbnail
              content['description'][str(i)]=arduino_db.description
-             content['id'][str(i)]="/Read_more_Ard/"+str(arduino_db.id)
+             content['id'][str(i)]=arduino_db.id
          print(req['page_no'])
          response=make_response(jsonify(content),200)
          return response
@@ -114,7 +114,7 @@ def paginate():
              content['heading'][str(i)]=arduino_db.heading
              content['thumbnail'][str(i)]=arduino_db.thumbnail
              content['description'][str(i)]=arduino_db.description
-             content['id'][str(i)]="/Read_more_Ard/"+str(arduino_db.id)
+             content['id'][str(i)]=arduino_db.id
 
 
     if req['code']=='Basic':
@@ -127,7 +127,7 @@ def paginate():
              content['heading'][str(i)]=basic_db.heading
              content['thumbnail'][str(i)]=basic_db.thumbnail
              content['description'][str(i)]=basic_db.description
-             content['id'][str(i)]="/Read_more_Basic/"+str(basic_db.id)
+             content['id'][str(i)]=basic_db.id
          print(req['page_no'])
          response=make_response(jsonify(content),200)
          return response
@@ -139,7 +139,7 @@ def paginate():
              content['heading'][str(i)]=basic_db.heading
              content['thumbnail'][str(i)]=basic_db.thumbnail
              content['description'][str(i)]=basic_db.description
-             content['id'][str(i)]='/Read_more_Basic/'+str(basic_db.id)
+             content['id'][str(i)]=basic_db.id
 
     if req['code']=='Iot':
          if req['jump_page']==True:
@@ -150,7 +150,7 @@ def paginate():
                 content['heading'][str(i)]=iot_db.heading
                 content['thumbnail'][str(i)]=iot_db.thumbnail
                 content['description'][str(i)]=iot_db.description
-                content['id'][str(i)]='/Read_more_Iot/'+str(iot_db.id)
+                content['id'][str(i)]=iot_db.id
              print(req['page_no'])
              response=make_response(jsonify(content),200)
              return response
@@ -162,7 +162,7 @@ def paginate():
                 content['heading'][str(i)]=iot_db.heading
                 content['thumbnail'][str(i)]=iot_db.thumbnail
                 content['description'][str(i)]=iot_db.description
-                content['id'][str(i)]='/Read_more_Iot/'+str(iot_db.id)
+                content['id'][str(i)]=iot_db.id
 
 
     if req['code']=='Other':
@@ -174,7 +174,7 @@ def paginate():
                 content['heading'][str(i)]=other_db.heading
                 content['thumbnail'][str(i)]=other_db.thumbnail
                 content['description'][str(i)]=other_db.description
-                content['id'][str(i)]='/Read_more_Other/'+str(other_db.id)
+                content['id'][str(i)]=other_db.id
              print(req['page_no'])
              response=make_response(jsonify(content),200)
              return response
@@ -186,7 +186,7 @@ def paginate():
                 content['heading'][str(i)]=other_db.heading
                 content['thumbnail'][str(i)]=other_db.thumbnail
                 content['description'][str(i)]=other_db.description
-                content['id'][str(i)]='/Read_more_Other/'+str(other_db.id)
+                content['id'][str(i)]=other_db.id
 
     response=make_response(jsonify(content),200)
     return response

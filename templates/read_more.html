@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
     <!-- ?Required meta tags -->
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- ?Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- ?custom css -->
     <link rel="stylesheet" href="/static/style.css">
     <!-- google fonts -->
@@ -24,7 +23,7 @@
     <title>Read_Post</title>
 </head>
 
-<body  onresize="myFunction()">
+<body onresize="myFunction()">
     <!-- ! Nav Bar -->
     <nav class="fixed-top" id="navBar" style="background-color: black;">
         <div class="logo ">
@@ -34,13 +33,10 @@
         <div class="content">
             <ul class="list">
                 <li class="nav-item nav-links">
-                    <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)"
-                        onmouseout="howerLeave(this.id)" href="/">Home</a>
+                    <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/">Home</a>
                 </li>
                 <li class="nav-item dropdown  nav-links">
-                    <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)"
-                        onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">projects</a>
+                    <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="/#arduinoProject">Arduino based projects </a>
                         <a class="dropdown-item" href="/templates/index.htm#IOTProjects">IOT projects</a>
@@ -49,32 +45,27 @@
                     </div>
                 </li>
                 <li class="nav-item nav-links">
-                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)"
-                        onmouseout="howerLeave(this.id)" href="/templates/index.htm#otherPost">Other Posts</a>
+                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/templates/index.htm#otherPost">Other Posts</a>
                 </li>
                 <li class="nav-item  nav-links">
-                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)"
-                        onmouseout="howerLeave(this.id)" href="/templates/index.htm#about">About</a>
+                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/templates/index.htm#about">About</a>
                 </li>
-                <li class="nav-item nav-links">
-                    <a id="add" class="nav-link mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-                        href="/templates/advertiseWithUs.html">Advertise with us</a>
-                </li>
+
                 <li class="nav-item">
                     <!-- log in form -->
                     <form class="form-inline" action="/search/1" method='POST'></form>
                     <div class="input-group mt-2">
-                        <input type="text" class="form-control"name="search_string" placeholder="search project/post here" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" name="search_string" placeholder="search project/post here" aria-label="Recipient's username" aria-describedby="button-addon2">
                         <div class="input-group-append">
-                          <button class="btn btn-outline-warning" type="submit" id="button-addon2">Search</button>
+                            <button class="btn btn-outline-warning" type="submit" id="button-addon2">Search</button>
                         </div>
-                      </div>
+                    </div>
                     </form>
                 </li>
             </ul>
         </div>
 
-       
+
     </nav>
     <!-- ! mobile Nav bar--- =====----=====-----=====-=--=-=--=-=-=-=-=-=-=-=-=-=========== -->
     <nav class="sticky-top animated fadeInDown" id="mobileNav">
@@ -93,14 +84,13 @@
             </div>
         </div>
     </nav>
-<form class="form-inline" action="/search/1" method='POST'>
-    
-    <nav class="fixed-top animated fadeInDown" id="mobileSearchBar">
-        <div class="input-group mb-3" style="margin-top: 10px;">
-            <input style="height: 32px;" type="text" name="search_string" class="form-control" placeholder="search project/post here"
-            aria-label="Recipient's username" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-warning" type="submit" id="button-addon2" style="height: 32px;">
+    <form class="form-inline" action="/search/1" method='POST'>
+
+        <nav class="fixed-top animated fadeInDown" id="mobileSearchBar">
+            <div class="input-group mb-3" style="margin-top: 10px;">
+                <input style="height: 32px;" type="text" name="search_string" class="form-control" placeholder="search project/post here" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-warning" type="submit" id="button-addon2" style="height: 32px;">
                     <span class="material-icons" style="margin-bottom: 8px;">
                         search
                     </span></button>
@@ -112,7 +102,7 @@
                 </div>
             </div>
         </nav>
-        
+
     </form>
     <nav class="animated  fixed-top" id="slider">
 
@@ -127,14 +117,11 @@
                 </li>
 
                 <li class="nav-item nav-links">
-                    <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)"
-                        onmouseout="howerLeave(this.id)" href="#">Home</a>
+                    <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#">Home</a>
 
                 </li>
                 <li class="nav-item dropdown  nav-links">
-                    <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)"
-                        onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">projects</a>
+                    <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
                     <div class="dropdown-menu animated fadeIn">
                         <a class="dropdown-item" href="/templates/index.htm#arduinoProject">Arduino based projects </a>
                         <a class="dropdown-item" href="/templates/index.htm#IOTProjects">IOT projects</a>
@@ -143,28 +130,22 @@
                     </div>
                 </li>
                 <li class="nav-item nav-links">
-                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)"
-                        onmouseout="howerLeave(this.id)" href="/templates/index.htm#otherPost">Other Posts</a>
+                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/templates/index.htm#otherPost">Other Posts</a>
                 </li>
                 <li class="nav-item  nav-links">
-                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)"
-                        onmouseout="howerLeave(this.id)" href="/templates/index.htm#about">About</a>
+                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/templates/index.htm#about">About</a>
                 </li>
                 <li class="nav-item nav-links">
-                    <a id="add" class="nav-link mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)"
-                        href="/templates/advertiseWithUs.html">Advertise with us</a>
+                    <a id="add" class="nav-link mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/templates/advertiseWithUs.html">Advertise with us</a>
                 </li>
-              
+
 
             </ul>
         </div>
 
     </nav>
     <!-- end navbar -->
-{% block content %}
- 
-
-{% endblock %}
+    {% block content %} {% endblock %}
 
 
 
@@ -173,19 +154,14 @@
 
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
 </script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 </script>
 <script src="/static/readMore.js"></script>
 
-{% block script %}
-
-{% endblock %}
+{% block script %} {% endblock %}
 
 </html>

@@ -398,6 +398,8 @@ class Draft(db.Model):
     Tableheading1=db.Column(db.String(100),nullable=True)        
     Tableheading2=db.Column(db.String(100),nullable=True)
     conclusion=db.Column(db.String(500),nullable=True)
+    # code=db.Column(db.String(5000),nullable=True)
+    
     
     
     quick_answers=db.relationship('Quick_answers_draft', backref='post_name')
@@ -462,7 +464,7 @@ class Messages(db.Model):
     __bind_key__='other_details'
     id=db.Column(db.Integer,primary_key=True, nullable=False)
     send_by=db.Column(db.String(100),primar_key=True,nullable=False)
-    email=db.Column(db.String(111),nullable=False,unique=True)
+    email=db.Column(db.String(111),nullable=False,unique=False)
     messsage=db.Column(db.String(1000),nullable=False)
 
 class About_me(db.Model):

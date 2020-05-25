@@ -1,13 +1,14 @@
 {% extends "template.html" %} {% block content %}
 
-<div style="height: 40vh;" class="jumbotron jumbotron-fluid text-dark">
+<div id="Read_more_jumbotron" class="jumbotron jumbotron-fluid text-dark">
     <div class="container text-center">
-        <div class="display-4" style="font-size: 10vh;"> <strong>
+        <div class="display-4" id="Read_more_heading"> <b>
 
             {{other_post_db.heading}}
-        </strong>
+        </b>
         </div>
-        <p class="lead" style="font-size: 5vh;">{{other_post_db.description}}</p>
+        <p id="Read_more_description" class="lead text-secondary">{{other_post_db.description}}</p>
+
     </div>
 </div>
 
@@ -15,14 +16,14 @@
 {% if other_post_db.thumbnail %}
 <div class="text-center">
 
-    <img class="img-fluid" src="/static/images/{{other_post_db.thumbnail}}" alt="Responsive_image" srcset="" style="height:90vh">
+    <img id="cover_img" class="img-fluid" src="/static/images/{{other_post_db.thumbnail}}" alt="Responsive image" srcset="">
 </div>
 {% endif %} {% if other_post_db.quick_answers %}
 <div class="container my-5 text-left" id="quick_answers">
     {% for QA in other_post_db.quick_answers %}
     <div class="media text-secondary">
         <div class="media-body mt-4">
-            <blockquote class="blockquote">
+            <blockquote class="text-dark blockquote">
                 <h5><b> {{QA.ques}}</b></h5>
 
                 {{ QA.ans}}
@@ -35,42 +36,60 @@
 {% endif %}
 
 <div class="text-left container mt-5" id="index">
-    <div style="font-size: 7vh;" class="text-dark "><strong>    Contents</strong> </div>
-    <ul class="ml-4 mt-3 list-styled ">
+    <div style="font-size: 7vh;font-weight:300;" class="text-daek">Contents</div>
+    <ul class="ml-2 mt-1 list-unstyled ">
         {% for index in other_post_db.index %}
-        <li>
-            <a style="font-size: 4vh;" href="#topic{{loop.index}}" class="text-dark strecthed-link">{{index.topic}}</a>
+        <li class="text-secondary">
+            <a style="font-size: 3.5vh;" href="#topic{{loop.index}} " class=" ml-1 strecthed-link ">{{index.topic}}</a>
         </li>
         {% endfor %}
 
     </ul>
 </div>
 
-<div class="container my-5" id="content">
+<div class="container my-5 " id="content ">
     {% for content in other_post_db.content_parts %}
-    <div style="font-size: 8vh;" class="text-dark mt-5" id="topic{{loop.index}}">{{content.heading}}</div>
-    <p>{{content.para}}</p>
+    <div style="font-size: 7vh;font-weight:bold; " class="text-dark mt-5 " id="topic{{loop.index}} ">{{content.heading}}</div>
     {% if content.img %}
 
-    <img src="/static/images/{{content.img}}" class="mt-2 img-fluid" id="contentOtherImg{{content.id}}" alt="Responsive image" style="height:80vh;margin:0 auto;display:block;"> {% endif %} {% endfor %}
+    <img src="/static/images/{{content.img}} " class="my-2 content_img mt-2 img-fluid " id="contentOtherImg{{content.id}} " alt="Responsive image "> {% endif %}
+    <div class="h5">{{content.para}}</div>
+
+    <pre><code id="{{content.id}}" class="language-markup">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+        
+&lt;script&gt;
+// Just a lil&rsquo; script to show off that inline JS gets highlighted
+window.console &amp;&amp; console.log('foo');
+&lt;/script&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;link rel=&quot;icon&quot; href=&quot;favicon.png&quot; /&gt;
+&lt;title&gt;Prism&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+            
+    </code></pre> {% endfor %}
 </div>
 
 {% if other_post_db.comparison_table %}
 
-<div class="container mt-5" id="table">
-    <table class="table table-bordered">
+<div class="container mt-5 " id="table ">
+    <table class="table table-bordered ">
         <thead>
             <tr>
-                <th scope="col">Sno</th>
-                <th scope="col">{{other_post_db.Tableheading1}}</th>
-                <th scope="col">{{other_post_db.Tableheading2}}</th>
+                <th scope="col ">Sno</th>
+                <th scope="col ">{{other_post_db.Tableheading1}}</th>
+                <th scope="col ">{{other_post_db.Tableheading2}}</th>
 
             </tr>
         </thead>
         <tbody>
             {% for table in other_post_db.comparison_table %}
             <tr>
-                <th scope="row">{{loop.index}}</th>
+                <th scope="row ">{{loop.index}}</th>
                 <td>{{table.head1_point}}</td>
                 <td>{{table.head2_point}}</td>
 
@@ -81,58 +100,55 @@
     </table>
 </div>
 {% endif %} {% if other_post_db.conclusion %}
-<div class="container mt-5" id="conclusion">
-    <div class="text-secondary " style="font-size: 7vh;"><b>Conclusion</b></div>
+<div class="container mt-5 " id="conclusion ">
+    <div class="text-secondary " style="font-size: 7vh; "><b>Conclusion</b></div>
     <p><i>{{other_post_db.conclusion}}</i></p>
 
 </div>
 {% endif %}
 <hr> {% if other_post_db.faq %}
-<div class="container mt-5" id=faq>
-    <h1 class="text-dark ml-1">FAQ</h1>
+<div class="container mt-5 " id=faq>
+    <h1 class="text-dark ml-1 ">FAQ</h1>
     {% for faq in other_post_db.faq %}
-    <div class="accordion" id="accordionExample">
-        <div class="card">
-            <div class="card-header" id="heading{{loop.index}}">
-                <h2 class="mb-0">
-                    <button class="text-secondary btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="false" aria-controls="collapse{{loop.index}}">
-         Q. {{faq.faq_q}}
-        </button>
-                </h2>
-            </div>
 
-            <div id="collapse{{loop.index}}" class="collapse ml-3" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
 
-                    {{faq.faq_ans}}
-                </div>
+    <p>
+        <a class="text-left btn btn-light btn-block" data-toggle="collapse" href="#collapseExample{{loop.index}}" role="button" aria-expanded="false" aria-controls="collapseExample{{loop.index}}">
+         {{faq.faq_q}}
+         </a>
+        <div class="collapse" id="collapseExample{{loop.index}}">
+            <div class="card card-body">
+                {{faq.faq_ans}}
             </div>
         </div>
-    </div>
+
+    </p>
     {% endfor %}
+
 </div>
 {% endif %} {% if related_post %}
 
-<div class="container">
+<div class="container ">
 
     <h1><b>Realted Posts</b></h1>
 </div>
 {% endif %}
 
-<div class="desktop">
+<div class="desktop ">
 
-    <div class="container mt-3">
+    <div class="container mt-3 ">
 
-        <div class="row conten-center">
+        <div class="row conten-center ">
 
             {% for db in related_post %}
-            <div class="col">
-                <div class="card" id="Othercard{{loop.index}}" style="width: 14rem; ">
-                    <img src="/static/images/{{db.thumbnail}}" style="height:20%;" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h3 id="Otherhead{{loop.index}}">{{db.heading}}</h3>
-                        <p class="card-text" id='Otherdesc{{loop.index}}'>{{db.description}}</p>
-                        <a href="/Read_more_Other/{{db.id}}" class="btn btn-primary">Read More</a>
+            <div class="col text-center">
+                <div class="card " id="Othercard{{loop.index}} " style="width: 14rem; ">
+                    <img src="/static/images/{{db.thumbnail}} " style="height:20%; " class="card-img-top " alt="... ">
+                    <div class="card-body ">
+                        <h3 id="Otherhead{{loop.index}} ">{{db.heading}}</h3>
+                        <p class="card-text " id='Otherdesc{{loop.index}}'>{{db.description}}</p>
+                        <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}} " class="btn btn-secondary btn-sm btn-block ">Read More</a>
+                        <div class="mt-4 text-muted">posted on:{{db.date}}</div>
                     </div>
                 </div>
             </div>
@@ -144,21 +160,27 @@
 
 
 {% if related_post %}
-<div class="mobile container">
+<div class="mobile container ">
     <!-- todo FOR mobile same as index page -->
-    <div class="mobileViewAll">
+    <div class="mobileViewAll ">
 
-        <div class="mobContainer mobArd" id="mobOther">
-            <div class="postMobile mt-3">
-                {%for db in related_post %}
-                <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob " alt="">
-                <div class="mobViewContent">
-                    <h3>{{db.heading}}
-                    </h3>
-                    <p>{{db.description}}</p>
-                    <a href="/Read_more_Other/{{db.id}}" class="streached-link">Read More..</a>
+        <div class="mobContainer mobArd " id="mobOther ">
+            {%for db in related_post %}
+            <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}} ">
+                <div class="postMobile mt-3 ">
+                    <img src="/static/images/{{db.thumbnail}} " class="thumbnailMob image-fluid" alt="Responsive image ">
+                    <div class="mobViewContent">
+                        <span class="text-dark" style="font-size: 1.1em;">
+                            <b>
+
+                                {{db.heading}} 
+                            </b>
+                        </span>
+                        <p class="text-secondary">{{db.description}}</p>
+                        <div class="text-muted">{{db.date}}</div>
+                    </div>
                 </div>
-            </div>
+            </a>
             {% endfor %}
 
         </div>
@@ -167,6 +189,5 @@
 </div>
 {% endif %} {% endblock %} {% block script %}
 
-<script src="/static/readMore.js"></script>
-
+<script src="/static/readMore.js "></script>
 {% endblock %}

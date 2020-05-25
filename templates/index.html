@@ -9,11 +9,11 @@
     </div>
     <div class="container desktopViewSignUpForm">
         <div class="row">
-            <div class="col" style="margin-top: 30vh">
+            <div class="col" style="margin-top: 160px">
 
                 <input type="text" onblur="validateName(this.id,'subscribeBtn')" id="sName" class="form-control" placeholder="User Name">
             </div>
-            <div class="col" style="margin-top: 30vh;">
+            <div class="col" style="margin-top: 160px;">
 
                 <input type="email" onblur="validateEmail(this.id,'subscribeBtn')" id="sEmail" class="form-control" placeholder="E-mail">
             </div>
@@ -38,7 +38,7 @@
 
 <!-- ?Latest POst Section Start ---------------------------------------------------------------->
 <div class="desktop">
-    <div class="jumbotron jumbotron-fluid" style="margin-top: 50px; height: 200px;">
+    <div class="jumbotron jumbotron-fluid" style="margin-top: 50px; height: 250px;">
         <div class="container">
             <h1 class="display-6">Latest Posts</h1>
             <p class="lead">Get the latest Tech-Post Here</p>
@@ -323,53 +323,53 @@
 <div class="mobile mt-3">
 
     <div class="mobileView">
-        <div class="jumbotron " style="height: 30vh;">
-            <h1 class="display-4 text-left" style="font-size: 5vh;">Latest Posts</h1>
+        <div class="jumbotron " style="height: 200px;">
+            <div class="display-4 text-center" style="font-weight:bold;font-size: 40px;">Latest Posts</div>
 
-            <p class="lead text-left" style="font-size: 3vh;">See the latest post here</p>
+            <p class="lead text-center" style="font-size: 20px;">See the latest post here</p>
 
 
         </div>
         <div class="mobileViewAll">
 
             <div class="mobContainer latestMob">
-                <div class="postMobile mt-3">
+                {% for db in latest_posts %}
 
-                    <div class="mobViewContent">
-                        <h3>Heading</h3>
-                        <p> fdfdsfds fdsf sd fdf s</p>
-                        <a href="" class="streached-link">Read Mor..</a>
+                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+
+                    <div class="postMobile mt-3">
+                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                        <div class="mobViewContent">
+                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
+                            <div>
+                                <span class="text-dark" style="font-size: 1.1em;">
+                                    <b>
+
+                                        {{db.heading}} is very good and also bad
+                                    </b>
+                                </span>
+                                <p class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
+                                </p>
+                            </div>
+                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
+                        </div>
+                        <!-- <button class="btn btn-block btn-sm"> -->
+                        <!-- 
+                        </button> -->
                     </div>
+                </a>
 
-                </div>
-                <div class="postMobile mt-3">
-                    <img src="/static/images/bandwidth-close-up-computer-connection-1148820.jpg" class="thumbnailMob " alt="">
-                    <div class="mobViewContent">
-                        <h3>Heading</h3>
-                        <p> fdfdsfds fdsf sd fdf s</p>
-                        <a href="" class="streached-link">Read Mor..</a>
-                    </div>
-
-                </div>
-                <div class="postMobile mt-3">
-                    <img src="/static/images/action-blur-bulb-dark-355904.jpg" class="thumbnailMob " alt="">
-                    <div class="mobViewContent">
-                        <h3>Heading</h3>
-                        <p> fdfdsfds fdsf sd fdf s</p>
-                        <a href="" class="streached-link">Read Mor..</a>
-                    </div>
-
-                </div>
+                {% endfor %}
 
             </div>
         </div>
     </div>
     <!-- !Arduino post mobile view -->
     <div class="mobileView">
-        <div class="jumbotron" style="height: 30vh;">
-            <h1 class="display-4 text-left" style="font-size: 5vh;">Arduino Post</h1>
+        <div class="jumbotron text-center" style="height: 200px;">
+            <div class="text-center" style="font-size: 40px; font-weight:bold;">Arduino Post</div>
 
-            <p class="lead text-left" style="font-size: 3vh;">Arduino related project</p>
+            <p class="lead text-center" style="font-size: 25px;">Arduino related project</p>
 
 
         </div>
@@ -377,7 +377,7 @@
 
             <div class="mobContainer mobArd" id="mobArd">
                 {%for db in arduino_project.items %}
-                <a href="">
+                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
 
                     <div class="postMobile mt-3">
                         <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
@@ -421,14 +421,29 @@
 
             <div class="mobContainer mobBasic" id="mobBasic">
                 {%for db in basic_project.items %}
-                <div class="postMobile mt-3">
-                    <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob " alt="">
-                    <div class="mobViewContent">
-                        <h3>{{db.heading}}</h3>
-                        <p> {{db.description}}</p>
-                        <a href="/Read_more_Basic/{{db.id}}" class="streached-link">Read More..</a>
+                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+
+                    <div class="postMobile mt-3">
+                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                        <div class="mobViewContent">
+                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
+                            <div>
+                                <span class="text-dark" style="font-size: 1.1em;">
+                                    <b>
+
+                                        {{db.heading}} is very good and also bad
+                                    </b>
+                                </span>
+                                <p class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
+                                </p>
+                            </div>
+                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
+                        </div>
+                        <!-- <button class="btn btn-block btn-sm"> -->
+                        <!-- 
+                        </button> -->
                     </div>
-                </div>
+                </a>
                 {% endfor %}
 
             </div>
@@ -449,14 +464,29 @@
 
             <div class="mobContainer mobIot" id="mobIot">
                 {%for db in iot_project.items %}
-                <div class="postMobile mt-3">
-                    <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob " alt="">
-                    <div class="mobViewContent">
-                        <h3>{{db.heading}}</h3>
-                        <p> {{db.description}}</p>
-                        <a href="/Read_more_Iot/{{db.id}}" class="streached-link">Read More..</a>
+                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+
+                    <div class="postMobile mt-3">
+                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                        <div class="mobViewContent">
+                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
+                            <div>
+                                <span class="text-dark" style="font-size: 1.1em;">
+                                    <b>
+
+                                        {{db.heading}} is very good and also bad
+                                    </b>
+                                </span>
+                                <p class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
+                                </p>
+                            </div>
+                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
+                        </div>
+                        <!-- <button class="btn btn-block btn-sm"> -->
+                        <!-- 
+                        </button> -->
                     </div>
-                </div>
+                </a>
                 {% endfor %}
 
             </div>
@@ -476,15 +506,34 @@
 
             <div class="mobContainer mobOther" id="mobOther">
                 {%for db in other_project.items %}
-                <div class="postMobile mt-3">
-                    <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob " alt="">
-                    <div class="mobViewContent">
-                        <h3>{{db.heading}}</h3>
-                        <p>{{db.description}}</p>
-                        <a href="/Read_more_Other/{{db.id}}" class="streached-link">Read More..</a>
+                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+
+                    <div class="postMobile mt-3">
+                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                        <div class="mobViewContent">
+                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
+                            <div>
+                                <span class="text-dark" style="font-size: 1.1em;">
+                                    <b>
+
+                                        {{db.heading}} is very good and also bad
+                                    </b>
+                                </span>
+                                <div class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
+                                    <div class="text-dark"><i>
+
+                                       posted on: {{db.date}}
+                                    </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
+                        </div>
+                        <!-- <button class="btn btn-block btn-sm"> -->
+                        <!-- 
+                        </button> -->
                     </div>
-                </div>
-                {% endfor %}
+                </a> {% endfor %}
 
             </div>
             <button type="button" name="{{other_project.pages}}" id="seeMoreBtnOther" onclick="seeMore('Other')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
@@ -493,14 +542,15 @@
 </div>
 <!-- !-------ABOUT ME PAGE--------------------------------------------------------------------------------------------------About Me page -->
 <div class="jumbotron about" id="about">
-    <h1 class="display-4 text-center" style="font-size: 5vh;">About me</h1>
+    <div class="display-4 text-center" style="font-size: 5vh;font-weight:bold;">About me</div>
 
-    <p class="lead text-center" style="font-size: 2.5vh;">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <p class="lead text-center" id="font_about">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus sint quidem, commodi inventore similique nemo, molestias
+        rerum nostrum facere vitae expedita numquam aliquam tenetur non, alias asperiores excepturi. Quis, expedita.</p>
 
 
 
     <div class="text-center">
-        <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">contact</button>
+        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal1" style="font-weight: bold;font-size:20px" data-whatever="@mdo">Contact</button>
     </div>
     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

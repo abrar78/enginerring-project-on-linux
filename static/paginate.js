@@ -621,7 +621,7 @@ function seeMore(code) {
             </span>
             </div>
                
-                <p class="text-secondary"> ${data["description"][index]}</p>
+                <p class="text-secondary mt-3">posted on : ${data["date"][index]}</p>
                
                 </div>
                 </div>

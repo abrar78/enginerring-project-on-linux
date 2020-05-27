@@ -305,7 +305,7 @@ html {
 
 #arduinoProject {
     position: relative;
-    height: 250px;
+    height: 200px;
 }
 
 .mobile {
@@ -345,7 +345,7 @@ html {
 
 /* *-------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-@media screen and (max-width: 1155px) {
+@media screen and (max-width: 1200px) {
     #cover_img {
         height: auto;
         width: 100vw;
@@ -383,6 +383,169 @@ html {
         height: 20px;
         width: 50%;
         justify-content: flex-start;
+    }
+    #top {
+        display: flex;
+        height: 30px;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+    #slider {
+        background-color: black;
+        display: none;
+        flex-direction: column;
+        justify-items: space-around;
+        width: 50%;
+        height: 100%;
+    }
+    .nav-links {
+        height: 90px;
+    }
+    #mobileList {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        /* flex-direction: column; */
+        justify-content: space-around;
+        justify-items: space-around;
+        align-content: center;
+        height: 100%;
+        width: 50%;
+    }
+    .welcome {
+        font-size: 40px;
+        top: 150px;
+    }
+    .typeWriterDiv {
+        top: 120px;
+        font-size: 10px;
+    }
+    .jumbotron {
+        height: 150px;
+    }
+    .mobileViewAll {
+        display: block;
+        width: 100%;
+        height: 80vh;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    .desktop {
+        display: none;
+    }
+    .page {
+        margin-bottom: 250px;
+        display: none;
+    }
+    .basic {
+        display: none;
+        margin-top: 0px;
+    }
+    .IOT {
+        display: none;
+    }
+    .arduino {
+        display: none;
+    }
+    .other {
+        display: none;
+    }
+    /* ? >>>>>>>>>>>>>>>>> */
+    #navBar {
+        display: none;
+    }
+    #arduinoProject {
+        position: relative;
+        height: 200px;
+    }
+    #about {
+        margin-top: 40px;
+        height: 50vh;
+    }
+    #font_about {
+        font-size: 2vh;
+    }
+    .img {
+        height: 50px;
+    }
+    .thumbnailMob {
+        width: 100%;
+    }
+    .latestMob {
+        height: 300px;
+    }
+    .mobContainer {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 50px 0px 50px;
+    }
+    .postMobile {
+        display: grid;
+        grid-template-columns: 40% 60%;
+    }
+    .descText {
+        font-size: 1.5em;
+    }
+    .mobViewContent {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+    }
+    #Read_more_heading {
+        font-size: 5vh;
+    }
+    #Read_more_description {
+        font-size: 2.5vh;
+    }
+    #Read_more_jumbotron {
+        height: 25vh;
+    }
+    .text-dark {
+        font-size: 2.0em;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #cover_img {
+        height: auto;
+        width: 100vw;
+    }
+    .content_img {
+        height: auto;
+        width: 90vw;
+    }
+    .mobile {
+        display: block;
+    }
+    #mobileNav {
+        display: flex;
+        width: 100%;
+        justify-content: start;
+        height: 60px;
+        background-color: black;
+    }
+    .logo {
+        width: 20%;
+    }
+    .search {
+        display: flex;
+        width: 50%;
+        justify-content: flex-end;
+        height: 20px;
+    }
+    #mobileSearchBar {
+        display: none;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .burger {
+        display: flex;
+        height: 20px;
+        width: 50%;
+        justify-content: flex-start;
+    }
+    .descText {
+        font-size: 1.5em;
     }
     #top {
         display: flex;
@@ -474,6 +637,7 @@ html {
     .mobContainer {
         display: flex;
         flex-direction: column;
+        padding: 0;
     }
     .postMobile {
         display: grid;
@@ -492,5 +656,12 @@ html {
     }
     #Read_more_jumbotron {
         height: 25vh;
+    }
+    .text-dark {
+        font-size: 2.5vh;
+    }
+    .descText {
+        font-size: 2vh;
+        float: inline-end;
     }
 }

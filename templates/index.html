@@ -38,10 +38,14 @@
 
 <!-- ?Latest POst Section Start ---------------------------------------------------------------->
 <div class="desktop">
-    <div class="jumbotron jumbotron-fluid" style="margin-top: 50px; height: 250px;">
+    <div class="jumbotron jumbotron-fluid" style="margin-top: 50px; height: 200px;">
         <div class="container">
-            <h1 class="display-6">Latest Posts</h1>
-            <p class="lead">Get the latest Tech-Post Here</p>
+            <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5"> Latest Posts</span>
+
+            <span class="text-dark material-icons">
+                        label_important
+                        </span>
+            <div class="mt-2 text-secondary lead text-left">Get the latest posts here</div>
 
         </div>
     </div>
@@ -51,26 +55,32 @@
             <div class="col">
 
 
-                <div class="card h-100" id="Latescard{{loop.index}}" style="width: 14rem; ">
-                    <img id="Latestthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                    <div class="card-body">
-                        <h3 id="Latesthead{{loop.index}}">{{db.heading}}</h3>
-                        <p class="card-text" id='Latestdesc{{loop.index}}'>{{db.description}}</p>
-                    </div>
-                    <small class="text-muted">Posted on :{{db.date}}</small>
-                    <div class="text-center my-3">
+                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}" id="Latestid{{loop.index}}" class="streatched-link">
+                    <div class="card h-100" id="Latestcard{{loop.index}}" style="width: 100% ">
+                        <img id="Latestthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
+                        <div class="card-body">
+                            <div style="font-size: 3vh;font-weight:bold" class="text-dark" id="Latesthead{{loop.index}}">{{db.heading}}</div>
+                            <div class="text-secondary" style="font-size: 2.5vh;" class="card-text" id='Latestdesc{{loop.index}}'>{{db.description}}</div>
+                        </div>
 
-                        <a style="width: 90%; margin-left:5%;" href="/Read_more_{{db.type[0:-4]}}/{{db.id}}" id="Latestid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
+
+
+                        <div class="card-footer">
+                            <small class="text-muted">Posted on :{{db.date}}</small>
+                        </div>
                     </div>
-                </div>
+
+                </a>
+
 
             </div>
-
             {% endfor %}
 
-
         </div>
+
+
     </div>
+
 
 
 
@@ -80,41 +90,51 @@
     <!-- arduino Project Section------------------------------------------------------------------------------>
 
     <div class="parallexTwo">
-        <div class="jumbotron jumbotron-fluid" id="arduinoProject">
+        <div class="mt-5 jumbotron jumbotron-fluid " id="arduinoProject">
             <div class="container">
-                <h1 class="display-5">Arduino Projects</h1>
-                <p class="lead">Get the Arduino-projects here</p>
+                <a href="#" class="badge badge-transparent">
+                    <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5">Arduino Projects</span>
+
+                    <span class="text-dark material-icons">
+                        label_important
+                        </span>
+                    <div class="mt-2 text-secondary lead text-left">Click here to get all Arduino projects</div>
+                </a>
 
             </div>
         </div>
         <div class="container text-center arduino desktopViewArduinoPost">
-            <div class="row" style="margin-top:100px;" id="Ard">
+            <div class="row " style="margin-top:80px;" id="Ard">
                 {% for db in arduino_project.items %}
                 <div class="col">
 
 
-                    <div class="card h-100" id="Ardcard{{loop.index}}" style="width: 14rem; ">
-                        <img id="Ardthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h3 id="Ardhead{{loop.index}}">{{db.heading}}</h3>
-                            <p class="card-text" id='Arddesc{{loop.index}}'>{{db.description}}</p>
+                    <a href="/Read_more_Ard/{{db.id}}" id="Ardid{{loop.index}}" class="streatched-link">
+                        <div class="card h-100" id="Ardcard{{loop.index}}" style="width: 100% ">
+                            <img id="Ardthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
+                            <div class="card-body">
+                                <div style="font-size: 3vh;font-weight:bold" class="text-dark" id="Ardhead{{loop.index}}">{{db.heading}}</div>
+                                <div class="text-secondary" style="font-size: 2.5vh;" class="card-text" id='Arddesc{{loop.index}}'>{{db.description}}</div>
+                            </div>
+
+
+
+                            <div class="card-footer">
+                                <small class="text-muted">Posted on :{{db.date}}</small>
+                            </div>
                         </div>
-                        <small class="text-muted">Posted on :{{db.date}}</small>
 
-                        <div class="text-center my-3">
-
-                            <a style="width: 90%; margin-left:5%;" href="/Read_more_Ard/{{db.id}}" id="Ardid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
-                        </div>
-                    </div>
-
+                    </a>
                 </div>
                 {% endfor %}
+
+
             </div>
 
         </div>
 
 
-        <nav aria-label="Page navigation example " class="mt-5 page">
+        <nav aria-label="Page navigation example " class="mt-4 page">
             <ul class="pagination justify-content-center">
                 <li class="Ard page-item-custom ">
                     <!-- ard for arduino area -->
@@ -133,6 +153,9 @@
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
+                <li class="Ard page-item-custom">
+
+                </li>
             </ul>
         </nav>
 
@@ -142,10 +165,16 @@
     <!-- ---------------------------------------------------------------------------------------endArduino projects -->
     <!-- Start basic projects -->
     <div class="parallex3">
-        <div class="jumbotron jumbotron-fluid" id="basicElectronics" style="position:relative; height: 250px;">
+        <div class="jumbotron jumbotron-fluid" id="basicElectronics" style="position:relative; height: 200px;">
             <div class="container">
-                <h1 class="display-5">Basic Electronics</h1>
-                <p class="lead">Get the basic electronics projects here using 555IC , OP-Amp, Transistors, and many more </p>
+                <a href="#" class="text-left badge badge-transparent">
+                    <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5">Basic Electronics</span>
+
+                    <span class="text-dark material-icons">
+                        label_important
+                        </span>
+                    <div class="mt-2 text-secondary lead text-left">Click here to get all Basic Electronics projects using 555ic,op-amps,degital gates etc.</div>
+                </a>
 
             </div>
         </div>
@@ -155,20 +184,22 @@
                 {% for db in basic_project.items %} {%if db.heading is defined %}
                 <div class="col">
 
+                    <a href="" id="Basicid{{loop.index}}" class="streacthed-link">
 
-                    <div class="card h-100" id="Basiccard{{loop.index}}" style="width: 14rem; ">
-                        <img id="Basicthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h3 id="Basichead{{loop.index}}">{{db.heading}}</h3>
-                            <p class="card-text" id='Basicdesc{{loop.index}}'>{{db.description}}</p>
+                        <div class="card h-100" id="Basiccard{{loop.index}}" style="width: 100%; ">
+                            <img id="Basicthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
+                            <div class="card-body">
+                                <div style="font-size: 3vh;font-weight:bold;" class="text-dark" id="Basichead{{loop.index}}">{{db.heading}}</div>
+                                <div class="text-secondary card-text" style="font-size: 2.5vh;" id='Basicdesc{{loop.index}}'>{{db.description}}</div>
+                            </div>
+
+                            <div class="card-footer">
+                                <small class="text-muted">Posted on :{{db.date}}</small>
+
+
+                            </div>
                         </div>
-                        <small class="text-muted">Posted on :{{db.date}}</small>
-
-                        <div class="text-center my-3">
-
-                            <a style="width: 90%; margin-left:5%;" href="/Read_more_Basic/{{db.id}}" id="Basicid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
-                        </div>
-                    </div>
+                    </a>
 
                 </div>
                 {% endif %} {% endfor %}
@@ -201,10 +232,16 @@
     <!-- end of basic -->
     <!-- ? iot start -->
     <div class="parallex4">
-        <div class="jumbotron jumbotron-fluid" id="IOTProjects" style="position:relative; height: 250px;">
+        <div class="jumbotron jumbotron-fluid" id="IOTProjects" style="position:relative; height: 200px;">
             <div class="container">
-                <h1 class="display-5 animated">IOT Projects</h1>
-                <p class="lead">Get the IOT related projects here</p>
+                <a href="#" class="text-left badge badge-transparent">
+                    <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5">IOT</span>
+
+                    <span class="text-dark material-icons">
+                        label_important
+                        </span>
+                    <div class="mt-2 text-secondary lead text-left">Click here to get all IOT projects.</div>
+                </a>
             </div>
         </div>
         <div class="text-center container IOT" style="margin-top: 100px;">
@@ -213,19 +250,20 @@
                 {% for db in iot_project.items %}
                 <div class="col">
 
+                    <a href="" class="streacthed-link" id="Iotid{{loop.index}}">
 
-                    <div class="card h-100" id="Iotcard{{loop.index}}" style="width: 14rem; ">
-                        <img id="Iotthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <h3 id="Iothead{{loop.index}}">{{db.heading}}</h3>
-                            <p class="card-text" id='Iotdesc{{loop.index}}'>{{db.description}}</p>
-                        </div>
+                        <div class="card h-100" id="Iotcard{{loop.index}}" style="width:100%; ">
+                            <img id="Iotthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
+                            <div class="card-body" style="width: 100%;">
+                                <div style="font-size: 3vh;font-weight:bold;" class="text-dark" id="Iothead{{loop.index}}">{{db.heading}}</div>
+                                <div style="font-size: 2vh;" class="text-secondary card-text" id='Iotdesc{{loop.index}}'>{{db.description}}</div>
+                            </div>
+                            <div class="card-footer">
 
-                        <small class="text-muted">Posted on :{{db.date}}</small>
-                        <div class="text-center my-3">
+                                <small class="text-muted">Posted on :{{db.date}}</small>
+                            </div>
+                    </a>
 
-                            <a style="width: 90%; margin-left:5%;" href="/Read_more_Iot/{{db.id}}" id="Iotid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
-                        </div>
                     </div>
 
                 </div>
@@ -258,10 +296,16 @@
     </div>
 
     <!-- end of Iot -->
-    <div class="jumbotron jumbotron-fluid" id="otherPost" style="height: 250px;">
+    <div class="jumbotron jumbotron-fluid" id="otherPost" style="height: 200px;">
         <div class="container">
-            <h1 class="display-5">Other Posts</h1>
-            <p class="lead">Get the Other Tech-Post Here</p>
+            <a href="#" class="text-left badge badge-transparent">
+                <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5">Other posts</span>
+
+                <span class="text-dark material-icons">
+                    label_important
+                    </span>
+                <div class="mt-2 text-secondary lead text-left">Click here to get all tech posts</div>
+            </a>
 
         </div>
     </div>
@@ -272,20 +316,21 @@
             {% for db in other_project.items %}
             <div class="col">
 
+                <a href="" class="streached-link" id="Otherid{{loop.index}}">
 
-                <div class="card h-100" id="Othercard{{loop.index}}" style="width: 14rem; ">
-                    <img id="Otherthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                    <div class="card-body">
-                        <h3 id="Otherhead{{loop.index}}">{{db.heading}}</h3>
-                        <p class="card-text" id='Otherdesc{{loop.index}}'>{{db.description}}</p>
+                    <div class="card h-100" id="Othercard{{loop.index}}" style="width: 100%; ">
+                        <img id="Otherthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
+                        <div class="card-body">
+                            <div class="text-dark" style=" font-size:3vh;font-weight:bold" id="Otherhead{{loop.index}}">{{db.heading}}</div>
+                            <div style="font-size: 2.5vh;" class="text-secondary card-text" id='Otherdesc{{loop.index}}'>{{db.description}}</div>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Posted on :{{db.date}}</small>
+
+                        </div>
+
                     </div>
-                    <small class="text-muted">Posted on :{{db.date}}</small>
-
-                    <div class="text-center my-3">
-
-                        <a style="width: 90%; margin-left:5%;" href="/Read_more_Ard/{{db.id}}" id="Otherid{{loop.index}}" class="btn btn-warning btn-block btn-sm">Read More</a>
-                    </div>
-                </div>
+                </a>
 
             </div>
             {% endfor %}
@@ -338,18 +383,21 @@
                 <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
 
                     <div class="postMobile mt-3">
-                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                        <div class="align-self-center">
+
+                            <img src="/static/images/{{db.thumbnail}}" class=" thumbnailMob image-fluid " alt="Responsive image">
+                        </div>
                         <div class="mobViewContent">
                             <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
                             <div>
-                                <span class="text-dark" style="font-size: 1.1em;">
+                                <span class="text-dark">
                                     <b>
 
-                                        {{db.heading}} is very good and also bad
+                                        {{db.heading}}
                                     </b>
                                 </span>
-                                <p class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
-                                </p>
+                            </div>
+                            <div class="descText text-left mt-2  text-secondary"><i>posted on : {{db.date}}</i>
                             </div>
                             <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
                         </div>
@@ -367,10 +415,13 @@
     <!-- !Arduino post mobile view -->
     <div class="mobileView">
         <div class="jumbotron text-center" style="height: 200px;">
-            <div class="text-center" style="font-size: 40px; font-weight:bold;">Arduino Post</div>
+            <a href="#" class="streatched-link">
 
-            <p class="lead text-center" style="font-size: 25px;">Arduino related project</p>
+                <div class="text-center text-dark" style="font-size: 40px; font-weight:bold;">Arduino Post</div>
 
+                <p class="text-secondary lead text-center" style="font-size: 20px;">Click here to get all Arduino related projects</p>
+
+            </a>
 
         </div>
         <div class="mobileViewAll">
@@ -380,208 +431,221 @@
                 <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
 
                     <div class="postMobile mt-3">
-                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                        <img src="/static/images/{{db.thumbnail}}" style="height: auto;" class="align-self- thumbnailMob image-fluid " alt="Responsive image">
                         <div class="mobViewContent">
                             <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
                             <div>
-                                <span class="text-dark" style="font-size: 1.1em;">
-                                    <b>
 
-                                        {{db.heading}} is very good and also bad
-                                    </b>
-                                </span>
-                                <p class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
-                                </p>
+                                <b class="tex-dark text-dark align-self-top">
+
+                                    {{db.heading}}
+                                </b>
+
+
+                                <div class="text-secondary text-left descText  mt-3"><i>
+
+                                 posted on:{{db.date}}</div>
+                                </i>
+                                </div>
+                                <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
                             </div>
-                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
-                        </div>
-                        <!-- <button class="btn btn-block btn-sm"> -->
-                        <!-- 
+                            <!-- <button class="btn btn-block btn-sm"> -->
+                            <!-- 
+
                         </button> -->
-                    </div>
+                        </div>
                 </a>
                 {% endfor %}
 
+                </div>
+                <button type="button" id="seeMoreBtnArd" name="{{arduino_project.pages}}" onclick="seeMore('Ard')" class=" mt-2 btn btn-secondary btn-lg btn-block">See More</button>
             </div>
-            <button type="button" id="seeMoreBtnArd" name="{{arduino_project.pages}}" onclick="seeMore('Ard')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
         </div>
-    </div>
 
 
-    <!-- * Basic electronics posts  -->
-    <div class="mobileView">
-        <div class="jumbotron" style="height: 30vh;">
-            <h1 class="display-4 text-left" style="font-size: 5vh;">Basic electronics Projects</h1>
+        <!-- * Basic electronics posts  -->
+        <div class="mobileView">
+            <div class="jumbotron text-center" style="height: 200px;">
+                <a href="">
 
-            <p class="lead text-left" style="font-size: 3vh;">Get project related to 555ic opamp Transistors etc here</p>
+                    <div class="display-4 text-center text-dark" style="font-size: 30px;font-weight:bold">Basic electronics Projects</div>
 
+                    <p class="lead text-center text-secondary" style="font-size: 20px;">Click here to Get All project related to 555ic opamp Transistors etc here</p>
 
-        </div>
-        <div class="mobileViewAll">
-
-            <div class="mobContainer mobBasic" id="mobBasic">
-                {%for db in basic_project.items %}
-                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
-
-                    <div class="postMobile mt-3">
-                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
-                        <div class="mobViewContent">
-                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
-                            <div>
-                                <span class="text-dark" style="font-size: 1.1em;">
-                                    <b>
-
-                                        {{db.heading}} is very good and also bad
-                                    </b>
-                                </span>
-                                <p class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
-                                </p>
-                            </div>
-                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
-                        </div>
-                        <!-- <button class="btn btn-block btn-sm"> -->
-                        <!-- 
-                        </button> -->
-                    </div>
                 </a>
-                {% endfor %}
 
             </div>
-            <button type="button" name="{{basic_project.pages}}" id="seeMoreBtnBasic" onclick="seeMore('Basic')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
-        </div>
-    </div>
+            <div class="mobileViewAll">
 
-    <!-- ? iot related project here -->
-    <div class="mobileView">
-        <div class="jumbotron" style="height: 30vh;">
-            <h1 class="display-4 text-left" style="font-size: 5vh;">IOT Projects</h1>
+                <div class="mobContainer mobBasic" id="mobBasic">
+                    {%for db in basic_project.items %}
+                    <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
 
-            <p class="lead text-left" style="font-size: 3vh;">Get project related to IOT here</p>
-
-
-        </div>
-        <div class="mobileViewAll">
-
-            <div class="mobContainer mobIot" id="mobIot">
-                {%for db in iot_project.items %}
-                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
-
-                    <div class="postMobile mt-3">
-                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
-                        <div class="mobViewContent">
-                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
-                            <div>
-                                <span class="text-dark" style="font-size: 1.1em;">
+                        <div class="postMobile mt-3">
+                            <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                            <div class="mobViewContent">
+                                <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
+                                <div>
+                                    <span class="text-dark">
                                     <b>
 
-                                        {{db.heading}} is very good and also bad
+                                        {{db.heading}}
                                     </b>
                                 </span>
-                                <p class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
-                                </p>
+                                    <p class="descText text-secondary mt-3 text-left"><i>post on :{{db.date}}</i>
+                                    </p>
+                                </div>
+                                <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
                             </div>
-                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
-                        </div>
-                        <!-- <button class="btn btn-block btn-sm"> -->
-                        <!-- 
+                            <!-- <button class="btn btn-block btn-sm"> -->
+                            <!-- 
                         </button> -->
-                    </div>
-                </a>
-                {% endfor %}
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                </div>
+                <button type="button" name="{{basic_project.pages}}" id="seeMoreBtnBasic" onclick="seeMore('Basic')" class=" mt-2 btn btn-secondary btn-lg btn-block">See More</button>
+            </div>
+        </div>
+
+        <!-- ? iot related project here -->
+        <div class="mobileView">
+            <a href="">
+
+                <div class="jumbotron text-center text-dark" style="height: 200px;">
+                    <div class="display-4 text-center text-dark" style="font-size:40px;font-weight:bold;">IOT Projects</div>
+
+                    <p class="lead text-center text-secondary" style="font-size: 25px;">Get project related to IOT here</p>
+
+            </a>
 
             </div>
-            <button type="button" name="{{iot_project.pages}}" id="seeMoreBtnIot" onclick="seeMore('Iot')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
-        </div>
-    </div>
-    <!-- todo OTHER post here -->
-    <div class="mobileView">
-        <div class="jumbotron" style="height: 30vh;">
-            <h1 class="display-4 text-left" style="font-size: 5vh;">Other posts</h1>
+            <div class="mobileViewAll">
 
-            <p class="lead text-left" style="font-size: 3vh;">Get other tech related articles here</p>
+                <div class="mobContainer mobIot" id="mobIot">
+                    {%for db in iot_project.items %}
+                    <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
 
-
-        </div>
-        <div class="mobileViewAll">
-
-            <div class="mobContainer mobOther" id="mobOther">
-                {%for db in other_project.items %}
-                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
-
-                    <div class="postMobile mt-3">
-                        <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
-                        <div class="mobViewContent">
-                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
-                            <div>
-                                <span class="text-dark" style="font-size: 1.1em;">
+                        <div class="postMobile mt-3">
+                            <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                            <div class="mobViewContent">
+                                <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
+                                <div>
+                                    <span class="text-dark">
                                     <b>
 
                                         {{db.heading}} is very good and also bad
                                     </b>
                                 </span>
-                                <div class="text-secondary mt-1">{{db.description}} Lorem ipsum dolor sit amet
-                                    <div class="text-dark"><i>
+                                    <p class="descText text-secondary text-left mt-3"><i>post on:{{db.date}}</i></p>
+                                </div>
+                                <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
+                            </div>
+                            <!-- <button class="btn btn-block btn-sm"> -->
+                            <!-- 
+                        </button> -->
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                </div>
+                <button type="button" name="{{iot_project.pages}}" id="seeMoreBtnIot" onclick="seeMore('Iot')" class=" mt-2 btn btn-secondary btn-lg btn-block">See More</button>
+            </div>
+        </div>
+        <!-- todo OTHER post here -->
+        <div class="mobileView">
+            <div class="jumbotron text-center" style="height: 200px;">
+                <a href="">
+
+                    <div class="display-4 text-center text-dark" style="font-size: 40px;font-weight:bold">Other posts</div>
+
+                    <p class="lead text-center text-secondary" style="font-size: 25px;">Get other tech related articles here</p>
+                </a>
+
+
+            </div>
+            <div class="mobileViewAll">
+
+                <div class="mobContainer mobOther" id="mobOther">
+                    {%for db in other_project.items %}
+                    <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+
+                        <div class="postMobile mt-3">
+                            <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
+                            <div class="mobViewContent">
+                                <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
+                                <div>
+                                    <span class="text-dark">
+                                    <b>
+
+                                        {{db.heading}} is very good and also bad
+                                    </b>
+                                </span>
+                                    <div class="descText text-secondary mt-3 text-left">
+                                        <div>
+                                            <i>
 
                                        posted on: {{db.date}}
                                     </i>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
                             </div>
-                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
-                        </div>
-                        <!-- <button class="btn btn-block btn-sm"> -->
-                        <!-- 
+                            <!-- <button class="btn btn-block btn-sm"> -->
+                            <!-- 
                         </button> -->
-                    </div>
-                </a> {% endfor %}
+                        </div>
+                    </a> {% endfor %}
 
+                </div>
+                <button type="button" name="{{other_project.pages}}" id="seeMoreBtnOther" onclick="seeMore('Other')" class=" mt-2 btn btn-secondary btn-lg btn-block">See More</button>
             </div>
-            <button type="button" name="{{other_project.pages}}" id="seeMoreBtnOther" onclick="seeMore('Other')" class=" mt-2 btn btn-secondary btn-sm btn-block">See More</button>
         </div>
     </div>
-</div>
-<!-- !-------ABOUT ME PAGE--------------------------------------------------------------------------------------------------About Me page -->
-<div class="jumbotron about" id="about">
-    <div class="display-4 text-center" style="font-size: 5vh;font-weight:bold;">About me</div>
+    <!-- !-------ABOUT ME PAGE--------------------------------------------------------------------------------------------------About Me page -->
+    <div class="jumbotron about" id="about">
+        <div class="display-4 text-center" style="font-size: 5vh;font-weight:bold;">About me</div>
 
-    <p class="lead text-center" id="font_about">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus sint quidem, commodi inventore similique nemo, molestias
-        rerum nostrum facere vitae expedita numquam aliquam tenetur non, alias asperiores excepturi. Quis, expedita.</p>
-
+        <p class="lead text-center" id="font_about">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus sint quidem, commodi inventore similique nemo,
+            molestias rerum nostrum facere vitae expedita numquam aliquam tenetur non, alias asperiores excepturi. Quis, expedita.</p>
 
 
-    <div class="text-center">
-        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal1" style="font-weight: bold;font-size:20px" data-whatever="@mdo">Contact</button>
-    </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
 
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class="text-center">
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal1" style="font-weight: bold;font-size:20px" data-whatever="@mdo">Contact</button>
+        </div>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-                </div>
-                <div class="modal-body">
-                    <form>
+                    </div>
+                    <div class="modal-body">
+                        <form>
 
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Your name</label>
-                            <input type="text" onblur="validateName(this.id,'messageBtn')" class="form-control" id="message-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-mail" class="col-form-label">Your E-mail</label>
-                            <input type="email" onblur="validateEmail(this.id,'messageBtn')" class="form-control" id="message-mail">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control" onblur="validateMessage(this.id,'messageBtn')" id="message-text"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="messsageBtn" class="btn btn-primary" onclick="sendMessage()">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Your name</label>
+                                <input type="text" onblur="validateName(this.id,'messageBtn')" class="form-control" id="message-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-mail" class="col-form-label">Your E-mail</label>
+                                <input type="email" onblur="validateEmail(this.id,'messageBtn')" class="form-control" id="message-mail">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" onblur="validateMessage(this.id,'messageBtn')" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="messsageBtn" class="btn btn-primary" onclick="sendMessage()">
               <div>send message</div>
               <div class="spinner-border spinner-border-sm " id="msg_btn_spinner" style="display:none; margin:0 auto;"
                 role="status">
@@ -589,41 +653,41 @@
               </div>
 
             </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<!-- Footer -->
+    <!-- Footer -->
 
-<div class="footer">
-    <i class="material-icons" id="icons">
+    <div class="footer">
+        <i class="material-icons" id="icons">
       copyright
     </i> engineeringproject.net
-    <div class="socilMedia"></div>
-</div>
+        <div class="socilMedia"></div>
+    </div>
 
 
-<!-- Optional JavaScript -->
-{% endblock %} {% block script %}
+    <!-- Optional JavaScript -->
+    {% endblock %} {% block script %}
 
-<script src="/static/main.js"></script>
-<script src="/static/paginate.js"></script>
-<script src="/static/message.js"></script>
-<script>
-    $('#exampleModal').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget)
-        var recipient = button.data('whatever')
-        var modal = $(this)
-        modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body input').val(recipient)
-    })
-</script>
+    <script src="/static/main.js"></script>
+    <script src="/static/paginate.js"></script>
+    <script src="/static/message.js"></script>
+    <script>
+        $('#exampleModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+    </script>
 
-{% endblock %}
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    {% endblock %}
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

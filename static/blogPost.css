@@ -1,0 +1,563 @@
+a {
+    text-decoration: none;
+}
+
+#btnSearchBar {
+    background-color: black;
+    color: #F2C36B;
+    border-color: #F2C36B;
+    border: solid 1px;
+    cursor: pointer;
+    outline: none;
+    padding: 5px;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#btnSearchBar:hover {
+    color: black;
+    background-color: #F2C36B;
+    transition: 1s;
+}
+
+.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #F2C36B;
+    background-color: black;
+    padding: 10px;
+    top: 100px;
+    font-family: 'Orbitron', sans-serif;
+    right: 44%;
+    font-size: 20px;
+}
+
+.dropdown-menuMob {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #F2C36B;
+    padding: 10px;
+    top: 200px;
+    left: 20vw;
+    width: 200px;
+    font-family: 'Orbitron', sans-serif;
+    right: 44%;
+    font-size: 15px;
+    font-weight: 200;
+    height: 200px;
+    justify-content: space-around;
+    justify-items: space-around;
+}
+
+#dropDownDesktop {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background: #F2C36B;
+    padding: 10px;
+    top: 60px;
+    left: 30%;
+    width: 200px;
+    font-family: 'Orbitron', sans-serif;
+    right: 44%;
+    font-size: 15px;
+    font-weight: 200;
+    height: 200px;
+    justify-content: space-around;
+    justify-items: space-around;
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menuMob a {
+    text-decoration: none;
+    color: black;
+}
+
+.input input::placeholder {
+    font-size: 18px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.input {
+    position: relative;
+    font-size: 1.5em;
+    background: linear-gradient(41deg, #F2C36B, black);
+    padding: 2px;
+    display: inline-block;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.input *:not(span) {
+    position: relative;
+    display: inherit;
+    border-radius: inherit;
+    margin: 0;
+    border: none;
+    outline: none;
+    padding: 0 0.325em;
+    z-index: 1;
+}
+
+.input *:not(span):focus+span {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.input span {
+    -webkit-transform: scale(0.993, 0.94);
+    transform: scale(0.993, 0.94);
+    -webkit-transition: opacity 0.25s, -webkit-transform 0.5s;
+    transition: opacity 0.25s, -webkit-transform 0.5s;
+    transition: transform 0.5s, opacity 0.25s;
+    transition: transform 0.5s, opacity 0.25s, -webkit-transform 0.5s;
+    opacity: 0;
+    position: absolute;
+    z-index: 0;
+    margin: 4px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #fff, 1px -1px 20px #F2C36B, -1px 1px 20px black;
+}
+
+.coverImg {
+    width: 70%;
+    /* height: 60vh; */
+    margin-left: 15%;
+    margin-top: 20px;
+}
+
+.jumbotron {
+    width: 100%;
+    background: rgba(214, 214, 214, 0.3);
+    height: 40%;
+    margin-top: 60px;
+    z-index: -2;
+    position: relative;
+}
+
+.jumbotronText {
+    top: 36%;
+    left: 15%;
+    font-size: 50px;
+    font-family: 'Orbitron', sans-serif;
+    position: absolute;
+    width: 70%;
+    color: rgb(59, 59, 59);
+}
+
+.quickQuesions {
+    width: 50%;
+    margin-left: 20%;
+    margin-top: 20px;
+}
+
+.questionList {
+    list-style: none;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.questionList li {
+    margin-top: 50px;
+}
+
+.questionList li h3 {
+    font-family: 'Play', sans-serif;
+    color: rgb(49, 48, 48);
+}
+
+.questionList li {
+    font-family: 'Play', sans-serif;
+    font-size: 1.3vw;
+}
+
+.quickAns {
+    color: rgb(99, 96, 96);
+    margin-top: 5px;
+}
+
+#indexListDiv {
+    width: 50%;
+    margin-left: 20%;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#indexListDiv ul {
+    list-style: decimal;
+}
+
+#indexListDiv ul li a {
+    font-family: 'Play', sans-serif;
+    margin-top: 0px;
+    color: #177DA5;
+}
+
+#indexListDiv ul li {
+    font-family: 'Play', sans-serif;
+    margin-top: 10px;
+    color: #177DA5;
+    margin-left: 3%;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#paragraphs {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 100px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#paragraphs div {
+    margin-bottom: 1.2vw;
+    font-size: 3vw;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+}
+
+#paragraphs p {
+    font-size: 1.8vw;
+    font-family: 'Play', sans-serif;
+    color: rgb(54, 54, 54);
+}
+
+#conclusion {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 0px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#conclusion div {
+    margin-bottom: 1.2vw;
+    font-size: 3vw;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+#conclusion p {
+    font-size: 1.8vw;
+    font-style: italic;
+    font-family: 'Play', sans-serif;
+    color: rgb(95, 95, 95);
+}
+
+#paragraphs img {
+    margin-top: 1.2vw;
+    margin-bottom: 4.8vw;
+}
+
+
+/* !Tablws--------- */
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 20px;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    width: 50%;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: #F2C36B;
+}
+
+.table {
+    margin-top: 4.5vw;
+}
+
+#code {
+    z-index: -5;
+    position: static;
+}
+
+#code h1 {
+    margin-left: 15%;
+    margin-top: 5%;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#code pre {
+    margin-left: 15%;
+    width: 70%;
+    z-index: -1;
+}
+
+#code pre code {
+    z-index: -1;
+}
+
+.toolbar {
+    margin-right: 17%;
+    margin-top: .5%;
+}
+
+
+/*
+ CSS for the main interaction
+*/
+
+.accordion>input[type="checkbox"] {
+    position: absolute;
+    left: -100vw;
+}
+
+.accordion .contentCollapse {
+    overflow-y: hidden;
+    height: 0;
+    transition: height 0.3s ease;
+}
+
+.accordion>input[type="checkbox"]:checked~.contentCollapse {
+    height: auto;
+    overflow: visible;
+}
+
+.accordion label {
+    display: block;
+}
+
+
+/*
+   Styling
+  */
+
+.accordion {
+    margin-bottom: 1em;
+}
+
+.accordion>input[type="checkbox"]:checked~.contentCollapse {
+    padding: 15px;
+    border: 1px solid #e8e8e8;
+    border-top: 0;
+}
+
+.accordion .handle {
+    margin: 0;
+    font-size: 1.125em;
+    line-height: 1.2em;
+}
+
+.accordion label {
+    color: #333;
+    cursor: pointer;
+    font-weight: normal;
+    padding: 15px;
+    background: #e8e8e8;
+}
+
+.accordion label:hover,
+.accordion label:focus {
+    background: #d8d8d8;
+}
+
+.accordion .handle label:before {
+    font-family: 'fontawesome';
+    content: "\f054";
+    display: inline-block;
+    margin-right: 10px;
+    font-size: .58em;
+    line-height: 1.556em;
+    vertical-align: middle;
+}
+
+.accordion>input[type="checkbox"]:checked~.handle label:before {
+    content: "\f078";
+}
+
+
+/*
+   Demo purposes only
+  */
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.accordion {
+    max-width: 65em;
+}
+
+.accordion p:last-child {
+    margin-bottom: 0;
+}
+
+.contentCollapse p {
+    font-size: 1.2vw;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#faq {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 5%;
+}
+
+#faq h1 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+/* !------------------------------- CARDS */
+
+.center {
+    background-color: #f2f2f2;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.center h5 {
+    margin: 0px;
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+.center p {
+    font-size: 12px;
+}
+
+.center {
+    height: 50vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* End Non-Essential  */
+
+.property-card {
+    height: 18em;
+    width: 14em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: relative;
+    -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border-radius: 16px;
+    overflow: hidden;
+    -webkit-box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+    box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+}
+
+
+/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
+
+
+/* Top Half of card, image. */
+
+.property-image {
+    height: 6em;
+    width: 14em;
+    padding: 1em 2em;
+    position: Absolute;
+    top: 0px;
+    -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-image: url('https://source.unsplash.com/250x250/?technology,electronics');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+/* Bottom Card Section */
+
+.property-description {
+    background-color: #FAFAFC;
+    height: 12em;
+    width: 14em;
+    position: absolute;
+    bottom: 0em;
+    -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding: 0.5em 1em;
+    text-align: center;
+}
+
+
+/* Social Icons */
+
+.property-social-icons {
+    width: 1em;
+    height: 1em;
+    background-color: black;
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+
+/* Property Cards Hover States */
+
+.property-card:hover .property-description {
+    height: 0em;
+    padding: 0px 1em;
+}
+
+.property-card:hover .property-image {
+    height: 18em;
+}
+
+.property-card:hover .property-social-icons {
+    background-color: white;
+}
+
+.property-card:hover .property-social-icons:hover {
+    background-color: #F2C36B;
+    cursor: pointer;
+}
+
+#relatedPost {
+    display: flex;
+    width: 70%;
+    margin-left: 15%;
+}

@@ -14,7 +14,6 @@ with open('config.json', 'r') as c:
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']=params['local_uri_all_post']
-app.config['SQLALCHEMY_BINDS']={'other_details':params['local_uri_other']}
 app.config["SECRET_KEY"]="###@@@***786786"
 app.config["SECURITY_PASSWORD_SALT"]="###@@@***abrar"
 # app.config['SECURITY_LOGIN_USER_TEMPLATE'] = '/security/login_user.html'
@@ -68,6 +67,11 @@ class Arduinoproject_posts(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False);
     date=db.Column(db.String(50), nullable=False);
     thumbnail=db.Column(db.String(100), nullable=False);
+    cover_img=db.Column(db.String(100), nullable=False);
+    url=db.Column(db.String(100), nullable=False);
+    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_title=db.Column(db.String(100), nullable=False);
+    img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
@@ -82,6 +86,7 @@ class Arduinoproject_posts(db.Model):
     index=db.relationship('Index_arduino',backref='post_name');
     content_parts=db.relationship('Content_arduino',backref='post_name');
     comparison_table=db.relationship('Comparison_table_arduino',backref='post_name');
+    code=db.relationship('Code_arduino',backref='post_name');
   
     faq=db.relationship('Faq_arduino',backref='post_name');
     
@@ -93,6 +98,10 @@ class Index_arduino(db.Model):
     topic=db.Column(db.String(100),nullable=True)
 
     arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
+class Code_arduino(db.Model) :
+        id=db.Column(db.Integer ,primary_key=True, nullable=False)
+        heading=db.Column(db.String(100),nullable=True)
+        code=db.Column(db.String(5000),nullable=True)
 
 
 
@@ -124,6 +133,7 @@ class Content_arduino(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
     
     heading=db.Column(db.String(100),nullable=True)
+    img_description=db.Column(db.String(100),nullable=True)
     img=db.Column(db.String(100),nullable=True)
     para=db.Column(db.String(500),nullable=True)
     
@@ -152,6 +162,11 @@ class Basicproject_posts(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False);
     date=db.Column(db.String(50), nullable=False);
     thumbnail=db.Column(db.String(100), nullable=False);
+    cover_img=db.Column(db.String(100), nullable=False);
+    url=db.Column(db.String(100), nullable=False);
+    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_title=db.Column(db.String(100), nullable=False);
+    img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
@@ -159,6 +174,7 @@ class Basicproject_posts(db.Model):
     Tableheading1=db.Column(db.String(100),nullable=True)        
     Tableheading2=db.Column(db.String(100),nullable=True)
     conclusion=db.Column(db.String(500),nullable=True)
+    code=db.relationship('Code_basic',backref='post_name');
     
     
     quick_answers=db.relationship('Quick_answers_basic', backref='post_name')
@@ -196,7 +212,8 @@ class Content_basic(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
     
     heading=db.Column(db.String(100),nullable=True)
-    img=db.Column(db.String(500),nullable=True)
+    img_description=db.Column(db.String(100),nullable=True)
+    img=db.Column(db.String(100),nullable=True)
     para=db.Column(db.String(500),nullable=True)
     basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
         
@@ -220,13 +237,21 @@ class Index_basic(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     topic=db.Column(db.String(100),nullable=True)
     basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
-
+class Code_basic(db.Model) :
+        id=db.Column(db.Integer ,primary_key=True, nullable=False)
+        heading=db.Column(db.String(100),nullable=True)
+        code=db.Column(db.String(5000),nullable=True)
 # *-----------------------------------------------------------------------------------------------------------
 class Iotproject_posts(db.Model):
     
     id=db.Column(db.Integer ,primary_key=True, nullable=False);
     date=db.Column(db.String(50), nullable=False);
     thumbnail=db.Column(db.String(100), nullable=False);
+    cover_img=db.Column(db.String(100), nullable=False);
+    url=db.Column(db.String(100), nullable=False);
+    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_title=db.Column(db.String(100), nullable=False);
+    img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
@@ -241,6 +266,7 @@ class Iotproject_posts(db.Model):
     comparison_table=db.relationship('Comparison_table_iot',backref='post_name');
     faq=db.relationship('Faq_iot',backref='post_name');
     content_parts=db.relationship('Content_iot',backref='post_name');
+    code=db.relationship('Code_iot',backref='post_name');
    
     comment=db.relationship('Comments_iot',backref='post_name');
     
@@ -276,7 +302,8 @@ class Content_iot(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
     
     heading=db.Column(db.String(100),nullable=True)
-    img=db.Column(db.String(500),nullable=True)
+    img_description=db.Column(db.String(100),nullable=True)
+    img=db.Column(db.String(100),nullable=True)
     para=db.Column(db.String(500),nullable=True)
    
     iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
@@ -304,13 +331,21 @@ class Index_iot(db.Model):
     topic=db.Column(db.String(100),nullable=True)
    
     iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
-    
+class Code_iot(db.Model) :
+        id=db.Column(db.Integer ,primary_key=True, nullable=False)
+        heading=db.Column(db.String(100),nullable=True)
+        code=db.Column(db.String(5000),nullable=True)    
 # *-----------------------------------------------------------------------------------------------------------
 class Other_posts(db.Model):
     
     id=db.Column(db.Integer ,primary_key=True, nullable=False);
     date=db.Column(db.String(50), nullable=False);
     thumbnail=db.Column(db.String(100), nullable=False);
+    cover_img=db.Column(db.String(100), nullable=False);
+    url=db.Column(db.String(100), nullable=False);
+    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_title=db.Column(db.String(100), nullable=False);
+    img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
@@ -326,6 +361,7 @@ class Other_posts(db.Model):
     comparison_table=db.relationship('Comparison_table_other',backref='post_name');
     faq=db.relationship('Faq_other',backref='post_name');
     content_parts=db.relationship('Content_other',backref='post_name');
+    code=db.relationship('Code_other',backref='post_name');
    
     comment=db.relationship('Comments_other',backref='post_name');
 class Quick_answers_other(db.Model):
@@ -355,13 +391,15 @@ class Content_other(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
     
     heading=db.Column(db.String(100),nullable=True)
-    img=db.Column(db.String(500),nullable=True)
-    para=db.Column(db.String(500),nullable=True)
-   
-   
+    img_description=db.Column(db.String(100),nullable=True)
+    img=db.Column(db.String(100),nullable=True)
+    para=db.Column(db.String(1500),nullable=True)
     otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
         
-    
+class Code_other(db.Model) :
+        id=db.Column(db.Integer ,primary_key=True, nullable=False)
+        heading=db.Column(db.String(100),nullable=True)
+        code=db.Column(db.String(5000),nullable=True)
    
 class Comments_other(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
@@ -391,6 +429,11 @@ class Draft(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False);
     date=db.Column(db.String(50), nullable=False);
     thumbnail=db.Column(db.String(100), nullable=False);
+    cover_img=db.Column(db.String(100), nullable=False);
+    url=db.Column(db.String(100), nullable=False);
+    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_title=db.Column(db.String(100), nullable=False);
+    img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
@@ -407,6 +450,8 @@ class Draft(db.Model):
     index=db.relationship('Index_draft',backref='post_name');
     comparison_table=db.relationship('Comparison_table_draft',backref='post_name');
     faq=db.relationship('Faq_draft',backref='post_name');
+    code=db.relationship('Code_draft',backref='post_name');
+    
     
 class Quick_answers_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
@@ -436,7 +481,8 @@ class Content_draft(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
     
     heading=db.Column(db.String(100),nullable=True)
-    img=db.Column(db.String(500),nullable=True)
+    img_description=db.Column(db.String(100),nullable=True)
+    img=db.Column(db.String(100),nullable=True)
     para=db.Column(db.String(500),nullable=True)
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
         
@@ -446,6 +492,11 @@ class Index_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     topic=db.Column(db.String(100),nullable=True)
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
+
+class Code_draft(db.Model) :
+        id=db.Column(db.Integer ,primary_key=True, nullable=False)
+        heading=db.Column(db.String(100),nullable=True)
+        code=db.Column(db.String(5000),nullable=True)
 # !-------------------------------------------------------------------------------------------------------------------------
 
     
@@ -454,22 +505,22 @@ class Index_draft(db.Model):
 
 # ! other_details tables start-----------------------------------------------------------------------------------
 class Subscribers(db.Model):
-    __bind_key__='other_details'
     id=db.Column(db.Integer,primary_key=True, nullable=False)
-    user_name=db.Column(db.String(100),primar_key=True,nullable=False)
+    user_name=db.Column(db.String(100),nullable=False)
     email=db.Column(db.String(111),nullable=False,unique=True)
     
     
 class Messages(db.Model):
-    __bind_key__='other_details'
     id=db.Column(db.Integer,primary_key=True, nullable=False)
-    send_by=db.Column(db.String(100),primar_key=True,nullable=False)
+    send_by=db.Column(db.String(100),nullable=False)
     email=db.Column(db.String(111),nullable=False,unique=False)
     messsage=db.Column(db.String(1000),nullable=False)
 
 class About_me(db.Model):
-    __bind_key__='other_details'
     id=db.Column(db.Integer,primary_key=True, nullable=False)
-    profile=db.Column(db.Integer,nullable=True)
+    profile=db.Column(db.String(500),nullable=True)
 
+def putPassword(pass):
+    pass
+    
 #! end---------------------------------------------------------------------------------------------------------

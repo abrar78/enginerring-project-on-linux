@@ -1,7 +1,7 @@
 {
     "params": {
         "local_server": "True",
-        "local_uri_all_post": "mysql://root:Abrar.786@localhost/all_post",
+        "local_uri_all_post": "mysql://root:Abrar.786@localhost/main",
         "local_uri_other": "mysql://root:Abrar.786@localhost/other_details",
         "fb_url": "https://facebook.com/codingthunder",
         "tw_url": "https://twitter.com/codingthunder",

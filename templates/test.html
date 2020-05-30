@@ -1,14 +1,439 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!--! Prism -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/static/prism (2).css" rel="stylesheet" />
+    <!-- ?Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- ?Bootstrap CSS -->
+
+    <!-- ?custom css -->
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/blogPost.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+
+    <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+
+
+    <link rel="stylesheet" href=/static/normalize.css>
+
+    <title>{% block title %} {% endblock %}</title>
 </head>
 
-<body>
-    {{description}}
+<style>
+
+</style>
+
+<body onresize="myFunction()">
+
+
+    <!-- nav-bar -->
+
+    <nav id="navBar" style=" background-color: black;">
+        <div class="logo ">
+            <img src="/static/images/logoWhite.png" style="margin-left:60px;height:40px;color: #F2C36B;" alt="">
+        </div>
+
+        <div class="content">
+
+            <ul class="list">
+                <li class="nav-item nav-links">
+                    <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/">Home</a>
+                </li>
+                <li class="nav-item dropdown  nav-links">
+
+                    <a style="cursor: pointer;" class="nav-link mainColor" id="projDesktop" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)">projects</a>
+                </li>
+                <div style="display: block" id="dropDownDesktop" class="dropdown-menu animated flipInX">
+                    <a class="dropdown-item" id="navArd" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#arduinoProject">Arduino based projects </a>
+                    <a class="dropdown-item" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" id="navIot" href="#IOTProjects">IOT projects</a>
+                    <a class="dropdown-item" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" id="navBasic" href="#basicElectronics">basic Electronics projects</a>
+
+                </div>
+                <li class="nav-item nav-links">
+                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#otherPost">Other Posts</a>
+                </li>
+                <li class="nav-item  nav-links">
+                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#about">About/contact</a>
+                </li>
+
+
+
+            </ul>
+        </div>
+        <form style="display: flex;" action="/search/1" method='POST'>
+
+
+            <p>
+                <span class="input">
+                    <input type="text" class="search_inp" placeholder="Search projects here....">
+                    <span></span>
+                </span>
+            </p>
+
+            <button id="btnSearchBar">search</button>
+
+        </form>
+
+    </nav>
+    <!-- ! mobile Nav bar--- =====----=====-----=====-=--=-=--=-=-=-=-=-=-=-=-=-=========== -->
+    <nav style="width:100%;position:fixed; top:0px; " id="mobileNav">
+        <div id="top">
+            <div class="burger" id="burger">
+                <span class="material-icons" style="margin-left: 5px;">0
+            menu
+          </span>
+                <img src="/static/images/logoWhite.png" style="margin-left:20px;height:27px;color: #F2C36B;" alt="">
+            </div>
+            <div id="search" class="search">
+
+                <span class="material-icons" style="height: 30px; color: #F2C36B;margin-right:10px">
+            search
+          </span>
+            </div>
+        </div>
+    </nav>
+    <form class="form-inline" action="/search/1" method="POST">
+        <nav class="fixed-top animated fadeInDown" id="mobileSearchBar">
+            <div class="input-group mb-3" style="display:flex; margin-top: 10px;">
+                <p>
+                    <span class="input">
+                        <input type="text" placeholder="Search projects here">
+                        <span></span>
+                    </span>
+                </p>
+
+                <div class="input-group-append">
+                    <button class="" id="btnSearchBar" type="submit" id="button-addon2" style="height: 32px;">
+            <span class="material-icons" style="margin-bottom: 8px;">
+              search
+            </span></button>
+                    <!-------------------------------------------------------------------------------- -->
+                    <!-------------------------------------------------------------------------------- -->
+                </div>
+                <span class="material-icons" id="closeSearch" style="margin-left:0px; color:black;margin-top:4px;">
+          close
+        </span>
+            </div>
+        </nav>
+    </form>
+
+    <nav class="animated" id="slider">
+
+        <div class="content animated slideInRight">
+            <ul class="mobileList">
+                <li class="nav-item nav-links" id="closeSlider">
+                    <!-- log in form -->
+                    <span class="material-icons" style="margin-left:15px; margin-top:20px">
+            close
+          </span>
+
+                </li>
+
+                <li class="nav-item nav-links">
+                    <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#">Home</a>
+
+                </li>
+                <li class="nav-item dropdown  nav-links">
+                    <div id="projMob" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</div>
+                    <ul id="dropDownMob" class="dropdown-menuMob animated slideInLeft">
+                        <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
+                        <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
+                        <a class="dropdown-item" href="#basicElectronics">Basic Electronics projects</a>
+
+                    </ul>
+                </li>
+                <li class="nav-item nav-links">
+                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#otherPost">Other Posts</a>
+                </li>
+                <li class="nav-item  nav-links">
+                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#about">About<br>/Contact</a>
+                </li>
+
+
+            </ul>
+        </div>
+
+    </nav>
+    <!-- end navbar -->
+    <div class="animated bounceIn alert alert-success show fixed-bottom" id="submitted" role="alert" style="display:none;">
+        <strong>Thankyou!!</strong> message sent succesfully.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="animated bounceIn alert alert-success show fixed-top" id="messageS" role="alert" style="display:none;">
+        <strong>Thankyou!! For subscribing our blog ,if you want to unsubscribe please message us through contact button down </strong> .
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- end navbar -->
+
+    <!-- todo +++++------------------------------------------------------------------------------->
+    <section class="blogPost">
+        <div class="jumbotron">
+            <span class="jumbotronText"> Blink the LED using Arduino in 5min ioji iod iiu9 </span>
+        </div>
+        <div id="coverImgDiv">
+            <img class="coverImg" src="https://source.unsplash.com/600x300/?technology,electronics" alt="">
+        </div>
+
+        <div class="quickQuesions">
+            <ul class="questionList">
+                <li>
+
+                    <h3>Question</h3>
+                    <p class="quickAns">sdsad sda Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique rerum nobis nemo at fugit autem unde minima. Alias quidem veniam ab doloremque, assumenda, minima, numquam nihil saepe libero quisquam adipisci?</p>
+                </li>
+                <li>
+
+                    <h3>Question</h3>
+                    <p class="quickAns">sdsad sda Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique rerum nobis nemo at fugit autem unde minima. Alias quidem veniam ab doloremque, assumenda, minima, numquam nihil saepe libero quisquam adipisci?</p>
+                </li>
+                <li>
+
+                    <h3>Question</h3>
+                    <p class="quickAns">sdsad sda Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique rerum nobis nemo at fugit autem unde minima. Alias quidem veniam ab doloremque, assumenda, minima, numquam nihil saepe libero quisquam adipisci?</p>
+                </li>
+            </ul>
+        </div>
+
+
+        <div id="indexListDiv">
+            <h1>Table of Contents</h1>
+            <ul class="indexList">
+                <li><a href="">Heading No</a></li>
+                <li><a href="">Heading No</a></li>
+                <li><a href="">Heading No</a></li>
+                <li><a href="">Heading No</a></li>
+                <li><a href="">Heading No</a></li>
+                <li><a href="">Heading No</a></li>
+            </ul>
+        </div>
+
+        <div id="paragraphs">
+            <div>Para sub heading</div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dolores facere consequuntur quae iste at, delectus dolor pariatur mollitia quidem fuga ab quos! Vitae, reprehenderit distinctio? Magnam modi id voluptatum!Lorem Lorem ipsum
+                dolor sit amet consectetur adipisicing elit. Quae ad nihil illum quas debitis omnis excepturi, ullam recusandae, eos voluptatibus sed explicabo iste! Corrupti dolorum officiis unde magnam, laboriosam dolores.</p>
+            <img class="paraImg" src="https://source.unsplash.com/600x300/?technology,computer" alt="">
+            <div>Para sub heading</div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dolores facere consequuntur quae iste at, delectus dolor pariatur mollitia quidem fuga ab quos! Vitae, reprehenderit distinctio? Magnam modi id voluptatum!Lorem Lorem ipsum
+                dolor sit amet consectetur adipisicing elit. Quae ad nihil illum quas debitis omnis excepturi, ullam recusandae, eos voluptatibus sed explicabo iste! Corrupti dolorum officiis unde magnam, laboriosam dolores.</p>
+            <img class="paraImg" src="https://source.unsplash.com/600x300/?technology,nature" alt="">
+        </div>
+        <div id="conclusion">
+            <div>Conclusion</div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dolores facere consequuntur quae iste at, delectus dolor pariatur mollitia quidem fuga ab quos! Vitae, reprehenderit distinctio? Magnam modi id voluptatum!Lorem Lorem ipsum
+                dolor sit amet consectetur adipisicing elit. Quae ad nihil illum quas debitis omnis excepturi, ullam recusandae, eos voluptatibus sed explicabo iste! Corrupti dolorum officiis unde magnam, laboriosam dolores.</p>
+        </div>
+
+        <div class="table">
+            <table id="customers">
+                <tr>
+
+                    <th>Contact</th>
+                    <th>Country</th>
+                </tr>
+                <tr>
+
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                </tr>
+                <tr>
+
+                    <td>Christina Berglund</td>
+                    <td>Sweden</td>
+                </tr>
+                <tr>
+
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+                </tr>
+                <tr>
+
+                    <td>Roland Mendel</td>
+                    <td>Austria</td>
+                </tr>
+                <tr>
+
+                    <td>Helen Bennett</td>
+                    <td>UK</td>
+                </tr>
+                <tr>
+
+                    <td>Philip Cramer</td>
+                    <td>Germany</td>
+                </tr>
+                <tr>
+
+                    <td>Yoshi Tannamuri</td>
+                    <td>Canada</td>
+                </tr>
+                <tr>
+
+                    <td>Giovanni Rovelli</td>
+                    <td>Italy</td>
+                </tr>
+                <tr>
+
+                    <td>Simon Crowther</td>
+                    <td>UK</td>
+                </tr>
+                <tr>
+
+                    <td>Marie Bertrand</td>
+                    <td>France</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="code">
+            <h1>Source Code</h1>
+            <pre><code style="position: relative;z-index:0" class="language-arduino">
+            void setup() {
+                // initialize digital pin LED_BUILTIN as an output.
+                pinMode(LED_BUILTIN, OUTPUT);
+              }
+              
+              // the loop function runs over and over again forever
+              void loop() {
+                digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+                delay(1000);                       // wait for a second
+                digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+                delay(1000);                       // wait for a second
+              }</code></pre>
+        </div>
+
+        <div id="faq">
+            <h1>FAQ</h1>
+            <section class="accordion">
+                <input type="checkbox" name="collapse2" id="handle2">
+                <h2 class="handle">
+                    <label for="handle2">26B. Belgian Dubbel</label>
+                </h2>
+                <div class="contentCollapse">
+                    <p><strong>Overall Impression:</strong> A deep reddish-copper, moderately strong, malty, complex Trappist ale with rich malty flavors, dark or dried fruit esters, and light alcohol blended together in a malty presentation that still finishes
+                        fairly dry.</p>
+                    <p><strong>History:</strong> Originated at monasteries in the Middle Ages, and was revived in the mid-1800s after the Napoleonic era.</p>
+                </div>
+            </section>
+            <section class="accordion">
+                <input type="checkbox" name="collapse2" id="handle3">
+                <h2 class="handle">
+                    <label for="handle3">26C. Belgian Tripel</label>
+                </h2>
+                <div class="contentCollapse">
+                    <p><strong>Overall Impression:</strong> A pale, somewhat spicy, dry, strong Trappist ale with a pleasant rounded malt flavor and firm bitterness. Quite aromatic, with spicy, fruity, and light alcohol notes combining with the supportive
+                        clean malt character to produce a surprisingly drinkable beverage considering the high alcohol level.</p>
+                    <p><strong>History:</strong> Originally popularized by the Trappist monastery at Westmalle.</p>
+                </div>
+            </section>
+        </div>
+        <h1>relatedPost</h1>
+        <div id="relatedPost">
+
+            <div class="center">
+                <div class="property-card">
+                    <a href="#">
+                        <div class="property-image">
+                            <div class="property-image-title">
+                                <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. -->
+                            </div>
+                        </div>
+                    </a>
+                    <div class="property-description">
+                        <h5> Card Title </h5>
+                        <p>Lorem Ipsum Dipsum hortata. Mixcall Horcho. Mixwell Chingo. More Bingo. Lorem Ipum doth be hard.</p>
+                    </div>
+                    <a href="#">
+                        <div class="property-social-icons">
+                            <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="center">
+                <div class="property-card">
+                    <a href="#">
+                        <div class="property-image">
+                            <div class="property-image-title">
+                                <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. -->
+                            </div>
+                        </div>
+                    </a>
+                    <div class="property-description">
+                        <h5> Card Title </h5>
+                        <p>Lorem Ipsum Dipsum hortata. Mixcall Horcho. Mixwell Chingo. More Bingo. Lorem Ipum doth be hard.</p>
+                    </div>
+                    <a href="#">
+                        <div class="property-social-icons">
+                            <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="center">
+                <div class="property-card">
+                    <a href="#">
+                        <div class="property-image">
+                            <div class="property-image-title">
+                                <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. -->
+                            </div>
+                        </div>
+                    </a>
+                    <div class="property-description">
+                        <h5> Card Title </h5>
+                        <p>Lorem Ipsum Dipsum hortata. Mixcall Horcho. Mixwell Chingo. More Bingo. Lorem Ipum doth be hard.</p>
+                    </div>
+                    <a href="#">
+                        <div class="property-social-icons">
+                            <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="center">
+                <div class="property-card">
+                    <a href="#">
+                        <div class="property-image">
+                            <div class="property-image-title">
+                                <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. -->
+                            </div>
+                        </div>
+                    </a>
+                    <div class="property-description">
+                        <h5> Card Title </h5>
+                        <p>Lorem Ipsum Dipsum hortata. Mixcall Horcho. Mixwell Chingo. More Bingo. Lorem Ipum doth be hard.</p>
+                    </div>
+                    <a href="#">
+                        <div class="property-social-icons">
+                            <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- todo ------------------------------------------------------------------------------------>
+
+
+
 </body>
+
+
+
+<script src="/static/prism (2).js"></script>
+<script src="/static/blogPost.js"></script>
+
+
 
 </html>

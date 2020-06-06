@@ -147,7 +147,7 @@ window.console &amp;&amp; console.log('foo');
                     <div class="card-body ">
                         <h3 id="Otherhead{{loop.index}} ">{{db.heading}}</h3>
                         <p class="card-text " id='Otherdesc{{loop.index}}'>{{db.description}}</p>
-                        <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}} " class="btn btn-secondary btn-sm btn-block ">Read More</a>
+                        <a href="/tech-posts/{{db.url}} " class="btn btn-secondary btn-sm btn-block ">Read More</a>
                         <div class="mt-4 text-muted">posted on:{{db.date}}</div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@ window.console &amp;&amp; console.log('foo');
 
         <div class="mobContainer mobArd " id="mobOther ">
             {%for db in related_post %}
-            <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}} ">
+            <a href="/tech-posts/{{db.url}} ">
                 <div class="postMobile mt-3 ">
                     <img src="/static/images/{{db.thumbnail}} " class="thumbnailMob image-fluid" alt="Responsive image ">
                     <div class="mobViewContent">

@@ -15,6 +15,11 @@ var backupAnswer = [];
 var contaQuickAnswers = document.getElementById("conta_quick_answers");
 window.countQuickAnswers = 1;
 
+window.countCode = 1
+var backupCode = []
+var backupCodeLanguage = []
+var backupCodeHeading = []
+
 window.countIndex = 1;
 var contaIndex = document.getElementById("conta_index");
 var index_arr = [];
@@ -23,8 +28,10 @@ var backupIndex = [];
 var para_subheadings = [];
 var backupPara = [];
 var backupParaSubheading = [];
+var backupParaImgDescription = [];
 var paras_arr = [];
 var para_thumbnail_arr = [];
+var para_thumbnail_desc_arr = [];
 window.countPara = 1;
 var contaPara = document.getElementById("contaPara");
 
@@ -44,8 +51,13 @@ var typeOtherBtn = document.getElementById("type_other");
 var intendInfo = document.getElementById("intend_info");
 var intendTuto = document.getElementById("intend_tuto");
 var coverImage = document.getElementById("cover_image_uploader");
+var thumbnail = document.getElementById("thumbnail_uploader");
 var file;
 var formData;
+
+var code_arr = []
+var codeLanguage_arr = []
+var codeHeading_arr = []
 
 var html = "";
 var returnHtml = "";
@@ -149,7 +161,28 @@ function uploadImg(type, num) {
                 console.log("DOne uploading");
                 let name = coverImage.files[0].name;
                 name = name.replace(/ /g, "_");
-                document.getElementById("test").src = "/static/images/" + name;
+                document.getElementById("cover").src = "/static/images/" + name;
+                console.log(name);
+            } else {
+                console.log("error 404");
+            }
+        });
+    }
+    if (type == "thumbnail") {
+        formData = new FormData();
+        file = thumbnail.files[0];
+        console.log(file);
+        formData.append("file", thumbnail.files[0]);
+
+        fetch(`${window.origin}/dashboard_upload/${type}`, {
+            method: "POST",
+            body: formData,
+        }).then((response) => {
+            if (response.status == 200) {
+                console.log("DOne uploading");
+                let name = thumbnail.files[0].name;
+                name = name.replace(/ /g, "_");
+                document.getElementById("thumbnail").src = "/static/images/" + name;
                 console.log(name);
             } else {
                 console.log("error 404");
@@ -279,7 +312,9 @@ function addNew(type) {
     <label class="text-secondary mt-2" for="para_heading1"><b>Subheading</b></label>
     <textarea class="form-control" onblur="backup('para_heading','${countPara}')" style="width: 50%; margin:0 auto;border-width:5px;"
      id="para_heading${countPara}" rows="1"></textarea>
-    <label class="text-secondary mt-3 " for="para1"><b>Para</b></label>
+     <label class="text-secondary mt-2" for="para_imgDescription${countPara}"><b>Image Description</b></label>
+     <textarea class="form-control" onblur="backup('para_imgDescription','${countPara}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_imgDescription${countPara}" rows="1"></textarea>
+    <label class="text-secondary mt-3 " for="para${countPara}"><b>Para</b></label>
     <textarea class="form-control" onblur="backup('para','${countPara}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para${countPara}" rows="4"></textarea>
   <!-- *---upload image -->
   <img class="mt-3" id="paraImg${countPara}"   width="40%" alt="upload image">
@@ -310,6 +345,18 @@ function addNew(type) {
 
                     document.getElementById(
                         `para_heading${parseInt(key)}`
+                    ).value = element;
+                }
+            }
+        }
+        for (const key in backupParaImgDescription) {
+            if (backupParaImgDescription.hasOwnProperty(key)) {
+                const element = backupParaImgDescription[key];
+                console.log(parseInt(key), element);
+                if (element != "") {
+
+                    document.getElementById(
+                        `para_imgDescription${parseInt(key)}`
                     ).value = element;
                 }
             }
@@ -363,6 +410,53 @@ function addNew(type) {
         console.log("Answer=", backupFaqAns)
         console.log("Question=", backupFaqQ)
     }
+    if (type == "code") {
+
+
+        countCode++;
+        contaCode.innerHTML += `
+       
+        <div class="my-3" id="codeDiv${countCode}">
+        
+        <textarea class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" id="codeHeading${countCode}" placeholder="Heading" onblur="backup('codeHeading','${countCode}')" rows="1"></textarea>
+
+        <textarea class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" id="code${countCode}" placeholder="Source-code" onblur="backup('code','${countCode}')" rows="9"></textarea>
+        <textarea placeholder="Language of code" class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" onblur="backup('language','${countCode}')" id="language${countCode}" rows="1"></textarea>
+
+    </div>
+   
+        `;
+        for (const key in backupCode) {
+            if (backupCode.hasOwnProperty(key)) {
+                const element = backupCode[key];
+                console.log(parseInt(key), element);
+                if (element != "") {
+                    document.getElementById(`code${parseInt(key)}`).value = element;
+                }
+            }
+        }
+        for (const key in backupCodeLanguage) {
+            if (backupCodeLanguage.hasOwnProperty(key)) {
+                const element = backupCodeLanguage[key];
+                console.log(parseInt(key), element);
+                if (element != "") {
+
+                    document.getElementById(`language${parseInt(key)}`).value = element;
+                }
+            }
+        }
+        for (const key in backupCodeHeading) {
+            if (backupCodeHeading.hasOwnProperty(key)) {
+                const element = backupCodeHeading[key];
+                console.log(parseInt(key), element);
+                if (element != "") {
+
+                    document.getElementById(`codeHeading${parseInt(key)}`).value = element;
+                }
+            }
+        }
+
+    }
 }
 
 function deletePrev(type) {
@@ -390,10 +484,23 @@ function deletePrev(type) {
             document.getElementById("indexDelete").style.display = "none";
         }
     }
+    if (type == "code") {
+        document.getElementById(`${type}Div${countCode}`).remove();
+        backupCode[countCode] = "";
+        backupCodeLanguage[countCode] = "";
+        backupCodeHeading[countCode] = "";
+        countCode--;
+
+
+        if (countCode == 1) {
+            document.getElementById("codeDelete").style.display = "none";
+        }
+    }
     if (type == "para") {
         document.getElementById(`${type}Div${countPara}`).remove();
         backupPara[countPara] = "";
         backupParaSubheading[countPara] = "";
+        backupParaImgDescription[countPara] = "";
         countPara--;
 
         if (countPara == 1) {
@@ -417,7 +524,29 @@ function deletePrev(type) {
 
 function submitCreatePost(type_) {
     var url = `${window.origin}/dashboard_create_post/${type_}`;
-    if (type_ == 'keyword') {
+    if (type_ == "coverImgDescription") {
+        entry = {
+            coverImgDescription: document.getElementById('coverImgDescription').value
+        }
+    }
+    if (type_ == "url") {
+        entry = {
+            url: document.getElementById('url').value
+        }
+    }
+    if (type_ == "title") {
+        entry = {
+            title: document.getElementById('title').value
+        }
+    }
+    if (type_ == "keywordsMeta") {
+        entry = {
+            meta_keywords: document.getElementById('keywordsMeta').value
+        }
+    }
+
+    if (type_ == "keyword") {
+        console.log("in keywords")
         entry = {
             keyword: document.getElementById('keyword').value
         }
@@ -474,10 +603,13 @@ function submitCreatePost(type_) {
         paras_arr = []
         para_subheadings = []
         para_thumbnail_arr = []
+        para_thumbnail_desc_arr = []
         console.log(countPara)
         for (let index = 1; index <= countPara; index++) {
             let para_val = document.getElementById(`para${index}`).value;
             paras_arr.push(para_val);
+            let para_thumbnail_desc_val = document.getElementById(`para_imgDescription${index}`).value;
+            para_thumbnail_desc_arr.push(para_thumbnail_desc_val);
             let para_subheading_val = document.getElementById(`para_heading${index}`).value;
             para_subheadings.push(para_subheading_val);
             let para_thumbnail_val = document.getElementById(`paraImg${index}`)
@@ -490,7 +622,8 @@ function submitCreatePost(type_) {
         entry = {
             subheading: para_subheadings,
             para: paras_arr,
-            thumbnail: para_thumbnail_arr
+            thumbnail: para_thumbnail_arr,
+            thumbnail_desc: para_thumbnail_desc_arr
         };
     }
     if (type_ == "conclusion") {
@@ -511,6 +644,26 @@ function submitCreatePost(type_) {
             faq_q: faq_q_arr,
             faq_ans: faq_ans_arr,
         };
+    }
+    if (type_ == "code") {
+        console.log("IN CODE")
+        code_arr = []
+        codeLanguage_arr = []
+        codeHeading_arr = []
+        for (let index = 1; index <= countCode; index++) {
+            console.log("IN FOR")
+            let code_val = document.getElementById(`code${index}`).value;
+            code_arr.push(code_val);
+            let language_val = document.getElementById(`language${index}`).value;
+            codeLanguage_arr.push(language_val);
+            let codeHeading_val = document.getElementById(`codeHeading${index}`).value;
+            codeHeading_arr.push(codeHeading_val);
+        }
+        entry = {
+            source_code: code_arr,
+            language: codeLanguage_arr,
+            code_heading: codeHeading_arr
+        }
     }
     if (type_ == "table") {
         heading1 = document.getElementById('heading1').value
@@ -561,14 +714,27 @@ function submitCreatePost(type_) {
 
 function backup(type, num) {
     let val = document.getElementById(`${type}${num}`).value
+
     if (type == "index") {
         backupIndex[num] = val
+    }
+    if (type == "code") {
+        backupCode[num] = val
+    }
+    if (type == "language") {
+        backupCodeLanguage[num] = val
+    }
+    if (type == "codeHeading") {
+        backupCodeHeading[num] = val
     }
     if (type == "para") {
         backupPara[num] = val
     }
     if (type == "para_heading") {
         backupParaSubheading[num] = val
+    }
+    if (type == "para_imgDescription") {
+        backupParaImgDescription[num] = val
     }
     if (type == "quick_question") {
         backupQuest[num] = val
@@ -602,6 +768,9 @@ function deleteThis(type_, num, id, post_type) {
     }
     if (type_ == 'quickAnswers') {
         countQuickAnswers--
+    }
+    if (type_ == 'code') {
+        countCode--
     }
     document.getElementById(`${type_}Div${num}`).remove()
     entry = {

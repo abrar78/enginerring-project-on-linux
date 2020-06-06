@@ -1,6 +1,13 @@
 console.log("Blog post JAVA script file connected is succesfullty")
 
-
+function myFunction() {
+    w = window.outerWidth;
+    h = window.outerHeight;
+    var txt = "Window size: width=" + w + ", height=" + h;
+    if (w > 1000) {
+        location.reload()
+    }
+}
 
 function hower(i) {
 
@@ -21,65 +28,14 @@ function howerLeave(i) {
 
     }
 }
-var search = document.getElementById("search")
 
-var closeSearch = document.getElementById("closeSearch");
-var lock = true;
-search.onclick = function() {
-    console.log("seacrh clicked");
-    mobileSearchBar.style.display = "flex";
-    mobileNav.style.display = "none";
-    lock = false;
-    searchBarOpen = true
-
-}
-
-
-var burger = document.getElementById("burger")
-var slider = document.getElementById("slider")
-var closeSlider = document.getElementById("closeSlider")
-var lockSlider = true
-burger.onclick = function() {
-    slider.style.display = "flex";
-    slider.classList.add("slideInLeft")
-    slider.classList.remove("slideOutLeft")
-        // slider.classList.remove="slideOutLeft"
-    lockSlider = false;
-}
-closeSearch.onclick = function() {
-    console.log("clicked parallex function");
-    if (lock == false) {
-
-        mobileSearchBar.style.display = "none";
-        mobileNav.style.display = "flex";
-        searchBarOpen = false
-        lock = true;
-    }
-    if (lockSlider == false) {
-        slider.style.display = "none";
-        lockSlider = true;
-    }
-}
-closeSlider.onclick = function() {
-    console.log("clicked close");
-    slider.classList.remove("slideInLeft")
-    slider.classList.add("slideOutLeft")
-
-}
 var projDesktop = document.getElementById("projDesktop")
 var projMob = document.getElementById("projMob")
 document.getElementById('dropDownDesktop').style.display = "none"
 document.getElementById('dropDownMob').style.display = "none"
 var flipOut = false;
 
-function myFunction() {
-    w = window.outerWidth;
-    h = window.outerHeight;
-    var txt = "Window size: width=" + w + ", height=" + h;
-    if (w > 1000) {
-        location.reload()
-    }
-}
+
 projDesktop.onclick = function() {
     var list = document.getElementById("dropDownDesktop")
     if (flipOut) {
@@ -139,4 +95,49 @@ for (i = 0; i < coll.length; i++) {
             content.style.display = "block";
         }
     });
+}
+var search = document.getElementById("search")
+
+var closeSearch = document.getElementById("closeSearch");
+var lock = true;
+search.onclick = function() {
+    console.log("seacrh clicked");
+    mobileSearchBar.style.display = "flex";
+    mobileNav.style.display = "none";
+    lock = false;
+    searchBarOpen = true
+
+}
+
+
+var burger = document.getElementById("burger")
+var slider = document.getElementById("slider")
+var closeSlider = document.getElementById("closeSlider")
+var lockSlider = true
+burger.onclick = function() {
+    slider.style.display = "flex";
+    slider.classList.add("slideInLeft")
+    slider.classList.remove("slideOutLeft")
+        // slider.classList.remove="slideOutLeft"
+    lockSlider = false;
+}
+closeSearch.onclick = function() {
+    console.log("clicked parallex function");
+    if (lock == false) {
+
+        mobileSearchBar.style.display = "none";
+        mobileNav.style.display = "flex";
+        searchBarOpen = false
+        lock = true;
+    }
+    if (lockSlider == false) {
+        slider.style.display = "none";
+        lockSlider = true;
+    }
+}
+closeSlider.onclick = function() {
+    console.log("clicked close");
+    slider.classList.remove("slideInLeft")
+    slider.classList.add("slideOutLeft")
+
 }

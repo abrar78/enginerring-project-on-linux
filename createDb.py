@@ -2,11 +2,7 @@ from flask import Flask, render_template,request
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import Security,SQLAlchemyUserDatastore,UserMixin, RoleMixin, login_required
 from flask_security.utils import hash_password
-
-
-
 import json
-
 
 
 with open('config.json', 'r') as c:
@@ -69,7 +65,7 @@ class Arduinoproject_posts(db.Model):
     thumbnail=db.Column(db.String(100), nullable=False);
     cover_img=db.Column(db.String(100), nullable=False);
     url=db.Column(db.String(100), nullable=False);
-    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_keywords=db.Column(db.String(100), nullable=False);
     meta_title=db.Column(db.String(100), nullable=False);
     img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
@@ -102,6 +98,8 @@ class Code_arduino(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
         code=db.Column(db.String(5000),nullable=True)
+        language=db.Column(db.String(50),nullable=True)
+        arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
 
 
 
@@ -164,7 +162,7 @@ class Basicproject_posts(db.Model):
     thumbnail=db.Column(db.String(100), nullable=False);
     cover_img=db.Column(db.String(100), nullable=False);
     url=db.Column(db.String(100), nullable=False);
-    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_keywords=db.Column(db.String(100), nullable=False);
     meta_title=db.Column(db.String(100), nullable=False);
     img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
@@ -241,6 +239,8 @@ class Code_basic(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
         code=db.Column(db.String(5000),nullable=True)
+        language=db.Column(db.String(50),nullable=True)
+        basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
 # *-----------------------------------------------------------------------------------------------------------
 class Iotproject_posts(db.Model):
     
@@ -249,7 +249,7 @@ class Iotproject_posts(db.Model):
     thumbnail=db.Column(db.String(100), nullable=False);
     cover_img=db.Column(db.String(100), nullable=False);
     url=db.Column(db.String(100), nullable=False);
-    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_keywords=db.Column(db.String(100), nullable=False);
     meta_title=db.Column(db.String(100), nullable=False);
     img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
@@ -334,7 +334,9 @@ class Index_iot(db.Model):
 class Code_iot(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.String(5000),nullable=True)    
+        code=db.Column(db.String(5000),nullable=True)
+        language=db.Column(db.String(50),nullable=True)    
+        iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
 # *-----------------------------------------------------------------------------------------------------------
 class Other_posts(db.Model):
     
@@ -343,7 +345,7 @@ class Other_posts(db.Model):
     thumbnail=db.Column(db.String(100), nullable=False);
     cover_img=db.Column(db.String(100), nullable=False);
     url=db.Column(db.String(100), nullable=False);
-    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_keywords=db.Column(db.String(100), nullable=False);
     meta_title=db.Column(db.String(100), nullable=False);
     img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
@@ -400,6 +402,8 @@ class Code_other(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
         code=db.Column(db.String(5000),nullable=True)
+        language=db.Column(db.String(50),nullable=True)
+        otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
    
 class Comments_other(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
@@ -431,7 +435,7 @@ class Draft(db.Model):
     thumbnail=db.Column(db.String(100), nullable=False);
     cover_img=db.Column(db.String(100), nullable=False);
     url=db.Column(db.String(100), nullable=False);
-    meta_descripton=db.Column(db.String(100), nullable=False);
+    meta_keywords=db.Column(db.String(100), nullable=False);
     meta_title=db.Column(db.String(100), nullable=False);
     img_description=db.Column(db.String(100), nullable=False);
     keyword=db.Column(db.String(100), nullable=False);
@@ -497,6 +501,8 @@ class Code_draft(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
         code=db.Column(db.String(5000),nullable=True)
+        language=db.Column(db.String(50),nullable=True)
+        draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
 # !-------------------------------------------------------------------------------------------------------------------------
 
     
@@ -520,7 +526,12 @@ class About_me(db.Model):
     id=db.Column(db.Integer,primary_key=True, nullable=False)
     profile=db.Column(db.String(500),nullable=True)
 
-def putPassword(pass):
-    pass
-    
 #! end---------------------------------------------------------------------------------------------------------
+
+def putPassword(password,email):
+            user_datastore.create_user(
+                email=email,
+                password=password
+            )
+            db.session.commit()
+            

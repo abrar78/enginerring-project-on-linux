@@ -1,4 +1,4 @@
-{% extends "template.html" %} {% block title %} Engineering Project {% endblock %} {% block content %}
+ {% extends "template.html" %} {% block title %} Engineering Project {% endblock %} {% block content %}
 <!-- Parallex effect -->
 <div class="parallexOne">
     <div class="typing">
@@ -9,13 +9,10 @@
     </div>
     <div class="container desktopViewSignUpForm">
         <div class="row">
-            <div class="col" style="margin-top: 160px">
 
-                <input type="text" onblur="validateName(this.id,'subscribeBtn')" id="sName" class="form-control" placeholder="User Name">
-            </div>
             <div class="col" style="margin-top: 160px;">
 
-                <input type="email" onblur="validateEmail(this.id,'subscribeBtn')" id="sEmail" class="form-control" placeholder="E-mail">
+                <input type="email" style="width: 50%;margin:0 auto;" onblur="validateEmail(this.id,'subscribeBtn')" id="sEmail" class="form-control " placeholder="E-mail">
             </div>
 
         </div>
@@ -55,7 +52,7 @@
             <div class="col">
 
 
-                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}" id="Latestid{{loop.index}}" class="streatched-link">
+                <a href="/tech-posts/{{db.url}}" id="Latestid{{loop.index}}" class="streatched-link">
                     <div class="card h-100" id="Latestcard{{loop.index}}" style="width: 100% ">
                         <img id="Latestthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
                         <div class="card-body">
@@ -380,7 +377,7 @@
             <div class="mobContainer latestMob">
                 {% for db in latest_posts %}
 
-                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+                <a href="/tech-posts/{{db.url}}">
 
                     <div class="postMobile mt-3">
                         <div class="align-self-center">
@@ -428,7 +425,7 @@
 
             <div class="mobContainer mobArd" id="mobArd">
                 {%for db in arduino_project.items %}
-                <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+                <a href="/tech-posts/{{db.url}}">
 
                     <div class="postMobile mt-3">
                         <img src="/static/images/{{db.thumbnail}}" style="height: auto;" class="align-self- thumbnailMob image-fluid " alt="Responsive image">
@@ -479,7 +476,7 @@
 
                 <div class="mobContainer mobBasic" id="mobBasic">
                     {%for db in basic_project.items %}
-                    <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+                    <a href="/tech-posts/{{db.url}}">
 
                         <div class="postMobile mt-3">
                             <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
@@ -525,7 +522,7 @@
 
                 <div class="mobContainer mobIot" id="mobIot">
                     {%for db in iot_project.items %}
-                    <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+                    <a href="/tech-posts/{{db.url}}">
 
                         <div class="postMobile mt-3">
                             <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
@@ -556,7 +553,7 @@
         <!-- todo OTHER post here -->
         <div class="mobileView">
             <div class="jumbotron text-center" style="height: 200px;">
-                <a href="">
+                <a href="#">
 
                     <div class="display-4 text-center text-dark" style="font-size: 40px;font-weight:bold">Other posts</div>
 
@@ -569,7 +566,7 @@
 
                 <div class="mobContainer mobOther" id="mobOther">
                     {%for db in other_project.items %}
-                    <a href="/Read_more_{{db.type[0:-4]}}/{{db.id}}">
+                    <a href="/tech-posts/{{db.url}}">
 
                         <div class="postMobile mt-3">
                             <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
@@ -605,16 +602,17 @@
         </div>
     </div>
     <!-- !-------ABOUT ME PAGE--------------------------------------------------------------------------------------------------About Me page -->
-    <div class="jumbotron about" id="about">
-        <div class="display-4 text-center" style="font-size: 5vh;font-weight:bold;">About me</div>
 
+    <div class="jumbotron about" id="about">
+        <div class="display-4 text-center" style="font-size: 4vh;font-weight:bold;">About me</div>
         <p class="lead text-center" id="font_about">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus sint quidem, commodi inventore similique nemo,
             molestias rerum nostrum facere vitae expedita numquam aliquam tenetur non, alias asperiores excepturi. Quis, expedita.</p>
 
 
 
         <div class="text-center">
-            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal1" style="font-weight: bold;font-size:20px" data-whatever="@mdo">Contact</button>
+
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal1" style="z-index:0;font-weight: bold;font-size:20px" data-whatever="@mdo">Contact</button>
         </div>
         <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -659,15 +657,6 @@
         </div>
     </div>
 
-
-    <!-- Footer -->
-
-    <div class="footer">
-        <i class="material-icons" id="icons">
-      copyright
-    </i> engineeringproject.net
-        <div class="socilMedia"></div>
-    </div>
 
 
     <!-- Optional JavaScript -->

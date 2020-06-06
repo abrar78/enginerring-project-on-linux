@@ -1,10 +1,13 @@
 <html lang="en">
 
 <head>
-    <!--! Prism -->
+    <!-- !social media sharing kit -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="" type="" href="https://fonts.googleapis.com/css?family=Anton&display=swap">
 
+    <!--! Prism -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/static/prism(2).css" rel="stylesheet" />
+    <link href="/static/prism (2).css" rel="stylesheet" />
     <!-- ?Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,6 +15,7 @@
     <!-- ?Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- ?custom css -->
+    <link rel="stylesheet" href="/static/blogPost.css">
     <link rel="stylesheet" href="/static/style.css">
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
@@ -29,116 +33,155 @@
 
     <!-- nav-bar -->
 
-    <nav class="sticky-top" id="navBar" style="background-color: black;">
+    <nav id="navBar">
         <div class="logo ">
             <img src="/static/images/logoWhite.png" style="margin-left:60px;height:40px;color: #F2C36B;" alt="">
         </div>
 
         <div class="content">
+
             <ul class="list">
-                <li class="nav-item nav-links">
+                <li class=" nav-links">
                     <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/">Home</a>
                 </li>
-                <li class="nav-item dropdown  nav-links">
-                    <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
-                        <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
-                        <a class="dropdown-item" href="#basicElectronics">basic Electronics projects</a>
+                <li class="  nav-links">
 
-                    </div>
+                    <a style="cursor: pointer;" class="nav-link mainColor" id="projDesktop" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)">projects</a>
                 </li>
-                <li class="nav-item nav-links">
+                <div id="dropDownDesktop" class="animated flipInX">
+                    <a class="dropdownItem" style="color: #000000;" id="navArd" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#arduinoProject">Arduino based projects </a>
+                    <a class="dropdownItem" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" id="navIot" href="#IOTProjects">IOT projects</a>
+                    <a class="dropdownItem" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" id="navBasic" href="#basicElectronics">basic Electronics projects</a>
+
+                </div>
+                <li class=" nav-links">
                     <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#otherPost">Other Posts</a>
                 </li>
-                <li class="nav-item  nav-links">
-                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#about">About</a>
+                <li class="  nav-links">
+                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#about">About/contact</a>
                 </li>
+
 
 
             </ul>
         </div>
+        <form style="display: flex; margin-top:10px;" action="/search/1" method='POST'>
 
-        <form class="form-inline " action="/search/1" method='POST'>
-            <div class="searchBar">
-                <div class="input-group mb-3 my-3">
-                    <!-- <form action="/search/1" method="POST"> -->
-                </div>
-                <input type="text" name="search_string" class="form-control" placeholder="Search projects/post here" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-warning" type="submit" style="margin-right:20px;font-family: 'Roboto Slab', serif" id="button-addon2">Search</button>
-                    <!-- </form> -->
-                </div>
 
-            </div>
+            <p>
+                <span class="input">
+                    <input type="text" class="search_inp" placeholder="Search projects here....">
+                    <span></span>
+                </span>
+            </p>
+
+            <button id="btnSearchBar">search</button>
+
         </form>
+
     </nav>
     <!-- ! mobile Nav bar--- =====----=====-----=====-=--=-=--=-=-=-=-=-=-=-=-=-=========== -->
-    <nav class="sticky-top animated fadeInDown" style="width:100%; " id="mobileNav">
+    <nav style="width:100%;position:fixed; top:0px; " id="mobileNav">
         <div id="top">
             <div class="burger" id="burger">
                 <span class="material-icons" style="margin-left: 5px;">0
-            menu
-          </span>
+                    menu
+                </span>
                 <img src="/static/images/logoWhite.png" style="margin-left:20px;height:27px;color: #F2C36B;" alt="">
             </div>
             <div id="search" class="search">
 
                 <span class="material-icons" style="height: 30px; color: #F2C36B;margin-right:10px">
-            search
-          </span>
+                    search
+                </span>
             </div>
         </div>
     </nav>
     <form class="form-inline" action="/search/1" method="POST">
-        <nav class="fixed-top animated fadeInDown" id="mobileSearchBar">
-            <div class="input-group mb-3" style="margin-top: 10px;">
-                <input style="height: 32px; width:100%;" type="text" class="form-control" name="search_string" placeholder="search project/post here" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="animated flipInX" id="mobileSearchBar">
+            <div class="input-group mb-3" id="searchBar">
+                <button type="button" id="closeSearch">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 172 172"
+                        style=" fill:#000000;">
+                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                            style="mix-blend-mode: normal">
+                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                            <g fill="#333333">
+                                <path
+                                    d="M139.75,0h-107.5c-17.80469,0 -32.25,14.44531 -32.25,32.25v107.5c0,17.80469 14.44531,32.25 32.25,32.25h107.5c17.80469,0 32.25,-14.44531 32.25,-32.25v-107.5c0,-17.80469 -14.44531,-32.25 -32.25,-32.25zM124.24519,115.07151l-9.19952,9.17368c-1.67969,1.67969 -4.41887,1.67969 -6.09856,0l-22.94712,-22.94712l-22.94712,22.94712c-1.67969,1.67969 -4.41887,1.67969 -6.09856,-0.02584l-9.19952,-9.14784c-1.65385,-1.70553 -1.65385,-4.41887 0,-6.1244l22.94712,-22.94712l-22.92128,-22.92128c-1.67969,-1.70553 -1.67969,-4.44471 0,-6.1244l9.17368,-9.17368c1.67969,-1.70553 4.44471,-1.70553 6.1244,0l22.92128,22.92128l22.94712,-22.92128c1.67969,-1.70553 4.44471,-1.70553 6.09856,0l9.19952,9.14784c1.67969,1.70553 1.67969,4.44471 0,6.15024l-22.94712,22.92128l22.94712,22.94712c1.65385,1.70553 1.65385,4.41887 0,6.1244z">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+
+                </button>
+                <input id="mobileSearchInput" placeholder="Search project here" type="text">
+                <button id="mobileSearchBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 172 172"
+                        style=" fill:#000000;">
+                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                            style="mix-blend-mode: normal">
+                            <path d="M0,172v-172h172v172z" fill="none"></path>
+                            <g fill="#fff7f7">
+                                <path
+                                    d="M66.15385,1.24038c-35.86779,0 -64.91346,29.04567 -64.91346,64.91346c0,35.86779 29.04567,64.91346 64.91346,64.91346c15.14303,0 29.07151,-5.34916 40.10577,-14.05769l5.78846,5.78846c-2.42908,4.57392 -1.57632,10.41406 2.27404,14.26442l30.38942,30.59615c4.72897,4.72897 12.42969,4.72897 17.15865,0l5.78846,-5.78846c4.72897,-4.72897 4.72897,-12.42969 0,-17.15865l-30.59615,-30.38942c-3.8762,-3.8762 -9.69051,-4.54808 -14.26442,-2.06731l-5.78846,-5.78846c8.76022,-11.0601 14.05769,-25.09195 14.05769,-40.3125c0,-35.86779 -29.04567,-64.91346 -64.91346,-64.91346zM66.15385,13.23077c29.22656,0 52.92308,23.69651 52.92308,52.92308c0,29.22656 -23.69651,52.92308 -52.92308,52.92308c-29.22656,0 -52.92308,-23.69651 -52.92308,-52.92308c0,-29.22656 23.69651,-52.92308 52.92308,-52.92308zM32.66346,49.40865c-3.41106,5.53005 -5.375,12.04207 -5.375,19.01923c0,20.02704 16.15084,36.17788 36.17788,36.17788c7.72656,0 14.98798,-2.50661 20.87981,-6.61538c-1.57632,0.18089 -3.33353,0.20673 -4.96154,0.20673c-25.89303,0 -46.72115,-20.82812 -46.72115,-46.72115c0,-0.69772 -0.02584,-1.36959 0,-2.06731z">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+
+                </button>
+
+                <!-- <button class="" id="btnSearchBar" type="submit" id="button-addon2" style="height: 32px;">
+                            <span class="material-icons" style="margin-bottom: 8px;">
+                                search
+                            </span></button>
+
                 <div class="input-group-append">
-                    <button class="btn btn-outline-warning" type="submit" id="button-addon2" style="height: 32px;">
-            <span class="material-icons" style="margin-bottom: 8px;">
-              search
-            </span></button>
-                    <!-------------------------------------------------------------------------------- -->
-                    <span class="material-icons" id="closeSearch" style="margin-left:15px; color:#F2C36B;margin-top:4px;">
-              close
-            </span>
-                    <!-------------------------------------------------------------------------------- -->
+
                 </div>
+                <span class="material-icons" id="closeSearch" style="margin-left:0px; color:black;margin-top:4px;">
+                    close
+                </span> -->
             </div>
-        </nav>
+        </div>
     </form>
 
-    <nav class="animated  fixed-top" id="slider">
+    <nav class="animated" id="slider">
 
         <div class="content animated slideInRight">
-            <ul class="mobilelist">
-                <li class="nav-item nav-links" id="closeSlider">
+            <ul class="mobileList">
+                <li class=" nav-links" id="closeSlider">
                     <!-- log in form -->
                     <span class="material-icons" style="margin-left:15px; margin-top:20px">
-            close
-          </span>
+                        close
+                    </span>
 
                 </li>
 
-                <li class="nav-item nav-links">
+                <li class=" nav-links">
                     <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#">Home</a>
 
                 </li>
-                <li class="nav-item dropdown  nav-links">
-                    <a id="projects" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">projects</a>
-                    <div class="dropdown-menu animated fadeIn">
+                <li class=" dropdown  nav-links">
+                    <div id="projMob" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</div>
+                    <ul id="dropDownMob" class="dropdown-menuMob animated slideInLeft">
                         <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
                         <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
-                        <a class="dropdown-item" href="#basicElectronics">basic Electronics projects</a>
+                        <a class="dropdown-item" href="#basicElectronics">Basic Electronics projects</a>
 
-                    </div>
+                    </ul>
                 </li>
-                <li class="nav-item nav-links">
+                <li class=" nav-links">
                     <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#otherPost">Other Posts</a>
                 </li>
-                <li class="nav-item  nav-links">
-                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#about">About</a>
+                <li class="  nav-links">
+                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#about">About<br>/Contact</a>
                 </li>
 
 
@@ -164,21 +207,79 @@
 
 
 
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3>engineering<span>project</span></h3>
+
+            <p class="footer-links">
+                <a href="#">Home</a> ·
+
+                <a href="#">About</a> ·
+                <a href="#">Arduino-projects</a> ·
+                <a href="#">Basic-Projects</a> ·
+                <a href="#">IOT-projects</a> ·
+                <a href="#">Other-Posts</a> ·
+            </p>
+
+            <p class="footer-company-name">engineeringproject.net © 2020-21</p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p>Subscribe</p>
+
+            <form action="#" method="post">
+
+                <input type="text" name="email" placeholder="Email">
+
+                <button>Subscribe</button>
+
+            </form>
+
+        </div>
+        <div class="footer-right">
+
+            <p>Contact Us</p>
+
+            <form action="#" method="post">
+
+                <input type="text" name="email" placeholder="Email">
+                <textarea name="message" placeholder="Message"></textarea>
+                <button>Send</button>
+
+            </form>
+
+        </div>
+
+    </footer>
 
 </body>
 
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
 </script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 </script>
-<script src="/static/prism(2).js"></script>
-<script src="dist/clipboard.min.js">
-    new ClipboardJS('.btn');
-</script>
+<script src="/static/prism (2).js"></script>
+<script src="/static/blogPost.js"></script>
+<script src="/static/main.js"></script>
 
 {% block script %} {% endblock %}
 

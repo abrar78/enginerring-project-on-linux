@@ -3,6 +3,93 @@
         padding: 0;
         box-sizing: border-box;
     }
+    /* ? mobile CARDS---------------------------------------------------------------- */
+    
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+    }
+    
+    @media (max-width: 60em) {
+        .grid {
+            grid-gap: 3rem;
+        }
+    }
+    
+    .grid__item {
+        background-color: #fff;
+        border-radius: .4rem;
+        box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: 0.2s;
+        height: 20vh;
+        width: 20vh;
+    }
+    
+    .grid__item:hover {
+        transform: translateY(-0.5%);
+        box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.2);
+    }
+    
+    .card__img {
+        display: block;
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+    }
+    
+    .card__content {
+        padding: 10px;
+        height: 50%;
+        font-size: 20px;
+    }
+    
+    .card__header {
+        font-size: 20px;
+        font-weight: 500;
+        color: #0d0d0d;
+    }
+    
+    .card__text {
+        font-size: 10px;
+        letter-spacing: .1rem;
+        line-height: 1.7;
+        color: #3d3d3d;
+        margin-bottom: 2.5rem;
+    }
+    
+    .card__btn {
+        display: block;
+        width: 50%;
+        padding: 10px;
+        font-size: 10px;
+        text-align: center;
+        color: #3363ff;
+        background-color: #e6ecff;
+        border: none;
+        border-radius: .4rem;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+    
+    .card__btn span {
+        margin-left: 1rem;
+        transition: 0.2s;
+    }
+    
+    .card__btn:hover,
+    .card__btn:active {
+        background-color: #dce4ff;
+    }
+    
+    .card__btn:hover span,
+    .card__btn:active span {
+        margin-left: 1.5rem;
+    }
+    /* ? mobile CARDS---------------------------------------------------------------- */
     
     .desktop {
         display: block;
@@ -27,7 +114,7 @@
     #navBar {
         z-index: 1;
         display: flex;
-        background-color: #F26937;
+        background-color: rgba(0, 0, 0, 0.8);
         height: 60px;
         justify-content: space-around;
         align-items: center;
@@ -55,6 +142,8 @@
     .content {
         width: 70%;
         z-index: 3;
+        padding: 5px;
+        margin-top: 11px;
     }
     
     .searchBar {
@@ -150,7 +239,7 @@
         width: 100%;
         height: 900px;
         display: block;
-        background: url(images/arduinolighten.jpg);
+        background: none;
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -184,10 +273,11 @@
         display: flex;
         background: rgb(0, 0, 0, 0.8);
         color: #f2c36b;
-        width: 100%;
-        height: 60px;
+        width: 100vw;
+        height: 10vh;
+        position: relative;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
     }
     /* card hover effect */
     
@@ -230,10 +320,10 @@
     
     .nav-links {
         color: #F2C36B;
-        font-size: 18px;
+        font-size: 2.5vh;
         letter-spacing: 4px;
         /* font-weight: bold; */
-        font-family: 'Maven Pro', sans-serif;
+        font-family: 'Play', sans-serif;
     }
     
     .mainColor {
@@ -242,6 +332,7 @@
     
     #about {
         margin-top: 20px;
+        z-index: 2;
     }
     /* !For input form control classes */
     
@@ -272,6 +363,7 @@
         justify-content: space-around;
         align-items: center;
         height: 80px;
+        z-index: 1;
     }
     
     #top {
@@ -329,7 +421,7 @@
     }
     
     #font_about {
-        font-size: 4vh;
+        font-size: calc(3vh + 10px + 10px + 10px + 10px);
     }
     /* .searchBar{
     display: none;
@@ -337,7 +429,7 @@
   } */
     /* *-------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
     
-    @media screen and (max-width: 1200px) {
+    @media (max-width: 1200px) {
         #cover_img {
             height: auto;
             width: 100vw;
@@ -351,7 +443,7 @@
         }
         #mobileNav {
             display: flex;
-            width: 100%;
+            width: 100vw;
             justify-content: start;
             height: 60px;
             background-color: black;
@@ -364,11 +456,6 @@
             width: 50%;
             justify-content: flex-end;
             height: 20px;
-        }
-        #mobileSearchBar {
-            display: none;
-            width: 90%;
-            margin: 0 auto;
         }
         .burger {
             display: flex;
@@ -383,14 +470,18 @@
             flex-direction: row;
         }
         #slider {
-            background-color: black;
+            background-color: rgba(0, 0, 0, 0.5);
             display: none;
             flex-direction: column;
             justify-items: space-around;
             width: 50%;
             height: 100%;
-            position: absolute;
+            position: fixed;
             top: 0px;
+            bottom: 0px;
+            z-index: 2;
+            font-size: 10px;
+            overflow-y: scroll;
         }
         .nav-links {
             height: 90px;
@@ -423,10 +514,12 @@
         }
         .mobileViewAll {
             display: block;
-            width: 100%;
-            height: 80vh;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            /* height: 80vh;
             overflow: hidden;
-            overflow-y: scroll;
+            overflow-y: scroll; */
         }
         .desktop {
             display: none;
@@ -479,7 +572,9 @@
         }
         .postMobile {
             display: grid;
-            grid-template-columns: 40% 60%;
+            grid-template-columns: 35% 55%;
+            width: 90%;
+            margin-left: 5%;
         }
         .descText {
             font-size: 1.5em;
@@ -488,6 +583,7 @@
             display: flex;
             flex-direction: column;
             margin-left: 10px;
+            position: relative;
         }
         #Read_more_heading {
             font-size: 5vh;
@@ -503,15 +599,7 @@
         }
     }
     
-    @media screen and (max-width: 700px) {
-        #cover_img {
-            height: auto;
-            width: 100vw;
-        }
-        .content_img {
-            height: auto;
-            width: 90vw;
-        }
+    @media screen and (max-width: 900px) and (max-height:900px) {
         .mobile {
             display: block;
         }
@@ -531,11 +619,6 @@
             justify-content: flex-end;
             height: 20px;
         }
-        #mobileSearchBar {
-            display: none;
-            width: 90%;
-            margin: 0 auto;
-        }
         .burger {
             display: flex;
             height: 20px;
@@ -552,12 +635,13 @@
             flex-direction: row;
         }
         #slider {
-            background-color: black;
+            background-color: rgb(0, 0, 0, 0.8);
             display: none;
             flex-direction: column;
             justify-items: space-around;
             width: 50%;
             height: 100%;
+            font-size: 10px;
         }
         .nav-links {
             height: 90px;
@@ -587,9 +671,7 @@
         .mobileViewAll {
             display: block;
             width: 100%;
-            height: 70vh;
-            overflow: hidden;
-            overflow-y: scroll;
+            margin-bottom: 10px;
         }
         .desktop {
             display: none;
@@ -625,41 +707,5 @@
         }
         #font_about {
             font-size: 2vh;
-        }
-        .img {
-            height: 50px;
-        }
-        .thumbnailMob {
-            width: 100%;
-        }
-        .mobContainer {
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-        }
-        .postMobile {
-            display: grid;
-            grid-template-columns: 50% 50%;
-        }
-        .mobViewContent {
-            display: flex;
-            flex-direction: column;
-            margin-left: 10px;
-        }
-        #Read_more_heading {
-            font-size: 5vh;
-        }
-        #Read_more_description {
-            font-size: 2.5vh;
-        }
-        #Read_more_jumbotron {
-            height: 25vh;
-        }
-        .text-dark {
-            font-size: 2.5vh;
-        }
-        .descText {
-            font-size: 2vh;
-            float: inline-end;
         }
     }

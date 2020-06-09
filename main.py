@@ -211,64 +211,172 @@ def paginate():
     # return response
 
 
-@app.route('/Read_more_Ard/<int:num>')
-def arduinoRead(num):
-    arduino_post=Arduinoproject_posts.query.filter_by(id=num).first()
+@app.route('/arduino-projects/<string:url>')
+def arduinoRead(url):
+    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).all()
+    basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
+    iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
+    other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
+    
+    arduino_post=Arduinoproject_posts.query.filter_by(url='/arduino-projects/'+url).first()
+    print("------------------------------",type(arduino_latest))
+    if arduino_post in arduino_latest:
+        arduino_latest.remove(arduino_post)
+    try:    
+        arduino_latest=arduino_latest[0]
+    except IndexError:
+        arduino_latest=None; 
+    
+    latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]    
+          
+    print("0000000000000000000000000",arduino_post)
+  
     search_value=arduino_post.keyword
     search="%{0}%".format(search_value)
     print(search)
     related=Arduinoproject_posts.query.filter(or_(Arduinoproject_posts.description.like(search), Arduinoproject_posts.heading.like(search))).all()
-    return render_template('readMoreOther.html', other_post_db=arduino_post,related_post=related[0:4])
-@app.route('/Read_more_Basic/<int:num>')
-def basicRead(num):
-    basic_post=Basicproject_posts.query.filter_by(id=num).first()
+    
+    print(type(related))
+    if arduino_post in related:
+        related.remove(arduino_post)
+
+    return render_template('readMoreOther.html', post_db=arduino_post,related_post=related[0:4],latest_posts=latest_posts,url_type="Arduino")
+@app.route('/basic-projects/<string:url>')
+def basicRead(url):
+    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).first()
+    basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).all()
+    iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
+    other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
+    basic_post=Basicproject_posts.query.filter_by(url="/basic-projects/"+url).first()
     search_value=basic_post.keyword
     search="%{0}%".format(search_value)
     related=Basicproject_posts.query.filter(or_(Basicproject_posts.description.like(search), Basicproject_posts.heading.like(search))).all()
-    return render_template('readMoreOther.html', other_post_db=basic_post,related_post=related[0:4])
-@app.route('/Read_more_Iot/<int:num>')
-def iotRead(num):
-    iot_post=Iotproject_posts.query.filter_by(id=num).first()
+    if basic_post in basic_latest:
+        basic_latest.remove(basic_post)
+    try:    
+        basic_latest=basic_latest[0]
+    except IndexError:
+        basic_latest=None; 
+    latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]    
+    if basic_post in related:
+        related.remove(basic_post)
+    return render_template('readMoreOther.html', post_db=basic_post,related_post=related[0:4],latest_posts=latest_posts)
+@app.route('/iot-projects/<string:url>')
+def iotRead(url):
+    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).first()
+    basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
+    iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).all()
+    other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
+    iot_post=Iotproject_posts.query.filter_by(url="/iot-projects/"+url).first()
     search_value=iot_post.keyword
     search="%{0}%".format(search_value)
     related=Iotproject_posts.query.filter(or_(Iotproject_posts.description.like(search), Iotproject_posts.heading.like(search))).all()
-    return render_template('readMoreOther.html', other_post_db=iot_post,related_post=related[0:4])
-@app.route('/Read_more_Other/<int:num>')
-def otherRead(num):
-    other_post=Other_posts.query.filter_by(id=num).first()
+    if iot_post in iot_latest:
+        iot_latest.remove(iot_post)
+    try:    
+        iot_latest=iot_latest[0]
+    except IndexError:
+        basic_latest=None; 
+    latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]    
+    if iot_post in related:
+        related.remove(iot_post)
+
+    return render_template('readMoreOther.html', post_db=iot_post,related_post=related[0:4],latest_posts=latest_posts)
+@app.route('/tech-posts/<string:url>')
+def otherRead(url):
+    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).first()
+    basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
+    iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
+    other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id))
+    latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]    
+    other_post=Other_posts.query.filter_by(url="/tech-post/"+url).first()
     search_value=other_post.keyword
     search="%{0}%".format(search_value)
     related=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
-
-    return render_template('readMoreOther.html', other_post_db=other_post,related_post=related[0:4])
+    if other_post in other_latest:
+        other_latest.remove(other_post)
+    try:    
+        other_latest=other_latest[0]
+    except IndexError:
+        other_latest=None; 
+    latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]    
+    if other_post in related:
+        related.remove(other_post)
+    return render_template('readMoreOther.html', post_db=other_post,related_post=related[0:4],latest_posts=latest_posts)
 @app.route('/Read_more_draft/<int:num>')
+@login_required
 def draftRead(num):
+
+    latest_posts=[]    
     draft_post=Draft.query.filter_by(id=num).first()
     draft_type=draft_post.type
     draft_type=draft_type[0:-4]
     search_value=draft_post.keyword
     search="%{0}%".format(search_value)
+    print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    if arduino_latest or basic_latest or iot_latest or other_latest:
+      print("Yes latest posts")
+      
     print(draft_type)
     if draft_type=="Ard":
             print("im Ard")
             related=Arduinoproject_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+            arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).all()
+            basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
+            iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
+            other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
+            if draft_post in arduino_latest:
+                arduino_latest.remove(draft_post)
+            try:    
+                arduino_latest=arduino_latest[0]
+            except IndexError:
+                arduino_latest=None; 
+            latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]    
+
 
     if draft_type=="Iot":
-             related=Iotproject_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+            related=Iotproject_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+            arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).all()
+            basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
+            iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).all()
+            other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
+            if draft_post in iot_latest:
+                iot_latest.remove(draft_post)
+            try:    
+                iot_latest=iot_latest[0]
+            except IndexError:
+                iot_latest=None; 
+            latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]   
 
     if draft_type=="Basic":
-             related=Basicproject_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+            related=Basicproject_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+            arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).all()
+            basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).all()
+            iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).all()
+            other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
+            if draft_post in basic_latest:
+                basic_latest.remove(draft_post)
+            try:    
+                basic_latest=basic_latest[0]
+            except IndexError:
+                basic_latest=None; 
+            latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]   
 
     if draft_type=="Other":
-             related=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
-    # else:
-    #      search_value="head"
-    #      search="%{0}%".format(search_value)
-        
-    #      related=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+            related=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
+            arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).all()
+            basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
+            iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).all()
+            other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).all()
+            if draft_post in other_latest:
+                other_latest.remove(draft_post)
+            try:    
+                other_latest=other_latest[0]
+            except IndexError:
+                other_latest=None; 
+            latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]   
 
-
-    return render_template('readMoreOther.html', other_post_db=draft_post,related_post=related[0:4])
+    return render_template('readMoreOther.html',post_db=draft_post,related_post=related[0:4],latest_posts=latest_posts,test="red")
 
 @app.route('/templates/advertiseWithUs.html')
 def advertise():
@@ -611,7 +719,7 @@ def delete(id,type):
         deleteFaq=Faq_draft.query.filter_by(draft_id=id).all()
         deleteQuickanswers=Quick_answers_draft.query.filter_by(draft_id=id).all()
         deleteCode=Code_draft.query.filter_by(draft_id=id).all()
-        returnPath="/draft"
+        returnPath="/dashboard/draft"
     if deleteContent:
             for d in deleteContent:
                 db.session.delete(d)
@@ -657,8 +765,33 @@ def logout():
 @login_required
 def dashboard():
  savedPost=Draft.query.filter().count()
- return render_template("dashboard.html",postNo=savedPost) 
+ subscribers=Subscribers.query.filter().all()
+ subscribersNo=Subscribers.query.filter().count()
 
+  
+ return render_template("dashboard.html",postNo=savedPost,subscribersNo=subscribersNo) 
+@app.route('/dashboard/emails/<int:page_no>',methods=['GET','POST'])
+def emails(page_no):
+    subscribersNo=Subscribers.query.filter().count()
+    subscribers=Subscribers.query.filter().paginate(per_page=100,page=page_no,error_out=True)
+   
+ 
+    return render_template('email.html',subscribers=subscribers,subscribersNo=subscribersNo)
+@app.route('/dashboard/email/search', methods=['GET','POST'])
+def emailSearch():
+    if request.method=='POST':
+            form=request.form
+            search_value=form['email_search_string']
+            search="%{0}%".format(search_value)
+            print(search)
+            result=Subscribers.query.filter(Subscribers.email.like(search)).all()
+            return render_template("email_search.html",result_email=result)
+@app.route('/dashboard/email/delete/<int:id>')
+def femailDelete(id):
+    delete=Subscribers.query.filter_by(id=id).first()
+    db.session.delete(delete)
+    db.session.commit()
+    return redirect('/dashboard/emails')
 @app.route('/search/<string:type>/<int:page>',methods=['POST','GET'])
 @login_required
 def search_dashboard(type,page):
@@ -817,8 +950,8 @@ def save_as_draft():
     
         
     
-    return redirect('/draft')
-@app.route('/draft' ,methods=['GET','POST'])
+    return redirect('/dashboard/draft')
+@app.route('/dashboard/draft' ,methods=['GET','POST'])
 def draft():
     draft=Draft.query.filter().paginate(per_page=12,page=1,error_out=True)
     print(draft)
@@ -1016,7 +1149,7 @@ def save_edited(type,id):
       
     if type=='draft':
       post=Draft.query.filter_by(id=id).first()
-      returnPath="/draft"
+      returnPath="/dashboard/draft"
       
     global heading
     global type_
@@ -1730,7 +1863,7 @@ def publish(type,draft_id):
                 db.session.delete(d)
                 db.session.commit()
         
-    return redirect('/draft')
+    return redirect('/dashboard/draft')
     #   todo: ----Tomorrow do complete this publis
 #  todo make robots.txt file at the end  
 @app.route("/robots.txt")

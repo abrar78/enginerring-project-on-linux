@@ -1,6 +1,10 @@
 <html lang="en">
 
 <head>
+    <!-- ?Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% block meta_tags %} {% endblock meta_tags %}
+
     <!-- !social media sharing kit -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="" type="" href="https://fonts.googleapis.com/css?family=Anton&display=swap">
@@ -8,10 +12,6 @@
     <!--! Prism -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/static/prism (2).css" rel="stylesheet" />
-    <!-- ?Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- ?Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- ?custom css -->
@@ -26,6 +26,7 @@
 
 
     <link rel="stylesheet" href=/static/normalize.css>
+    <link rel='icon' href='/static/images/favicon.png' type='favicon'>
     <title>{% block title %} {% endblock %}</title>
 </head>
 
@@ -35,14 +36,15 @@
 
     <nav id="navBar">
         <div class="logo ">
-            <img src="/static/images/logoWhite.png" style="margin-left:60px;height:40px;color: #F2C36B;" alt="">
+
+            <h3>engineering<span>project</span><img style="margin-left: 2px;" src="/static/images/favicon.png" alt="logo"></h3>
         </div>
 
         <div class="content">
 
             <ul class="list">
                 <li class=" nav-links">
-                    <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/">Home</a>
+                    <a id="home" class="nav-link mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="/">Home</a>
                 </li>
                 <li class="  nav-links">
 
@@ -70,7 +72,7 @@
 
             <p>
                 <span class="input">
-                    <input type="text" class="search_inp" placeholder="Search projects here....">
+                    <input type="text" class="search_inp" name="search_string" placeholder="Search projects here....">
                     <span></span>
                 </span>
             </p>
@@ -81,13 +83,17 @@
 
     </nav>
     <!-- ! mobile Nav bar--- =====----=====-----=====-=--=-=--=-=-=-=-=-=-=-=-=-=========== -->
-    <nav style="width:100%;position:fixed; top:0px; " id="mobileNav">
+    <nav style="width:100vw;position:fixed; top:0px;  " id="mobileNav">
         <div id="top">
             <div class="burger" id="burger">
-                <span class="material-icons" style="margin-left: 5px;">0
+                <span class="material-icons" style="margin-left: px;">0
                     menu
                 </span>
-                <img src="/static/images/logoWhite.png" style="margin-left:20px;height:27px;color: #F2C36B;" alt="">
+                <div class="logoMob">
+
+                    <h3>engineering<span>project</span><img style="width: calc(17px + (25 - 14) * ((100vw - 300px) / (1400 - 300))); margin-left:2px;" src="/static/images/favicon.png" alt="logo"></h3>
+                </div>
+
             </div>
             <div id="search" class="search">
 
@@ -118,7 +124,7 @@
                     </svg>
 
                 </button>
-                <input id="mobileSearchInput" placeholder="Search project here" type="text">
+                <input id="mobileSearchInput" name="search_string" placeholder="Search project here" type="text">
                 <button id="mobileSearchBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26" viewBox="0 0 172 172"
                         style=" fill:#000000;">
@@ -168,20 +174,21 @@
                     <a id="home" class="nav-link active mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#">Home</a>
 
                 </li>
-                <li class=" dropdown  nav-links">
-                    <div id="projMob" class="nav-link dropdown-toggle mainColor" onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</div>
-                    <ul id="dropDownMob" class="dropdown-menuMob animated slideInLeft">
-                        <a class="dropdown-item" href="#arduinoProject">Arduino based projects </a>
-                        <a class="dropdown-item" href="#IOTProjects">IOT projects</a>
-                        <a class="dropdown-item" href="#basicElectronics">Basic Electronics projects</a>
 
-                    </ul>
-                </li>
                 <li class=" nav-links">
                     <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#otherPost">Other Posts</a>
                 </li>
+                <li class=" nav-links">
+                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#otherPost">Arduino projects</a>
+                </li>
+                <li class=" nav-links">
+                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#otherPost">IOT projects</a>
+                </li>
+                <li class=" nav-links">
+                    <a id="aboutUs" class="nav-link  mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#otherPost">Basic projects</a>
+                </li>
                 <li class="  nav-links">
-                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#about">About<br>/Contact</a>
+                    <a id="aboutMe" class="nav-link mainColor " onmouseover="hower(this.id)" onmouseout="howerLeave(this.id)" href="#about">About</a>
                 </li>
 
 
@@ -202,6 +209,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+
     <!-- end navbar -->
     {% block content %} {% endblock %}
 
@@ -221,6 +229,7 @@
                 <a href="#">Basic-Projects</a> ·
                 <a href="#">IOT-projects</a> ·
                 <a href="#">Other-Posts</a> ·
+                <a target="_blank" href="https://icons8.com">Icons8.com</a>
             </p>
 
             <p class="footer-company-name">engineeringproject.net © 2020-21</p>
@@ -279,7 +288,7 @@
 </script>
 <script src="/static/prism (2).js"></script>
 <script src="/static/blogPost.js"></script>
-<script src="/static/main.js"></script>
+
 
 {% block script %} {% endblock %}
 

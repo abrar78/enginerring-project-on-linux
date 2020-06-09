@@ -1,193 +1,192 @@
-{% extends "template.html" %} {% block content %}
+{% extends "template.html" %}{{post_db.title}} {% block title %} {{post_db.title}} {% endblock title %} {% block meta_tags %}
+<meta name="description" content="{{post_db.description}}">
+<meta name="keyword" content="{{post_db.meta_keywords}}"> {% endblock meta_tags %} {% block content %}
+<style>
+     :root {
+        --mobileHeading: calc(20px + (63 - 20) * ((100vw - 300px) / (1200 - 300)));
+        --mobileQuestions: calc(17px + (25 - 14) * ((100vw - 300px) / (1400 - 300)));
+        --mobilePara: calc(19px + (40 - 17) * ((80vw - 300px) / (1200 - 300)));
+        --desktopHeading: calc(20px + (24 - 14) * ((100vw - 300px) / (1200 - 300)));
+        --desktopPara: calc(17px + (19 - 14) * ((100vw - 300px) / (1200 - 300)));
+        --mainHeading: calc(20px + (20 - 25) * ((50vw - 300px) / (1200 - 300)));
+        --mainHeadingMob: calc(22px + (50 - 14) * (40vw - 300px) / (1200 - 300));
+        --mobileQuestionsLi: calc(14px + (40 - 14) * (100vh - 300px) / (1500 - 300));
+        --mobileAnswers: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+        --mobileIndex: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+        --mobileCardDesc: calc(10px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+        --cardImage: {
+            {
+                test
+            }
+        }
+        ;
+    }
+</style>
+<section class="blogPost">
+    <div class="jumbotronHeading">
+        <span class="jumbotronText">
+            <h1>{{post_db.heading}} </h1>
+        </span>
+    </div>
+    <div id="coverImgDiv">
+        <img class="coverImg" src="/static/images/{{post_db.cover_img}}" alt="{{post_db.img_description}}">
+    </div>
+    {% if post_db.quick_answers %}
 
-<div id="Read_more_jumbotron" class="jumbotron jumbotron-fluid text-dark">
-    <div class="container text-center">
-        <div class="display-4" id="Read_more_heading"> <b>
+    <div class="quickQuesions">
+        <ul class="questionList">
+            {% for db in post_db.quick_answers %}
 
-            {{other_post_db.heading}}
-        </b>
+            <li>
+
+                <h3>{{db.ques}}</h3>
+                <p class="quickAns">{{db.ans}}</p>
+            </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+    {% endif %}
+
+    <div id="indexListDiv">
+        <h1>Table of Contents</h1>
+        <ul class="indexList">
+            {% for db in post_db.index %}
+
+            <li><a href="#para{{loop.index}}">{{db.topic}}</a></li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
+
+    <div id="paragraphs">
+        {% for db in post_db.content_parts %}
+        <div>
+            {{db.heading}}
         </div>
-        <p id="Read_more_description" class="lead text-secondary">{{other_post_db.description}}</p>
+        <p id="para{{loop.index}}">{{db.para}} </p>
+        {% if db.img %}
+        <img class="paraImg" src="/static/images/{{db.img}}" alt="{{db.img_description}}"> {% endif %} {% endfor %}
 
     </div>
-</div>
-
-
-{% if other_post_db.thumbnail %}
-<div class="text-center">
-
-    <img id="cover_img" class="img-fluid" src="/static/images/{{other_post_db.thumbnail}}" alt="Responsive image" srcset="">
-</div>
-{% endif %} {% if other_post_db.quick_answers %}
-<div class="container my-5 text-left" id="quick_answers">
-    {% for QA in other_post_db.quick_answers %}
-    <div class="media text-secondary">
-        <div class="media-body mt-4">
-            <blockquote class="text-dark blockquote">
-                <h5><b> {{QA.ques}}</b></h5>
-
-                {{ QA.ans}}
-            </blockquote>
+    <div id="conclusion">
+        <div>
+            <h2>Conclusion</h2>
         </div>
+        <p>{{post_db.conclusion}}</p>
     </div>
-    {% endfor %}
 
-</div>
-{% endif %}
+    {% if post_db.comparison_table %}
+    <div class="table">
+        <table id="customers">
+            <tr>
 
-<div class="text-left container mt-5" id="index">
-    <div style="font-size: 7vh;font-weight:300;" class="text-daek">Contents</div>
-    <ul class="ml-2 mt-1 list-unstyled ">
-        {% for index in other_post_db.index %}
-        <li class="text-secondary">
-            <a style="font-size: 3.5vh;" href="#topic{{loop.index}} " class=" ml-1 strecthed-link ">{{index.topic}}</a>
-        </li>
+                <th>{{post_db.Tableheading1}}</th>
+                <th>{{post_db.Tableheading2}}</th>
+            </tr>
+            {% for db in post_db.comparison_table %}
+
+            <tr>
+
+                <td>{{db.head1_point}}</td>
+                <td>{{db.head2_point}}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+    </div>
+    {% endif %} {% if post_db.code %}
+
+    <div id="code">
+        <h1>Source Code</h1>
+        {% for db in post_db.code %}
+        <h2>{{db.heading}}</h2>
+        <pre><code style="position: relative;z-index:0" class="language-{{db.language}}">
+                {{db.code}}
+            </code></pre> {% endfor %}
+    </div>
+
+    {% endif %} {% if post_db.faq %}
+
+    <div id="faq">
+        <h1>FAQ</h1>
+        {% for db in post_db.faq %}
+
+        <section class="accordion">
+            <input type="checkbox" name="collapse{{loop.index}}" id="handle{{loop.index}}">
+            <h2 class="handle">
+                <label for="handle{{loop.index}}">{{db.faq_q}}</label>
+            </h2>
+            <div class="contentCollapse">
+                <p>{{db.faq_ans}}</p>
+            </div>
+        </section>
         {% endfor %}
 
-    </ul>
-</div>
-
-<div class="container my-5 " id="content ">
-    {% for content in other_post_db.content_parts %}
-    <div style="font-size: 7vh;font-weight:bold; " class="text-dark mt-5 " id="topic{{loop.index}} ">{{content.heading}}</div>
-    {% if content.img %}
-
-    <img src="/static/images/{{content.img}} " class="my-2 content_img mt-2 img-fluid " id="contentOtherImg{{content.id}} " alt="Responsive image "> {% endif %}
-    <div class="h5">{{content.para}}</div>
-
-    <pre><code id="{{content.id}}" class="language-markup">
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-        
-&lt;script&gt;
-// Just a lil&rsquo; script to show off that inline JS gets highlighted
-window.console &amp;&amp; console.log('foo');
-&lt;/script&gt;
-&lt;meta charset=&quot;utf-8&quot; /&gt;
-&lt;link rel=&quot;icon&quot; href=&quot;favicon.png&quot; /&gt;
-&lt;title&gt;Prism&lt;/title&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; /&gt;
-&lt;/head&gt;
-&lt;body&gt;
-            
-    </code></pre> {% endfor %}
-</div>
-
-{% if other_post_db.comparison_table %}
-
-<div class="container mt-5 " id="table ">
-    <table class="table table-bordered ">
-        <thead>
-            <tr>
-                <th scope="col ">Sno</th>
-                <th scope="col ">{{other_post_db.Tableheading1}}</th>
-                <th scope="col ">{{other_post_db.Tableheading2}}</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            {% for table in other_post_db.comparison_table %}
-            <tr>
-                <th scope="row ">{{loop.index}}</th>
-                <td>{{table.head1_point}}</td>
-                <td>{{table.head2_point}}</td>
-
-            </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
-</div>
-{% endif %} {% if other_post_db.conclusion %}
-<div class="container mt-5 " id="conclusion ">
-    <div class="text-secondary " style="font-size: 7vh; "><b>Conclusion</b></div>
-    <p><i>{{other_post_db.conclusion}}</i></p>
-
-</div>
-{% endif %}
-<hr> {% if other_post_db.faq %}
-<div class="container mt-5 " id=faq>
-    <h1 class="text-dark ml-1 ">FAQ</h1>
-    {% for faq in other_post_db.faq %}
-
-
-    <p>
-        <a class="text-left btn btn-light btn-block" data-toggle="collapse" href="#collapseExample{{loop.index}}" role="button" aria-expanded="false" aria-controls="collapseExample{{loop.index}}">
-         {{faq.faq_q}}
-         </a>
-        <div class="collapse" id="collapseExample{{loop.index}}">
-            <div class="card card-body">
-                {{faq.faq_ans}}
-            </div>
-        </div>
-
-    </p>
-    {% endfor %}
-
-</div>
-{% endif %} {% if related_post %}
-
-<div class="container ">
-
-    <h1><b>Realted Posts</b></h1>
-</div>
-{% endif %}
-
-<div class="desktop ">
-
-    <div class="container mt-3 ">
-
-        <div class="row conten-center ">
-
-            {% for db in related_post %}
-            <div class="col text-center">
-                <div class="card " id="Othercard{{loop.index}} " style="width: 14rem; ">
-                    <img src="/static/images/{{db.thumbnail}} " style="height:20%; " class="card-img-top " alt="... ">
-                    <div class="card-body ">
-                        <h3 id="Otherhead{{loop.index}} ">{{db.heading}}</h3>
-                        <p class="card-text " id='Otherdesc{{loop.index}}'>{{db.description}}</p>
-                        <a href="/tech-posts/{{db.url}} " class="btn btn-secondary btn-sm btn-block ">Read More</a>
-                        <div class="mt-4 text-muted">posted on:{{db.date}}</div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
     </div>
-</div>
+    {% endif %}
+    <hr style="margin-top: 4%;">
+    <h1 class="headingRelated">Related Post</h1>
 
+    <!-- !90000000000000000000000000000000000000000000000000000000000000000000000000 -->
 
-{% if related_post %}
-<div class="mobile container ">
-    <!-- todo FOR mobile same as index page -->
-    <div class="mobileViewAll ">
+    <!-- !00000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+    <div id="relatedPost">
+        {% for db in related_post %}
 
-        <div class="mobContainer mobArd " id="mobOther ">
-            {%for db in related_post %}
-            <a href="/tech-posts/{{db.url}} ">
-                <div class="postMobile mt-3 ">
-                    <img src="/static/images/{{db.thumbnail}} " class="thumbnailMob image-fluid" alt="Responsive image ">
-                    <div class="mobViewContent">
-                        <span class="text-dark" style="font-size: 1.1em;">
-                            <b>
+        <div class="card card-{{loop.index}}">
+            <div class="card-img"></div>
 
-                                {{db.heading}} 
-                            </b>
-                        </span>
-                        <p class="text-secondary">{{db.description}}</p>
-                        <div class="text-muted">{{db.date}}</div>
-                    </div>
-                </div>
+            <a href="{{db.url}}" class="card-link">
+                <div class="card-img-hovered"></div>
             </a>
-            {% endfor %}
+            <div class="card-info">
+                <div class="card-about">
+                    <a class="card-tag tag-news">{{url_type[loop.index0]}}</a>
+                    <div class="card-time">{{db.date}}</div>
+                </div>
+                <h1 class="card-title">{{db.heading}}</h1>
 
+            </div>
         </div>
 
-    </div>
-</div>
-{% endif %} {% endblock %} {% block script %}
+        {% endfor %}
 
-<script src="/static/readMore.js "></script>
+    </div>
+    {% if latest_posts %}
+
+    <h1 class="headingRelated">Recent Post</h1>
+
+    <div id="recentPost">
+        {% for db in latest_posts %} {% if db %}
+
+        <div class="card card-{{loop.index}}">
+            <div class="card-img"></div>
+            <a href="{{db.url}}" class="card-link">
+                <div class="card-img-hovered"></div>
+            </a>
+            <div class="card-info">
+                <div class="card-about">
+                    {% if db.type[0:-4]=="Ard" %}
+
+                    <a class="card-tag tag-news">Arduino</a> {% else %}
+                    <a class="card-tag tag-news">{{db.type[0:-4]}}</a> {% endif %}
+                    <div class="card-time">{{db.date}}</div>
+                </div>
+                <h1 class="card-title">{{db.heading}}</h1>
+            </div>
+        </div>
+        {% endif %} {% endfor %}
+
+    </div>
+    {% endif %}
+
+
+
+</section>
+{% endblock %} {% block script %}
+<script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5ed63d1c5d871a001228b099&product=sticky-share-buttons"></script>
 {% endblock %}

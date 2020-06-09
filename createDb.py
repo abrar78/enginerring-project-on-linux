@@ -487,7 +487,7 @@ class Content_draft(db.Model):
     heading=db.Column(db.String(100),nullable=True)
     img_description=db.Column(db.String(100),nullable=True)
     img=db.Column(db.String(100),nullable=True)
-    para=db.Column(db.String(500),nullable=True)
+    para=db.Column(db.String(1500),nullable=True)
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
         
     

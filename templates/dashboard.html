@@ -1,7 +1,12 @@
 {% extends "dashboard_base_template.html" %} {% block postNo %}
-<form action="/draft" action="POST">
+<form action="/dashboard/draft" action="POST">
     <button type="submit" class="mx-5 btn btn-outline-light">
     Saved Post <span class="mx-2 badge badge-light">{{postNo}} 
+      
+    </form>
+<form action="/dashboard/emails/1" action="POST">
+    <button type="submit" class="mx-2 btn btn-outline-light">
+    Subscribers <span class="mx-2 badge badge-light">{{subscribersNo}} 
       
     </form>
     {% endblock postNo %}{% block content%}

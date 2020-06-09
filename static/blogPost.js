@@ -32,56 +32,56 @@ function howerLeave(i) {
 var projDesktop = document.getElementById("projDesktop")
 var projMob = document.getElementById("projMob")
 document.getElementById('dropDownDesktop').style.display = "none"
-document.getElementById('dropDownMob').style.display = "none"
+
 var flipOut = false;
 
 
 projDesktop.onclick = function() {
-    var list = document.getElementById("dropDownDesktop")
-    if (flipOut) {
-        list.classList.remove("flipOutX")
-        list.classList.add("flipInX")
+        var list = document.getElementById("dropDownDesktop")
+        if (flipOut) {
+            list.classList.remove("flipOutX")
+            list.classList.add("flipInX")
+
+
+
+        }
+        if (list.style.display == "none" || flipOut) {
+            list.style.display = "flex"
+            flipOut = false;
+
+        } else {
+
+            list.classList.remove("flipInX")
+            list.classList.add("flipOutX")
+            flipOut = true;
+        }
 
 
 
     }
-    if (list.style.display == "none" || flipOut) {
-        list.style.display = "flex"
-        flipOut = false;
-
-    } else {
-
-        list.classList.remove("flipInX")
-        list.classList.add("flipOutX")
-        flipOut = true;
-    }
+    // projMob.onclick = function() {
+    //     var list = document.getElementById("dropDownMob")
+    //     if (flipOut) {
+    //         list.classList.remove("slideOutLeft")
+    //         list.classList.add("slideInLeft")
 
 
 
-}
-projMob.onclick = function() {
-    var list = document.getElementById("dropDownMob")
-    if (flipOut) {
-        list.classList.remove("slideOutLeft")
-        list.classList.add("slideInLeft")
+//     }
+//     if (list.style.display == "none" || flipOut) {
+//         list.style.display = "flex"
+//         flipOut = false;
+
+//     } else {
+
+//         list.classList.remove("slideInLeft")
+//         list.classList.add("slideOutLeft")
+//         flipOut = true;
+//     }
 
 
 
-    }
-    if (list.style.display == "none" || flipOut) {
-        list.style.display = "flex"
-        flipOut = false;
-
-    } else {
-
-        list.classList.remove("slideInLeft")
-        list.classList.add("slideOutLeft")
-        flipOut = true;
-    }
-
-
-
-}
+// }
 var coll = document.getElementsByClassName("collapsible");
 var i;
 

@@ -86,10 +86,13 @@ mail=Mail(app);
 @app.route('/')
 def index_file():
 
-     arduino=Arduinoproject_posts.query.paginate(per_page=4,page=1,error_out=True)
-     basic=Basicproject_posts.query.paginate(per_page=4,page=1,error_out=True)
-     iot=Iotproject_posts.query.paginate(per_page=4,page=1,error_out=True)
-     other=Other_posts.query.paginate(per_page=4,page=1,error_out=True)
+
+     arduino=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=4,page=1,error_out=True)
+  
+     
+     basic=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=4,page=1,error_out=True)
+     iot=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=4,page=1,error_out=True)
+     other=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=4,page=1,error_out=True)
      arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).first()
      basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
      iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
@@ -103,7 +106,38 @@ def index_file():
                             iot_project=iot,
                             other_project=other,
                             latest_posts=latest_posts)
-
+@app.route('/arduino-projects-page/<int:page>')
+def arduino_projects(page):
+     post=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=6,page=page,error_out=True)
+     thumbnails={"images":[],"current":page}
+     for i in post.items:
+         thumbnails["images"].append(i.thumbnail)
+      
+     return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="arduino-projects",thumbnails=json.dumps(thumbnails))
+@app.route('/basic-projects-page/<int:page>')
+def basic_projects(page):
+     post=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=6,page=page,error_out=True)
+     thumbnails={"images":[],"current":page}
+     for i in post.items:
+         thumbnails["images"].append(i.thumbnail)
+      
+     return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="basic-projects",thumbnails=json.dumps(thumbnails))
+@app.route('/iot-projects-page/<int:page>')
+def iot_projects(page):
+     post=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=6,page=page,error_out=True)
+     thumbnails={"images":[],"current":page}
+     for i in post.items:
+         thumbnails["images"].append(i.thumbnail)
+      
+     return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="iot-projects",thumbnails=json.dumps(thumbnails))
+@app.route('/tech-posts-page/<int:page>')
+def other_projects(page):
+     post=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=6,page=page,error_out=True)
+     thumbnails={"images":[],"current":page}
+     for i in post.items:
+         thumbnails["images"].append(i.thumbnail)
+      
+     return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="tech-posts",thumbnails=json.dumps(thumbnails))
 @app.route('/paginate', methods = ['GET', 'POST'])
 def paginate():
     req=request.get_json();
@@ -114,7 +148,7 @@ def paginate():
         if req['jump_page']==True:
          content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
          current_page=int(req['page_no'])
-         arduino=Arduinoproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
+         arduino=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
          for arduino_db,i in zip(arduino.items,range(1,5)):
              content['heading'][str(i)]=arduino_db.heading
              content['thumbnail'][str(i)]=arduino_db.thumbnail
@@ -127,7 +161,7 @@ def paginate():
         if req['next']==True or req['prev']==True:
           content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
           print(req)
-          arduino=Arduinoproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
+          arduino=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
           for arduino_db,i in zip(arduino.items,range(1,5)):
              content['heading'][str(i)]=arduino_db.heading
              content['thumbnail'][str(i)]=arduino_db.thumbnail
@@ -140,7 +174,7 @@ def paginate():
         if req['jump_page']==True:
          content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
          current_page=int(req['page_no'])
-         basic=Basicproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
+         basic=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
          for basic_db,i in zip(basic.items,range(1,5)):
              content['heading'][str(i)]=basic_db.heading
              content['thumbnail'][str(i)]=basic_db.thumbnail
@@ -152,7 +186,7 @@ def paginate():
 
         if req['next']==True or req['prev']==True:
           content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-          basic=Basicproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
+          basic=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
           for basic_db,i in zip(basic.items,range(1,5)):
              content['heading'][str(i)]=basic_db.heading
              content['thumbnail'][str(i)]=basic_db.thumbnail
@@ -163,7 +197,7 @@ def paginate():
          if req['jump_page']==True:
              content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
              current_page=int(req['page_no'])
-             iot=Iotproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
+             iot=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
              for iot_db,i in zip(iot.items,range(1,5)):
                 content['heading'][str(i)]=iot_db.heading
                 content['thumbnail'][str(i)]=iot_db.thumbnail
@@ -175,7 +209,7 @@ def paginate():
 
          if req['next']==True or req['prev']==True:
             content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-            iot=Iotproject_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
+            iot=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
             for iot_db,i in zip(iot.items,range(1,5)):
                 content['heading'][str(i)]=iot_db.heading
                 content['thumbnail'][str(i)]=iot_db.thumbnail
@@ -187,7 +221,7 @@ def paginate():
          if req['jump_page']==True:
              content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
              current_page=int(req['page_no'])
-             other=Other_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
+             other=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
              for other_db,i in zip(other.items,range(1,5)):
                 content['heading'][str(i)]=other_db.heading
                 content['thumbnail'][str(i)]=other_db.thumbnail
@@ -199,7 +233,7 @@ def paginate():
 
          if req['next']==True or req['prev']==True:
             content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-            other=Other_posts.query.paginate(per_page=4,page=int(req['page_no']),error_out=True)
+            other=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
             for other_db,i in zip(other.items,range(1,5)):
                 content['heading'][str(i)]=other_db.heading
                 content['thumbnail'][str(i)]=other_db.thumbnail
@@ -239,8 +273,16 @@ def arduinoRead(url):
     print(type(related))
     if arduino_post in related:
         related.remove(arduino_post)
-
-    return render_template('readMoreOther.html', post_db=arduino_post,related_post=related[0:4],latest_posts=latest_posts,url_type="Arduino")
+    relatedThumbnails={"thumbnails":[]}       
+    latestThumbnails= {"thumbnails":[]}
+    for lat in latest_posts:
+          latestThumbnails["thumbnails"].append(lat.thumbnail)
+    for rel in related[0:4]:
+          relatedThumbnails["thumbnails"].append(rel.thumbnail)
+    
+    print(latestThumbnails["thumbnails"])        
+    print(relatedThumbnails["thumbnails"])        
+    return render_template('readMoreOther.html', post_db=arduino_post,related_post=related[0:4],latest_posts=latest_posts,url_type="Arduino",relatedThumbnails=json.dumps(relatedThumbnails),latestThumbnails=json.dumps(latestThumbnails))
 @app.route('/basic-projects/<string:url>')
 def basicRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).first()
@@ -385,7 +427,7 @@ def advertise():
 
 @app.route('/form',methods = ['GET', 'POST'])
 def form_submit():
-    req=request.get_json();
+    req=request.get_json()
     print(req)
     message=""
     if req['with_only_text']==True:
@@ -423,11 +465,11 @@ def form_submit():
 def message():
     req=request.get_json();
     print(req)
-    mail.send_message('new message from blog'+'  name:'+req['sender_name'],
+    mail.send_message('new message from blog'
                       sender=req['e_mail'],
                       recipients = [params['recipient']],
                       body=req['message'])
-    message=Messages(send_by=req['sender_name'],email=req['e_mail'],messsage=req['message'])
+    message=Messages(email=req['e_mail'],messsage=req['message'])
     db.session.add(message)
     db.session.commit()
     content={"response":"Thankyou"}
@@ -436,8 +478,8 @@ def message():
 @app.route('/subscribe',methods = ['GET', 'POST'])
 def subscriber():
     req=request.get_json();
-    subscriber=Subscribers(user_name=req['name'],email=req['e_mail']);
-    message="Hello Abrar New subscribers on your blog please add it to your list \r\n"+"name and email is "+req['name']+" "+req['e_mail']
+    subscriber=Subscribers(email=req['e_mail']);
+    message="Hello Abrar New subscribers on your blog please add it to your list \r\n"+"email is"+ "+req['e_mail']
     mail.send_message('new message from blog for new subscribing request',
                       sender=req['e_mail'],
                       recipients = [params['recipient']],

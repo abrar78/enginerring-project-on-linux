@@ -68,6 +68,7 @@
             {% for page_no in arduino_project.iter_pages() %}
             <li class="page-item page-secondary " id='{{page_no}}'><a onclick="addActive('Ard','{{page_no}}')" class="btn btn-secondary page-link" href="/all_post/{{page_no}}">{{page_no}}</a></li>
             {% endfor %}
+        </ul>
     </nav>
 </div>
 {% endblock %} {% block script %}

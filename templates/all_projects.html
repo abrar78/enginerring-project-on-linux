@@ -1,0 +1,47 @@
+{% extends "template.html" %} {% block title %} {{title}} {% endblock %} {% block content %}
+<div style="margin-top: 100px;" class="band">
+    {% for db in project.items %}
+    <div class="item-{{loop.index+1}}">
+        <a href="https://webdesign.tutsplus.com/articles/how-to-conduct-remote-usability-testing--cms-27045" class="card">
+            <div class="thumb" id="thumb{{loop.index}}"></div>
+            <article>
+                <h1>How to Conduct Remote Usability Testing</h1>
+                <p>db.description</p>
+                <span>2020-6-12</span>
+            </article>
+        </a>
+    </div>
+
+    {% endfor %}
+</div>
+<nav style="margin-left: 8%;z-index:0;" class="navbar navbar-dark">
+    <ul class="pagination pagination-warning pagination-sm">
+        {% for page_no in project.iter_pages() %}
+        <li class="page-item page-secondary " id='{{page_no}}'><a onclick="addActive('Ard','{{page_no}}')" class="btn btn-secondary page-link" href="/{{type}}-page/{{page_no}}">{{page_no}}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+
+{% endblock %} {% block script %}
+
+
+<script>
+    var thumbnails = `{{thumbnails|safe}}`
+    thumbnails = JSON.parse(thumbnails)
+    current = thumbnails.current
+
+    console.log(current)
+    var imgs = thumbnails.images
+    for (const key in imgs) {
+        if (imgs.hasOwnProperty(key)) {
+            const element = imgs[key];
+            console.log(`thumb${parseInt(key)+1}`, `url(/static/images/${element})`)
+            document.getElementById(`thumb${parseInt(key)+1}`).style.backgroundImage = `url(/static/images/${element})`
+
+        }
+    }
+    document.getElementById(current).classList.add('active')
+</script>
+
+
+{% endblock script %}

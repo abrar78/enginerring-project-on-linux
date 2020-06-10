@@ -139,12 +139,18 @@ function validateName(id, button) {
 
     resultName = NameRegExp.test(document.getElementById(`${id}`).value);
 
-    if (resultName == true) {
+    let footer = false;
+    if (id.slice(0, 6) == "footer") {
+        footer = true;
+    }
+
+
+    if (resultName == true && !footer) {
         document.getElementById(`${id}`).classList.add("successInput");
         document.getElementById(`${id}`).classList.remove("wrongInput");
 
     }
-    if (resultName == false) {
+    if (resultName == false && !footer) {
         document.getElementById(`${id}`).classList.add("wrongInput");
         document.getElementById(`${id}`).classList.remove("successInput");
 
@@ -152,35 +158,56 @@ function validateName(id, button) {
     }
 
 }
-
-function validateEmail(id, button) {
+// ! ----- RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEEMMMMMMMMMMMMMMMMMMMMMMMMMMOOOOOOOOOOOOOVEEEEE
+function Temp(id, button) {
     emailRegExp.lastIndex = 0;
 
     resultEMail = emailRegExp.test(document.getElementById(`${id}`).value);
+    footer = false;
+    console.log(id.slice(0, 6))
+    if (id.slice(0, 6) == "footer") {
+        footer = true
 
-    if (resultEMail == true) {
+    }
+    if (resultEMail == true && !footer) {
         document.getElementById(`${id}`).classList.add("successInput");
         document.getElementById(`${id}`).classList.remove("wrongInput");
 
 
     }
-    if (resultEMail == false) {
+    if (resultEMail == false && !footer) {
         document.getElementById(`${id}`).classList.add("wrongInput");
         document.getElementById(`${id}`).classList.remove("successInput");
 
 
     }
+    if (resultEMail == true && footer) {
+        document.getElementById(`${id}`).style.border = "solid 2px green"
+        document.getElementById(`${button}`).disabled = false
+
+
+    }
+    if (resultEMail == false && footer) {
+        document.getElementById(`${id}`).style.border = "solid 1px red"
+        document.getElementById(`${button}`).disabled = true
+
+
+
+    }
+
 }
 
+
+
 function subscribe(type) {
-    name = nameD.value
+
     email = emailD.value
 
     var url = `${window.origin}/subscribe`
 
     var entry = {
-        e_mail: email,
-        name: name
+        e_mail: email
+
 
     }
     var params = {

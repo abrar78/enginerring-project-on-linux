@@ -2,6 +2,21 @@ a {
     text-decoration: none;
 }
 
+:root {
+    --mobileHeading: calc(20px + (63 - 20) * ((100vw - 300px) / (1200 - 300)));
+    --mobileQuestions: calc(17px + (25 - 14) * ((100vw - 300px) / (1400 - 300)));
+    --mobilePara: calc(19px + (40 - 17) * ((80vw - 300px) / (1200 - 300)));
+    --desktopHeading: calc(20px + (24 - 14) * ((100vw - 300px) / (1200 - 300)));
+    --desktopPara: calc(17px + (19 - 14) * ((100vw - 300px) / (1200 - 300)));
+    --mainHeading: calc(20px + (20 - 25) * ((50vw - 300px) / (1200 - 300)));
+    --mainHeadingMob: calc(22px + (50 - 14) * (40vw - 300px) / (1200 - 300));
+    --mobileQuestionsLi: calc(14px + (40 - 14) * (100vh - 300px) / (1500 - 300));
+    --mobileAnswers: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+    --mobileCode: calc(5px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+    --mobileIndex: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+    --mobileCardDesc: calc(10px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+}
+
 
 /*
  * Made by Erik Terwan
@@ -716,6 +731,7 @@ body {
 #code h2 {
     margin-left: calc(15% + 5px);
     color: grey;
+    font-size: var(--mobileIndex);
     font-family: 'Orbitron', sans-serif;
 }
 
@@ -1173,6 +1189,7 @@ body {
     #code h2 {
         margin-left: calc(5% + 5px);
         font-family: 'Orbitron', sans-serif;
+        font-size: var(--mobileIndex);
     }
     #code pre {
         margin-left: 4%;
@@ -1183,7 +1200,7 @@ body {
         z-index: -1;
     }
     #code pre code {
-        font-size: var(--mobileAnswers);
+        font-size: var(--mobileCode);
     }
     #faq {
         width: 90%;
@@ -1340,18 +1357,18 @@ body {
     transition: all 200ms ease-in-out;
 }
 
-.card {
+.cardCustom {
     align-self: flex-start;
     position: relative;
     width: 325px;
     min-width: 275px;
     margin: 1.25rem 0.75rem;
-    background: gainsboro;
+    background: rgb(248, 248, 248);
     -webkit-transition: all 300ms ease-in-out;
     transition: all 300ms ease-in-out;
 }
 
-.card .card-img {
+.cardCustom .card-img {
     visibility: hidden;
     width: 100%;
     height: var(--card-img-height);
@@ -1360,7 +1377,7 @@ body {
     background-size: cover;
 }
 
-.card .card-img-hovered {
+.cardCustom .card-img-hovered {
     --card-img-hovered-overlay: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
     -webkit-transition: all 350ms ease-in-out;
     transition: all 350ms ease-in-out;
@@ -1373,14 +1390,14 @@ body {
     top: 0;
 }
 
-.card .card-info {
+.cardCustom .card-info {
     position: relative;
     padding: 0.75rem 1.25rem;
     -webkit-transition: all 200ms ease-in-out;
     transition: all 200ms ease-in-out;
 }
 
-.card .card-info .card-about {
+.cardCustom .card-info .card-about {
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: justify;
@@ -1392,7 +1409,7 @@ body {
     transition: all 200ms ease-in-out;
 }
 
-.card .card-info .card-about .card-tag {
+.cardCustom .card-info .card-about .card-tag {
     width: 100px;
     max-width: 100px;
     padding: 0.2rem 0.5rem;
@@ -1404,22 +1421,22 @@ body {
     color: #fff;
 }
 
-.card .card-info .card-about .card-tag.tag-news {
+.cardCustom .card-info .card-about .card-tag.tag-news {
     background: #36b37e;
     width: 100px;
 }
 
-.card .card-info .card-about .card-tag.tag-deals {
+.cardCustom .card-info .card-about .card-tag.tag-deals {
     background: #ffab00;
     width: 100px;
 }
 
-.card .card-info .card-about .card-tag.tag-politics {
+.cardCustom .card-info .card-about .card-tag.tag-politics {
     width: 100px;
     background: #ff5630;
 }
 
-.card .card-info .card-title {
+.cardCustom .card-info .card-title {
     z-index: 10;
     font-size: 1.5rem;
     padding-bottom: 0.75rem;
@@ -1427,35 +1444,43 @@ body {
     transition: all 350ms ease-in-out;
 }
 
-.card .card-info .card-creator {
+.cardCustom .card-info .card-creator {
     padding-bottom: 0.75rem;
     -webkit-transition: all 250ms ease-in-out;
     transition: all 250ms ease-in-out;
 }
 
-.card:hover {
+.cardCustom:hover {
     cursor: pointer;
     box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.1), 0px 5px 15px rgba(0, 0, 0, 0.07);
     -webkit-transform: scale(1.025);
     transform: scale(1.025);
 }
 
-.card:hover .card-img-hovered {
+.cardCustom:hover .card-img-hovered {
     --card-img-hovered-overlay: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65));
     height: 100%;
 }
 
-.card:hover .card-about,
-.card:hover .card-creator {
+.cardCustom:hover .card-about,
+.cardCustom:hover .card-creator {
     opacity: 0;
 }
 
-.card:hover .card-info {
+.cardCustom:hover .card-info {
     background-color: transparent;
 }
 
-.card:hover .card-title {
+.cardCustom:hover .card-title {
     color: #ebecf0;
+    font-size: 0px;
+    -webkit-transform: translate(0, 40px);
+    transform: translate(0, 40px);
+}
+
+.cardCustom:hover .card-para {
+    color: #ebecf0;
+    font-size: 0px;
     -webkit-transform: translate(0, 40px);
     transform: translate(0, 40px);
 }
@@ -1478,4 +1503,154 @@ body {
 .card-4 .card-img,
 .card-4 .card-img-hovered {
     background-image: var(--card-img-hovered-overlay), url(https://source.unsplash.com/350x200/?technology,electronics,male);
+}
+
+
+/*! @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CARDS BOOTSTRAP @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+html {
+    background: #f5f7f8;
+    font-family: system-ui;
+    -webkit-font-smoothing: antialiased;
+    padding: 20px 0;
+}
+
+header {
+    width: 90%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.band {
+    width: 90%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+}
+
+@media (min-width: 30em) {
+    .band {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 60em) {
+    .band {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.card {
+    background: white;
+    text-decoration: none;
+    color: #444;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+    top: 0;
+    -webkit-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+}
+
+.card:hover {
+    top: -2px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card article {
+    padding: 20px;
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.card h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #333;
+}
+
+.card p {
+    -webkit-box-flex: 1;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.card span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin: 2em 0 0 0;
+}
+
+.card .thumb {
+    padding-bottom: 60%;
+    background-size: cover;
+    background-position: center center;
+}
+
+@media (min-width: 60em) {
+    .item-1 {
+        grid-column: 1 / span 2;
+    }
+    .item-1 h1 {
+        font-size: 24px;
+    }
+}
+
+
+/** @@@@@@@@@@@@@@@@@@@@ */
+
+.spinner {
+    display: none;
+    width: 25px;
+    height: 25px;
+    border-top: 8px solid aliceblue;
+    border-right: 8px solid aliceblue;
+    border-bottom: 8px solid aliceblue;
+    border-left: 8px solid #8c618d;
+    border-radius: 50%;
+    animation-name: spin;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        border-left: 8px solid deeppink;
+    }
+    25% {
+        transform: rotate(360deg);
+        border-left: 8px solid gold;
+    }
+    50% {
+        transform: rotate(720deg);
+        border-left: 8px solid palegreen;
+    }
+    75% {
+        transform: rotate(1080deg);
+        border-left: 8px solid aqua;
+    }
+    100% {
+        transform: rotate(1440deg);
+        border-left: 8px solid deeppink;
+    }
 }

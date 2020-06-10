@@ -2,25 +2,7 @@
 <meta name="description" content="{{post_db.description}}">
 <meta name="keyword" content="{{post_db.meta_keywords}}"> {% endblock meta_tags %} {% block content %}
 <style>
-     :root {
-        --mobileHeading: calc(20px + (63 - 20) * ((100vw - 300px) / (1200 - 300)));
-        --mobileQuestions: calc(17px + (25 - 14) * ((100vw - 300px) / (1400 - 300)));
-        --mobilePara: calc(19px + (40 - 17) * ((80vw - 300px) / (1200 - 300)));
-        --desktopHeading: calc(20px + (24 - 14) * ((100vw - 300px) / (1200 - 300)));
-        --desktopPara: calc(17px + (19 - 14) * ((100vw - 300px) / (1200 - 300)));
-        --mainHeading: calc(20px + (20 - 25) * ((50vw - 300px) / (1200 - 300)));
-        --mainHeadingMob: calc(22px + (50 - 14) * (40vw - 300px) / (1200 - 300));
-        --mobileQuestionsLi: calc(14px + (40 - 14) * (100vh - 300px) / (1500 - 300));
-        --mobileAnswers: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
-        --mobileIndex: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
-        --mobileCardDesc: calc(10px + (40 - 14) * (90vh - 300px) / (1500 - 300));
-        --cardImage: {
-            {
-                test
-            }
-        }
-        ;
-    }
+
 </style>
 <section class="blogPost">
     <div class="jumbotronHeading">
@@ -137,11 +119,11 @@
     <div id="relatedPost">
         {% for db in related_post %}
 
-        <div class="card card-{{loop.index}}">
-            <div class="card-img"></div>
+        <div class="cardCustom card-{{loop.index}}">
+            <div id="cardImgRelated{{loop.index}}" class="card-img"></div>
 
             <a href="{{db.url}}" class="card-link">
-                <div class="card-img-hovered"></div>
+                <div id="cardImgHoveredRelated{{loop.index}}" class="card-img-hovered"></div>
             </a>
             <div class="card-info">
                 <div class="card-about">
@@ -149,6 +131,7 @@
                     <div class="card-time">{{db.date}}</div>
                 </div>
                 <h1 class="card-title">{{db.heading}}</h1>
+                <p class="card-para">{{db.description}}</p>
 
             </div>
         </div>
@@ -163,22 +146,23 @@
     <div id="recentPost">
         {% for db in latest_posts %} {% if db %}
 
-        <div class="card card-{{loop.index}}">
-            <div class="card-img"></div>
+        <div class="cardCustom card-{{loop.index}}">
+            <div id="cardImgRecent{{loop.index}}" class="card-img"></div>
+
             <a href="{{db.url}}" class="card-link">
-                <div class="card-img-hovered"></div>
+                <div id="cardImgHoveredRecent{{loop.index}}" class="card-img-hovered"></div>
             </a>
             <div class="card-info">
                 <div class="card-about">
-                    {% if db.type[0:-4]=="Ard" %}
-
-                    <a class="card-tag tag-news">Arduino</a> {% else %}
-                    <a class="card-tag tag-news">{{db.type[0:-4]}}</a> {% endif %}
+                    <a class="card-tag tag-news">{{url_type[loop.index0]}}</a>
                     <div class="card-time">{{db.date}}</div>
                 </div>
                 <h1 class="card-title">{{db.heading}}</h1>
+                <p class="card-para">{{db.description}}</p>
+
             </div>
         </div>
+
         {% endif %} {% endfor %}
 
     </div>
@@ -189,4 +173,34 @@
 </section>
 {% endblock %} {% block script %}
 <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5ed63d1c5d871a001228b099&product=sticky-share-buttons"></script>
+
+<script>
+    var relatedThumbnails = `{{relatedThumbnails|safe}}`
+    relatedThumbnails = JSON.parse(relatedThumbnails)
+    var latestThumbnails = `{{latestThumbnails|safe}}`
+    latestThumbnails = JSON.parse(latestThumbnails)
+
+    var imgsRelated = relatedThumbnails.thumbnails
+    var imgsLatest = latestThumbnails.thumbnails
+    for (const key in imgsRelated) {
+        if (imgsRelated.hasOwnProperty(key)) {
+            const element = imgsRelated[key];
+            console.log(`cardImgRelated${parseInt(key)+1}`, `url(/static/images/${element})`)
+            document.getElementById(`cardImgRelated${parseInt(key)+1}`).style.backgroundImage = `linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),url(/static/images/${element})`
+            document.getElementById(`cardImgHoveredRelated${parseInt(key)+1}`).style.backgroundImage = `linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),url(/static/images/${element})`
+
+        }
+    }
+    for (const key in imgsLatest) {
+        if (imgsLatest.hasOwnProperty(key)) {
+            const element = imgsLatest[key];
+            console.log(`cardImgRecent${parseInt(key)+1}`, `url(/static/images/${element})`)
+            document.getElementById(`cardImgRecent${parseInt(key)+1}`).style.backgroundImage =
+                document.getElementById(`cardImgHoveredRecent${parseInt(key)+1}`).style.backgroundImage = `url("/static/images/${element}")`;
+
+            document.getElementById(`cardImgHoveredRecent${parseInt(key)+1}`).style.backgroundImage = `url("/static/images/${element}")`;
+
+        }
+    }
+</script>
 {% endblock %}

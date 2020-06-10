@@ -465,7 +465,7 @@ def form_submit():
 def message():
     req=request.get_json();
     print(req)
-    mail.send_message('new message from blog'
+    mail.send_message('new message from blog',
                       sender=req['e_mail'],
                       recipients = [params['recipient']],
                       body=req['message'])
@@ -479,7 +479,7 @@ def message():
 def subscriber():
     req=request.get_json();
     subscriber=Subscribers(email=req['e_mail']);
-    message="Hello Abrar New subscribers on your blog please add it to your list \r\n"+"email is"+ "+req['e_mail']
+    message="Hello Abrar New subscribers on your blog please add it to your list \r\n"+"email is req['e_mail']"
     mail.send_message('new message from blog for new subscribing request',
                       sender=req['e_mail'],
                       recipients = [params['recipient']],

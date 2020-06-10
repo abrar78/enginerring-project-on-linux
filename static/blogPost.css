@@ -556,6 +556,15 @@ a {
     position: relative;
 }
 
+.jumbotronHeadingIndex {
+    width: 100vw;
+    background: rgba(214, 214, 214, 0.3);
+    height: 20%;
+    margin-top: 60px;
+    z-index: 0;
+    position: relative;
+}
+
 body {
     overflow-x: hidden;
 }

@@ -35,49 +35,26 @@
 
 <!-- ?Latest POst Section Start ---------------------------------------------------------------->
 <div class="desktop">
-    <div class="jumbotron jumbotron-fluid" style="margin-top: 50px; height: 200px;">
-        <div class="container">
-            <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5"> Latest Posts</span>
-
-            <span class="text-dark material-icons">
-                        label_important
-                        </span>
-            <div class="mt-2 text-secondary lead text-left">Get the latest posts here</div>
-
-        </div>
+    <div class="jumbotronHeadingIndex">
+        <span class="jumbotronText">
+            <h1><b>Latest Post</b> </h1>
+        </span>
     </div>
-    <div class="container text-center desktopViewLatestPost" style="margin-top:100px; height: 500px; ">
-        <div class="row " style="margin: 0 auto;">
-            {% for db in latest_posts %}
-            <div class="col">
-
-
-                <a href="/tech-posts/{{db.url}}" id="Latestid{{loop.index}}" class="streatched-link">
-                    <div class="card h-100" id="Latestcard{{loop.index}}" style="width: 100% ">
-                        <img id="Latestthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <div style="font-size: 3vh;font-weight:bold" class="text-dark" id="Latesthead{{loop.index}}">{{db.heading}}</div>
-                            <div class="text-secondary" style="font-size: 2.5vh;" class="card-text" id='Latestdesc{{loop.index}}'>{{db.description}}</div>
-                        </div>
-
-
-
-                        <div class="card-footer">
-                            <small class="text-muted">Posted on :{{db.date}}</small>
-                        </div>
-                    </div>
-
-                </a>
-
-
-            </div>
-            {% endfor %}
-
+    <div style="margin-top: 5px;" class="band">
+        {% for db in latest_posts %}
+        <div class="item-{{loop.index}}">
+            <a href="https://webdesign.tutsplus.com/articles/how-to-conduct-remote-usability-testing--cms-27045" class="card">
+                <div class="thumb" style="background-image:url(https://source.unsplash.com/350x200/?technology,electronics,men);" id="thumb{{loop.index}}"></div>
+                <article>
+                    <h1>How to Conduct Remote Usability Testing</h1>
+                    <p>{{db.description}}</p>
+                    <span>2020-6-12</span>
+                </article>
+            </a>
         </div>
 
-
+        {% endfor %}
     </div>
-
 
 
 

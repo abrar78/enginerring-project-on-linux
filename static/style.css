@@ -91,10 +91,6 @@
     }
     /* ? mobile CARDS---------------------------------------------------------------- */
     
-    .desktop {
-        display: block;
-    }
-    
     #main {
         height: 100%;
     }
@@ -174,7 +170,7 @@
         color: #F2C36B;
         font-size: 30px;
         position: relative;
-        top: 150px;
+        top: 180px;
         font-family: 'Roboto Slab', serif;
     }
     
@@ -278,7 +274,7 @@
         height: 10vh;
         position: relative;
         justify-content: center;
-        align-items: flex-end;
+        align-items: center;
     }
     /* card hover effect */
     
@@ -532,9 +528,6 @@
             overflow: hidden;
             overflow-y: scroll; */
         }
-        .desktop {
-            display: none;
-        }
         .page {
             margin-bottom: 250px;
             display: none;
@@ -687,9 +680,6 @@
             display: block;
             width: 100%;
             margin-bottom: 10px;
-        }
-        .desktop {
-            display: none;
         }
         .page {
             margin-bottom: 250px;

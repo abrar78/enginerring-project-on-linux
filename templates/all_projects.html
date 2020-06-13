@@ -1,11 +1,16 @@
 {% extends "template.html" %} {% block title %} {{title}} {% endblock %} {% block content %}
+<div id="IOTProjects" class="jumbotronHeadingIndex">
+    <span class="jumbotronTextIndex">
+            <h1>{{type}}</h1>
+        </span>
+</div>
 <div style="margin-top: 100px;" class="band">
     {% for db in project.items %}
     <div class="item-{{loop.index+1}}">
-        <a href="https://webdesign.tutsplus.com/articles/how-to-conduct-remote-usability-testing--cms-27045" class="card">
+        <a href="{{db.url}}" class="card">
             <div class="thumb" id="thumb{{loop.index}}"></div>
             <article>
-                <h1>How to Conduct Remote Usability Testing</h1>
+                <h1>How to Conduct Remote Usability Testing{{db.heading}}</h1>
                 <p>db.description</p>
                 <span>2020-6-12</span>
             </article>

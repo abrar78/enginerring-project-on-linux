@@ -30,7 +30,7 @@ var bottom = document.getElementById("bottom")
 
 
 // Type writing effet 
-var text = ["subscribe  for latest updates", "Blog for Engineers", "Blog for Electronic-Hobyist"]
+var text = ["Blog for Electronic-Hobyist", "Get Latest Updates", "Subscribe-Now"]
 var count = 0;
 var index = 0;
 var currentText = "";
@@ -162,7 +162,9 @@ function validateName(id, button) {
 function Temp(id, button) {
     emailRegExp.lastIndex = 0;
 
+
     resultEMail = emailRegExp.test(document.getElementById(`${id}`).value);
+    console.log(resultEMail)
     footer = false;
     console.log(id.slice(0, 6))
     if (id.slice(0, 6) == "footer") {
@@ -218,7 +220,7 @@ function subscribe(type) {
             "content-type": "application/json"
         })
     }
-    if (resultName == true && resultEMail == true) {
+    if (resultEMail == true) {
         subscribeBtnSpinner.style.display = "block";
         fetch(url, params).then(response => {
 

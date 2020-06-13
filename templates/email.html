@@ -6,7 +6,7 @@
       
     </form>
     {% endblock postNo %}
-    {% block content%}
+    {% block content %}
     {% if subscribers.pages!=0 %}
     <div class="container text-secondary text-center draft" style="width: 85%; margin-left: 15%;">
 
@@ -37,7 +37,7 @@
             <form class="inline-form" action="/dashboard/email/delete/{{db.id}}" method="POST">
                 <th scope="row">{{loop.index}}</th>
                 <td>
-                    {{db.subscribers}}
+                    {{db.email}}
                     <button class=" btn btn-sm btn-dark">Delete</button>
                 </td>
 
@@ -47,12 +47,12 @@
 
     </tbody>
 </table>
-<h4>active-page={{subscribers.current_page}}</h4>
+
 <nav class="navbar navbar-dark">
     <ul class="pagination pagination-warning pagination-sm">
         {% for page_no in subscribers.iter_pages() %}
         <li class="page-item page-secondary " id='{{page_no}}'>
-            <a class="btn btn-secondary page-link " href="/dashboard/email/{{page_no}}"></a>
+            <a class="btn btn-secondary page-link " href="/dashboard/email/{{page_no}}">{{page_no}}</a>
         </li>
         {% endfor %}
 </nav>
@@ -65,4 +65,12 @@
         No Subscribers!
     </div>
 </div>
-{% endif %} {% endblock %}
+{% endif %} {% endblock %} {% block script %}
+<script>
+    var data = `{{data|safe}}`
+    data = JSON.parse(data)
+    current = data.current
+    console.log(current)
+    document.getElementById(current).classList.add('active')
+</script>
+{% endblock script %}

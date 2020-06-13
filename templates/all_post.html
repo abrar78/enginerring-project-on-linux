@@ -32,12 +32,12 @@
                     <a href="{{db.url}}" id="Basicid{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2  mx-2">Read-more</a>
                     <a href="/Edit/Ard/{{db.id}}" id="BasicidEd{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2  mx-2">Edit</a>
                     <!-- Button trigger modal -->
-                    <button type="button" class="ml-2 btn btn-outline-secondary btn-sm " data-toggle="modal" data-target="#delete">
+                    <button type="button" class="ml-2 btn btn-outline-secondary btn-sm " data-toggle="modal" data-target="#delete{{db.id}}">
                         Delete
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="delete{{db.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">

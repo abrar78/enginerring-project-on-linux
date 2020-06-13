@@ -120,14 +120,14 @@
         {% for db in related_post %}
 
         <div class="cardCustom card-{{loop.index}}">
-            <div id="cardImgRelated{{loop.index}}" class="card-img"></div>
+            <div id="cardImgRelated{{loop.index}}" style="background-image: url('/static/images/{{db.thumbnail}}');" class="card-img"></div>
 
-            <a href="{{db.url}}" class="card-link">
-                <div id="cardImgHoveredRelated{{loop.index}}" class="card-img-hovered"></div>
+            <a href="{{db.url}}" target="_blank" class="card-link">
+                <div id="cardImgHoveredRelated{{loop.index}}" style="background-image: url('/static/images/{{db.thumbnail}}');" class="card-img-hovered"></div>
             </a>
             <div class="card-info">
                 <div class="card-about">
-                    <a class="card-tag tag-news">{{url_type[loop.index0]}}</a>
+                    <a class="card-tag tag-news">{{db.type}}</a>
                     <div class="card-time">{{db.date}}</div>
                 </div>
                 <h1 class="card-title">{{db.heading}}</h1>
@@ -147,14 +147,14 @@
         {% for db in latest_posts %} {% if db %}
 
         <div class="cardCustom card-{{loop.index}}">
-            <div id="cardImgRecent{{loop.index}}" class="card-img"></div>
+            <div id="cardImgRecent{{loop.index}}" style="background-image: url('/static/images/{{db.thumbnail}}');" class="card-img"></div>
 
-            <a href="{{db.url}}" class="card-link">
-                <div id="cardImgHoveredRecent{{loop.index}}" class="card-img-hovered"></div>
+            <a href="{{db.url}}" target="_blank" class="card-link">
+                <div id="cardImgHoveredRecent{{loop.index}}" style="background-image: url('/static/images/{{db.thumbnail}}');" class="card-img-hovered"></div>
             </a>
             <div class="card-info">
                 <div class="card-about">
-                    <a class="card-tag tag-news">{{url_type[loop.index0]}}</a>
+                    <a class="card-tag tag-news">{{db.type}}</a>
                     <div class="card-time">{{db.date}}</div>
                 </div>
                 <h1 class="card-title">{{db.heading}}</h1>

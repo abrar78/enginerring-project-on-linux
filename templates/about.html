@@ -1,0 +1,15 @@
+{% extends "dashboard_base_template.html" %} {% block content %}
+<div class="container mt-5" style="margin-left: 20%;">
+
+    <form action="/dashboard/about/apply" method="POST">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">About</span>
+            </div>
+            <textarea class="form-control" name="about" aria-label="With textarea">{{about}}</textarea>
+        </div>
+
+        <button class="btn btn-secondary btn-sm mt-2">Apply changes</button>
+    </form>
+</div>
+{% endblock %}

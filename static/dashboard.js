@@ -698,7 +698,7 @@ function submitCreatePost(type_) {
     fetch(url, params).then((response) => {
         if (response.status == 200) {
             console.log("succesfully_posted");
-            if (type_ == 'table' || type_ == 'faq' || type_ == 'para' || type_ == 'index' || type_ == 'type') {
+            if (document.getElementById(`${type_}S`)) {
                 document.getElementById(`${type_}S`).classList.remove('btn-secondary')
                 document.getElementById(`${type_}S`).classList.add('btn-outline-success')
             }

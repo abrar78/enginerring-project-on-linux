@@ -205,7 +205,7 @@
         {% if para_subheading or para or para_thumbnail %}
 
         <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Paragraphs/Steps</div>
-        {% for ind in para_subheading %}
+        {% for ind in para %}
 
         <div id="paraDiv{{loop.index}}">
 
@@ -215,7 +215,7 @@
         
       </textarea>
             <label class="text-secondary mt-2" for="para_imgDescription{{loop.index}}"><b>Image Description</b></label>
-            <textarea class="form-control" onblur="backup('para_imgDescription','{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_imgDescription1" rows="1">{{paraImgDescription[loop.index0]}}
+            <textarea class="form-control" onblur="backup('para_imgDescription','{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_imgDescription{{loop.index}}" rows="1">{{paraImgDescription[loop.index0]}}
             </textarea>
             <label class="text-secondary mt-3 " for="para{{loop.index}}"><b>Para</b></label>
             <textarea class="form-control" onblur="backup('para', '{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para{{loop.index}}" rows="4">{{para[loop.index0]}}</textarea>

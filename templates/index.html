@@ -7,17 +7,13 @@
     <div class="text-center typeWriterDiv">
         <h1 id="typeWriter">:</h1>
     </div>
-    <div class="container desktopViewSignUpForm">
-        <div class="row">
+    <div>
 
-            <div class="col" style="margin-top: 160px;">
 
-                <input type="email" style="width: 50%;margin:0 auto;" onblur="validateEmail(this.id,'subscribeBtn')" id="sEmail" class="form-control " placeholder="E-mail">
-            </div>
 
-        </div>
-        <div class="text-center ">
+        <div class="text-center justify-item-center" style="margin-top: 190px;">
 
+            <input type="email" style="width: 70%;margin:0 auto;" onblur="validateEmail(this.id,'subscribeBtn')" id="sEmail" class="form-control" placeholder="E-mail">
             <button type="button" id="subscribeBtn" onclick="subscribe('D')" class="btn btn-outline-warning" style="font-family: 'Roboto Slab', serif; margin-top: 20px;">
         <div>Subscribe</div>
         <div class="spinner-border spinner-border-sm " id="subs_btn_spinner" style="display:none; margin:0 auto;"
@@ -34,636 +30,227 @@
 </div>
 
 <!-- ?Latest POst Section Start ---------------------------------------------------------------->
-<div class="desktop">
-    <div class="jumbotronHeadingIndex">
-        <span class="jumbotronText">
-            <h1><b>Latest Post</b> </h1>
+
+<div class="jumbotronHeadingIndex">
+    <span class="jumbotronTextIndex">
+            <h1>Latest Posts :- </h1>
         </span>
-    </div>
-    <div style="margin-top: 5px;" class="band">
-        {% for db in latest_posts %}
-        <div class="item-{{loop.index}}">
-            <a href="https://webdesign.tutsplus.com/articles/how-to-conduct-remote-usability-testing--cms-27045" class="card">
-                <div class="thumb" style="background-image:url(https://source.unsplash.com/350x200/?technology,electronics,men);" id="thumb{{loop.index}}"></div>
-                <article>
-                    <h1>How to Conduct Remote Usability Testing</h1>
-                    <p>{{db.description}}</p>
-                    <span>2020-6-12</span>
-                </article>
-            </a>
-        </div>
-
-        {% endfor %}
+</div>
+<div style="margin-top: 5px;" class="band">
+    {% for db in latest_posts %}
+    <div class="item-{{loop.index}}">
+        <a href="{{db.url}}" target="_blank" class="card">
+            <div class="thumb" id="thumbLatest{{loop.index}}"></div>
+            <article>
+                <h1>How to Conduct Remote Usability Testing{{db.heading}}</h1>
+                <p>{{db.description}}</p>
+                <span>2020-6-12</span>
+            </article>
+        </a>
     </div>
 
+    {% endfor %}
+</div>
 
 
 
 
 
-    <!-- arduino Project Section------------------------------------------------------------------------------>
 
-    <div class="parallexTwo">
-        <div class="mt-5 jumbotron jumbotron-fluid " id="arduinoProject">
-            <div class="container">
-                <a href="#" class="badge badge-transparent">
-                    <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5">Arduino Projects</span>
+<!-- arduino Project Section------------------------------------------------------------------------------>
 
-                    <span class="text-dark material-icons">
-                        label_important
-                        </span>
-                    <div class="mt-2 text-secondary lead text-left">Click here to get all Arduino projects</div>
-                </a>
-
-            </div>
-        </div>
-        <div class="container text-center arduino desktopViewArduinoPost">
-            <div class="row " style="margin-top:80px;" id="Ard">
-                {% for db in arduino_project.items %}
-                <div class="col">
-
-
-                    <a href="{{db.url}}" id="Ardid{{loop.index}}" class="streatched-link">
-                        <div class="card h-100" id="Ardcard{{loop.index}}" style="width: 100% ">
-                            <img id="Ardthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <div style="font-size: 3vh;font-weight:bold" class="text-dark" id="Ardhead{{loop.index}}">{{db.heading}}</div>
-                                <div class="text-secondary" style="font-size: 2.5vh;" class="card-text" id='Arddesc{{loop.index}}'>{{db.description}}</div>
-                            </div>
-
-
-
-                            <div class="card-footer">
-                                <small class="text-muted">Posted on :{{db.date}}</small>
-                            </div>
-                        </div>
-
-                    </a>
-                </div>
-                {% endfor %}
-
-
-            </div>
-
-        </div>
-
-
-        <nav aria-label="Page navigation example " class="mt-4 page">
-            <ul class="pagination justify-content-center">
-                <li class="Ard page-item-custom ">
-                    <!-- ard for arduino area -->
-                    <a class="page-link btn disabled" id="prevArd" aria-label="Previous" onclick="prevPage('prev','Ard')">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                {% for page_no in arduino_project.iter_pages() %}
-
-                <li class="Ard page-item-custom " id="Ard{{page_no}}" onclick="changePage(this.id)"><a class="page-link">{{page_no}}</a></li>
-
-                {% endfor %}
-                <li class="Ard page-item-custom  ">
-
-                    <a class="Ard page-link btn" name={{arduino_project.pages}} id="nextArd" onclick="nextPage('next','Ard' )" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                <li class="Ard page-item-custom">
-
-                </li>
-            </ul>
-        </nav>
-
+<div id="arduinoProject" class="jumbotronHeadingIndex">
+    <span class="jumbotronTextIndex">
+            <h1>Arduino Projects: </h1>
+        </span>
+</div>
+<div style="margin-top: 5px;margin-bottom:10px;" class="band">
+    {% for db in arduino_project.items %}
+    <div class="item-{{loop.index}}">
+        <a href="{{db.url}}" target="_blank" class="card">
+            <div class="thumb" id="thumbArduino{{loop.index}}"></div>
+            <article>
+                <h1>How to Conduct Remote Usability Testing{{db.heading}}</h1>
+                <p>{{db.description}}</p>
+                <span>2020-6-12</span>
+            </article>
+        </a>
     </div>
 
+    {% endfor %}
+</div>
+<section style="margin-left: 7%;" class="color-8">
+    <nav class="cl-effect-7">
+        <a href="/arduino-projects-page/1" target="_blank">SEE ALL : <img style="margin-bottom: 10px;" src="https://img.icons8.com/metro/26/000000/external-link.png"/></a>
 
-    <!-- ---------------------------------------------------------------------------------------endArduino projects -->
-    <!-- Start basic projects -->
-    <div class="parallex3">
-        <div class="jumbotron jumbotron-fluid" id="basicElectronics" style="position:relative; height: 200px;">
-            <div class="container">
-                <a href="#" class="text-left badge badge-transparent">
-                    <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5">Basic Electronics</span>
+    </nav>
+</section>
 
-                    <span class="text-dark material-icons">
-                        label_important
-                        </span>
-                    <div class="mt-2 text-secondary lead text-left">Click here to get all Basic Electronics projects using 555ic,op-amps,degital gates etc.</div>
-                </a>
-
-            </div>
-        </div>
-        <div class="container text-center Basic">
-
-            <div class="row" style="margin-top: 100px;" id="Basic">
-                {% for db in basic_project.items %} {%if db.heading is defined %}
-                <div class="col">
-
-                    <a href="" id="Basicid{{loop.index}}" class="streacthed-link">
-
-                        <div class="card h-100" id="Basiccard{{loop.index}}" style="width: 100%; ">
-                            <img id="Basicthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                            <div class="card-body">
-                                <div style="font-size: 3vh;font-weight:bold;" class="text-dark" id="Basichead{{loop.index}}">{{db.heading}}</div>
-                                <div class="text-secondary card-text" style="font-size: 2.5vh;" id='Basicdesc{{loop.index}}'>{{db.description}}</div>
-                            </div>
-
-                            <div class="card-footer">
-                                <small class="text-muted">Posted on :{{db.date}}</small>
-
-
-                            </div>
-                        </div>
-                    </a>
-
-                </div>
-                {% endif %} {% endfor %}
-            </div>
-
-
-            <nav aria-label="Page navigation example " class="mt-5 page">
-                <ul class="pagination justify-content-center">
-                    <li class="Basic page-item-custom ">
-                        <!-- ard for arduino area -->
-                        <a class="page-link btn disabled" id="prevBasic" aria-label="Previous" onclick="prevPage('prev','Basic')">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    {% for page_no in basic_project.iter_pages() %}
-                    <li class="Basic page-item-custom " id="Basic{{page_no}}" onclick="changePage(this.id)"><a class="page-link">{{page_no}}</a></li>
-
-                    {% endfor %}
-                    <li class="Basic page-item-custom  ">
-
-                        <a class="Basic page-link btn" name={{basic_project.pages}} id="nextBasic" onclick="nextPage('next','Basic' )" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+<!-- ---------------------------------------------------------------------------------------endArduino projects -->
+<!-- Start basic projects -->
+<div id="basicElectronics" class="jumbotronHeadingIndex">
+    <span class="jumbotronTextIndex">
+            <h1>Basic Electronics Projects: </h1>
+        </span>
+</div>
+<div style="margin-top: 5px;margin-bottom:10px;" class="band">
+    {% for db in basic_project.items %}
+    <div class="item-{{loop.index}}">
+        <a href="{{db.url}}" target="_blank" class="card">
+            <div class="thumb" id="thumbBasic{{loop.index}}"></div>
+            <article>
+                <h1>How to Conduct Remote Usability Testing{{db.heading}}</h1>
+                <p>{{db.description}}</p>
+                <span>2020-6-12</span>
+            </article>
+        </a>
     </div>
 
-    <!-- end of basic -->
-    <!-- ? iot start -->
-    <div class="parallex4">
-        <div class="jumbotron jumbotron-fluid" id="IOTProjects" style="position:relative; height: 200px;">
-            <div class="container">
-                <a href="#" class="text-left badge badge-transparent">
-                    <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5">IOT</span>
+    {% endfor %}
+</div>
+<section style="margin-left: 7%;" class="color-8">
+    <nav class="cl-effect-7">
+        <a href="/basic-projects-page/1" target="_blank">SEE ALL : <img style="margin-bottom: 10px;" src="https://img.icons8.com/metro/26/000000/external-link.png"/></a>
 
-                    <span class="text-dark material-icons">
-                        label_important
-                        </span>
-                    <div class="mt-2 text-secondary lead text-left">Click here to get all IOT projects.</div>
-                </a>
-            </div>
-        </div>
-        <div class="text-center container IOT" style="margin-top: 100px;">
-
-            <div class="row" id="Iot">
-                {% for db in iot_project.items %}
-                <div class="col">
-
-                    <a href="" class="streacthed-link" id="Iotid{{loop.index}}">
-
-                        <div class="card h-100" id="Iotcard{{loop.index}}" style="width:100%; ">
-                            <img id="Iotthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                            <div class="card-body" style="width: 100%;">
-                                <div style="font-size: 3vh;font-weight:bold;" class="text-dark" id="Iothead{{loop.index}}">{{db.heading}}</div>
-                                <div style="font-size: 2vh;" class="text-secondary card-text" id='Iotdesc{{loop.index}}'>{{db.description}}</div>
-                            </div>
-                            <div class="card-footer">
-
-                                <small class="text-muted">Posted on :{{db.date}}</small>
-                            </div>
-                    </a>
-
-                    </div>
-
-                </div>
-                {% endfor %}
-            </div>
-
-
-            <nav aria-label="Page navigation example " class="mt-5 page">
-                <ul class="pagination justify-content-center">
-                    <li class="Basic page-item-custom ">
-                        <!-- ard for arduino area -->
-                        <a class="page-link btn disabled" id="prevIot" aria-label="Previous" onclick="prevPage('prev','Iot')">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    {% for page_no in iot_project.iter_pages() %}
-
-                    <li class="Iot page-item-custom " id="Iot{{page_no}}" onclick="changePage(this.id)"><a class="page-link">{{page_no}}</a></li>
-
-                    {% endfor %}
-                    <li class="Iot page-item-custom  ">
-
-                        <a class="Iot page-link btn" name={{iot_project.pages}} id="nextIot" onclick="nextPage('next','Iot' )" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+    </nav>
+</section>
+<div id="IOTProjects" class="jumbotronHeadingIndex">
+    <span class="jumbotronTextIndex">
+            <h1>IOT Projects: </h1>
+        </span>
+</div>
+<div style="margin-top: 5px;margin-bottom:10px;" class="band">
+    {% for db in iot_project.items %}
+    <div class="item-{{loop.index}}">
+        <a href="{{db.url}}" target="_blank" class="card">
+            <div class="thumb" id="thumbIot{{loop.index}}"></div>
+            <article>
+                <h1>How to Conduct Remote Usability Testing{{db.heading}}</h1>
+                <p>{{db.description}}</p>
+                <span>2020-6-12</span>
+            </article>
+        </a>
     </div>
 
-    <!-- end of Iot -->
-    <div class="jumbotron jumbotron-fluid" id="otherPost" style="height: 200px;">
-        <div class="container">
-            <a href="#" class="text-left badge badge-transparent">
-                <span style="font-size: 50px; font-weight:bold;" class="text-left text-dark display-5">Other posts</span>
+    {% endfor %}
+</div>
+<section style="margin-left: 7%;" class="color-8">
+    <nav class="cl-effect-7">
+        <a href="/iot-projects-page/1" target="_blank">SEE ALL : <img style="margin-bottom: 10px;" src="https://img.icons8.com/metro/26/000000/external-link.png"/></a>
 
-                <span class="text-dark material-icons">
-                    label_important
-                    </span>
-                <div class="mt-2 text-secondary lead text-left">Click here to get all tech posts</div>
-            </a>
-
-        </div>
+    </nav>
+</section>
+<div id="otherPost" class="jumbotronHeadingIndex">
+    <span class="jumbotronTextIndex">
+            <h1>Other Tech Posts: </h1>
+        </span>
+</div>
+<div style="margin-top: 5px;margin-bottom:10px;" class="band">
+    {% for db in other_project.items %}
+    <div class="item-{{loop.index}}">
+        <a href="{{db.url}}" target="_blank" class="card">
+            <div class="thumb" id="thumbOther{{loop.index}}"></div>
+            <article>
+                <h1>How to Conduct Remote Usability Testing{{db.heading}}</h1>
+                <p>{{db.description}}</p>
+                <span>2020-6-12</span>
+            </article>
+        </a>
     </div>
 
-    <div class="container text-center other">
+    {% endfor %}
+</div>
+<section style="margin-left: 7%;" class="color-8">
+    <nav class="cl-effect-7">
+        <a href="/tech-posts-page/1" target="_blank">SEE ALL : <img style="margin-bottom: 10px;" src="https://img.icons8.com/metro/26/000000/external-link.png"/></a>
 
-        <div class="row" id="Other">
-            {% for db in other_project.items %}
-            <div class="col">
-
-                <a href="" class="streached-link" id="Otherid{{loop.index}}">
-
-                    <div class="card h-100" id="Othercard{{loop.index}}" style="width: 100%; ">
-                        <img id="Otherthumb{{loop.index}}" src="/static/images/{{db.thumbnail}}" class="img-fluid max-width:100% card-img-top" alt="Responsive image">
-                        <div class="card-body">
-                            <div class="text-dark" style=" font-size:3vh;font-weight:bold" id="Otherhead{{loop.index}}">{{db.heading}}</div>
-                            <div style="font-size: 2.5vh;" class="text-secondary card-text" id='Otherdesc{{loop.index}}'>{{db.description}}</div>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Posted on :{{db.date}}</small>
-
-                        </div>
-
-                    </div>
-                </a>
-
-            </div>
-            {% endfor %}
-        </div>
+    </nav>
+</section>
 
 
-        <nav aria-label="Page navigation example " class="mt-5 page">
-            <ul class="pagination justify-content-center">
-                <li class="Other page-item-custom ">
-                    <!-- ard for arduino area -->
-                    <a class="page-link btn disabled" id="prevOther" aria-label="Previous" onclick="prevPage('prev','Other')">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                {% for page_no in other_project.iter_pages() %}
+<!-- !-------ABOUT ME PAGE--------------------------------------------------------------------------------------------------About Me page -->
 
-                <li class="Basic page-item-custom " id="Other{{page_no}}" onclick="changePage(this.id)"><a class="page-link">{{page_no}}</a></li>
+<div id="about" class="jumbotronHeadingAbout ">
 
-                {% endfor %}
-                <li class="Basic page-item-custom  ">
-
-                    <a class="Other page-link btn" name={{other_project.pages}} id="nextOther" onclick="nextPage('next','Other' )" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
+    <div>About :</div>
+    <p>{{txt}}<br>for any query or message :<a href="#footerMessageEmailInput" "><b> Contact Me</b></a> or email at <b><i>contact@engineeringproject.net</i></b></p>
+   
 
 </div>
-<!-- endParallex -->
-<!-- other tech poststart -->
-<!-- !----mobile container------------------------------------------------------------------------------------------------mobile contaienr -->
-<div class="mobile mt-3">
 
-    <div class="mobileView">
-        <div class="jumbotron " style="height: 200px;">
-            <div class="display-4 text-center" style="font-weight:bold;font-size: 40px;">Latest Posts</div>
 
-            <p class="lead text-center" style="font-size: 20px;">See the latest post here</p>
 
-
-        </div>
-        <div class="mobileViewAll">
-
-            <div class="mobContainer latestMob">
-                {% for db in latest_posts %}
-
-                <a href="/tech-posts/{{db.url}}">
-
-                    <div class="postMobile mt-3">
-                        <div class="align-self-center">
-
-                            <img src="/static/images/{{db.thumbnail}}" class=" thumbnailMob image-fluid " alt="Responsive image">
-                        </div>
-                        <div class="mobViewContent">
-                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
-                            <div>
-                                <span class="text-dark">
-                                    <b>
-
-                                        {{db.heading}}
-                                    </b>
-                                </span>
-                            </div>
-                            <div class="descText text-left mt-2  text-secondary"><i>posted on : {{db.date}}</i>
-                            </div>
-                            <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
-                        </div>
-                        <!-- <button class="btn btn-block btn-sm"> -->
-                        <!-- 
-                        </button> -->
-                    </div>
-                </a>
-
-                {% endfor %}
-
-            </div>
-        </div>
-    </div>
-    <!-- !Arduino post mobile view -->
-    <div class="mobileView">
-        <div class="jumbotron text-center" style="height: 200px;">
-            <a href="#" class="streatched-link">
-
-                <div class="text-center text-dark" style="font-size: 40px; font-weight:bold;">Arduino Post</div>
-
-                <p class="text-secondary lead text-center" style="font-size: 20px;">Click here to get all Arduino related projects</p>
-
-            </a>
-
-        </div>
-        <div class="mobileViewAll">
-
-            <div class="mobContainer mobArd" id="mobArd">
-                {%for db in arduino_project.items %}
-                <a href="/tech-posts/{{db.url}}">
-
-                    <div class="postMobile mt-3">
-                        <img src="/static/images/{{db.thumbnail}}" style="height: auto;" class="align-self- thumbnailMob image-fluid " alt="Responsive image">
-                        <div class="mobViewContent">
-                            <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
-                            <div>
-
-                                <b class="tex-dark text-dark align-self-top">
-
-                                    {{db.heading}}
-                                </b>
-
-
-                                <div class="text-secondary text-left descText  mt-3"><i>
-
-                                 posted on:{{db.date}}</div>
-                                </i>
-                                </div>
-                                <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
-                            </div>
-                            <!-- <button class="btn btn-block btn-sm"> -->
-                            <!-- 
-
-                        </button> -->
-                        </div>
-                </a>
-                {% endfor %}
-
-                </div>
-                <button type="button" id="seeMoreBtnArd" name="{{arduino_project.pages}}" onclick="seeMore('Ard')" class=" mt-2 btn btn-secondary btn-lg btn-block">See More</button>
-            </div>
-        </div>
-
-
-        <!-- * Basic electronics posts  -->
-        <div class="mobileView">
-            <div class="jumbotron text-center" style="height: 200px;">
-                <a href="">
-
-                    <div class="display-4 text-center text-dark" style="font-size: 30px;font-weight:bold">Basic electronics Projects</div>
-
-                    <p class="lead text-center text-secondary" style="font-size: 20px;">Click here to Get All project related to 555ic opamp Transistors etc here</p>
-
-                </a>
-
-            </div>
-            <div class="mobileViewAll">
-
-                <div class="mobContainer mobBasic" id="mobBasic">
-                    {%for db in basic_project.items %}
-                    <a href="/tech-posts/{{db.url}}">
-
-                        <div class="postMobile mt-3">
-                            <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
-                            <div class="mobViewContent">
-                                <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
-                                <div>
-                                    <span class="text-dark">
-                                    <b>
-
-                                        {{db.heading}}
-                                    </b>
-                                </span>
-                                    <p class="descText text-secondary mt-3 text-left"><i>post on :{{db.date}}</i>
-                                    </p>
-                                </div>
-                                <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
-                            </div>
-                            <!-- <button class="btn btn-block btn-sm"> -->
-                            <!-- 
-                        </button> -->
-                        </div>
-                    </a>
-                    {% endfor %}
-
-                </div>
-                <button type="button" name="{{basic_project.pages}}" id="seeMoreBtnBasic" onclick="seeMore('Basic')" class=" mt-2 btn btn-secondary btn-lg btn-block">See More</button>
-            </div>
-        </div>
-
-        <!-- ? iot related project here -->
-        <div class="mobileView">
-            <a href="">
-
-                <div class="jumbotron text-center text-dark" style="height: 200px;">
-                    <div class="display-4 text-center text-dark" style="font-size:40px;font-weight:bold;">IOT Projects</div>
-
-                    <p class="lead text-center text-secondary" style="font-size: 25px;">Get project related to IOT here</p>
-
-            </a>
-
-            </div>
-            <div class="mobileViewAll">
-
-                <div class="mobContainer mobIot" id="mobIot">
-                    {%for db in iot_project.items %}
-                    <a href="/tech-posts/{{db.url}}">
-
-                        <div class="postMobile mt-3">
-                            <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
-                            <div class="mobViewContent">
-                                <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
-                                <div>
-                                    <span class="text-dark">
-                                    <b>
-
-                                        {{db.heading}} is very good and also bad
-                                    </b>
-                                </span>
-                                    <p class="descText text-secondary text-left mt-3"><i>post on:{{db.date}}</i></p>
-                                </div>
-                                <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
-                            </div>
-                            <!-- <button class="btn btn-block btn-sm"> -->
-                            <!-- 
-                        </button> -->
-                        </div>
-                    </a>
-                    {% endfor %}
-
-                </div>
-                <button type="button" name="{{iot_project.pages}}" id="seeMoreBtnIot" onclick="seeMore('Iot')" class=" mt-2 btn btn-secondary btn-lg btn-block">See More</button>
-            </div>
-        </div>
-        <!-- todo OTHER post here -->
-        <div class="mobileView">
-            <div class="jumbotron text-center" style="height: 200px;">
-                <a href="#">
-
-                    <div class="display-4 text-center text-dark" style="font-size: 40px;font-weight:bold">Other posts</div>
-
-                    <p class="lead text-center text-secondary" style="font-size: 25px;">Get other tech related articles here</p>
-                </a>
-
-
-            </div>
-            <div class="mobileViewAll">
-
-                <div class="mobContainer mobOther" id="mobOther">
-                    {%for db in other_project.items %}
-                    <a href="/tech-posts/{{db.url}}">
-
-                        <div class="postMobile mt-3">
-                            <img src="/static/images/{{db.thumbnail}}" class="thumbnailMob image-fluid " alt="Responsive image">
-                            <div class="mobViewContent">
-                                <!-- <small class="text-muted">Posted on :{{db.date}}</small> -->
-                                <div>
-                                    <span class="text-dark">
-                                    <b>
-
-                                        {{db.heading}} is very good and also bad
-                                    </b>
-                                </span>
-                                    <div class="descText text-secondary mt-3 text-left">
-                                        <div>
-                                            <i>
-
-                                       posted on: {{db.date}}
-                                    </i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <a href="/Raed_more_Ard{{db.id}}" class="btn btn-link btn block btn-sm" role="button" aria-pressed="true">Read more</a> . -->
-                            </div>
-                            <!-- <button class="btn btn-block btn-sm"> -->
-                            <!-- 
-                        </button> -->
-                        </div>
-                    </a> {% endfor %}
-
-                </div>
-                <button type="button" name="{{other_project.pages}}" id="seeMoreBtnOther" onclick="seeMore('Other')" class=" mt-2 btn btn-secondary btn-lg btn-block">See More</button>
-            </div>
-        </div>
-    </div>
-    <!-- !-------ABOUT ME PAGE--------------------------------------------------------------------------------------------------About Me page -->
-
-    <div class="jumbotron about" id="about">
-        <div class="display-4 text-center" style="font-size: 4vh;font-weight:bold;">About me</div>
-        <p class="lead text-center" id="font_about">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus sint quidem, commodi inventore similique nemo,
-            molestias rerum nostrum facere vitae expedita numquam aliquam tenetur non, alias asperiores excepturi. Quis, expedita.</p>
-
-
-
-        <div class="text-center">
-
-            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal1" style="z-index:0;font-weight: bold;font-size:20px" data-whatever="@mdo">Contact</button>
-        </div>
-        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Your name</label>
-                                <input type="text" onblur="validateName(this.id,'messageBtn')" class="form-control" id="message-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-mail" class="col-form-label">Your E-mail</label>
-                                <input type="email" onblur="validateEmail(this.id,'messageBtn')" class="form-control" id="message-mail">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" onblur="validateMessage(this.id,'messageBtn')" id="message-text"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" id="messsageBtn" class="btn btn-primary" onclick="sendMessage()">
-              <div>send message</div>
-              <div class="spinner-border spinner-border-sm " id="msg_btn_spinner" style="display:none; margin:0 auto;"
-                role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-
-            </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- Optional JavaScript -->
-    {% endblock %} {% block script %}
-
-    <script src="/static/main.js"></script>
-    <script src="/static/paginate.js"></script>
-    <script src="/static/message.js"></script>
-    <script>
-        $('#exampleModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var recipient = button.data('whatever')
-            var modal = $(this)
-            modal.find('.modal-title').text('New message to ' + recipient)
-            modal.find('.modal-body input').val(recipient)
-        })
-    </script>
-
-    {% endblock %}
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    
-    
-   </body>
-
-</html> -->
+<!-- Optional JavaScript -->
+{% endblock %} {% block script %}
+
+<script src="/static/main.js "></script>
+
+<script src="/static/message.js "></script>
+<script>
+    $('#exampleModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget)
+        var recipient = button.data('whatever')
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+
+</script>
+<script>
+    console.log("IN SCRIPT FOR IMAGE INSERTIOn ")
+
+    var thumbnails = `{{arduino_thumbnails|safe}}`
+    var arduino_thumbnails = JSON.parse(thumbnails)
+    var imgs = arduino_thumbnails.imgs
+    for (const key in imgs) {
+        if (imgs.hasOwnProperty(key)) {
+            const element = imgs[key];
+            console.log(`thumbArduino${parseInt(key)+1}`, `url(/static/images/${element})`)
+            document.getElementById(`thumbArduino${parseInt(key)+1}`).style.backgroundImage = `url('/static/images/${element}')`
+
+        }
+    }
+    thumbnails = `{{basic_thumbnails|safe}}`
+    var basic_thumbnails = JSON.parse(thumbnails)
+    imgs = basic_thumbnails.imgs
+    for (const key in imgs) {
+        if (imgs.hasOwnProperty(key)) {
+            const element = imgs[key];
+            console.log(`thumb${parseInt(key)}`, `url(/static/images/${element})`)
+            document.getElementById(`thumbBasic${parseInt(key)+1}`).style.backgroundImage = `url(/static/images/${element})`
+
+        }
+    }
+    thumbnails = `{{iot_thumbnails|safe}}`
+    var iot_thumbnails = JSON.parse(thumbnails)
+    imgs = iot_thumbnails.imgs
+    for (const key in imgs) {
+        if (imgs.hasOwnProperty(key)) {
+            const element = imgs[key];
+            document.getElementById(`thumbIot${parseInt(key)+1}`).style.backgroundImage = `url(/static/images/${element})`
+
+        }
+    }
+    thumbnails = `{{other_thumbnails|safe}}`
+    var other_thumbnails = JSON.parse(thumbnails)
+    imgs = other_thumbnails.imgs
+    for (const key in imgs) {
+        if (imgs.hasOwnProperty(key)) {
+            const element = imgs[key];
+            document.getElementById(`thumbOther${parseInt(key)+1}`).style.backgroundImage = `url(/static/images/${element})`
+
+        }
+    }
+    thumbnails = `{{latest_thumbnails|safe}}`
+    var latest_thumbnails = JSON.parse(thumbnails)
+    imgs = latest_thumbnails.imgs
+    for (const key in imgs) {
+        if (imgs.hasOwnProperty(key)) {
+            const element = imgs[key];
+            document.getElementById(`thumbLatest${parseInt(key)+1}`).style.backgroundImage = `url(/static/images/${element})`
+
+        }
+    }
+</script>
+
+{% endblock %}

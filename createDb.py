@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request,send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import Security,SQLAlchemyUserDatastore,UserMixin, RoleMixin, login_required
 from flask_security.utils import hash_password
@@ -8,7 +8,7 @@ import json
 with open('config.json', 'r') as c:
     params = json.load(c)["params"]
 
-app = Flask(__name__)
+app = Flask(__name__,instance_path='/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/special_files')
 app.config['SQLALCHEMY_DATABASE_URI']=params['local_uri_all_post']
 app.config["SECRET_KEY"]="###@@@***786786"
 app.config["SECURITY_PASSWORD_SALT"]="###@@@***abrar"
@@ -106,7 +106,7 @@ class Code_arduino(db.Model) :
 class Quick_answers_arduino(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(300),nullable=True)
+    ans=db.Column(db.String(400),nullable=True)
    
     arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
 
@@ -121,7 +121,7 @@ class Comparison_table_arduino(db.Model):
 class Faq_arduino(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(100),nullable=True)
+    faq_ans=db.Column(db.String(400),nullable=True)
    
     arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))   
     
@@ -187,7 +187,7 @@ class Basicproject_posts(db.Model):
 class Quick_answers_basic(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(300),nullable=True)
+    ans=db.Column(db.String(400),nullable=True)
    
     basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
 
@@ -201,7 +201,7 @@ class Comparison_table_basic(db.Model):
 class Faq_basic(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(100),nullable=True)
+    faq_ans=db.Column(db.String(400),nullable=True)
     basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))   
        
     
@@ -274,7 +274,7 @@ class Iotproject_posts(db.Model):
 class Quick_answers_iot(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(300),nullable=True)
+    ans=db.Column(db.String(400),nullable=True)
     
     iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
 
@@ -292,7 +292,7 @@ class Comparison_table_iot(db.Model):
 class Faq_iot(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(100),nullable=True)
+    faq_ans=db.Column(db.String(400),nullable=True)
     
     iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))   
        
@@ -369,7 +369,7 @@ class Other_posts(db.Model):
 class Quick_answers_other(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(300),nullable=True)
+    ans=db.Column(db.String(400),nullable=True)
    
     otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
 
@@ -383,7 +383,7 @@ class Comparison_table_other(db.Model):
 class Faq_other(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(100),nullable=True)
+    faq_ans=db.Column(db.String(400),nullable=True)
     
     otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))   
            
@@ -460,7 +460,7 @@ class Draft(db.Model):
 class Quick_answers_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(300),nullable=True)
+    ans=db.Column(db.String(400),nullable=True)
    
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
 
@@ -476,7 +476,7 @@ class Comparison_table_draft(db.Model):
 class Faq_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(100),nullable=True)
+    faq_ans=db.Column(db.String(400),nullable=True)
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))   
        
     
@@ -512,13 +512,11 @@ class Code_draft(db.Model) :
 # ! other_details tables start-----------------------------------------------------------------------------------
 class Subscribers(db.Model):
     id=db.Column(db.Integer,primary_key=True, nullable=False)
-    user_name=db.Column(db.String(100),nullable=False)
     email=db.Column(db.String(111),nullable=False,unique=True)
     
     
 class Messages(db.Model):
     id=db.Column(db.Integer,primary_key=True, nullable=False)
-    send_by=db.Column(db.String(100),nullable=False)
     email=db.Column(db.String(111),nullable=False,unique=False)
     messsage=db.Column(db.String(1000),nullable=False)
 

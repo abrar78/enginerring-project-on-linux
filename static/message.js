@@ -1,9 +1,10 @@
 console.log("message JS is attached");
-var mail = document.getElementById('message-mail')
-var message = document.getElementById("message-text")
+var mail = document.getElementById('footerMessageEmailInput')
+var message = document.getElementById("footerMessageInput")
 var nameMessage = document.getElementById('message-name')
 var alertMessage = document.getElementById("submitted")
-var messageBtnSpinner = document.getElementById('msg_btn_spinner')
+var messageBtnSpinner = document.getElementById('message_btn_spinner')
+var alertMessageS = document.getElementById('messageS')
 var messageRegExp = /[a-zA-Z0-9\s!.,?\-+=\$()\{\}\[\]]{20,500}$/gy;
 var NameRegExp = new RegExp("[a-zA-Z]{3,20}", "g");
 var emailRegExp = new RegExp(
@@ -107,7 +108,7 @@ function sendMessage() {
 
     var entry = {
         e_mail: mailValue,
-        message: messageTxt,
+        message: messageTxt
 
 
     }
@@ -156,6 +157,7 @@ function subscribeFooter(email) {
 
     var entry = {
         e_mail: email,
+        footer: true
 
 
     }
@@ -167,7 +169,7 @@ function subscribeFooter(email) {
             "content-type": "application/json"
         })
     }
-    if (resultName == true && resultEMail == true) {
+    if (resultEMail == true) {
         document.getElementById('subscribe_btn_spinner').style.display = "block";
         document.getElementById('subscribe').style.display = "none";
         fetch(url, params).then(response => {
@@ -176,8 +178,8 @@ function subscribeFooter(email) {
                 console.log("succesfully_posted")
                 document.getElementById('subscribe_btn_spinner').style.display = "none";
                 document.getElementById('subscribe').style.display = "block";
-
                 alertMessageS.style.display = "block";
+
             } else {
                 console.log("eroor 404, data not posted")
                 document.getElementById('subscribe_btn_spinner').style.display = "none";

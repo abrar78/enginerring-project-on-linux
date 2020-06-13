@@ -86,18 +86,39 @@ mail=Mail(app);
 @app.route('/')
 def index_file():
 
-
-     arduino=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=4,page=1,error_out=True)
-  
+     profile=About_me.query.first()
      
-     basic=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=4,page=1,error_out=True)
-     iot=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=4,page=1,error_out=True)
-     other=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=4,page=1,error_out=True)
-     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).first()
+     if profile:
+        txt=profile.profile
+     else:
+         txt=""    
+     arduino=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=7,page=1,error_out=True)
+     basic=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=7,page=1,error_out=True)
+     iot=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=7,page=1,error_out=True)
+     other=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=7,page=1,error_out=True)
+     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
      basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
      iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
      other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
      latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]
+     
+     latest_thumbnails={"imgs":[]}
+     arduino_thumbnails={"imgs":[]}
+     basic_thumbnails={"imgs":[]}
+     iot_thumbnails={"imgs":[]}
+     other_thumbnails={"imgs":[]}
+     
+     for i in latest_posts:
+         latest_thumbnails["imgs"].append(i.thumbnail)
+     for i in arduino.items:
+         arduino_thumbnails["imgs"].append(i.thumbnail)
+     for i in basic.items:
+         basic_thumbnails["imgs"].append(i.thumbnail)
+     for i in iot.items:
+         iot_thumbnails["imgs"].append(i.thumbnail)
+     for i in other.items:
+         other_thumbnails["imgs"].append(i.thumbnail)
+      
    
          
      return render_template('index.html',
@@ -105,7 +126,15 @@ def index_file():
                             basic_project=basic,
                             iot_project=iot,
                             other_project=other,
-                            latest_posts=latest_posts)
+                            latest_posts=latest_posts,
+                            arduino_thumbnails=json.dumps(arduino_thumbnails),
+                            basic_thumbnails=json.dumps(basic_thumbnails),
+                            iot_thumbnails=json.dumps(iot_thumbnails),
+                            latest_thumbnails=json.dumps(latest_thumbnails),
+                            latest_url_type=['arduino-projects','basic-projects','iot-projects','tech-posts'],
+                            other_thumbnails=json.dumps(other_thumbnails),
+                            txt=txt
+                            )
 @app.route('/arduino-projects-page/<int:page>')
 def arduino_projects(page):
      post=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=6,page=page,error_out=True)
@@ -247,7 +276,7 @@ def paginate():
 
 @app.route('/arduino-projects/<string:url>')
 def arduinoRead(url):
-    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).all()
+    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).all()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
     iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
     other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
@@ -285,7 +314,7 @@ def arduinoRead(url):
     return render_template('readMoreOther.html', post_db=arduino_post,related_post=related[0:4],latest_posts=latest_posts,url_type="Arduino",relatedThumbnails=json.dumps(relatedThumbnails),latestThumbnails=json.dumps(latestThumbnails))
 @app.route('/basic-projects/<string:url>')
 def basicRead(url):
-    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).first()
+    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).all()
     iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
     other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
@@ -305,7 +334,7 @@ def basicRead(url):
     return render_template('readMoreOther.html', post_db=basic_post,related_post=related[0:4],latest_posts=latest_posts)
 @app.route('/iot-projects/<string:url>')
 def iotRead(url):
-    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).first()
+    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
     iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).all()
     other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
@@ -326,12 +355,13 @@ def iotRead(url):
     return render_template('readMoreOther.html', post_db=iot_post,related_post=related[0:4],latest_posts=latest_posts)
 @app.route('/tech-posts/<string:url>')
 def otherRead(url):
-    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.date)).first()
+    arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
     iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
-    other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id))
+    other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).all()
     latest_posts=[arduino_latest,basic_latest,iot_latest,other_latest]    
-    other_post=Other_posts.query.filter_by(url="/tech-post/"+url).first()
+    other_post=Other_posts.query.filter_by(url="/tech-posts/"+url).first()
+    print("===============",other_post)
     search_value=other_post.keyword
     search="%{0}%".format(search_value)
     related=Other_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
@@ -355,9 +385,7 @@ def draftRead(num):
     draft_type=draft_type[0:-4]
     search_value=draft_post.keyword
     search="%{0}%".format(search_value)
-    print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-    if arduino_latest or basic_latest or iot_latest or other_latest:
-      print("Yes latest posts")
+
       
     print(draft_type)
     if draft_type=="Ard":
@@ -479,7 +507,7 @@ def message():
 def subscriber():
     req=request.get_json();
     subscriber=Subscribers(email=req['e_mail']);
-    message="Hello Abrar New subscribers on your blog please add it to your list \r\n"+"email is req['e_mail']"
+    message="Hello Abrar New subscribers on your blog please add it to your list \r\n"+"email is"+req['e_mail']
     mail.send_message('new message from blog for new subscribing request',
                       sender=req['e_mail'],
                       recipients = [params['recipient']],
@@ -809,16 +837,43 @@ def dashboard():
  savedPost=Draft.query.filter().count()
  subscribers=Subscribers.query.filter().all()
  subscribersNo=Subscribers.query.filter().count()
-
-  
- return render_template("dashboard.html",postNo=savedPost,subscribersNo=subscribersNo) 
+ return render_template("dashboard.html",postNo=savedPost,subscribersNo=subscribersNo)
+@app.route('/dashboard/about')
+def about():
+    about=About_me.query.first()
+    print("-------------------------------------------------------------------------------")
+    if about:
+        print("PROFILE YES")
+        txt=about.profile
+    else:
+        print("PROFILE NO")
+        txt=""
+        
+    return render_template('about.html',about=txt) 
+@app.route('/dashboard/about/apply',methods=['GET','POST'])
+def about_apply():
+    form=request.form
+    txt=form['about']
+    print("-0000000000000000000000 ")
+    if About_me.query.filter_by(id=1).first():
+        print("YES")
+        apply=About_me.query.filter_by(id=1).first()
+        apply.profile=txt
+        db.session.commit()
+    else :
+        print("NO")
+        apply=About_me(profile=txt)
+        db.session.add(apply)
+        db.session.commit()
+    return redirect("/dashboard/about") 
 @app.route('/dashboard/emails/<int:page_no>',methods=['GET','POST'])
 def emails(page_no):
     subscribersNo=Subscribers.query.filter().count()
-    subscribers=Subscribers.query.filter().paginate(per_page=100,page=page_no,error_out=True)
+    subscribers=Subscribers.query.paginate(per_page=100,page=page_no,error_out=True)
+    data={"current":subscribers.page}
    
  
-    return render_template('email.html',subscribers=subscribers,subscribersNo=subscribersNo)
+    return render_template('email.html',data=json.dumps(data),subscribers=subscribers,subscribersNo=subscribersNo)
 @app.route('/dashboard/email/search', methods=['GET','POST'])
 def emailSearch():
     if request.method=='POST':
@@ -828,12 +883,12 @@ def emailSearch():
             print(search)
             result=Subscribers.query.filter(Subscribers.email.like(search)).all()
             return render_template("email_search.html",result_email=result)
-@app.route('/dashboard/email/delete/<int:id>')
+@app.route('/dashboard/email/delete/<int:id>', methods=['GET','POST'])
 def femailDelete(id):
     delete=Subscribers.query.filter_by(id=id).first()
     db.session.delete(delete)
     db.session.commit()
-    return redirect('/dashboard/emails')
+    return redirect('/dashboard/emails/1')
 @app.route('/search/<string:type>/<int:page>',methods=['POST','GET'])
 @login_required
 def search_dashboard(type,page):
@@ -1858,7 +1913,7 @@ def publish(type,draft_id):
           db.session.add(addFaq)
           db.session.commit()
       for i in draft.content_parts:
-          addPara=Content_other(heading=i.heading,img=i.img,para=db.para,post_name=add)
+          addPara=Content_other(heading=i.heading,img=i.img,para=i.para,post_name=add)
           db.session.add(addPara)
           db.session.commit()
       for i in draft.comparison_table:
@@ -1908,13 +1963,12 @@ def publish(type,draft_id):
     return redirect('/dashboard/draft')
     #   todo: ----Tomorrow do complete this publis
 #  todo make robots.txt file at the end  
-@app.route("/robots.txt")
-def robots_txt():
-    Disallow = lambda string: 'Disallow: {0}'.format(string)
-    return Response("User-agent: *\n{0}\n".format("\n".join([
-        Disallow('/dashboard/*'),
-        Disallow('/thank-you'),
-    ])))
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(os.path.join(app.instance_path,''),'robots.txt')
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(os.path.join(app.instance_path,''),'sitemap.xml')
 def before_request():
     session.permanent = True
     app.permanent_session_lifetime = datetime.timedelta(seconds=200)

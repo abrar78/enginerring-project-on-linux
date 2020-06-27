@@ -599,38 +599,7 @@ function submitCreatePost(type_) {
         };
     }
 
-    if (type_ == "para") {
-        paras_arr = []
-        para_subheadings = []
-        para_thumbnail_arr = []
-        para_thumbnail_desc_arr = []
-        console.log(countPara)
-        for (let index = 1; index <= countPara; index++) {
-            let para_val = document.getElementById(`para${index}`).value;
-            paras_arr.push(para_val);
-            let para_thumbnail_desc_val = document.getElementById(`para_imgDescription${index}`).value;
-            para_thumbnail_desc_arr.push(para_thumbnail_desc_val);
-            let para_subheading_val = document.getElementById(`para_heading${index}`).value;
-            para_subheadings.push(para_subheading_val);
-            let para_thumbnail_val = document.getElementById(`paraImg${index}`)
-            para_thumbnail_val = para_thumbnail_val.src.split("/").pop()
-            console.log(para_thumbnail_val)
-                // para_thumbnail_val.replace(/ /g, "_")
-            para_thumbnail_arr.push(para_thumbnail_val)
-            console.log(para_thumbnail_arr)
-        }
-        entry = {
-            subheading: para_subheadings,
-            para: paras_arr,
-            thumbnail: para_thumbnail_arr,
-            thumbnail_desc: para_thumbnail_desc_arr
-        };
-    }
-    if (type_ == "conclusion") {
-        entry = {
-            conclusion: conclusion.value,
-        };
-    }
+
     if (type_ == "faq") {
         faq_q_arr = []
         faq_ans_arr = []

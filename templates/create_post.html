@@ -91,7 +91,7 @@
         <button id="keywordsMetaS" onclick="submitCreatePost('keywordsMeta')" class="mt-3 btn btn-secondary btn-sm">Submit</button>
     </div>
     <!--*------------------------------}}}}}}}}}}}}}}}}}}}}}}}}}------- -->
-
+    <hr>
     <!-- !-------------Heading -->
 
     <div class="form-group my-5">
@@ -139,60 +139,6 @@
     <button id="indexS" onclick="submitCreatePost('index')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
     <button onclick="addNew('index')" class="mb-3 btn btn-dark btn-sm">+</button>
     <!-- !-------paragraph -->
-    <div class="form-group mt-5" id="contaPara">
-        <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Paragraphs/Steps</div>
-        <div id="paraDiv1">
-
-            <label class="text-secondary mt-2" for="para_heading1"><b>Subheading</b></label>
-            <textarea class="form-control" onblur="backup('para_heading','1')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_heading1" rows="1"></textarea>
-            <label class="text-secondary mt-2" for="para_imgDescription1"><b>Image Description</b></label>
-            <textarea class="form-control" onblur="backup('para_imgDescription','1')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_imgDescription1" rows="1"></textarea>
-            <label class="text-secondary mt-3 " for="para1"><b>Para</b></label>
-            <textarea class="form-control" onblur="backup('para',1)" style="width: 50%; margin:0 auto;border-width:5px;" id="para1" rows="4"></textarea>
-            <!-- *---upload image -->
-            <img class="mt-3" id="paraImg1" width="40%" alt="upload image">
-            <h5 class="text-secondary mt-1">Preview</h5>
-            <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
-
-
-                <input type="file" class="form-control-file" id="paraImgUploader1">
-                <button class="mt-1 btn btn-secondary btn-sm" onclick="uploadImg('para','1')">upload</button>
-            </div>
-
-        </div>
-    </div>
-    <button onclick="deletePrev('para')" id="paraDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
-    <button id="paraS" onclick="submitCreatePost('para')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
-    <button onclick="addNew('para')" class="mb-3 btn btn-dark btn-sm">+</button>
-    <!-- !------------------Table--------------- -->
-    <button id="table" style="width: 30%; margin:0 auto;" onclick="addTable()" class="my-5 btn btn-outline-dark btn-sm btn-block ">Add table</button>
-    <div id="tableDiv" style="display: none;">
-        <textarea class="form-control" placeholder="No of Rows" style="width: 50%; margin: 0 auto; border-width: 5px;" id="rowNo" rows="1"></textarea>
-        <button id="enter" onclick="enterTableRows()" class="my-3 btn btn-secondary btn-sm ">Enter</button>
-
-        <table class="table table-bordered" id="tableMain" style="display: none;">
-            <thead>
-                <tr id="head">
-                    <th scope="col">Sno</th>
-                    <th scope="col"><input id="heading1" class="form-control" type="text" placeholder="   Heading1" name="" value=""></th>
-                    <th scope="col"><input id="heading2" class="form-control" type="text" placeholder="   Heading2" name="" value=""></th>
-
-                </tr>
-            </thead>
-            <tbody id="tableContent">
-                <tr>
-                    <th scope="row">1</th>
-                    <td><input id="row1_1" class="form-control" type="text" name="" value=""></td>
-                    <td><input id="row1_2" class="form-control" type="text" name="" value=""></td>
-
-                </tr>
-
-
-
-            </tbody>
-        </table>
-        <button style="display: none;" id="tableS" onclick="submitCreatePost('table')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
-    </div>
 
     <!-- !Source Code -->
     <div class="form-group mt-5" id="contaCode">
@@ -208,13 +154,7 @@
     <button onclick="deletePrev('code')" id="codeDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
     <button id="codeS" onclick="submitCreatePost('code')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
     <button onclick="addNew('code')" class="mb-3 btn btn-dark btn-sm">+</button>
-    <!-- ! Coclusion -->
-    <div class="form-group mt-5">
-        <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Conclusion</div>
 
-        <textarea class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" id="conclusion" rows="3"></textarea>
-        <button id="conclusionS" onclick='submitCreatePost("conclusion")' class="mt-3 btn btn-secondary btn-sm">Submit</button>
-    </div>
     <!-- !-----------------FAQ  -->
     <div class="form-group mt-5" id="contaFaq">
         <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">
@@ -235,8 +175,8 @@
     <button onclick="addNew('faq')" class="mb-3 btn btn-dark btn-sm">+</button>
 
 
-    <form action="/save_draft" method="post">
-        <button id="publishBtn" type="submit" class="btn btn-outline-dark btn-block my-2 btn-lg" style="width: 60%; margin-left:20%;">Save As Draft</button>
+    <form action="/dashboard/texteditor" method="post">
+        <button id="publishBtn" type="submit" class="btn btn-outline-dark btn-block my-2 btn-lg" style="width: 60%; margin-left:20%;">Create main content|<b>Please submit all the content so it will not be lost </b></button>
     </form>
 </div>
 

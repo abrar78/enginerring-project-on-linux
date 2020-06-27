@@ -680,17 +680,27 @@ body {
 }
 
 #paragraphs {
+    font-size: var(--desktopPara);
     width: 70%;
     margin-left: 15%;
     margin-top: 100px;
     font-family: 'Orbitron', sans-serif;
 }
 
-#paragraphs div {
-    margin-bottom: 1.2vw;
+#paragraphs h1 {
     font-size: var(--desktopHeading);
     font-family: 'Orbitron', sans-serif;
     font-weight: 800;
+}
+
+#paragraphs h2 {
+    font-size: calc(var(--desktopHeading) - 8px);
+    font-family: 'Orbitron', sans-serif;
+}
+
+#paragraphs h3 {
+    font-size: calc(var(--desktopHeading) - 16px);
+    font-family: 'Orbitron', sans-serif;
 }
 
 #paragraphs p {
@@ -699,31 +709,7 @@ body {
     color: rgb(54, 54, 54);
 }
 
-#conclusion {
-    width: 70%;
-    margin-left: 15%;
-    margin-top: 0px;
-    font-family: 'Orbitron', sans-serif;
-}
-
-#conclusion div {
-    margin-bottom: 1.2vw;
-    font-size: var(--mobileAnswers);
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 800;
-    font-style: italic;
-}
-
-#conclusion p {
-    font-size: 1.4vw;
-    font-style: italic;
-    font-family: 'Play', sans-serif;
-    color: rgb(95, 95, 95);
-}
-
 #paragraphs img {
-    margin-top: 1.2vw;
-    margin-bottom: 4.8vw;
     width: 50vw;
 }
 
@@ -1187,15 +1173,24 @@ body {
     }
     #paragraphs {
         width: 90%;
+        font-size: var(--mobilePara);
         margin-left: 5%;
         margin-top: 10vh;
         font-family: 'Orbitron', sans-serif;
     }
-    #paragraphs div {
+    #paragraphs h1 {
         margin-bottom: 3.2vw;
         font-size: var(--mobileHeading);
         font-family: 'Orbitron', sans-serif;
         font-weight: 500;
+    }
+    #paragraphs h2 {
+        font-size: calc(var(--mobileHeading) - 8px);
+        font-family: 'Orbitron', sans-serif;
+    }
+    #paragraphs h3 {
+        font-size: calc(var(--mobileHeading) - 16px);
+        font-family: 'Orbitron', sans-serif;
     }
     #paragraphs p {
         font-size: var(--mobilePara);

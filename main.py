@@ -19,7 +19,6 @@ global title
 global cover_image
 global cover_image_description
 global meta_keywords
-global para_ImgDescription
 global code_language
 global code
 global code_heading
@@ -31,22 +30,10 @@ code_language=[]
 title=""
 cover_image_description=""
 meta_keywords=""
-para_ImgDescription=[]
-
 global type_
 type_=''
-global heading1
-heading1=""
-global heading2
-heading2=""
-global table_col1
-table_col1=None
-global table_col2
-table_col2=None
 global thumbnail
 thumbnail=""
-global para_thumbnail
-para_thumbnail=[]
 global keyword
 keyword=""
 global heading
@@ -59,17 +46,13 @@ global quick_asnwers
 quick_answers=[]
 global index
 index=[]
-global para
-para=[]
-global para_subheading
-para_subheading=[]
-
-global conclusion
-conclusion=""
 global faq_q
 faq_q=[]
 global faq_ans
 faq_ans=[]
+global article
+article=""
+
 
 app.app_context().push()
 app.config.update(
@@ -274,14 +257,14 @@ def paginate():
     # return response
 
 
-@app.route('/arduino-projects/<string:url>')
+@app.route('/arduino-tutorial/<string:url>')
 def arduinoRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).all()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
     iot_latest=Iotproject_posts.query.filter().order_by(desc(Iotproject_posts.id)).first()
     other_latest=Other_posts.query.filter().order_by(desc(Other_posts.id)).first()
     
-    arduino_post=Arduinoproject_posts.query.filter_by(url='/arduino-projects/'+url).first()
+    arduino_post=Arduinoproject_posts.query.filter_by(url='/arduino-tutorial/'+url).first()
     print("------------------------------",type(arduino_latest))
     if arduino_post in arduino_latest:
         arduino_latest.remove(arduino_post)
@@ -585,10 +568,7 @@ def dashboard_upload(type):
     if type=='para':
        f=request.files['file'];
        file_name=f.filename
-    #    file_name=file_name.replace(" ","_")
-    #    global para_thumbnail
-    #    para_thumbnail.append(file_name)
-    #    print(para_thumbnail)
+
        f.save(os.path.join(app.config['UPLOAD_FOLDER']['cover_image'],secure_filename(f.filename)))
     return "SUCCESS"
 
@@ -666,10 +646,10 @@ def dashboard_create_post(type):
       index=req['index']
     if type=="para":
       req=request.get_json()
-      global para
-      global para_subheading
-      global para_thumbnail
-      global para_ImgDescription
+      
+      
+     
+      
       para=req['para']
       para_ImgDescription=req['thumbnail_desc']
       para_subheading=req['subheading']
@@ -677,7 +657,7 @@ def dashboard_create_post(type):
       print(para_ImgDescription)
     if type=="conclusion":
       req=request.get_json()
-      global conclusion
+  
       conclusion=req['conclusion']
       
     if type=="faq":
@@ -688,8 +668,8 @@ def dashboard_create_post(type):
       faq_ans=req['faq_ans']
     if type=="table":
       req=request.get_json()
-      global heading1
-      global heading2
+    
+      
       global table_col1
       global table_col2
       table_col1=req['col1']
@@ -976,24 +956,18 @@ def save_as_draft():
     global title
     global cover_image_description
     global meta_keywords
-    global para_ImgDescription
     global heading
     global type_
     global quick_questions
     global quick_answers
-    global heading1
-    global heading2
     global faq_q
     global faq_ans
-    global conclusion
     global description
     global keyword
-    global para
-    global para_subheading
-    global para_thumbnail
     global thumbnail
     global cover_image
     global index
+    global article
     
     
     draft=Draft(date=current_date,
@@ -1003,16 +977,14 @@ def save_as_draft():
                 meta_keywords=meta_keywords,
                 meta_title=title,
                 img_description=cover_image_description,
-                keyword=keyword,type=type_,
+                keyword=keyword,
+                type=type_,
                 heading=heading,
-                description=description,
-                Tableheading1=heading1,
-                Tableheading2=heading2,
-                conclusion=conclusion)
+                description=description)
+ 
     db.session.add(draft)
     db.session.commit()
-    print("quick_amswrs=",quick_answers)
-    print("quick_questions=",quick_questions)
+
     if quick_questions:
       for Q,A in zip(quick_questions, quick_answers) :
         draftQA=Quick_answers_draft(ques=Q,ans=A,post_name=draft)
@@ -1029,28 +1001,29 @@ def save_as_draft():
         draftCode=Code_draft(heading=heading,code=code,language=code_language,post_name=draft)
         db.session.add(draftCode)
         db.session.commit()
-    for ind in index:
+    if index:
+     for ind in index:
         indexDraft=Index_draft(topic=ind,post_name=draft)
         db.session.add(indexDraft)
         db.session.commit()
-    for content,heading,img in zip(para,para_subheading,para_thumbnail):
-        content=Content_draft(heading=heading,img=img,para=content,post_name=draft)
-        db.session.add(content)
+    if article:
+        article=Para_draft(content=article,post_name=draft)
+        db.session.add(article)
         db.session.commit()
-  
-    if heading1 or heading2 or table_col1 or table_col2:
-      for col1,col2 in zip(table_col1,table_col2):
-            table=Comparison_table_draft(head1_point=col1,head2_point=col2,post_name=draft)
-            db.session.add(table)
-            db.session.commit()
-  
-    
-        
-    
+    print(draft.paragraphs.content)
     return redirect('/dashboard/draft')
+@app.route('/dashboard/submit-article',methods=["GET","POST"])
+def submitArticle():
+    req=request.get_json()
+    global article
+    article=req['article']
+    return "Thanks"
+@app.route('/dashboard/texteditor',methods=["GET","POST"] )
+def texteditor():
+    return render_template('texteditor.html')
 @app.route('/dashboard/draft' ,methods=['GET','POST'])
 def draft():
-    draft=Draft.query.filter().paginate(per_page=12,page=1,error_out=True)
+    draft=Draft.query.order_by(desc(Draft.id)).paginate(per_page=20,page=1,error_out=True)
     print(draft)
     return render_template('draft.html' ,draft=draft)
 @app.route('/Edit/<string:type>/<int:id>')
@@ -1069,7 +1042,7 @@ def EditPost(type,id):
     if type=="draft":
         post=Draft.query.filter_by(id=id).first()
         
-    global para_ImgDescription
+    
     para_ImgDescription=[]
     global code_language
     code_language=[]
@@ -1079,9 +1052,9 @@ def EditPost(type,id):
     code_heading=[]
     global type_
     type_=post.type
-    global heading1
+  
     heading1=post.Tableheading1
-    global heading2
+    
     heading2=post.Tableheading2
     
     global table_col1
@@ -1133,9 +1106,9 @@ def EditPost(type,id):
  
         
         
-    global para_thumbnail
-    global para
-    global para_subheading
+   
+    
+    
     para_thumbnail=[]
     para=[]
     para_subheading=[]
@@ -1153,7 +1126,7 @@ def EditPost(type,id):
     # ! todo -----------------------------------------
     # ! todo --------------------------------------------
     
-    global conclusion
+
     conclusion=post.conclusion
     
     global faq_q
@@ -1255,14 +1228,14 @@ def save_edited(type,id):
     global quick_answers
     global quick_questions
     global index
-    global para
-    global para_subheading
-    global para_thumbnail
-    global conclusion
+    
+    
+   
+
     global faq_q
     global faq_ans
-    global heading1
-    global heading2
+  
+    
     global table_col1
     global table_col2
     global thumbnail
@@ -1271,7 +1244,7 @@ def save_edited(type,id):
     global cover_image
     global cover_image_description
     global meta_keywords
-    global para_ImgDescription
+    
     global code_language
     global code
     global code_heading
@@ -1511,16 +1484,10 @@ def delete_item():
        global type_
        global quick_answers
        global quick_questions
-       global heading1
-       global heading2
        global faq_q
        global faq_ans
-       global conclusion
        global description
        global keyword
-       global para
-       global para_subheading
-       global para_thumbnail
        global thumbnail
        global index
        req=request.get_json()

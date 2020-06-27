@@ -72,23 +72,22 @@ class Arduinoproject_posts(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
-    Tableheading1=db.Column(db.String(100),nullable=True)        
-    Tableheading2=db.Column(db.String(100),nullable=True)
-    conclusion=db.Column(db.String(500),nullable=True)
+
+   
         # * one to many relationship tables down
     
+    paragraphs=db.relationship('Para_arduino',backref="post_name",uselist=False)
     quick_answers=db.relationship('Quick_answers_arduino', backref='post_name')
-    
     index=db.relationship('Index_arduino',backref='post_name');
-    content_parts=db.relationship('Content_arduino',backref='post_name');
-    comparison_table=db.relationship('Comparison_table_arduino',backref='post_name');
     code=db.relationship('Code_arduino',backref='post_name');
-  
     faq=db.relationship('Faq_arduino',backref='post_name');
-    
-    
-    
     comment=db.relationship('Comments_arduino',backref='post_name');  #! currently this comment fuunctuanilitiy is not added
+    
+class Para_arduino(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False)
+    content=db.Column(db.Text)
+   
+    arduino_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
 class Index_arduino(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     topic=db.Column(db.String(100),nullable=True)
@@ -97,7 +96,7 @@ class Index_arduino(db.Model):
 class Code_arduino(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.String(5000),nullable=True)
+        code=db.Column(db.Text,nullable=True)
         language=db.Column(db.String(50),nullable=True)
         arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
 
@@ -106,40 +105,18 @@ class Code_arduino(db.Model) :
 class Quick_answers_arduino(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(400),nullable=True)
+    ans=db.Column(db.Text,nullable=True)
    
     arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
 
-class Comparison_table_arduino(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    
-    head1_point=db.Column(db.String(200),nullable=True)
-    head2_point=db.Column(db.String(200),nullable=True)
-    arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
 
-    
 class Faq_arduino(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(400),nullable=True)
+    faq_ans=db.Column(db.Text,nullable=True)
    
     arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))   
-    
-            
-class Content_arduino(db.Model):
-   
-    id=db.Column(db.Integer ,primary_key=True, nullable=False)
-    
-    heading=db.Column(db.String(100),nullable=True)
-    img_description=db.Column(db.String(100),nullable=True)
-    img=db.Column(db.String(100),nullable=True)
-    para=db.Column(db.String(500),nullable=True)
-    
-    
-    arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
-        
-    
-        
+           
 class Comments_arduino(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
     user_name=db.Column(db.String(100),nullable=False)
@@ -169,51 +146,34 @@ class Basicproject_posts(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
-    Tableheading1=db.Column(db.String(100),nullable=True)        
-    Tableheading2=db.Column(db.String(100),nullable=True)
-    conclusion=db.Column(db.String(500),nullable=True)
+   
+
+    paragraphs=db.relationship('Para_basic',backref="post_name",uselist=False)
     code=db.relationship('Code_basic',backref='post_name');
-    
-    
     quick_answers=db.relationship('Quick_answers_basic', backref='post_name')
-    
     index=db.relationship('Index_basic',backref='post_name');
-    comparison_table=db.relationship('Comparison_table_basic',backref='post_name');
     faq=db.relationship('Faq_basic',backref='post_name');
-    content_parts=db.relationship('Content_basic',backref='post_name');
-    
     comment=db.relationship('Comments_basic',backref='post_name');
+    
+class Para_basic(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False)
+    content=db.Column(db.Text)
+   
+    basic_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
  
 class Quick_answers_basic(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(400),nullable=True)
+    ans=db.Column(db.Text,nullable=True)
    
     basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
 
-class Comparison_table_basic(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    
-    head1_point=db.Column(db.String(200),nullable=True)
-    head2_point=db.Column(db.String(200),nullable=True)
-    basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
-   
 class Faq_basic(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(400),nullable=True)
+    faq_ans=db.Column(db.Text,nullable=True)
     basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))   
-       
-    
-class Content_basic(db.Model):
-   
-    id=db.Column(db.Integer ,primary_key=True, nullable=False)
-    
-    heading=db.Column(db.String(100),nullable=True)
-    img_description=db.Column(db.String(100),nullable=True)
-    img=db.Column(db.String(100),nullable=True)
-    para=db.Column(db.String(500),nullable=True)
-    basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
+
         
     
         
@@ -238,7 +198,7 @@ class Index_basic(db.Model):
 class Code_basic(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.String(5000),nullable=True)
+        code=db.Column(db.Text,nullable=True)
         language=db.Column(db.String(50),nullable=True)
         basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
 # *-----------------------------------------------------------------------------------------------------------
@@ -256,57 +216,37 @@ class Iotproject_posts(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
-    Tableheading1=db.Column(db.String(100),nullable=True)        
-    Tableheading2=db.Column(db.String(100),nullable=True)
-    conclusion=db.Column(db.String(500),nullable=True)
     
+    paragraphs=db.relationship('Para_iot',backref="post_name",uselist=False)
     quick_answers=db.relationship('Quick_answers_iot', backref='post_name')
     index=db.relationship('Index_iot',backref='post_name');
-    content_parts=db.relationship('Content_iot',backref='post_name');
-    comparison_table=db.relationship('Comparison_table_iot',backref='post_name');
     faq=db.relationship('Faq_iot',backref='post_name');
-    content_parts=db.relationship('Content_iot',backref='post_name');
     code=db.relationship('Code_iot',backref='post_name');
-   
     comment=db.relationship('Comments_iot',backref='post_name');
     
- 
+    
+class Para_iot(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False)
+    content=db.Column(db.Text)
+   
+    iot_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id')) 
 class Quick_answers_iot(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(400),nullable=True)
+    ans=db.Column(db.Text,nullable=True)
     
     iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
 
-class Comparison_table_iot(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    
-    
-    head1_point=db.Column(db.String(200),nullable=True)
-   
-    
-    head2_point=db.Column(db.String(200),nullable=True)
-    
-    iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
 
 class Faq_iot(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(400),nullable=True)
+    faq_ans=db.Column(db.Text,nullable=True)
     
     iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))   
        
     
-class Content_iot(db.Model):
-   
-    id=db.Column(db.Integer ,primary_key=True, nullable=False)
-    
-    heading=db.Column(db.String(100),nullable=True)
-    img_description=db.Column(db.String(100),nullable=True)
-    img=db.Column(db.String(100),nullable=True)
-    para=db.Column(db.String(500),nullable=True)
-   
-    iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
+
         
     
   
@@ -334,7 +274,7 @@ class Index_iot(db.Model):
 class Code_iot(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.String(5000),nullable=True)
+        code=db.Column(db.Text,nullable=True)
         language=db.Column(db.String(50),nullable=True)    
         iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
 # *-----------------------------------------------------------------------------------------------------------
@@ -352,56 +292,43 @@ class Other_posts(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
-    Tableheading1=db.Column(db.String(100),nullable=True)        
-    Tableheading2=db.Column(db.String(100),nullable=True)
-    conclusion=db.Column(db.String(500),nullable=True)
-    
-    
+   
+
+    paragraphs=db.relationship('Para_other',backref="post_name",uselist=False)
     quick_answers=db.relationship('Quick_answers_other', backref='post_name')
     index=db.relationship('Index_other',backref='post_name');
-    content_parts=db.relationship('Content_other',backref='post_name');
-    comparison_table=db.relationship('Comparison_table_other',backref='post_name');
     faq=db.relationship('Faq_other',backref='post_name');
-    content_parts=db.relationship('Content_other',backref='post_name');
     code=db.relationship('Code_other',backref='post_name');
-   
     comment=db.relationship('Comments_other',backref='post_name');
+    
+class Para_other(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False)
+    content=db.Column(db.Text)
+   
+    other_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
 class Quick_answers_other(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(400),nullable=True)
+    ans=db.Column(db.Text,nullable=True)
    
     otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
 
-class Comparison_table_other(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    
-    head1_point=db.Column(db.String(200),nullable=True)
-    head2_point=db.Column(db.String(200),nullable=True)
-    otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
+
 
 class Faq_other(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(400),nullable=True)
+    faq_ans=db.Column(db.Text,nullable=True)
     
     otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))   
            
     
-class Content_other(db.Model):
-   
-    id=db.Column(db.Integer ,primary_key=True, nullable=False)
-    
-    heading=db.Column(db.String(100),nullable=True)
-    img_description=db.Column(db.String(100),nullable=True)
-    img=db.Column(db.String(100),nullable=True)
-    para=db.Column(db.String(1500),nullable=True)
-    otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
+
         
 class Code_other(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.String(5000),nullable=True)
+        code=db.Column(db.Text,nullable=True)
         language=db.Column(db.String(50),nullable=True)
         otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
    
@@ -442,56 +369,36 @@ class Draft(db.Model):
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
     description=db.Column(db.String(100), nullable=False);
-    Tableheading1=db.Column(db.String(100),nullable=True)        
-    Tableheading2=db.Column(db.String(100),nullable=True)
-    conclusion=db.Column(db.String(500),nullable=True)
-    # code=db.Column(db.String(5000),nullable=True)
+   
     
-    
-    
+    paragraphs=db.relationship('Para_draft',backref="post_name",uselist=False)
     quick_answers=db.relationship('Quick_answers_draft', backref='post_name')
-    content_parts=db.relationship('Content_draft',backref='post_name');
     index=db.relationship('Index_draft',backref='post_name');
-    comparison_table=db.relationship('Comparison_table_draft',backref='post_name');
     faq=db.relationship('Faq_draft',backref='post_name');
     code=db.relationship('Code_draft',backref='post_name');
     
     
+    
+class Para_draft(db.Model):
+    id=db.Column(db.Integer,primary_key=True,nullable=False)
+    content=db.Column(db.Text)
+   
+    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
+    
 class Quick_answers_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
-    ans=db.Column(db.String(400),nullable=True)
+    ans=db.Column(db.Text,nullable=True)
    
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
 
-class Comparison_table_draft(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-  
-    head1_point=db.Column(db.String(200),nullable=True)
-    head2_point=db.Column(db.String(200),nullable=True)
-    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
-    
 
-    
 class Faq_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False);
     faq_q=db.Column(db.String(100),nullable=True)
-    faq_ans=db.Column(db.String(400),nullable=True)
+    faq_ans=db.Column(db.Text,nullable=True)
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))   
-       
-    
-class Content_draft(db.Model):
-   
-    id=db.Column(db.Integer ,primary_key=True, nullable=False)
-    
-    heading=db.Column(db.String(100),nullable=True)
-    img_description=db.Column(db.String(100),nullable=True)
-    img=db.Column(db.String(100),nullable=True)
-    para=db.Column(db.String(1500),nullable=True)
-    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
-        
-    
-     
+
 class Index_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     topic=db.Column(db.String(100),nullable=True)
@@ -500,7 +407,7 @@ class Index_draft(db.Model):
 class Code_draft(db.Model) :
         id=db.Column(db.Integer ,primary_key=True, nullable=False)
         heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.String(5000),nullable=True)
+        code=db.Column(db.Text,nullable=True)
         language=db.Column(db.String(50),nullable=True)
         draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
 # !-------------------------------------------------------------------------------------------------------------------------
@@ -518,11 +425,11 @@ class Subscribers(db.Model):
 class Messages(db.Model):
     id=db.Column(db.Integer,primary_key=True, nullable=False)
     email=db.Column(db.String(111),nullable=False,unique=False)
-    messsage=db.Column(db.String(1000),nullable=False)
+    messsage=db.Column(db.Text,nullable=False)
 
 class About_me(db.Model):
     id=db.Column(db.Integer,primary_key=True, nullable=False)
-    profile=db.Column(db.String(500),nullable=True)
+    profile=db.Column(db.Text,nullable=True)
 
 #! end---------------------------------------------------------------------------------------------------------
 

@@ -44,43 +44,13 @@
     </div>
 
     <div id="paragraphs">
-        {% for db in post_db.content_parts %}
-        <div>
-            {{db.heading}}
-        </div>
-        <p id="para{{loop.index}}">{{db.para}} </p>
-        {% if db.img %}
-        <img class="paraImg" src="/static/images/{{db.img}}" alt="{{db.img_description}}"> {% endif %} {% endfor %}
+
+        {{post_db.paragraphs.content|safe}}
 
     </div>
-    <div id="conclusion">
-        <div>
-            <h2>Conclusion</h2>
-        </div>
-        <p>{{post_db.conclusion}}</p>
-    </div>
 
-    {% if post_db.comparison_table %}
-    <div class="table">
-        <table id="customers">
-            <tr>
 
-                <th>{{post_db.Tableheading1}}</th>
-                <th>{{post_db.Tableheading2}}</th>
-            </tr>
-            {% for db in post_db.comparison_table %}
-
-            <tr>
-
-                <td>{{db.head1_point}}</td>
-                <td>{{db.head2_point}}</td>
-            </tr>
-
-            {% endfor %}
-
-        </table>
-    </div>
-    {% endif %} {% if post_db.code %}
+    {% if post_db.code %}
 
     <div id="code">
         <h1>Source Code</h1>

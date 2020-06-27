@@ -37,7 +37,8 @@
         </span>
 </div>
 <div style="margin-top: 5px;" class="band">
-    {% for db in latest_posts %}
+    {% for db in latest_posts %} {% if db %}
+
     <div class="item-{{loop.index}}">
         <a href="{{db.url}}" target="_blank" class="card">
             <div class="thumb" id="thumbLatest{{loop.index}}"></div>
@@ -49,7 +50,7 @@
         </a>
     </div>
 
-    {% endfor %}
+    {% endif %} {% endfor %}
 </div>
 
 
@@ -94,7 +95,8 @@
         </span>
 </div>
 <div style="margin-top: 5px;margin-bottom:10px;" class="band">
-    {% for db in basic_project.items %}
+    {% for db in basic_project.items %} {% if db %}
+
     <div class="item-{{loop.index}}">
         <a href="{{db.url}}" target="_blank" class="card">
             <div class="thumb" id="thumbBasic{{loop.index}}"></div>
@@ -106,7 +108,7 @@
         </a>
     </div>
 
-    {% endfor %}
+    {% endif %} {% endfor %}
 </div>
 <section style="margin-left: 7%;" class="color-8">
     <nav class="cl-effect-7">

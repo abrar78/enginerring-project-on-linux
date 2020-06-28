@@ -201,126 +201,7 @@
     <button id="indexS" onclick="submitCreatePost('index')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
     <button onclick="addNew('index')" class="mb-3 btn btn-dark btn-sm">+</button>
     <!-- !-------paragraph -->
-    <div class="form-group mt-5" id="contaPara">
-        {% if para_subheading or para or para_thumbnail %}
 
-        <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Paragraphs/Steps</div>
-        {% for ind in para %}
-
-        <div id="paraDiv{{loop.index}}">
-
-            <label class="text-secondary mt-2" for="para_heading{{loop.index}}"><b>Subheading</b></label>
-
-            <textarea class="form-control" onblur="backup('para_heading','{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_heading{{loop.index}}" rows="1">{{para_subheading[loop.index0]}}
-        
-      </textarea>
-            <label class="text-secondary mt-2" for="para_imgDescription{{loop.index}}"><b>Image Description</b></label>
-            <textarea class="form-control" onblur="backup('para_imgDescription','{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_imgDescription{{loop.index}}" rows="1">{{paraImgDescription[loop.index0]}}
-            </textarea>
-            <label class="text-secondary mt-3 " for="para{{loop.index}}"><b>Para</b></label>
-            <textarea class="form-control" onblur="backup('para', '{{loop.index}}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para{{loop.index}}" rows="4">{{para[loop.index0]}}</textarea>
-            <!-- *---upload image -->
-            {% if para_thumbnail[loop.index0] %}
-
-            <img class="mt-3" src="/static/images/{{para_thumbnail[loop.index0]}}" id="paraImg{{loop.index}}" width="40%" alt="upload image"> {% else %}
-            <img class="mt-3" id="paraImg{{loop.index}}" width="40%" alt="upload image"> {% endif %}
-            <h5 class="text-secondary mt-1">Preview</h5>
-            <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
-
-
-                <input type="file" class="form-control-file" id="paraImgUploader{{loop.index}}">
-                <button class="mt-1 btn btn-secondary btn-sm" onclick="uploadImg('para','{{loop.index}}')">upload</button>
-
-
-            </div>
-            <button onclick="deleteThis('para','{{loop.index}}','{{paraDb[loop.index0].id}}','{{type}}')" class="mb-2 btn btn-sm btn-secondary">delete</button>
-
-        </div>
-        {% endfor %} {% else %}
-        <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Paragraphs/Steps</div>
-        <div id="paraDiv1">
-
-            <label class="text-secondary mt-2" for="para_heading1"><b>Subheading</b></label>
-            <textarea class="form-control" onblur="backup('para_heading','1')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_heading1" rows="1"></textarea>
-            <label class="text-secondary mt-2" for="para_imgDescription1"><b>Image Description</b></label>
-            <textarea class="form-control" onblur="backup('para_imgDescription','1')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_imgDescription1" rows="1"></textarea>
-            <label class="text-secondary mt-3 " for="para1"><b>Para</b></label>
-            <textarea class="form-control" onblur="backup('para', '1')" style="width: 50%; margin:0 auto;border-width:5px;" id="para1" rows="4"></textarea>
-            <!-- *---upload image -->
-
-            <img class="mt-3" id="paraImg1" width="40%" alt="upload image">
-
-            <h5 class="text-secondary mt-1">Preview</h5>
-            <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
-
-
-                <input type="file" class="form-control-file" id="paraImgUploader1">
-                <button class="mt-1 btn btn-secondary btn-sm" onclick="uploadImg('para','1')">upload</button>
-            </div>
-
-        </div>
-        {% endif %}
-    </div>
-    <button onclick="deletePrev('para')" id="paraDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
-    <button id="paraS" onclick="submitCreatePost('para')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
-    <button onclick="addNew('para')" class="mb-3 btn btn-dark btn-sm">+</button>
-    <!-- !------------------Table--------------- -->
-    {% if col1 or col2 %}
-    <div id="tableDiv">
-        <table class="table table-bordered" id="tableMain">
-            <thead>
-                <tr id="head">
-                    <th scope="col">Sno</th>
-                    <th scope="col"><input id="heading1" class="form-control" type="text" placeholder="   Heading1" name="" value="{{tableHeading1}}"></th>
-                    <th scope="col"><input id="heading2" class="form-control" type="text" placeholder="   Heading2" name="" value="{{tableHeading2}}"></th>
-
-                </tr>
-            </thead>
-            <tbody id="tableContent">
-                {% if col1>col2 %} {% set count =col1 %} {% else %} {% set count =col2 %} {% endif %} {% for ind in count %}
-                <tr>
-                    <th scope="row">{{loop.index}}</th>
-                    <td><input id="row{{loop.index}}_1" class="form-control" type="text" name="" value="{{col1[loop.index0]}}"></td>
-                    <td><input id="row{{loop.index}}_2" class="form-control" type="text" name="" value="{{col2[loop.index0]}}"></td>
-
-                </tr>
-
-                {% endfor %}
-
-
-            </tbody>
-        </table>
-        <button id="tableS" onclick="submitCreatePost('table')" class="mb-3 btn btn-secondary btn-sm">make changes</button>
-
-        <button id="tableS" onclick="deleteThis('table','','{{id}}','{{type}}')" class="mb-3 btn btn-secondary btn-sm">delete table</button>
-    </div>
-
-    {% else %}
-
-
-    <textarea class="form-control" placeholder="No of Rows" style="width: 50%; margin: 0 auto; border-width: 5px;" id="rowNo" rows="1"></textarea>
-    <button id="enter" onclick="enterTableRows()" class="my-3 btn btn-secondary btn-sm ">Enter</button>
-    <div class="tableDiv">
-
-        <table class="table table-bordered" id="tableMain" style="display: none;">
-            <thead>
-                <tr id="head">
-                    <th scope="col">Sno</th>
-                    <th scope="col"><input id="heading1" class="form-control" type="text" placeholder="   Heading1" name="" value=""></th>
-                    <th scope="col"><input id="heading2" class="form-control" type="text" placeholder="   Heading2" name="" value=""></th>
-
-                </tr>
-            </thead>
-            <tbody id="tableContent">
-
-
-
-
-            </tbody>
-        </table>
-        <button style="display: none;" id="tableS" onclick="submitCreatePost('table')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
-    </div>
-    {% endif %}
     <!-- !Source Code -->
     {% if code or codeLanguage or codeHeading %}
     <div class="form-group mt-5" id="contaCode">
@@ -393,10 +274,9 @@
     <button onclick="deletePrev('faq')" id="faqDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
     <button onclick="submitCreatePost('faq')" id="faqS" class="mb-3 btn btn-secondary btn-sm">Submit</button>
     <button onclick="addNew('faq')" class="mb-3 btn btn-dark btn-sm">+</button>
-    <form action="/save_edited/{{type}}/{{id}}" method="post">
 
-        <button id="publishBtn" type="submit" class="my-5 btn btn-outline-dark btn-block mt-5 btn-lg" style="width: 60%; margin-left:20%;">Save changes</button>
-
+    <form action="/dashboard/texteditor" method="post">
+        <button id="publishBtn" type="submit" class="btn btn-outline-dark btn-block my-2 btn-lg" style="width: 60%; margin-left:20%;">Edit main content | <b>Please submit all the content so it will not be lost </b></button>
     </form>
 
 
@@ -443,27 +323,11 @@
         countFaq++
     }
 
-    data = '{{countPara|safe}}'
-    dataCount = JSON.parse(data)
-    countPara = dataCount
-    if (countPara == 0) {
-        countPara++
-    }
+
     data = '{{totalType|safe}}'
     dataCount = JSON.parse(data)
     totalType = dataCount
 
-    dataX = '{{countCol1|safe}}'
-    dataCountCol1 = JSON.parse(dataX)
-    dataY = '{{countCol2|safe}}'
-    dataCountCol2 = JSON.parse(dataX)
-    if (dataX > dataY) {
-        dataCount = dataX
-    } else {
-        dataCount = dataY
-    }
-
-    tableRow = dataCount
 
     document.getElementById('coverS').disabled = false
 </script>

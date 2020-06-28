@@ -725,18 +725,16 @@ def delete(id,type):
     print(id,type)
     if type=='Ard':
         delete=Arduinoproject_posts.query.filter_by(id=id).first()
-        deleteContent=Content_arduino.query.filter_by(arduinopost_id=id).all()
+        deleteContent=Para_arduino.query.filter_by(arduinopost_id=id).first()
         deleteIndex=Index_arduino.query.filter_by(arduinopost_id=id).all()
-        deleteTable=Comparison_table_arduino.query.filter_by(arduinopost_id=id).all()
         deleteFaq=Faq_arduino.query.filter_by(arduinopost_id=id).all()
         deleteQuickanswers=Quick_answers_arduino.query.filter_by(arduinopost_id=id).all()
         deleteCode=Code_arduino.query.filter_by(arduinopost_id=id).all()
         returnPath="/all_post/1"
     if type=='Basic':
         delete=Basicproject_posts.query.filter_by(id=id).first()
-        deleteContent=Content_basic.query.filter_by(basicpost_id=id).all()
+        deleteContent=Para_basic.query.filter_by(basicpost_id=id).first()
         deleteIndex=Index_basic.query.filter_by(basicpost_id=id).all()
-        deleteTable=Comparison_table_basic.query.filter_by(basicpost_id=id).all()
         deleteFaq=Faq_basic.query.filter_by(basicpost_id=id).all()
         deleteQuickanswers=Quick_answers_basic.query.filter_by(basicpost_id=id).all()
         deleteCode=Code_basic.query.filter_by(basicpost_id=id).all()
@@ -744,18 +742,16 @@ def delete(id,type):
         
     if type=='Iot':
         delete=Iotproject_posts.query.filter_by(id=id).first()
-        deleteContent=Content_iot.query.filter_by(iotpost_id=id).all()
+        deleteContent=Para_iot.query.filter_by(iotpost_id=id).first()
         deleteIndex=Index_iot.query.filter_by(iotpost_id=id).all()
-        deleteTable=Comparison_table_iot.query.filter_by(iotpost_id=id).all()
         deleteFaq=Faq_iot.query.filter_by(iotpost_id=id).all()
         deleteQuickanswers=Quick_answers_iot.query.filter_by(iotpost_id=id).all()
         deleteCode=Code_iot.query.filter_by(iotpost_id=id).all()
         returnPath="/dashboard_iot/1"
     if type=='Other':
         delete=Other_posts.query.filter_by(id=id).first()
-        deleteContent=Content_other.query.filter_by(otherpost_id=id).all()
+        deleteContent=Para_other.query.filter_by(other_id=id).first()
         deleteIndex=Index_other.query.filter_by(otherpost_id=id).all()
-        deleteTable=Comparison_table_other.query.filter_by(otherpost_id=id).all()
         deleteFaq=Faq_other.query.filter_by(otherpost_id=id).all()
         deleteQuickanswers=Quick_answers_other.query.filter_by(otherpost_id=id).all()
         deleteCode=Code_other.query.filter_by(otherpost_id=id).all()
@@ -763,27 +759,19 @@ def delete(id,type):
     
     if type=='draft':
         delete=Draft.query.filter_by(id=id).first()
-        deleteContent=Content_draft.query.filter_by(draft_id=id).all()
+        deleteContent=Para_draft.query.filter_by(draft_id=id).first()
         deleteIndex=Index_draft.query.filter_by(draft_id=id).all()
-        deleteTable=Comparison_table_draft.query.filter_by(draft_id=id).all()
         deleteFaq=Faq_draft.query.filter_by(draft_id=id).all()
         deleteQuickanswers=Quick_answers_draft.query.filter_by(draft_id=id).all()
         deleteCode=Code_draft.query.filter_by(draft_id=id).all()
         returnPath="/dashboard/draft"
     if deleteContent:
-            for d in deleteContent:
-                db.session.delete(d)
-                db.session.commit()
+        db.session.delete(deleteContent)
+        db.session.commit()
     if deleteIndex:
             for d in deleteTable:
              db.session.delete(d)
              db.session.commit()
-            
-    if deleteTable:
-         for d in deleteTable:
-            db.session.delete(d)
-            db.session.commit()
-            
     if deleteFaq:
             for d in deleteFaq:
                 db.session.delete(d)
@@ -819,6 +807,7 @@ def dashboard():
  subscribersNo=Subscribers.query.filter().count()
  return render_template("dashboard.html",postNo=savedPost,subscribersNo=subscribersNo)
 @app.route('/dashboard/about')
+@login_required
 def about():
     about=About_me.query.first()
     print("-------------------------------------------------------------------------------")
@@ -831,6 +820,7 @@ def about():
         
     return render_template('about.html',about=txt) 
 @app.route('/dashboard/about/apply',methods=['GET','POST'])
+@login_required
 def about_apply():
     form=request.form
     txt=form['about']
@@ -847,6 +837,7 @@ def about_apply():
         db.session.commit()
     return redirect("/dashboard/about") 
 @app.route('/dashboard/emails/<int:page_no>',methods=['GET','POST'])
+@login_required
 def emails(page_no):
     subscribersNo=Subscribers.query.filter().count()
     subscribers=Subscribers.query.paginate(per_page=100,page=page_no,error_out=True)
@@ -855,6 +846,7 @@ def emails(page_no):
  
     return render_template('email.html',data=json.dumps(data),subscribers=subscribers,subscribersNo=subscribersNo)
 @app.route('/dashboard/email/search', methods=['GET','POST'])
+@login_required
 def emailSearch():
     if request.method=='POST':
             form=request.form
@@ -864,6 +856,7 @@ def emailSearch():
             result=Subscribers.query.filter(Subscribers.email.like(search)).all()
             return render_template("email_search.html",result_email=result)
 @app.route('/dashboard/email/delete/<int:id>', methods=['GET','POST'])
+@login_required
 def femailDelete(id):
     delete=Subscribers.query.filter_by(id=id).first()
     db.session.delete(delete)
@@ -1010,18 +1003,24 @@ def save_as_draft():
         article=Para_draft(content=article,post_name=draft)
         db.session.add(article)
         db.session.commit()
+        article=""
     print(draft.paragraphs.content)
     return redirect('/dashboard/draft')
 @app.route('/dashboard/submit-article',methods=["GET","POST"])
+@login_required
 def submitArticle():
     req=request.get_json()
     global article
     article=req['article']
     return "Thanks"
 @app.route('/dashboard/texteditor',methods=["GET","POST"] )
+@login_required
 def texteditor():
-    return render_template('texteditor.html')
+    global article
+    print(article)
+    return render_template('texteditor.html',content=article)
 @app.route('/dashboard/draft' ,methods=['GET','POST'])
+@login_required
 def draft():
     draft=Draft.query.order_by(desc(Draft.id)).paginate(per_page=20,page=1,error_out=True)
     print(draft)
@@ -1033,6 +1032,7 @@ def EditPost(type,id):
         
     if type=="Basic":
         post=Basicproject_posts.query.filter_by(id=id).first()
+   
     if type=="Iot":
         post=Iotproject_posts.query.filter_by(id=id).first()
         
@@ -1052,18 +1052,9 @@ def EditPost(type,id):
     code_heading=[]
     global type_
     type_=post.type
+
   
-    heading1=post.Tableheading1
-    
-    heading2=post.Tableheading2
-    
-    global table_col1
-    global table_col2
-    table_col1=[]
-    table_col2=[]
-    for db in post.comparison_table:
-        table_col1.append(db.head1_point)
-        table_col2.append(db.head2_point)
+  
     #! todo----------------------------------------
     #! todo----------------------------------------
     
@@ -1085,11 +1076,11 @@ def EditPost(type,id):
     heading=post.heading
     global description
     description=post.description
-    
     global quick_questions
     global quick_asnwers
     quick_questions=[]
     quick_answers=[]
+    
     for db in post.quick_answers:
         quick_answers.append(db.ans)
         quick_questions.append(db.ques)
@@ -1100,34 +1091,12 @@ def EditPost(type,id):
     index=[]
     for db in post.index:
         index.append(db.topic)
-        
-   
-    # ! todo --------------------------------------------
- 
-        
-        
-   
-    
-    
-    para_thumbnail=[]
-    para=[]
-    para_subheading=[]
-    for db in post.content_parts:
-        para_subheading.append(db.heading)
-        para_ImgDescription.append(db.img_description)
-        para_thumbnail.append(db.img)
-        para.append(db.para)
+
     for db in post.code:
         code.append(db.code)
         code_language.append(db.language)
         code_heading.append(db.heading)
-      
-    # ! todo -------------------------------------------
-    # ! todo -----------------------------------------
-    # ! todo --------------------------------------------
-    
 
-    conclusion=post.conclusion
     
     global faq_q
     global faq_ans
@@ -1136,34 +1105,29 @@ def EditPost(type,id):
     for db in post.faq:
         faq_q.append(db.faq_q)
         faq_ans.append(db.faq_ans)
-    #! todo --------------------------------------------
-    #! todo --------------------------------------------
-    conclusion=post.conclusion
+
    
     post_type=type_[0:-4]
     intend=type_[len(post_type):]
-    
+    global article
+    article=post.paragraphs.content
+    print("======================")
+    print(article)
+    print("******************************")
    
-    print("para:",para)
-    print("para_subheading:",para_subheading)
-    print("para_thumbnail:",para_thumbnail)
-    print("para_imgDescription:",para_ImgDescription)
     return render_template('edit_post.html',
                            coverImg=cover_image,
                            metaKeywords=meta_keywords,
                            coverImgDescription=cover_image_description,
                            title=title,
                            url=url,
-                           paraImgDescription=para_ImgDescription,
                            code=code,
                            codeLanguage=code_language,
                            codeHeading=code_heading,
                            quickAnswersDb=post.quick_answers,
                            indexDb=post.index,
                            codeDb=post.code,
-                           paraDb=post.content_parts,
                            faqDb=post.faq,
-                           tableDb=post.comparison_table,
                            totalType=json.dumps(type_),
                            countCode=json.dumps(len(code_heading)),
                            countQuickQuestions=json.dumps(len(quick_questions)),
@@ -1171,9 +1135,6 @@ def EditPost(type,id):
                            countFaq_q=json.dumps(len(faq_q)),
                            countFaq_ans=json.dumps(len(faq_ans)),
                            countIndex=json.dumps(len(index)),
-                           countPara=json.dumps(len(para)),
-                           countContentHeading=json.dumps(len(para_subheading)),
-                           countContentThumbnail=json.dumps(len(para_thumbnail)),
                            type=type,
                            post_type=post_type,
                            keyword=keyword,
@@ -1184,18 +1145,8 @@ def EditPost(type,id):
                            index=index,
                            quickQuestions=quick_questions,
                            quickAnswers=quick_answers,
-                           para=para,
-                           para_subheading=para_subheading,
-                           para_thumbnail=para_thumbnail,
-                           conclusion=conclusion,
                            faq_q=faq_q,
                            faq_ans=faq_ans,
-                           col1=table_col1,
-                           col2=table_col2,
-                           countCol1=json.dumps(len(table_col1)),
-                           countCol2=json.dumps(len(table_col2)),
-                           tableHeading1=post.Tableheading1,
-                           tableHeading2=post.Tableheading2,
                            id=id
                            )
 @app.route('/save_edited/<string:type>/<int:id>',methods=['GET','POST'])
@@ -1510,16 +1461,6 @@ def delete_item():
               quickQuestions=[]
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='para':
-              print('in para')
-              print(req['id'])
-              para=[]
-              para_subheading=[]
-              para_thumbnail=[]
-              para_ImgDescription=[]
-              delete=Content_arduino.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()
           if req['type']=='faq':
               faq_q=[]
               faq_ans=[]
@@ -1533,16 +1474,7 @@ def delete_item():
               delete=Code_arduino.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='table':
-              table_col1=[]
-              table_col2=[]
-              heading1=""
-              heading2=""
-              print('-------------------------------------------------------------------')
-              delete=Comparison_table_arduino.query.filter_by(draft_id=req['id'])
-              for i in delete:
-                        db.session.delete(i)
-                        db.session.commit()
+         
        if post_type=="Basic":
            
           if req['type']=='index':
@@ -1557,14 +1489,7 @@ def delete_item():
               delete=Quick_answers_basic.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='para':
-              para=[]
-              para_subheading=[]
-              para_thumbnail=[]
-              para_ImgDescription=[]
-              delete=Content_basic.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()
+
           if req['type']=='faq':
               faq_q=[]
               faq_ans=[]
@@ -1578,16 +1503,7 @@ def delete_item():
               delete=Code_basic.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='table':
-              table_col1=[]
-              table_col2=[]
-              heading1=""
-              heading2=""
-              print('-------------------------------------------------------------------')
-              delete=Comparison_table_basic.query.filter_by(draft_id=req['id'])
-              for i in delete:
-                        db.session.delete(i)
-                        db.session.commit()              
+           
        if post_type=="Iot":
            
           if req['type']=='index':
@@ -1599,14 +1515,6 @@ def delete_item():
               quickAnswers=[]
               quickQuestions=[]
               delete=Quick_answers_iot.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()
-          if req['type']=='para':
-              para=[]
-              para_subheading=[]
-              para_thumbnail=[]
-              para_ImgDescription=[]
-              delete=Content_iot.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='faq':
@@ -1622,16 +1530,7 @@ def delete_item():
               delete=Code_iot.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='table':
-              table_col1=[]
-              table_col2=[]
-              heading1=""
-              heading2=""
-              print('-------------------------------------------------------------------')
-              delete=Comparison_table_iot.query.filter_by(draft_id=req['id'])
-              for i in delete:
-                        db.session.delete(i)
-                        db.session.commit()              
+        
        if post_type=="Other":
            
           if req['type']=='index':
@@ -1643,14 +1542,6 @@ def delete_item():
               quickAnswers=[]
               quickQuestions=[]
               delete=Quick_answer_other.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()
-          if req['type']=='para':
-              para=[]
-              para_subheading=[]
-              para_thumbnail=[]
-              para_ImgDescription=[]
-              delete=Content_other.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='faq':
@@ -1666,16 +1557,7 @@ def delete_item():
               delete=Code_other.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='table':
-              table_col1=[]
-              table_col2=[]
-              heading1=""
-              heading2=""
-              print('-------------------------------------------------------------------')
-              delete=Comparison_table_other.query.filter_by(draft_id=req['id'])
-              for i in delete:
-                        db.session.delete(i)
-                        db.session.commit()              
+              
        if post_type=="draft":
           print(req['type'])  
           if req['type']=='index':
@@ -1689,14 +1571,7 @@ def delete_item():
               delete=Quick_answers_draft.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='para':
-              para=[]
-              para_subheading=[]
-              para_thumbnail=[]
-              para_ImgDescription=[]
-              delete=Content_draft.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()
+
           if req['type']=='faq':
               faq_q=[]
               faq_ans=[]
@@ -1711,16 +1586,7 @@ def delete_item():
               delete=Code_draft.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()              
-          if req['type']=='table':
-              table_col1=[]
-              table_col2=[]
-              heading1=""
-              heading2=""
-              print('-------------------------------------------------------------------')
-              delete=Comparison_table_draft.query.filter_by(draft_id=req['id'])
-              for i in delete:
-                        db.session.delete(i)
-                        db.session.commit()
+
        return "__success__"     
 @app.route('/publish/<string:type>/<draft_id>', methods=['GET', 'POST'])
 @login_required
@@ -1735,13 +1601,16 @@ def publish(type,draft_id):
                                meta_keywords=draft.meta_keywords,
                                meta_title=draft.meta_title,
                                img_description=draft.img_description,
-                               
                                keyword=draft.keyword,
                                type=draft.type,
                                heading=draft.heading,
-                               description=draft.description,Tableheading1=draft.Tableheading1,Tableheading2=draft.Tableheading2,conclusion=draft.conclusion)
+                               description=draft.description
+                              )
 
       db.session.add(add)
+      db.session.commit()
+      para=Para_arduino(content=draft.paragraphs.content,post_name=add)
+      db.session.add(para)
       db.session.commit()
       for i in draft.index:
           addIndex=Index_arduino(topic=i.topic,post_name=add)
@@ -1756,14 +1625,7 @@ def publish(type,draft_id):
           addFaq=Faq_arduino(faq_q=i.faq_q,faq_ans=i.faq_ans,post_name=add)
           db.session.add(addFaq)
           db.session.commit()
-      for i in draft.content_parts:
-          addPara=Content_arduino(heading=i.heading,img=i.img,para=i.para,post_name=add)
-          db.session.add(addPara)
-          db.session.commit()
-      for i in draft.comparison_table:
-          addTable=Comparison_table_arduino(head1_point=i.head1_point,head2_point=i.head2_point,post_name=add)
-          db.session.add(addTable)
-          db.session.commit()
+
       for i in draft.code:
           addTable=Code_arduino(heading=i.heading,code=i.code,language=i.language,post_name=add)
           db.session.add(addTable)
@@ -1779,11 +1641,13 @@ def publish(type,draft_id):
                              keyword=draft.keyword,
                              type=draft.type,
                              heading=draft.heading,
-                             description=draft.description,
-                             Tableheading1=draft.Tableheading1,
-                             Tableheading2=draft.Tableheading2,
-                             conclusion=draft.conclusion)
+                             description=draft.description
+                           
+                           )
       db.session.add(add)
+      db.session.commit()
+      para=Para_basic(content=draft.paragraphs.content,post_name=add)
+      db.session.add(para)
       db.session.commit()
       for i in draft.index:
           addIndex=Index_basic(topic=i.topic,post_name=add)
@@ -1796,14 +1660,6 @@ def publish(type,draft_id):
       for i in draft.faq:
           addFaq=Faq_basic(faq_q=i.faq_q,faq_ans=i.faq_ans,post_name=add)
           db.session.add(addFaq)
-          db.session.commit()
-      for i in draft.content_parts:
-          addPara=Content_basic(heading=i.heading,img=i.img,para=i.para,post_name=add)
-          db.session.add(addPara)
-          db.session.commit()
-      for i in draft.comparison_table:
-          addTable=Comparison_table_basic(head1_point=i.head1_point,head2_point=i.head2_point,post_name=add)
-          db.session.add(addTable)
           db.session.commit()
       for i in draft.code:
           addTable=Code_basic(heading=i.heading,code=i.code,language=i.language,post_name=add)
@@ -1820,11 +1676,12 @@ def publish(type,draft_id):
                            keyword=draft.keyword,
                            type=draft.type,
                            heading=draft.heading,
-                           description=draft.description,
-                           Tableheading1=draft.Tableheading1,
-                           Tableheading2=draft.Tableheading2,
-                           conclusion=draft.conclusion)
+                           description=draft.description
+                           )
       db.session.add(add)
+      db.session.commit()
+      para=Para_iot(content=draft.paragraphs.content,post_name=add)
+      db.session.add(para)
       db.session.commit()
       for i in draft.index:
           addIndex=Index_iot(topic=i.topic,post_name=add)
@@ -1837,14 +1694,6 @@ def publish(type,draft_id):
       for i in draft.faq:
           addFaq=Faq_iot(faq_q=i.faq_q,faq_ans=i.faq_ans,post_name=add)
           db.session.add(addFaq)
-          db.session.commit()
-      for i in draft.content_parts:
-          addPara=Content_iot(heading=i.heading,img=i.img,para=i.para,post_name=add)
-          db.session.add(addPara)
-          db.session.commit()
-      for i in draft.comparison_table:
-          addTable=Comparison_table_iot(head1_point=i.head1_point,head2_point=i.head2_point,post_name=add)
-          db.session.add(addTable)
           db.session.commit()
       for i in draft.code:
           addTable=Code_iot(heading=i.heading,code=i.code,language=i.language,post_name=add)
@@ -1861,11 +1710,11 @@ def publish(type,draft_id):
                       keyword=draft.keyword,
                       type=draft.type,
                       heading=draft.heading,
-                      description=draft.description,
-                      Tableheading1=draft.Tableheading1,
-                      Tableheading2=draft.Tableheading2,
-                      conclusion=draft.conclusion)
+                      description=draft.description)
       db.session.add(add)
+      db.session.commit()
+      para=Para_other(content=draft.paragraphs.content,post_name=add)
+      db.session.add(para)
       db.session.commit()
       for i in draft.index:
           addIndex=Index_other(topic=i.topic,post_name=add)
@@ -1879,14 +1728,6 @@ def publish(type,draft_id):
           addFaq=Faq_other(faq_q=i.faq_q,faq_ans=i.faq_ans,post_name=add)
           db.session.add(addFaq)
           db.session.commit()
-      for i in draft.content_parts:
-          addPara=Content_other(heading=i.heading,img=i.img,para=i.para,post_name=add)
-          db.session.add(addPara)
-          db.session.commit()
-      for i in draft.comparison_table:
-          addTable=Comparison_table_other(head1_point=i.head1_point,head2_point=i.head2_point,post_name=add)
-          db.session.add(addTable)
-          db.session.commit()
       for i in draft.code:
           addTable=Code_other(heading=i.heading,code=i.code,language=i.language,post_name=add)
           db.session.add(addTable)
@@ -1897,26 +1738,18 @@ def publish(type,draft_id):
     print(deleteSelf)
     db.session.delete(deleteSelf)
     db.session.commit()
-    deleteContent=Content_draft.query.filter_by(draft_id=id).all()
+    deleteContent=Para_draft.query.filter_by(draft_id=id).first()
     deleteIndex=Index_draft.query.filter_by(draft_id=id).all()
-    deleteTable=Comparison_table_draft.query.filter_by(draft_id=id).all()
     deleteFaq=Faq_draft.query.filter_by(draft_id=id).all()
     deleteQuickanswers=Quick_answers_draft.query.filter_by(draft_id=id).all()
      
     if deleteContent:
-            for d in deleteContent:
-                db.session.delete(d)
-                db.session.commit()
+         db.session.delete(deleteContent)
+         db.session.commit()
     if deleteIndex:
-            for d in deleteTable:
+            for d in deleteIndex:
              db.session.delete(d)
              db.session.commit()
-            
-    if deleteTable:
-         for d in deleteTable:
-            db.session.delete(d)
-            db.session.commit()
-            
     if deleteFaq:
             for d in deleteFaq:
                 db.session.delete(d)

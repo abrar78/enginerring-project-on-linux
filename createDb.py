@@ -377,7 +377,7 @@ class Draft(db.Model):
     faq=db.relationship('Faq_draft',backref='post_name');
     code=db.relationship('Code_draft',backref='post_name');
     
-    
+
     
 class Para_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)

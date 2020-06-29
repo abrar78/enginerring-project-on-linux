@@ -685,6 +685,15 @@ body {
     margin-left: 15%;
     margin-top: 100px;
     font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
+}
+
+#paragraphs table {
+    font-size: clac(var(--desktopPara) - 10px)!important;
+}
+
+#paragraphs table>tbody>tr>td {
+    padding: 10px;
 }
 
 #paragraphs h1 {
@@ -711,45 +720,6 @@ body {
 
 #paragraphs img {
     width: 50vw;
-}
-
-
-/* !Tablws--------- */
-
-#customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 70%;
-    margin-left: 15%;
-    margin-top: 20px;
-}
-
-#customers td,
-#customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    width: 50%;
-    font-size: var(--mobileAnswers);
-}
-
-#customers tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-#customers tr:hover {
-    background-color: #ddd;
-}
-
-#customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: black;
-    color: #F2C36B;
-}
-
-.table {
-    margin-top: 4.5vw;
 }
 
 #code {
@@ -1177,6 +1147,16 @@ body {
         margin-left: 5%;
         margin-top: 10vh;
         font-family: 'Orbitron', sans-serif;
+        overflow: hidden;
+    }
+    #paragraphs table {
+        width: 70vw !important;
+    }
+    #paragraphs table>tbody>tr>td {
+        width: auto !important;
+        height: auto !important;
+        font-size: var(--mobilePara) !important;
+        padding: 10px;
     }
     #paragraphs h1 {
         margin-bottom: 3.2vw;

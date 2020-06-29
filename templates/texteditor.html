@@ -1,28 +1,39 @@
-{% extends "dashboard_base_template.html" %} {% block content %}
-{% if content %}
+{% extends "dashboard_base_template.html" %} {% block content %} {% if content %}
 <div style="padding-left: 20vw;padding-top:20px;">
 
     <textarea id="texteditor" class="tinymce">
         {{content}}
-        Write only paragraphs and conclusion do not include main heading and cover image
+
     </textarea>
 </div>
 <img class="mt-3" style="margin-left: 20%;" src="" id="paraImg1" width="40%" alt="upload image">
 
 <h5 class="text-secondary mt-1" style="margin-left: 20%;">Preview</h5>
 <div class="input-group my-3" style="width: 50%; margin-left:20%">
-    
-    
+
+
     <input type="file" class="form-control-file" id="paraImgUploader1">
     <button class="mt-1 btn btn-secondary btn-sm" onclick="uploadImg('para',1)">upload</button>
 </div>
-<button class="btn btn-outline-secondary btn-block my-3" style="width: 50%;margin-left:30%;"
- onclick="submit()" type="button">Submit</button> 
+<button class="btn btn-outline-secondary btn-block my-3" style="width: 50%;margin-left:30%;" onclick="submit('old',id='{{id}}',type='{{type}}')" type="button">Submit</button> {% else %}
 
-{% else %}
-{% endif %}
-{% endblock %}
-{% block script %}
+<div style="padding-left: 20vw;padding-top:20px;">
+
+    <textarea placeholder="Write only main content dont add which you have already added before" id="texteditor" class="tinymce">
+        
+      
+    </textarea>
+</div>
+<img class="mt-3" style="margin-left: 20%;" src="" id="paraImg1" width="40%" alt="upload image">
+
+<h5 class="text-secondary mt-1" style="margin-left: 20%;">Preview</h5>
+<div class="input-group my-3" style="width: 50%; margin-left:20%">
+
+
+    <input type="file" class="form-control-file" id="paraImgUploader1">
+    <button class="mt-1 btn btn-secondary btn-sm" onclick="uploadImg('para',1)">upload</button>
+</div>
+<button class="btn btn-outline-secondary btn-block my-3" style="width: 50%;margin-left:30%;" onclick="submit('new')" type="button">Submit</button> {% endif %} {% endblock %} {% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/tinymce.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/jquery.tinymce.min.js"></script>

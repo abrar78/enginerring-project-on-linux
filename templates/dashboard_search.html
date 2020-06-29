@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <h3 id="Basichead{{loop.index}}">{{db.heading}}</h3>
                     <p class="card-text" id='Basicdesc{{loop.index}}'>{{db.description}}</p>
-                    <a href="/Read_more_Basic/{{db.id}}" id="Basicid{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2  mx-2">Read-more</a>
+                    <a href="{{db.url}}" id="Basicid{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2  mx-2">Read-more</a>
                     <a href="/Edit/{{db.type[0:-4]}}/{{db.id}}" id="BasicidEd{{loop.index}}" class="btn btn-outline-secondary btn-sm my-2  mx-2">Edit</a>
                     <button type="button" class="ml-2 btn btn-outline-secondary btn-sm " data-toggle="modal" data-target="#delete">
                         Delete

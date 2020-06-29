@@ -1,4 +1,4 @@
-{% extends "template.html" %}{{post_db.title}} {% block title %} {{post_db.title}} {% endblock title %} {% block meta_tags %}
+{% extends "template.html" %} {% block title %} {{post_db.meta_title}} {% endblock title %} {% block meta_tags %}
 <meta name="description" content="{{post_db.description}}">
 <meta name="keyword" content="{{post_db.meta_keywords}}"> {% endblock meta_tags %} {% block content %}
 <style>
@@ -81,13 +81,15 @@
     </div>
     {% endif %}
     <hr style="margin-top: 4%;">
-    <h1 class="headingRelated">Related Post</h1>
 
     <!-- !90000000000000000000000000000000000000000000000000000000000000000000000000 -->
 
     <!-- !00000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+    {% if related_post %}
+    <h1 class="headingRelated">Related Post</h1>
+
+    {% endif %} {% for db in related_post %}
     <div id="relatedPost">
-        {% for db in related_post %}
 
         <div class="cardCustom card-{{loop.index}}">
             <div id="cardImgRelated{{loop.index}}" style="background-image: url('/static/images/{{db.thumbnail}}');" class="card-img"></div>
@@ -143,34 +145,10 @@
 </section>
 {% endblock %} {% block script %}
 <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5ed63d1c5d871a001228b099&product=sticky-share-buttons"></script>
-
 <script>
-    var relatedThumbnails = `{{relatedThumbnails|safe}}`
-    relatedThumbnails = JSON.parse(relatedThumbnails)
-    var latestThumbnails = `{{latestThumbnails|safe}}`
-    latestThumbnails = JSON.parse(latestThumbnails)
-
-    var imgsRelated = relatedThumbnails.thumbnails
-    var imgsLatest = latestThumbnails.thumbnails
-    for (const key in imgsRelated) {
-        if (imgsRelated.hasOwnProperty(key)) {
-            const element = imgsRelated[key];
-            console.log(`cardImgRelated${parseInt(key)+1}`, `url(/static/images/${element})`)
-            document.getElementById(`cardImgRelated${parseInt(key)+1}`).style.backgroundImage = `linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),url(/static/images/${element})`
-            document.getElementById(`cardImgHoveredRelated${parseInt(key)+1}`).style.backgroundImage = `linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),url(/static/images/${element})`
-
-        }
-    }
-    for (const key in imgsLatest) {
-        if (imgsLatest.hasOwnProperty(key)) {
-            const element = imgsLatest[key];
-            console.log(`cardImgRecent${parseInt(key)+1}`, `url(/static/images/${element})`)
-            document.getElementById(`cardImgRecent${parseInt(key)+1}`).style.backgroundImage =
-                document.getElementById(`cardImgHoveredRecent${parseInt(key)+1}`).style.backgroundImage = `url("/static/images/${element}")`;
-
-            document.getElementById(`cardImgHoveredRecent${parseInt(key)+1}`).style.backgroundImage = `url("/static/images/${element}")`;
-
-        }
-    }
+    var table = document.getElementsByTagName('table')
+    console.log(table[0])
 </script>
+
+
 {% endblock %}

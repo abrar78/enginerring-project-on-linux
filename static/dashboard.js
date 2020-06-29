@@ -725,9 +725,7 @@ function deleteThis(type_, num, id, post_type) {
     if (type_ == 'index') {
         countIndex--
     }
-    if (type_ == 'para') {
-        countPara--
-    }
+
     if (type_ == 'table') {
         tableRow = 0
         tableHtml = ""

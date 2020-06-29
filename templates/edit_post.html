@@ -236,13 +236,6 @@
     <button onclick="deletePrev('code')" id="codeDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
     <button id="codeS" onclick="submitCreatePost('code')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
     <button onclick="addNew('code')" class="mb-3 btn btn-dark btn-sm">+</button>
-    <!-- ! Coclusion -->
-    <div class="form-group mt-5">
-        <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Conclusion</div>
-
-        <textarea class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" id="conclusion" rows="3" onblur="submitCreatePost('conclusion')">{{conclusion}}</textarea>
-
-    </div>
     <!-- !-----------------FAQ  -->
     <div class="form-group mt-5" id="contaFaq">
         <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">
@@ -275,7 +268,7 @@
     <button onclick="submitCreatePost('faq')" id="faqS" class="mb-3 btn btn-secondary btn-sm">Submit</button>
     <button onclick="addNew('faq')" class="mb-3 btn btn-dark btn-sm">+</button>
 
-    <form action="/dashboard/texteditor" method="post">
+    <form action="/dashboard/texteditor/{{id}}/{{type}}" method="post">
         <button id="publishBtn" type="submit" class="btn btn-outline-dark btn-block my-2 btn-lg" style="width: 60%; margin-left:20%;">Edit main content | <b>Please submit all the content so it will not be lost </b></button>
     </form>
 
@@ -287,6 +280,7 @@
 </div>
 
 {% endblock %} {% block script %}
+
 <script>
     $('#cover_image_uploader ').on('change', function() {
         //get the file name
@@ -296,14 +290,16 @@
     })
 </script>
 <script>
+    console.log("Inline script")
     var data = '{{countQuickAnswers|safe}}'
     var dataCount = JSON.parse(data)
     countQuickAnswers = dataCount
     if (countQuickAnswers == 0) {
         countQuickAnswers++
     }
-    var data = '{{countCode|safe}}'
-    var dataCount = JSON.parse(data)
+
+    data = '{{countCode|safe}}'
+    dataCount = JSON.parse(data)
     countCode = dataCount
     if (countCode == 0) {
         countCode++

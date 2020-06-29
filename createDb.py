@@ -79,7 +79,7 @@ class Arduinoproject_posts(db.Model):
     paragraphs=db.relationship('Para_arduino',backref="post_name",uselist=False)
     quick_answers=db.relationship('Quick_answers_arduino', backref='post_name')
     index=db.relationship('Index_arduino',backref='post_name');
-    code=db.relationship('Code_arduino',backref='post_name');
+
     faq=db.relationship('Faq_arduino',backref='post_name');
     comment=db.relationship('Comments_arduino',backref='post_name');  #! currently this comment fuunctuanilitiy is not added
     
@@ -93,12 +93,7 @@ class Index_arduino(db.Model):
     topic=db.Column(db.String(100),nullable=True)
 
     arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
-class Code_arduino(db.Model) :
-        id=db.Column(db.Integer ,primary_key=True, nullable=False)
-        heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.Text,nullable=True)
-        language=db.Column(db.String(50),nullable=True)
-        arduinopost_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
+
 
 
 
@@ -149,7 +144,7 @@ class Basicproject_posts(db.Model):
    
 
     paragraphs=db.relationship('Para_basic',backref="post_name",uselist=False)
-    code=db.relationship('Code_basic',backref='post_name');
+
     quick_answers=db.relationship('Quick_answers_basic', backref='post_name')
     index=db.relationship('Index_basic',backref='post_name');
     faq=db.relationship('Faq_basic',backref='post_name');
@@ -195,12 +190,7 @@ class Index_basic(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     topic=db.Column(db.String(100),nullable=True)
     basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
-class Code_basic(db.Model) :
-        id=db.Column(db.Integer ,primary_key=True, nullable=False)
-        heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.Text,nullable=True)
-        language=db.Column(db.String(50),nullable=True)
-        basicpost_id=db.Column(db.Integer,db.ForeignKey('basicproject_posts.id'))
+
 # *-----------------------------------------------------------------------------------------------------------
 class Iotproject_posts(db.Model):
     
@@ -221,7 +211,7 @@ class Iotproject_posts(db.Model):
     quick_answers=db.relationship('Quick_answers_iot', backref='post_name')
     index=db.relationship('Index_iot',backref='post_name');
     faq=db.relationship('Faq_iot',backref='post_name');
-    code=db.relationship('Code_iot',backref='post_name');
+
     comment=db.relationship('Comments_iot',backref='post_name');
     
     
@@ -271,12 +261,7 @@ class Index_iot(db.Model):
     topic=db.Column(db.String(100),nullable=True)
    
     iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
-class Code_iot(db.Model) :
-        id=db.Column(db.Integer ,primary_key=True, nullable=False)
-        heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.Text,nullable=True)
-        language=db.Column(db.String(50),nullable=True)    
-        iotpost_id=db.Column(db.Integer,db.ForeignKey('iotproject_posts.id'))
+
 # *-----------------------------------------------------------------------------------------------------------
 class Other_posts(db.Model):
     
@@ -298,7 +283,6 @@ class Other_posts(db.Model):
     quick_answers=db.relationship('Quick_answers_other', backref='post_name')
     index=db.relationship('Index_other',backref='post_name');
     faq=db.relationship('Faq_other',backref='post_name');
-    code=db.relationship('Code_other',backref='post_name');
     comment=db.relationship('Comments_other',backref='post_name');
     
 class Para_other(db.Model):
@@ -321,16 +305,7 @@ class Faq_other(db.Model):
     faq_ans=db.Column(db.Text,nullable=True)
     
     otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))   
-           
-    
 
-        
-class Code_other(db.Model) :
-        id=db.Column(db.Integer ,primary_key=True, nullable=False)
-        heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.Text,nullable=True)
-        language=db.Column(db.String(50),nullable=True)
-        otherpost_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
    
 class Comments_other(db.Model):
     id=db.Column(db.Integer ,primary_key=True, nullable=False)
@@ -375,7 +350,7 @@ class Draft(db.Model):
     quick_answers=db.relationship('Quick_answers_draft', backref='post_name')
     index=db.relationship('Index_draft',backref='post_name');
     faq=db.relationship('Faq_draft',backref='post_name');
-    code=db.relationship('Code_draft',backref='post_name');
+
     
 
     
@@ -404,12 +379,6 @@ class Index_draft(db.Model):
     topic=db.Column(db.String(100),nullable=True)
     draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
 
-class Code_draft(db.Model) :
-        id=db.Column(db.Integer ,primary_key=True, nullable=False)
-        heading=db.Column(db.String(100),nullable=True)
-        code=db.Column(db.Text,nullable=True)
-        language=db.Column(db.String(50),nullable=True)
-        draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
 # !-------------------------------------------------------------------------------------------------------------------------
 
     

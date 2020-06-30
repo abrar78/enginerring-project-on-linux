@@ -202,40 +202,7 @@
     <button onclick="addNew('index')" class="mb-3 btn btn-dark btn-sm">+</button>
     <!-- !-------paragraph -->
 
-    <!-- !Source Code -->
-    {% if code or codeLanguage or codeHeading %}
-    <div class="form-group mt-5" id="contaCode">
-        <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Source Code(if any)</div>
-        {% for ind in code %}
 
-        <div class="my-5" id="codeDiv{{loop.index}}">
-
-            <textarea class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" id="codeHeading{{loop.index}}" placeholder="Heading" onblur="backup('codeHeading','{{loop.index}}')" rows="1">{{codeHeading[loop.index0]}}</textarea>
-            <textarea class="form-control" placeholder="Source-code" style="width: 50%; margin: 0 auto; border-width: 5px;" id="code{{loop.index}}" onblur="backup('code','{{loop.index}}')" rows="9">{{code[loop.index0]}}
-           </textarea>
-            <textarea onblur="backup('language','{{loop.index}}')" placeholder="Language of code" class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" id="language{{loop.index}}" rows="1">{{codeLanguage[loop.index0]}}
-           </textarea>
-            <button class="btn btn-sm btn-secondary my-2" onclick="deleteThis('code','{{loop.index}}','{{codeDb[loop.index0].id}}','{{type}}')">Delete</button>
-
-        </div>
-        {% endfor %}
-    </div>
-    {% else %}
-    <div class="form-group mt-5" id="contaCode">
-        <div id="codeDiv1">
-            <div class=" text-secondary" style="font-size: 6vh;font-weight:bold">Source Code(if any)</div>
-
-            <textarea class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" id="codeHeading1" placeholder="Heading" onblur="backup('codeHeading','1')" rows="1"></textarea>
-            <textarea class="form-control" placeholder="Source-code" style="width: 50%; margin: 0 auto; border-width: 5px;" id="code1" onblur="backup('code','1')" rows="9"></textarea>
-            <textarea onblur="backup('language','1')" placeholder="Language of code" class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" id="language1" rows="1"></textarea>
-
-        </div>
-    </div>
-
-    {% endif %}
-    <button onclick="deletePrev('code')" id="codeDelete" class="mb-3 btn btn-danger btn-sm" style="display: none;">-</button>
-    <button id="codeS" onclick="submitCreatePost('code')" class="mb-3 btn btn-secondary btn-sm">Submit</button>
-    <button onclick="addNew('code')" class="mb-3 btn btn-dark btn-sm">+</button>
     <!-- !-----------------FAQ  -->
     <div class="form-group mt-5" id="contaFaq">
         <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">

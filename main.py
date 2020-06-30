@@ -19,14 +19,9 @@ global title
 global cover_image
 global cover_image_description
 global meta_keywords
-global code_language
-global code
-global code_heading
-code_heading=[]
 cover_image=""
 url=""
-code=[]
-code_language=[]
+
 title=""
 cover_image_description=""
 meta_keywords=""
@@ -150,111 +145,6 @@ def other_projects(page):
          thumbnails["images"].append(i.thumbnail)
       
      return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="tech-posts",thumbnails=json.dumps(thumbnails))
-@app.route('/paginate', methods = ['GET', 'POST'])
-def paginate():
-    req=request.get_json();
-    print(req)
-
-    if req['code']=='Ard':
-
-        if req['jump_page']==True:
-         content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-         current_page=int(req['page_no'])
-         arduino=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
-         for arduino_db,i in zip(arduino.items,range(1,5)):
-             content['heading'][str(i)]=arduino_db.heading
-             content['thumbnail'][str(i)]=arduino_db.thumbnail
-             content['description'][str(i)]=arduino_db.description
-             content['id'][str(i)]=arduino_db.id
-         print(req['page_no'])
-         response=make_response(jsonify(content),200)
-         return response
-
-        if req['next']==True or req['prev']==True:
-          content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-          print(req)
-          arduino=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
-          for arduino_db,i in zip(arduino.items,range(1,5)):
-             content['heading'][str(i)]=arduino_db.heading
-             content['thumbnail'][str(i)]=arduino_db.thumbnail
-             content['description'][str(i)]=arduino_db.description
-             content['id'][str(i)]=arduino_db.id
-
-
-    if req['code']=='Basic':
-
-        if req['jump_page']==True:
-         content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-         current_page=int(req['page_no'])
-         basic=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
-         for basic_db,i in zip(basic.items,range(1,5)):
-             content['heading'][str(i)]=basic_db.heading
-             content['thumbnail'][str(i)]=basic_db.thumbnail
-             content['description'][str(i)]=basic_db.description
-             content['id'][str(i)]=basic_db.id
-         print(req['page_no'])
-         response=make_response(jsonify(content),200)
-         return response
-
-        if req['next']==True or req['prev']==True:
-          content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-          basic=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
-          for basic_db,i in zip(basic.items,range(1,5)):
-             content['heading'][str(i)]=basic_db.heading
-             content['thumbnail'][str(i)]=basic_db.thumbnail
-             content['description'][str(i)]=basic_db.description
-             content['id'][str(i)]=basic_db.id
-
-    if req['code']=='Iot':
-         if req['jump_page']==True:
-             content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-             current_page=int(req['page_no'])
-             iot=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
-             for iot_db,i in zip(iot.items,range(1,5)):
-                content['heading'][str(i)]=iot_db.heading
-                content['thumbnail'][str(i)]=iot_db.thumbnail
-                content['description'][str(i)]=iot_db.description
-                content['id'][str(i)]=iot_db.id
-             print(req['page_no'])
-             response=make_response(jsonify(content),200)
-             return response
-
-         if req['next']==True or req['prev']==True:
-            content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-            iot=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
-            for iot_db,i in zip(iot.items,range(1,5)):
-                content['heading'][str(i)]=iot_db.heading
-                content['thumbnail'][str(i)]=iot_db.thumbnail
-                content['description'][str(i)]=iot_db.description
-                content['id'][str(i)]=iot_db.id
-
-
-    if req['code']=='Other':
-         if req['jump_page']==True:
-             content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-             current_page=int(req['page_no'])
-             other=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
-             for other_db,i in zip(other.items,range(1,5)):
-                content['heading'][str(i)]=other_db.heading
-                content['thumbnail'][str(i)]=other_db.thumbnail
-                content['description'][str(i)]=other_db.description
-                content['id'][str(i)]=other_db.id
-             print(req['page_no'])
-             response=make_response(jsonify(content),200)
-             return response
-
-         if req['next']==True or req['prev']==True:
-            content={'heading':{}, 'thumbnail':{},'description':{},'id':{}}
-            other=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=4,page=int(req['page_no']),error_out=True)
-            for other_db,i in zip(other.items,range(1,5)):
-                content['heading'][str(i)]=other_db.heading
-                content['thumbnail'][str(i)]=other_db.thumbnail
-                content['description'][str(i)]=other_db.description
-                content['id'][str(i)]=other_db.id
-
-    response=make_response(jsonify(content),200)
-    return response
-    # return response
 
 
 @app.route('/arduino-tutorial/<string:url>')
@@ -576,17 +466,6 @@ def dashboard_create_post(type):
       cover_image_description=req['coverImgDescription']
       print(cover_image_description)
         
-    if type=="code":
-      req=request.get_json()
-      global code
-      global code_language
-      global code_heading
-      code=req['source_code']
-      code_language=req['language']
-      code_heading=req['code_heading']
-      print(code)
-      print(code_language)
-      print(code_heading)
     if type=="keywordsMeta":
       req=request.get_json()
       global meta_keywords
@@ -715,7 +594,6 @@ def delete(id,type):
         deleteIndex=Index_arduino.query.filter_by(arduinopost_id=id).all()
         deleteFaq=Faq_arduino.query.filter_by(arduinopost_id=id).all()
         deleteQuickanswers=Quick_answers_arduino.query.filter_by(arduinopost_id=id).all()
-        deleteCode=Code_arduino.query.filter_by(arduinopost_id=id).all()
         returnPath="/all_post/1"
     if type=='Basic':
         delete=Basicproject_posts.query.filter_by(id=id).first()
@@ -723,7 +601,6 @@ def delete(id,type):
         deleteIndex=Index_basic.query.filter_by(basicpost_id=id).all()
         deleteFaq=Faq_basic.query.filter_by(basicpost_id=id).all()
         deleteQuickanswers=Quick_answers_basic.query.filter_by(basicpost_id=id).all()
-        deleteCode=Code_basic.query.filter_by(basicpost_id=id).all()
         returnPath="/dashboard_basic/1"
         
     if type=='Iot':
@@ -732,7 +609,6 @@ def delete(id,type):
         deleteIndex=Index_iot.query.filter_by(iotpost_id=id).all()
         deleteFaq=Faq_iot.query.filter_by(iotpost_id=id).all()
         deleteQuickanswers=Quick_answers_iot.query.filter_by(iotpost_id=id).all()
-        deleteCode=Code_iot.query.filter_by(iotpost_id=id).all()
         returnPath="/dashboard_iot/1"
     if type=='Other':
         delete=Other_posts.query.filter_by(id=id).first()
@@ -740,7 +616,6 @@ def delete(id,type):
         deleteIndex=Index_other.query.filter_by(otherpost_id=id).all()
         deleteFaq=Faq_other.query.filter_by(otherpost_id=id).all()
         deleteQuickanswers=Quick_answers_other.query.filter_by(otherpost_id=id).all()
-        deleteCode=Code_other.query.filter_by(otherpost_id=id).all()
         returnPath="/dashboard_other/1"
     
     if type=='draft':
@@ -749,7 +624,6 @@ def delete(id,type):
         deleteIndex=Index_draft.query.filter_by(draft_id=id).all()
         deleteFaq=Faq_draft.query.filter_by(draft_id=id).all()
         deleteQuickanswers=Quick_answers_draft.query.filter_by(draft_id=id).all()
-        deleteCode=Code_draft.query.filter_by(draft_id=id).all()
         returnPath="/dashboard/draft"
     if deleteContent:
         db.session.delete(deleteContent)
@@ -765,10 +639,6 @@ def delete(id,type):
        
     if deleteQuickanswers:
             for d in deleteQuickanswers:
-                db.session.delete(d)
-                db.session.commit()
-    if deleteCode:
-            for d in deleteCode:
                 db.session.delete(d)
                 db.session.commit()
         
@@ -916,8 +786,6 @@ def test():
 
     
     print("url=",url)
-    print("code=",code)
-    print("code_language=",code_language)
     print("title=",title)
     print("cover_image=",cover_image)
     print("cover_image_description=",cover_image_description)
@@ -931,9 +799,6 @@ def test():
 def save_as_draft():
     current_date=strftime("%Y-%m-%d ", gmtime())
     global url
-    global code
-    global code_language
-    global code_heading
     global title
     global cover_image_description
     global meta_keywords
@@ -977,11 +842,6 @@ def save_as_draft():
         draftQA=Faq_draft(faq_q=Q,faq_ans=A,post_name=draft)
         db.session.add(draftQA)
         db.session.commit()
-    if code:
-      for heading,code,language in zip(code_heading,code, code_language) :
-        draftCode=Code_draft(heading=heading,code=code,language=code_language,post_name=draft)
-        db.session.add(draftCode)
-        db.session.commit()
     if index:
      for ind in index:
         indexDraft=Index_draft(topic=ind,post_name=draft)
@@ -992,7 +852,7 @@ def save_as_draft():
         db.session.add(article)
         db.session.commit()
         article=""
-    print(draft.paragraphs.content)
+
     return redirect('/dashboard/draft')
 @app.route('/dashboard/submit-article',methods=["GET","POST"])
 @login_required
@@ -1033,12 +893,6 @@ def EditPost(type,id):
         
     
     para_ImgDescription=[]
-    global code_language
-    code_language=[]
-    global code
-    code=[]
-    global code_heading
-    code_heading=[]
     global type_
     type_=post.type
 
@@ -1081,10 +935,7 @@ def EditPost(type,id):
     for db in post.index:
         index.append(db.topic)
 
-    for db in post.code:
-        code.append(db.code)
-        code_language.append(db.language)
-        code_heading.append(db.heading)
+
 
     
     global faq_q
@@ -1098,8 +949,9 @@ def EditPost(type,id):
    
     post_type=type_[0:-4]
     intend=type_[len(post_type):]
-    global article
-    article=post.paragraphs.content
+    if post.paragraphs:
+        global article
+        article=post.paragraphs.content
     print("======================")
     print(article)
     print("******************************")
@@ -1111,15 +963,10 @@ def EditPost(type,id):
                            coverImgDescription=cover_image_description,
                            title=title,
                            url=url,
-                           code=code,
-                           codeLanguage=code_language,
-                           codeHeading=code_heading,
                            quickAnswersDb=post.quick_answers,
                            indexDb=post.index,
-                           codeDb=post.code,
                            faqDb=post.faq,
                            totalType=json.dumps(type_),
-                           countCode=json.dumps(len(code_heading)),
                            countQuickQuestions=json.dumps(len(quick_questions)),
                            countQuickAnswers=json.dumps(len(quick_answers)),
                            countFaq_q=json.dumps(len(faq_q)),
@@ -1179,9 +1026,6 @@ def save_edited(type,id):
     global cover_image
     global cover_image_description
     global meta_keywords
-    global code_language
-    global code
-    global code_heading
     global article
     article=req['article']
     post.paragraphs.content=article
@@ -1265,45 +1109,7 @@ def save_edited(type,id):
                  addedData=Faq_draft(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
             db.session.add(addedData)   
             db.session.commit()   
-    if code or code_language or code_heading:
-      print(code_heading,code,code_language)  
-      for ind in range(0,len(post.code)):
-          print("in for 1")
-          try:
-              post.code[ind].code=code[ind]
-          except IndexError:
-              pass
-          try:
-              post.code[ind].heading=code_heading[ind]
-              
-          except IndexError:
-              pass
-          try:
-              post.code[ind].language=code_language[ind]
-              
-          except IndexError:
-              pass
-              
-          db.session.commit()
-            
-      if len(post.code)<len(code) or len(post.code)<len(code_heading)  or len(post.code)<len(code_language):
-           for i in range(len(post.code),len(code_heading)):
-            if type=='Ard':
-                addedData=Code_arduino(heading=code_heading[i],code=code[i],language=code_language[i],post_name=post)
-                 
-            if type=='Basic':
-                addedData=Code_basic(heading=code_heading[i],code=code[i],language=code_language[i],post_name=post)
-                 
-            if type=='Iot':
-                addedData=Code_iot(heading=code_heading[i],code=code[i],language=code_language[i],post_name=post)
-                 
-            if type=='Other':
-                addedData=Code_other(heading=code_heading[i],code=code[i],language=code_language[i],post_name=post)
-                 
-            if type=='draft':
-                 addedData=Code_draft(heading=code_heading[i],code=code[i],language=code_language[i],post_name=post)
-            db.session.add(addedData)   
-            db.session.commit()   
+ 
 
    
  
@@ -1376,14 +1182,7 @@ def delete_item():
               delete=Faq_arduino.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='code':
-              code=[]
-              code_heading=[]
-              code_language=[]
-              delete=Code_arduino.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()
-         
+          
        if post_type=="Basic":
            
           if req['type']=='index':
@@ -1405,14 +1204,7 @@ def delete_item():
               delete=Faq_basic.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='code':
-              code=[]
-              code_heading=[]
-              code_language=[]
-              delete=Code_basic.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()
-           
+          
        if post_type=="Iot":
            
           if req['type']=='index':
@@ -1432,14 +1224,7 @@ def delete_item():
               delete=Faq_iot.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='code':
-              code=[]
-              code_heading=[]
-              code_language=[]
-              delete=Code_iot.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()
-        
+          
        if post_type=="Other":
            
           if req['type']=='index':
@@ -1459,14 +1244,7 @@ def delete_item():
               delete=Faq_other.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='code':
-              code=[]
-              code_heading=[]
-              code_language=[]
-              delete=Code_other.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()
-              
+               
        if post_type=="draft":
           print(req['type'])  
           if req['type']=='index':
@@ -1487,14 +1265,6 @@ def delete_item():
               delete=Faq_draft.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
-          if req['type']=='code':
-              print("=================",req['id'])
-              code=[]
-              code_heading=[]
-              code_language=[]
-              delete=Code_draft.query.filter_by(id=req['id']).first()
-              db.session.delete(delete)
-              db.session.commit()              
 
        return "__success__"     
 @app.route('/publish/<string:type>/<draft_id>', methods=['GET', 'POST'])
@@ -1535,10 +1305,7 @@ def publish(type,draft_id):
           db.session.add(addFaq)
           db.session.commit()
 
-      for i in draft.code:
-          addTable=Code_arduino(heading=i.heading,code=i.code,language=i.language,post_name=add)
-          db.session.add(addTable)
-          db.session.commit()
+
     if type=="Basic":
       add=Basicproject_posts(date=current_date,
                              thumbnail=draft.thumbnail,
@@ -1570,10 +1337,6 @@ def publish(type,draft_id):
           addFaq=Faq_basic(faq_q=i.faq_q,faq_ans=i.faq_ans,post_name=add)
           db.session.add(addFaq)
           db.session.commit()
-      for i in draft.code:
-          addTable=Code_basic(heading=i.heading,code=i.code,language=i.language,post_name=add)
-          db.session.add(addTable)
-          db.session.commit()
     if type=="Iot":
       add=Iotproject_posts(date=current_date,
                            thumbnail=draft.thumbnail,
@@ -1604,10 +1367,6 @@ def publish(type,draft_id):
           addFaq=Faq_iot(faq_q=i.faq_q,faq_ans=i.faq_ans,post_name=add)
           db.session.add(addFaq)
           db.session.commit()
-      for i in draft.code:
-          addTable=Code_iot(heading=i.heading,code=i.code,language=i.language,post_name=add)
-          db.session.add(addTable)
-          db.session.commit()
     if type=="Other":
       add=Other_posts(date=current_date,
                       thumbnail=draft.thumbnail,
@@ -1636,10 +1395,6 @@ def publish(type,draft_id):
       for i in draft.faq:
           addFaq=Faq_other(faq_q=i.faq_q,faq_ans=i.faq_ans,post_name=add)
           db.session.add(addFaq)
-          db.session.commit()
-      for i in draft.code:
-          addTable=Code_other(heading=i.heading,code=i.code,language=i.language,post_name=add)
-          db.session.add(addTable)
           db.session.commit()
  # todo : ------------------------------------------------------------------------------------
     print(id)

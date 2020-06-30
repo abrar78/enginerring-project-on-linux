@@ -49,19 +49,7 @@
 
     </div>
 
-
-    {% if post_db.code %}
-
-    <div id="code">
-        <h1>Source Code</h1>
-        {% for db in post_db.code %}
-        <h2>{{db.heading}}</h2>
-        <pre><code style="position: relative;z-index:0" class="language-{{db.language}}">
-                {{db.code}}
-            </code></pre> {% endfor %}
-    </div>
-
-    {% endif %} {% if post_db.faq %}
+    {% if post_db.faq %}
 
     <div id="faq">
         <h1>FAQ</h1>

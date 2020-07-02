@@ -85,16 +85,17 @@ def index_file():
      basic_thumbnails={"imgs":[]}
      iot_thumbnails={"imgs":[]}
      other_thumbnails={"imgs":[]}
-     
-     for i in latest_posts:
+     print (latest_posts)
+     if latest_posts[0] and latest_posts[1] and latest_posts[2] and latest_posts[3]:
+      for i in latest_posts:
          latest_thumbnails["imgs"].append(i.thumbnail)
-     for i in arduino.items:
+      for i in arduino.items:
          arduino_thumbnails["imgs"].append(i.thumbnail)
-     for i in basic.items:
+      for i in basic.items:
          basic_thumbnails["imgs"].append(i.thumbnail)
-     for i in iot.items:
+      for i in iot.items:
          iot_thumbnails["imgs"].append(i.thumbnail)
-     for i in other.items:
+      for i in other.items:
          other_thumbnails["imgs"].append(i.thumbnail)
       
    

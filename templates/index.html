@@ -36,8 +36,10 @@
             <h1>Latest Posts :- </h1>
         </span>
 </div>
+{% if latest_posts %}
+
 <div style="margin-top: 5px;" class="band">
-    {% for db in latest_posts %} {% if db %}
+    {% for db in latest_posts %} {% if db.thumbnail %}
 
     <div class="item-{{loop.index}}">
         <a href="{{db.url}}" target="_blank" class="card">
@@ -53,6 +55,7 @@
     {% endif %} {% endfor %}
 </div>
 
+{% endif %}
 
 
 
@@ -65,6 +68,8 @@
             <h1>Arduino Projects: </h1>
         </span>
 </div>
+{% if arduino_project.items %}
+
 <div style="margin-top: 5px;margin-bottom:10px;" class="band">
     {% for db in arduino_project.items %}
     <div class="item-{{loop.index}}">
@@ -80,6 +85,7 @@
 
     {% endfor %}
 </div>
+{% endif %}
 <section style="margin-left: 7%;" class="color-8">
     <nav class="cl-effect-7">
         <a href="/arduino-projects-page/1" target="_blank">SEE ALL : <img style="margin-bottom: 10px;" src="https://img.icons8.com/metro/26/000000/external-link.png"/></a>
@@ -94,6 +100,8 @@
             <h1>Basic Electronics Projects: </h1>
         </span>
 </div>
+{% if basic_project.items %}
+
 <div style="margin-top: 5px;margin-bottom:10px;" class="band">
     {% for db in basic_project.items %} {% if db %}
 
@@ -110,6 +118,7 @@
 
     {% endif %} {% endfor %}
 </div>
+{% endif %}
 <section style="margin-left: 7%;" class="color-8">
     <nav class="cl-effect-7">
         <a href="/basic-projects-page/1" target="_blank">SEE ALL : <img style="margin-bottom: 10px;" src="https://img.icons8.com/metro/26/000000/external-link.png"/></a>
@@ -121,6 +130,8 @@
             <h1>IOT Projects: </h1>
         </span>
 </div>
+{% if iot_project.items %}
+
 <div style="margin-top: 5px;margin-bottom:10px;" class="band">
     {% for db in iot_project.items %}
     <div class="item-{{loop.index}}">
@@ -136,6 +147,7 @@
 
     {% endfor %}
 </div>
+{% endif %}
 <section style="margin-left: 7%;" class="color-8">
     <nav class="cl-effect-7">
         <a href="/iot-projects-page/1" target="_blank">SEE ALL : <img style="margin-bottom: 10px;" src="https://img.icons8.com/metro/26/000000/external-link.png"/></a>
@@ -147,6 +159,8 @@
             <h1>Other Tech Posts: </h1>
         </span>
 </div>
+{% if other_project.items %}
+
 <div style="margin-top: 5px;margin-bottom:10px;" class="band">
     {% for db in other_project.items %}
     <div class="item-{{loop.index}}">
@@ -162,6 +176,7 @@
 
     {% endfor %}
 </div>
+{% endif %}
 <section style="margin-left: 7%;" class="color-8">
     <nav class="cl-effect-7">
         <a href="/tech-posts-page/1" target="_blank">SEE ALL : <img style="margin-bottom: 10px;" src="https://img.icons8.com/metro/26/000000/external-link.png"/></a>

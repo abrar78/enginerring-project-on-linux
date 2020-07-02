@@ -1,34 +1,23 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:400,500,300,700";
 a {
-    text-decoration: none;
+    text-decoration: none
 }
 
 :root {
-    --mobileHeading: calc(20px + (63 - 20) * ((100vw - 300px) / (1200 - 300)));
-    --mobileQuestions: calc(17px + (25 - 14) * ((100vw - 300px) / (1400 - 300)));
-    --mobilePara: calc(19px + (40 - 17) * ((80vw - 300px) / (1200 - 300)));
-    --desktopHeading: calc(20px + (24 - 14) * ((100vw - 300px) / (1200 - 300)));
-    --desktopPara: calc(17px + (19 - 14) * ((100vw - 300px) / (1200 - 300)));
-    --mainHeading: calc(20px + (20 - 25) * ((50vw - 300px) / (1200 - 300)));
-    --mainHeadingMob: calc(22px + (50 - 14) * (40vw - 300px) / (1200 - 300));
-    --mobileQuestionsLi: calc(14px + (40 - 14) * (100vh - 300px) / (1500 - 300));
-    --mobileAnswers: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
-    --mobileCode: calc(5px + (40 - 14) * (90vh - 300px) / (1500 - 300));
-    --mobileIndex: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
-    --aboutText: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
-    --mobileCardDesc: calc(10px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+    --mobileheading: calc(20px + (63 - 20) * ((100vw - 300px) / (1200 - 300)));
+    --mobilequestions: calc(17px + (25 - 14) * ((100vw - 300px) / (1400 - 300)));
+    --mobilepara: calc(19px + (40 - 17) * ((80vw - 300px) / (1200 - 300)));
+    --desktopheading: calc(20px + (24 - 14) * ((100vw - 300px) / (1200 - 300)));
+    --desktoppara: calc(17px + (19 - 14) * ((100vw - 300px) / (1200 - 300)));
+    --mainheading: calc(20px + (20 - 25) * ((50vw - 300px) / (1200 - 300)));
+    --mainheadingmob: calc(22px + (50 - 14) * (40vw - 300px) / (1200 - 300));
+    --mobilequestionsli: calc(14px + (40 - 14) * (100vh - 300px) / (1500 - 300));
+    --mobileanswers: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+    --mobilecode: calc(5px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+    --mobileindex: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+    --abouttext: calc(14px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+    --mobilecarddesc: calc(10px + (40 - 14) * (90vh - 300px) / (1500 - 300))
 }
-
-
-/*
- * Made by Erik Terwan
- * 24th of November 2015
- * MIT License
- *
- *
- * If you are thinking of using this in
- * production code, beware of the browser
- * prefixes.
- */
 
 #menuToggle {
     display: block;
@@ -37,17 +26,17 @@ a {
     left: 50px;
     z-index: 1;
     -webkit-user-select: none;
-    user-select: none;
+    user-select: none
 }
 
 #menuToggle a {
     text-decoration: none;
     color: #f2c36b;
-    transition: color 0.3s ease;
+    transition: color .3s ease
 }
 
 #menuToggle a:hover {
-    color: white;
+    color: #fff
 }
 
 #menuToggle input {
@@ -59,16 +48,9 @@ a {
     left: -5px;
     cursor: pointer;
     opacity: 0;
-    /* hide this */
     z-index: 2;
-    /* and place it over the hamburger */
-    -webkit-touch-callout: none;
+    -webkit-touch-callout: none
 }
-
-
-/*
-   * Just a quick hamburger
-   */
 
 #menuToggle span {
     display: block;
@@ -79,54 +61,32 @@ a {
     background: #f2c36b;
     border-radius: 3px;
     z-index: 1;
-    transform-origin: 4px 0px;
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+    transform-origin: 4px 0;
+    transition: transform .5s cubic-bezier(0.77, 0.2, 0.05, 1), background .5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity .55s ease
 }
 
 #menuToggle span:first-child {
-    transform-origin: 0% 0%;
+    transform-origin: 0 0
 }
 
 #menuToggle span:nth-last-child(2) {
-    transform-origin: 0% 100%;
+    transform-origin: 0 100%
 }
-
-
-/* 
-   * Transform all the slices of hamburger
-   * into a crossmark.
-   */
 
 #menuToggle input:checked~span {
     opacity: 1;
     transform: rotate(45deg) translate(-2px, -1px);
-    background: #232323;
+    background: #232323
 }
-
-
-/*
-   * But let's hide the middle one.
-   */
 
 #menuToggle input:checked~span:nth-last-child(3) {
     opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
+    transform: rotate(0deg) scale(0.2, 0.2)
 }
-
-
-/*
-   * Ohyeah and the last one should go the other direction
-   */
 
 #menuToggle input:checked~span:nth-last-child(2) {
-    transform: rotate(-45deg) translate(0, -1px);
+    transform: rotate(-45deg) translate(0, -1px)
 }
-
-
-/*
-   * Make this absolute positioned
-   * at the top left of the screen
-   */
 
 #menu {
     position: absolute;
@@ -137,130 +97,107 @@ a {
     background: #ededed;
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
-    /* to stop flickering of text in safari */
-    transform-origin: 0% 0%;
+    transform-origin: 0 0;
     transform: translate(-100%, 0);
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    transition: transform .5s cubic-bezier(0.77, 0.2, 0.05, 1)
 }
 
 #menu li {
     padding: 10px 0;
-    font-size: 22px;
+    font-size: 22px
 }
 
-
-/*
-   * And let's slide it in from the left
-   */
-
 #menuToggle input:checked~ul {
-    transform: none;
+    transform: none
 }
 
 #dropDownMob {
-    z-index: 3;
+    z-index: 3
 }
 
 .dropdownItem {
-    color: black;
+    color: #000;
     font-size: 3vh;
-    z-index: 3;
+    z-index: 3
 }
 
-
-/*? FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf */
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 * {
-    font-family: Roboto;
+    font-family: Roboto
 }
 
 .footer-distributed {
-    background: rgb(34, 34, 34);
+    background: #222;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
     width: 100%;
     font: bold 16px sans-serif;
     text-align: left;
     padding: 50px 60px 40px;
-    overflow: hidden;
+    overflow: hidden
 }
-
-
-/* Footer left */
 
 .footer-distributed .footer-left {
-    float: left;
+    float: left
 }
 
-
-/* The company logo */
-
 .footer-distributed h3 {
-    color: #ffffff;
-    font: normal 26px 'Roboto', cursive;
-    margin: 0 0 10px;
+    color: #fff;
+    font: normal 26px Roboto, cursive;
+    margin: 0 0 10px
 }
 
 .footer-distributed h3 span {
-    color: #F2C36B;
+    color: #F2C36B
 }
 
 .logo h3 {
-    color: #ffffff;
-    font: normal 20px 'Roboto', cursive;
-    margin: 0 0 10px;
+    color: #fff;
+    font: normal 20px Roboto, cursive;
+    margin: 0 0 10px
 }
 
 .logo h3 span {
-    color: #F2C36B;
+    color: #F2C36B
 }
 
 .logoMob {
     position: fixed;
     top: 20px;
     left: 50%;
-    transform: translate(-50%);
-    /* Negative half of width. */
+    transform: translate(-50%)
 }
 
 .logoMob h3 {
-    color: #ffffff;
-    font: normal var(--mobileQuestions) 'Roboto', cursive;
+    color: #fff;
+    font: normal var(--mobileQuestions) Roboto, cursive
 }
 
 .logoMob h3 span {
-    color: #F2C36B;
+    color: #F2C36B
 }
 
-
-/* Footer links */
-
 .footer-distributed .footer-links {
-    color: #ffffff;
+    color: #fff;
     margin: 0 0 10px;
-    padding: 0;
+    padding: 0
 }
 
 .footer-distributed .footer-links a {
     display: inline-block;
     line-height: 1.8;
     text-decoration: none;
-    color: inherit;
+    color: inherit
 }
 
 .footer-distributed .footer-company-name {
     color: #8f9296;
     font-size: 14px;
-    font-weight: normal;
-    margin: 0;
+    font-weight: 400;
+    margin: 0
 }
 
-
-/* Footer social icons */
-
 .footer-distributed .footer-icons {
-    margin-top: 40px;
+    margin-top: 40px
 }
 
 .footer-distributed .footer-icons a {
@@ -271,33 +208,27 @@ a {
     background-color: none;
     border-radius: 2px;
     font-size: 20px;
-    color: #ffffff;
+    color: #fff;
     text-align: center;
     line-height: 35px;
     margin-right: 3px;
-    margin-bottom: 5px;
+    margin-bottom: 5px
 }
-
-
-/* Footer Right */
 
 .footer-distributed .footer-right {
     float: right;
-    padding: 20px;
+    padding: 20px
 }
 
 .footer-distributed .footer-right p {
     display: inline-block;
     vertical-align: top;
     margin: 15px 42px 0 0;
-    color: #ffffff;
+    color: #fff
 }
 
-
-/* The contact form */
-
 .footer-distributed form {
-    display: inline-block;
+    display: inline-block
 }
 
 .footer-distributed form input,
@@ -311,103 +242,95 @@ a {
     resize: none;
     font: inherit;
     font-size: 14px;
-    font-weight: normal;
+    font-weight: 400;
     color: #d1d2d2;
     width: 400px;
-    padding: 18px;
+    padding: 18px
 }
 
 .footer-distributed ::-webkit-input-placeholder {
-    color: #5c666b;
+    color: #5c666b
 }
 
 .footer-distributed ::-moz-placeholder {
     color: #5c666b;
-    opacity: 1;
+    opacity: 1
 }
 
 .footer-distributed :-ms-input-placeholder {
-    color: #5c666b;
+    color: #5c666b
 }
 
 .footer-distributed form input {
     height: 55px;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 .footer-distributed form textarea {
     height: 100px;
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
 .footer-distributed form button {
     border-radius: 3px;
     background-color: #33383b;
-    color: #ffffff;
+    color: #fff;
     border: 0;
     padding: 15px 50px;
-    font-weight: bold;
-    float: right;
+    font-weight: 700;
+    float: right
 }
-
-
-/* If you don't want the footer to be responsive, remove these media queries */
 
 @media (max-width: 1000px) {
     .footer-distributed {
-        font: bold 14px sans-serif;
+        font: bold 14px sans-serif
     }
     .footer-distributed .footer-company-name {
-        font-size: 12px;
+        font-size: 12px
     }
     .footer-distributed form input,
     .footer-distributed form textarea {
-        width: 250px;
+        width: 250px
     }
     .footer-distributed form button {
-        padding: 10px 35px;
+        padding: 10px 35px
     }
 }
 
 @media (max-width: 800px) {
     .footer-distributed {
-        padding: 30px;
+        padding: 30px
     }
     .footer-distributed .footer-left,
     .footer-distributed .footer-right {
         float: none;
         max-width: 300px;
-        margin: 0 auto;
+        margin: 0 auto
     }
     .footer-distributed .footer-left {
-        margin-bottom: 40px;
+        margin-bottom: 40px
     }
     .footer-distributed form {
         margin-top: 30px;
-    }
-    .footer-distributed form {
-        display: block;
+        display: block
     }
     .footer-distributed form button {
-        float: none;
+        float: none
     }
 }
 
-
-/*? FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF */
-
 .postMobile {
-    display: none;
+    display: none
 }
 
 #footerQuote {
     display: flex;
     margin-bottom: 20px;
-    font-size: 3vh;
+    font-size: 3vh
 }
 
 #btnSearchBar {
-    background-color: black;
+    background-color: #000;
     color: #F2C36B;
     border-color: #F2C36B;
     border: solid 1px;
@@ -417,14 +340,14 @@ a {
     height: 20px;
     margin-top: 1px;
     border-radius: 0 10px 10px 0;
-    font-weight: bold;
-    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif
 }
 
 #btnSearchBar:hover {
-    color: black;
+    color: #000;
     background-color: #F2C36B;
-    transition: 1s;
+    transition: 1s
 }
 
 .dropdown-menu {
@@ -432,13 +355,13 @@ a {
     display: flex;
     flex-direction: column;
     position: absolute;
-    color: black;
+    color: #000;
     align-items: space-around;
     padding: 10px;
     top: 100px;
     font-family: 'Orbitron', sans-serif;
     right: 44%;
-    font-size: 20px;
+    font-size: 20px
 }
 
 .dropdown-menuMob {
@@ -447,7 +370,7 @@ a {
     background: #F2C36B;
     padding: 2px;
     top: 50px;
-    left: 0px;
+    left: 0;
     width: 100%;
     font-family: 'Orbitron', sans-serif;
     right: 44%;
@@ -456,7 +379,7 @@ a {
     height: 200px;
     justify-content: space-around;
     justify-items: space-around;
-    z-index: 7;
+    z-index: 7
 }
 
 #dropDowndesktop {
@@ -475,59 +398,59 @@ a {
     height: 10vh;
     justify-content: space-around;
     justify-items: center;
-    color: black;
+    color: #000
 }
 
 .dropdown-menu a {
     text-decoration: none;
-    color: black;
-    z-index: 3;
+    color: #000;
+    z-index: 3
 }
 
 .dropdown-menuMob a {
     text-decoration: none;
-    color: black;
-    margin-left: 0px;
+    color: #000;
+    margin-left: 0
 }
 
 .input input::placeholder {
     font-size: 18px;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif
 }
 
 .input {
     position: relative;
     font-size: 1.5em;
-    background: linear-gradient(41deg, #F2C36B, rgb(199, 146, 128));
+    background: linear-gradient(41deg, #F2C36B, #c79280);
     padding: 2px;
     display: inline-block;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px 0 0 10px
 }
 
-.input *:not(span) {
+.input :not(span) {
     position: relative;
     display: inherit;
     border-radius: inherit;
     margin: 0;
     border: none;
     outline: none;
-    padding: 0 0.325em;
-    z-index: 1;
+    padding: 0 .325em;
+    z-index: 1
 }
 
-.input *:not(span):focus+span {
+.input :not(span):focus+span {
     opacity: 1;
     -webkit-transform: scale(1);
-    transform: scale(1);
+    transform: scale(1)
 }
 
 .input span {
     -webkit-transform: scale(0.993, 0.94);
     transform: scale(0.993, 0.94);
-    -webkit-transition: opacity 0.25s, -webkit-transform 0.5s;
-    transition: opacity 0.25s, -webkit-transform 0.5s;
-    transition: transform 0.5s, opacity 0.25s;
-    transition: transform 0.5s, opacity 0.25s, -webkit-transform 0.5s;
+    -webkit-transition: opacity 0.25s, -webkit-transform .5s;
+    transition: opacity 0.25s, -webkit-transform .5s;
+    transition: transform 0.5s, opacity .25s;
+    transition: transform 0.5s, opacity 0.25s, -webkit-transform .5s;
     opacity: 0;
     position: absolute;
     z-index: 0;
@@ -538,14 +461,13 @@ a {
     bottom: 0;
     border-radius: inherit;
     pointer-events: none;
-    box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #fff, 1px -1px 20px #F2C36B, -1px 1px 20px black;
+    box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #fff, 1px -1px 20px #F2C36B, -1px 1px 20px #000
 }
 
 .coverImg {
     width: 70%;
-    /* height: 60vh; */
     margin-left: 15%;
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .jumbotronHeading {
@@ -554,7 +476,7 @@ a {
     height: 40%;
     margin-top: 60px;
     z-index: 0;
-    position: relative;
+    position: relative
 }
 
 .jumbotronHeadingAbout {
@@ -564,16 +486,16 @@ a {
     margin-top: 60px;
     z-index: 0;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .jumbotronHeadingAbout p {
-    font-size: var(--mobileAnswers);
+    font-size: var(--mobileAnswers)
 }
 
 .jumbotronHeadingAbout div {
     font-size: calc(var(--mobileAnswers) + 10px);
-    font-weight: bold;
+    font-weight: 700
 }
 
 .jumbotronHeadingIndex {
@@ -582,11 +504,11 @@ a {
     height: 25%;
     margin-top: 60px;
     z-index: 0;
-    position: relative;
+    position: relative
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: hidden
 }
 
 .jumbotronText {
@@ -596,78 +518,78 @@ body {
     font-family: 'Orbitron', sans-serif;
     position: absolute;
     width: 70%;
-    color: rgb(59, 59, 59);
+    color: #3b3b3b
 }
 
 .jumbotronTextIndex {
-    top: 0%;
+    top: 0;
     left: 9%;
     font-size: var(--mainHeadingMob);
     font-family: 'Orbitron', sans-serif;
     position: absolute;
     width: 70%;
-    color: rgb(59, 59, 59);
+    color: #3b3b3b
 }
 
 .jumbotronTextAbout {
-    top: 0%;
+    top: 0;
     left: 9%;
     font-size: var(--aboutText);
     font-family: 'Orbitron', sans-serif;
     position: absolute;
     width: 70%;
-    color: rgb(59, 59, 59);
+    color: #3b3b3b
 }
 
 .quickQuesions {
     width: 50%;
     margin-left: 20%;
-    margin-top: 20px;
+    margin-top: 20px
 }
 
 .questionList {
     list-style: none;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif
 }
 
 .questionList li {
-    margin-top: 50px;
+    margin-top: 50px
 }
 
 .questionList li h3 {
     font-family: 'Play', sans-serif;
-    color: rgb(49, 48, 48);
+    color: #313030
 }
 
 .questionList li {
     font-family: 'Play', sans-serif;
-    font-size: 1.5vw;
+    font-size: 1.5vw
 }
 
 .quickAns {
     color: var(--cardImage);
-    margin-top: 5px;
+    margin-top: 5px
 }
 
 #indexListDiv {
     width: 50%;
     margin-left: 20%;
     margin-top: 5%;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif
 }
 
 #indexListDiv ul {
-    list-style: decimal;
+    list-style: decimal
 }
 
 .handle label {
-    font-size: var(--mobileAnswers);
+    font-size: var(--mobileAnswers)
 }
 
 #indexListDiv ul li a {
     font-family: 'Play', sans-serif;
-    margin-top: 0px;
-    color: #177DA5;
+    margin-top: 0;
+    color: #177DA5
 }
 
 #indexListDiv ul li {
@@ -676,7 +598,7 @@ body {
     color: #177DA5;
     margin-left: 5%;
     font-size: var(--mobileIndex);
-    font-weight: 500;
+    font-weight: 500
 }
 
 #paragraphs {
@@ -685,133 +607,123 @@ body {
     margin-left: 15%;
     margin-top: 100px;
     font-family: 'Orbitron', sans-serif;
-    overflow: hidden;
+    overflow: hidden
 }
 
 #paragraphs table {
-    font-size: clac(var(--desktopPara) - 10px)!important;
+    font-size: clac(var(--desktopPara) - 10px)!important
 }
 
 #paragraphs table>tbody>tr>td {
-    padding: 10px;
+    padding: 10px
 }
 
 #paragraphs h1 {
     font-size: var(--desktopHeading);
     font-family: 'Orbitron', sans-serif;
-    font-weight: 800;
+    font-weight: 800
 }
 
 #paragraphs h2 {
     font-size: calc(var(--desktopHeading) - 8px);
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif
 }
 
 #paragraphs h3 {
     font-size: calc(var(--desktopHeading) - 16px);
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif
 }
 
 #paragraphs p {
     font-size: var(--desktopPara);
     font-family: 'Play', sans-serif;
-    color: rgb(54, 54, 54);
+    color: #363636
 }
 
 #paragraphs img {
-    width: 50vw;
+    width: 50vw
 }
 
 #code {
     z-index: -5;
-    position: static;
+    position: static
 }
 
 #code h1 {
     margin-left: 15%;
     margin-top: 5%;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif
 }
 
 #code h2 {
     margin-left: calc(15% + 5px);
     color: grey;
     font-size: var(--mobileIndex);
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif
 }
 
 #code pre {
     margin-left: 15%;
     width: 70%;
-    z-index: -1;
+    z-index: -1
 }
 
 #code pre code {
-    z-index: -1;
+    z-index: -1
 }
 
 .toolbar {
     margin-right: 17%;
-    margin-top: .5%;
+    margin-top: .5%
 }
-
-
-/*
- CSS for the main interaction
-*/
 
 .accordion>input[type="checkbox"] {
     position: absolute;
-    left: -100vw;
+    left: -100vw
 }
 
 .accordion .contentCollapse {
     overflow-y: hidden;
     height: 0;
-    transition: height 0.3s ease;
+    transition: height .3s ease
 }
 
 .accordion>input[type="checkbox"]:checked~.contentCollapse {
     height: auto;
-    overflow: visible;
+    overflow: visible
 }
 
 .accordion label {
-    display: block;
+    display: block
 }
 
-
-/*
-   Styling
-  */
-
 .accordion {
-    margin-bottom: 1em;
+    margin-bottom: 1em
 }
 
 .accordion>input[type="checkbox"]:checked~.contentCollapse {
     padding: 15px;
     border: 1px solid #e8e8e8;
-    border-top: 0;
+    border-top: 0
 }
 
 .accordion .handle {
     margin: 0;
     font-size: 1.125em;
-    line-height: 1.2em;
+    line-height: 1.2em
 }
 
 .accordion label {
     color: #333;
     cursor: pointer;
-    font-weight: normal;
+    font-weight: 400;
     padding: 15px;
-    background: #e8e8e8;
+    background: #e8e8e8
 }
 
 .accordion label:hover,
 .accordion label:focus {
-    background: #d8d8d8;
+    background: #d8d8d8
 }
 
 .accordion .handle label:before {
@@ -821,73 +733,65 @@ body {
     margin-right: 10px;
     font-size: .58em;
     line-height: 1.556em;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .accordion>input[type="checkbox"]:checked~.handle label:before {
-    content: "\f078";
+    content: "\f078"
 }
 
-
-/*
-   Demo purposes only
-  */
-
 *,
-*:before,
-*:after {
-    box-sizing: border-box;
+:before,
+:after {
+    box-sizing: border-box
 }
 
 .accordion {
-    max-width: 65em;
+    max-width: 65em
 }
 
 .handle label {
-    font-size: var(--mobileQuestions);
+    font-size: var(--mobileQuestions)
 }
 
 .accordion p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0
 }
 
 .contentCollapse p {
     font-size: 1.2vw;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif
 }
 
 #faq {
     width: 70%;
     margin-left: 15%;
-    margin-top: 5%;
+    margin-top: 5%
 }
 
 #faq h1 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif
 }
 
-
-/* !------------------------------- CARDS */
-
 .center {
-    background-color: white;
+    background-color: #fff;
     font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased
 }
 
 * {
     -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .center h5 {
-    margin: 0px;
+    margin: 0;
     font-size: 1.4em;
-    font-weight: 700;
+    font-weight: 700
 }
 
 .center p {
-    font-size: 12px;
+    font-size: 12px
 }
 
 .center {
@@ -895,11 +799,8 @@ body {
     width: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center
 }
-
-
-/* End Non-Essential  */
 
 .property-card {
     height: 18em;
@@ -912,105 +813,90 @@ body {
     -ms-flex-direction: column;
     flex-direction: column;
     position: relative;
-    -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -webkit-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
     border-radius: 16px;
     overflow: hidden;
-    -webkit-box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
-    box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+    -webkit-box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #fff;
+    box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #fff
 }
-
-
-/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
-
-
-/* Top Half of card, image. */
 
 .property-image {
     height: 6em;
     width: 14em;
     padding: 1em 2em;
     position: Absolute;
-    top: 0px;
-    -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    background-image: url('https://source.unsplash.com/350x200/?technology,electronics,male');
+    top: 0;
+    -webkit-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-image: url(https://source.unsplash.com/350x200/?technology,electronics,male);
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat
 }
-
-
-/* Bottom Card Section */
 
 .property-description {
     background-color: #FAFAFC;
     height: 12em;
     width: 14em;
     position: absolute;
-    bottom: 0em;
-    -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    padding: 0.5em 1em;
-    text-align: center;
+    bottom: 0;
+    -webkit-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding: .5em 1em;
+    text-align: center
 }
-
-
-/* Social Icons */
 
 .property-social-icons {
     width: 1em;
     height: 1em;
-    background-color: black;
+    background-color: #000;
     position: absolute;
     bottom: 1em;
     left: 1em;
-    -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -webkit-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1)
 }
 
-
-/* Property Cards Hover States */
-
 .property-card:hover .property-description {
-    height: 0em;
-    padding: 0px 1em;
+    height: 0;
+    padding: 0 1em
 }
 
 .property-card:hover .property-image {
-    height: 18em;
+    height: 18em
 }
 
 .property-card:hover .property-social-icons {
-    background-color: white;
+    background-color: #fff
 }
 
 .property-card:hover .property-social-icons:hover {
     background-color: #F2C36B;
-    cursor: pointer;
+    cursor: pointer
 }
 
 #relatedPost {
     display: flex;
     justify-content: center;
-    justify-items: center;
+    justify-items: center
 }
 
 #recentPost {
     display: flex;
     margin-bottom: 5%;
     justify-content: center;
-    justify-items: center;
+    justify-items: center
 }
 
 .headingRelated {
     margin-left: 1%;
     margin-top: 1.8%;
     font-family: 'Orbitron', serif;
-    font-size: 40px;
+    font-size: 40px
 }
 
 .copyright-text {
@@ -1021,48 +907,44 @@ body {
     display: flex;
     width: 10%;
     justify-items: space-around;
-    justify-content: space-around;
+    justify-content: space-around
 }
 
 #subscribeFooter {
     position: absolute;
     top: 10%;
     right: 10%;
-    display: flex;
+    display: flex
 }
 
 .footerLandScape {
-    display: none;
+    display: none
 }
-
-
-/* !000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 MOBILE
-!0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 */
 
 @media screen and (max-width: 1100px) and (orientation:portrait),
 (max-width:1200px) and (orientation:landscape) {
     #cover_img {
         height: auto;
-        width: 100vw;
+        width: 100vw
     }
     .content_img {
         height: auto;
-        width: 90vw;
+        width: 90vw
     }
     #recentPost,
     #relatedPost {
         display: flex;
         flex-wrap: wrap;
-        margin-left: 0px;
+        margin-left: 0;
         justify-content: center;
-        justify-items: center;
+        justify-items: center
     }
     .postMobile {
-        display: grid;
+        display: grid
     }
     .headingRelated {
         margin-left: 5%;
-        margin-top: 10%;
+        margin-top: 10%
     }
     .social-icons li.title {
         display: block;
@@ -1074,7 +956,7 @@ body {
         top: 10vw;
         right: 10vw;
         left: 10vw;
-        display: none;
+        display: none
     }
     #searchBar {
         display: flex;
@@ -1082,64 +964,63 @@ body {
         position: fixed;
         top: 1vw;
         left: 15vw;
-        z-index: 1;
+        z-index: 1
     }
     #mobileSearchInput {
         width: 50vw;
-        z-index: 1;
+        z-index: 1
     }
     #mobileSearchBar {
         position: fixed;
         top: 2vw;
-        z-index: 1;
+        z-index: 1
     }
     #mobileSearchBtn {
         padding: 2px;
         border-radius: 0 10px 10px 0;
         border: none;
         outline: none;
-        background: rgb(78, 75, 75);
-        z-index: 1;
+        background: #4e4b4b;
+        z-index: 1
     }
     #closeSearch {
         border: none;
         outline: none;
         padding: 2px;
-        border-radius: 10px 0 0 10px;
+        border-radius: 10px 0 0 10px
     }
     .jumbotronText {
         top: 16%;
         left: 5%;
         font-size: var(--mainHeadingMob);
-        width: 90%;
+        width: 90%
     }
     .coverImg {
         width: 100%;
-        /* height: 60vh; */
-        margin-left: 0%;
-        margin-top: 0px;
+        margin-left: 0;
+        margin-top: 0
     }
     .quickQuesions {
         width: 90%;
         margin-left: 5%;
-        margin-top: 20px;
+        margin-top: 20px
     }
     .questionList li h3 {
         font-family: 'Play', sans-serif;
-        font-size: var(--mobileQuestionsLi);
+        font-size: var(--mobileQuestionsLi)
     }
     .questionList li p {
         font-family: 'Play', sans-serif;
-        font-size: var(--mobileAnswers);
+        font-size: var(--mobileAnswers)
     }
     #indexListDiv {
         width: 90%;
         margin-left: 5%;
-        font-family: 'Orbitron', sans-serif;
+        font-family: 'Orbitron', sans-serif
     }
     #indexListDiv ul {
         list-style: decimal;
-        margin-left: 5%;
+        margin-left: 5%
     }
     #paragraphs {
         width: 90%;
@@ -1147,73 +1028,73 @@ body {
         margin-left: 5%;
         margin-top: 10vh;
         font-family: 'Orbitron', sans-serif;
-        overflow: hidden;
+        overflow: hidden
     }
     #paragraphs table {
-        width: 70vw !important;
+        width: 70vw!important
     }
     #paragraphs table>tbody>tr>td {
-        width: auto !important;
-        height: auto !important;
-        font-size: var(--mobilePara) !important;
-        padding: 10px;
+        width: auto!important;
+        height: auto!important;
+        font-size: var(--mobilePara)!important;
+        padding: 10px
     }
     #paragraphs h1 {
         margin-bottom: 3.2vw;
         font-size: var(--mobileHeading);
         font-family: 'Orbitron', sans-serif;
-        font-weight: 500;
+        font-weight: 500
     }
     #paragraphs h2 {
         font-size: calc(var(--mobileHeading) - 8px);
-        font-family: 'Orbitron', sans-serif;
+        font-family: 'Orbitron', sans-serif
     }
     #paragraphs h3 {
         font-size: calc(var(--mobileHeading) - 16px);
-        font-family: 'Orbitron', sans-serif;
+        font-family: 'Orbitron', sans-serif
     }
     #paragraphs p {
         font-size: var(--mobilePara);
         font-family: 'Play', sans-serif;
-        color: rgb(39, 39, 39);
+        color: #272727
     }
     #paragraphs img {
-        width: 90vw;
+        width: 90vw
     }
     #conclusion {
         width: 90%;
         margin-left: 5%;
-        margin-top: 0px;
-        font-family: 'Orbitron', sans-serif;
+        margin-top: 0;
+        font-family: 'Orbitron', sans-serif
     }
     #conclusion div h2 {
         margin-bottom: 1.2vw;
         font-size: var(--mobileHeading);
         font-family: 'Orbitron', sans-serif;
         font-weight: 500;
-        font-style: italic;
+        font-style: italic
     }
     #conclusion p {
         font-size: var(--mobilePara);
         font-family: 'Play', sans-serif;
-        color: rgb(34, 34, 34);
+        color: #222
     }
     #customers {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         border-collapse: collapse;
         width: 90%;
         margin-left: 5%;
-        margin-top: 8.5vw;
+        margin-top: 8.5vw
     }
     #code h1 {
         margin-left: 5%;
         margin-top: 5%;
-        font-family: 'Orbitron', sans-serif;
+        font-family: 'Orbitron', sans-serif
     }
     #code h2 {
         margin-left: calc(5% + 5px);
         font-family: 'Orbitron', sans-serif;
-        font-size: var(--mobileIndex);
+        font-size: var(--mobileIndex)
     }
     #code pre {
         margin-left: 4%;
@@ -1221,53 +1102,53 @@ body {
         width: 80%;
         height: 50%;
         overflow-y: scroll;
-        z-index: -1;
+        z-index: -1
     }
     #code pre code {
-        font-size: var(--mobileCode);
+        font-size: var(--mobileCode)
     }
     #faq {
         width: 90%;
         margin-left: 5%;
-        margin-top: 5%;
+        margin-top: 5%
     }
     .contentCollapse p {
-        font-size: 5vw;
+        font-size: 5vw
     }
     .linkRecent {
         text-decoration: none;
-        color: black;
+        color: #000
     }
     .date {
         position: absolute;
-        display: none;
+        display: none
     }
     .footer {
-        flex-direction: column;
+        flex-direction: column
     }
     #followIcons {
         flex-direction: column;
-        margin: 0 auto;
+        margin: 0 auto
     }
     #footerQuote {
         width: 100vw;
         margin: 0 auto;
-        margin-bottom: 0px;
-        justify-content: center;
+        margin-bottom: 0;
+        justify-content: center
     }
     #subsMobInp {
         width: 75%;
-        padding: 1vw;
+        padding: 1vw
     }
     #subsMobBtn {
         padding: 1vw;
         height: 5vw;
         border: none;
         outline: none;
-        background: rgb(34, 34, 34);
+        background: #222;
         color: #F2C36B;
-        font-weight: bold;
-        font-size: 3vw;
+        font-weight: 700;
+        font-size: 3vw
     }
     .subsMobDiv {
         display: flex;
@@ -1275,94 +1156,88 @@ body {
         justify-content: center;
         justify-items: center;
         margin-top: 10vw;
-        height: 5vw;
+        height: 5vw
     }
     .footerLandScape {
-        display: none;
+        display: none
     }
     .questionList li {
         font-family: 'Play', sans-serif;
-        font-size: 1rem;
+        font-size: 1rem
     }
     .contentCollapse p {
         font-size: var(--mobilePara);
-        font-family: 'Orbitron', sans-serif;
+        font-family: 'Orbitron', sans-serif
     }
     .mobContainer {
         display: flex;
         flex-direction: column;
-        padding: 0;
+        padding: 0
     }
     .postMobile {
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 50% 50%
     }
     .mobViewContent {
         display: flex;
         flex-direction: column;
-        margin-left: 10px;
+        margin-left: 10px
     }
     .text-dark {
-        font-size: 3.5vh;
+        font-size: 3.5vh
     }
     .descText {
         font-size: 5vh;
-        float: inline-end;
+        float: inline-end
     }
     .descriptionMob {
-        font-size: var(--mobileCardDesc);
+        font-size: var(--mobileCardDesc)
     }
 }
 
 @media (orientation:landscape) and (max-width:1200) {
     .footer {
-        display: none;
+        display: none
     }
     .footerLandScape {
         display: flex;
-        background: rgb(34, 34, 34);
+        background: #222;
         color: #f2c36b;
         width: 100vw;
         height: 6vw;
         justify-content: center;
         justify-items: center;
-        padding: 2vw;
+        padding: 2vw
     }
 }
-
-
-/* !$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 #recentPost,
 #relatedPost {
     background: none;
     font-family: "Open Sans", sans-serif;
-    min-height: 20vh;
+    min-height: 20vh
 }
 
 #recentPost,
 #relatedPost a {
     text-decoration: none;
-    color: #172b4d;
+    color: #172b4d
 }
 
 #recentPost,
 #relatedPost h1 {
-    font-family: "Song Myung", serif;
+    font-family: "Song Myung", serif
 }
 
-
-/* DEFAULT STYLE */
-
- :root {
+:root {
     font-size: 16px;
-    --card-img-height: 200px;
+    --card-img-height: 200px
 }
 
 .card-container {
@@ -1378,7 +1253,7 @@ body {
     -webkit-box-align: center;
     align-items: center;
     -webkit-transition: all 200ms ease-in-out;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out
 }
 
 .cardCustom {
@@ -1386,10 +1261,10 @@ body {
     position: relative;
     width: 325px;
     min-width: 275px;
-    margin: 1.25rem 0.75rem;
-    background: rgb(248, 248, 248);
+    margin: 1.25rem .75rem;
+    background: #f8f8f8;
     -webkit-transition: all 300ms ease-in-out;
-    transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out
 }
 
 .cardCustom .card-img {
@@ -1398,11 +1273,11 @@ body {
     height: var(--card-img-height);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: cover
 }
 
 .cardCustom .card-img-hovered {
-    --card-img-hovered-overlay: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+    --card-img-hovered-overlay: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
     -webkit-transition: all 350ms ease-in-out;
     transition: all 350ms ease-in-out;
     background-repeat: no-repeat;
@@ -1411,14 +1286,14 @@ body {
     width: 100%;
     position: absolute;
     height: var(--card-img-height);
-    top: 0;
+    top: 0
 }
 
 .cardCustom .card-info {
     position: relative;
-    padding: 0.75rem 1.25rem;
+    padding: .75rem 1.25rem;
     -webkit-transition: all 200ms ease-in-out;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out
 }
 
 .cardCustom .card-info .card-about {
@@ -1428,121 +1303,118 @@ body {
     justify-content: space-between;
     -webkit-box-align: center;
     align-items: center;
-    padding: 0.75rem 0;
+    padding: .75rem 0;
     -webkit-transition: all 200ms ease-in-out;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out
 }
 
 .cardCustom .card-info .card-about .card-tag {
     width: 100px;
     max-width: 100px;
-    padding: 0.2rem 0.5rem;
+    padding: .2rem .5rem;
     font-size: 12px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
     background: #505f79;
-    color: #fff;
+    color: #fff
 }
 
 .cardCustom .card-info .card-about .card-tag.tag-news {
     background: #36b37e;
-    width: 100px;
+    width: 100px
 }
 
 .cardCustom .card-info .card-about .card-tag.tag-deals {
     background: #ffab00;
-    width: 100px;
+    width: 100px
 }
 
 .cardCustom .card-info .card-about .card-tag.tag-politics {
     width: 100px;
-    background: #ff5630;
+    background: #ff5630
 }
 
 .cardCustom .card-info .card-title {
     z-index: 10;
     font-size: 1.5rem;
-    padding-bottom: 0.75rem;
+    padding-bottom: .75rem;
     -webkit-transition: all 350ms ease-in-out;
-    transition: all 350ms ease-in-out;
+    transition: all 350ms ease-in-out
 }
 
 .cardCustom .card-info .card-creator {
-    padding-bottom: 0.75rem;
+    padding-bottom: .75rem;
     -webkit-transition: all 250ms ease-in-out;
-    transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out
 }
 
 .cardCustom:hover {
     cursor: pointer;
-    box-shadow: 0px 15px 35px rgba(227, 252, 239, 0.1), 0px 5px 15px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 15px 35px rgba(227, 252, 239, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
     -webkit-transform: scale(1.025);
-    transform: scale(1.025);
+    transform: scale(1.025)
 }
 
 .cardCustom:hover .card-img-hovered {
-    --card-img-hovered-overlay: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65));
-    height: 100%;
+    --card-img-hovered-overlay: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65));
+    height: 100%
 }
 
 .cardCustom:hover .card-about,
 .cardCustom:hover .card-creator {
-    opacity: 0;
+    opacity: 0
 }
 
 .cardCustom:hover .card-info {
-    background-color: transparent;
+    background-color: transparent
 }
 
 .cardCustom:hover .card-title {
     color: #ebecf0;
-    font-size: 0px;
+    font-size: 0;
     -webkit-transform: translate(0, 40px);
-    transform: translate(0, 40px);
+    transform: translate(0, 40px)
 }
 
 .cardCustom:hover .card-para {
     color: #ebecf0;
-    font-size: 0px;
+    font-size: 0;
     -webkit-transform: translate(0, 40px);
-    transform: translate(0, 40px);
+    transform: translate(0, 40px)
 }
 
 .card-1 .card-img,
 .card-1 .card-img-hovered {
-    background-image: var(--card-img-hovered-overlay), url(https://source.unsplash.com/350x200/?technology,electronics,male);
+    background-image: var(--card-img-hovered-overlay), url(https://source.unsplash.com/350x200/?technology,electronics,male)
 }
 
 .card-2 .card-img,
 .card-2 .card-img-hovered {
-    background-image: var(--card-img-hovered-overlay), url(https://source.unsplash.com/350x200/?technology,electronics,male);
+    background-image: var(--card-img-hovered-overlay), url(https://source.unsplash.com/350x200/?technology,electronics,male)
 }
 
 .card-3 .card-img,
 .card-3 .card-img-hovered {
-    background-image: var(--card-img-hovered-overlay), url(https://source.unsplash.com/350x200/?technology,electronics,male);
+    background-image: var(--card-img-hovered-overlay), url(https://source.unsplash.com/350x200/?technology,electronics,male)
 }
 
 .card-4 .card-img,
 .card-4 .card-img-hovered {
-    background-image: var(--card-img-hovered-overlay), url(https://source.unsplash.com/350x200/?technology,electronics,male);
+    background-image: var(--card-img-hovered-overlay), url(https://source.unsplash.com/350x200/?technology,electronics,male)
 }
-
-
-/*! @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CARDS BOOTSTRAP @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
 html {
     background: #f5f7f8;
     font-family: system-ui;
     -webkit-font-smoothing: antialiased;
-    padding: 20px 0;
+    padding: 20px 0
 }
 
 header {
     width: 90%;
     max-width: 1240px;
-    margin: 0 auto;
+    margin: 0 auto
 }
 
 .band {
@@ -1552,23 +1424,23 @@ header {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    grid-gap: 20px;
+    grid-gap: 20px
 }
 
 @media (min-width: 30em) {
     .band {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr
     }
 }
 
 @media (min-width: 60em) {
     .band {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr)
     }
 }
 
 .card {
-    background: white;
+    background: #fff;
     text-decoration: none;
     color: #444;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -1581,12 +1453,12 @@ header {
     position: relative;
     top: 0;
     -webkit-transition: all .1s ease-in;
-    transition: all .1s ease-in;
+    transition: all .1s ease-in
 }
 
 .card:hover {
     top: -2px;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2)
 }
 
 .card article {
@@ -1599,99 +1471,93 @@ header {
     -webkit-box-direction: normal;
     flex-direction: column;
     -webkit-box-pack: justify;
-    justify-content: space-between;
+    justify-content: space-between
 }
 
 .card h1 {
     font-size: 20px;
     margin: 0;
-    color: #333;
+    color: #333
 }
 
 .card p {
     -webkit-box-flex: 1;
     flex: 1;
-    line-height: 1.4;
+    line-height: 1.4
 }
 
 .card span {
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 700;
     color: #999;
     text-transform: uppercase;
     letter-spacing: .05em;
-    margin: 2em 0 0 0;
+    margin: 2em 0 0
 }
 
 .card .thumb {
     padding-bottom: 60%;
     background-size: cover;
-    background-position: center center;
+    background-position: center center
 }
 
 @media (min-width: 60em) {
     .item-1 {
-        grid-column: 1 / span 2;
+        grid-column: 1 / span 2
     }
     .item-1 h1 {
-        font-size: 24px;
+        font-size: 24px
     }
 }
-
-
-/** @@@@@@@@@@@@@@@@@@@@ */
 
 .spinner {
     display: none;
     width: 25px;
     height: 25px;
-    border-top: 8px solid aliceblue;
-    border-right: 8px solid aliceblue;
-    border-bottom: 8px solid aliceblue;
+    border-top: 8px solid #f0f8ff;
+    border-right: 8px solid #f0f8ff;
+    border-bottom: 8px solid #f0f8ff;
     border-left: 8px solid #8c618d;
     border-radius: 50%;
     animation-name: spin;
     animation-duration: 3s;
     animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation-timing-function: linear
 }
 
 @keyframes spin {
     0% {
         transform: rotate(0deg);
-        border-left: 8px solid deeppink;
+        border-left: 8px solid #ff1493
     }
     25% {
         transform: rotate(360deg);
-        border-left: 8px solid gold;
+        border-left: 8px solid #ffd700
     }
     50% {
         transform: rotate(720deg);
-        border-left: 8px solid palegreen;
+        border-left: 8px solid #98fb98
     }
     75% {
         transform: rotate(1080deg);
-        border-left: 8px solid aqua;
+        border-left: 8px solid aqua
     }
     100% {
         transform: rotate(1440deg);
-        border-left: 8px solid deeppink;
+        border-left: 8px solid #ff1493
     }
 }
 
-
-/* todo LINK---------------------------- */
-
 *,
-*:after,
-*::before {
+:after,
+::before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif
 }
 
 .cl-effect-7 a {
@@ -1704,25 +1570,19 @@ body {
     letter-spacing: 1px;
     font-weight: 400;
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
-    font-size: 1.35em;
+    font-size: 1.35em
 }
 
 .color-8 nav a:hover,
 nav a:focus {
-    outline: none;
+    outline: none
 }
-
-
-/* Effect 1: Brackets */
-
-
-/* Effect 7: second border slides up */
 
 .cl-effect-7 a {
     padding: 12px 10px 10px;
     color: #566473;
     text-shadow: none;
-    font-weight: 700;
+    font-weight: 700
 }
 
 .cl-effect-7 a::before,
@@ -1734,19 +1594,19 @@ nav a:focus {
     height: 3px;
     background: #566473;
     content: '';
-    -webkit-transition: -webkit-transform 0.3s;
-    -moz-transition: -moz-transform 0.3s;
-    transition: transform 0.3s;
+    -webkit-transition: -webkit-transform .3s;
+    -moz-transition: -moz-transform .3s;
+    transition: transform .3s;
     -webkit-transform: scale(0.85);
     -moz-transform: scale(0.85);
-    transform: scale(0.85);
+    transform: scale(0.85)
 }
 
 .cl-effect-7 a::after {
     opacity: 0;
-    -webkit-transition: top 0.3s, opacity 0.3s, -webkit-transform 0.3s;
-    -moz-transition: top 0.3s, opacity 0.3s, -moz-transform 0.3s;
-    transition: top 0.3s, opacity 0.3s, transform 0.3s;
+    -webkit-transition: top 0.3s, opacity 0.3s, -webkit-transform .3s;
+    -moz-transition: top 0.3s, opacity 0.3s, -moz-transform .3s;
+    transition: top 0.3s, opacity 0.3s, transform .3s
 }
 
 .cl-effect-7 a:hover::before,
@@ -1755,11 +1615,11 @@ nav a:focus {
 .cl-effect-7 a:focus::after {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
-    transform: scale(1);
+    transform: scale(1)
 }
 
 .cl-effect-7 a:hover::after,
 .cl-effect-7 a:focus::after {
-    top: 0%;
-    opacity: 1;
+    top: 0;
+    opacity: 1
 }

@@ -1,7 +1,6 @@
 User-agent:*
 Disallow:/dashboard@@@
-Disallow:/paginate
-Disallow:/Read_more_draft/*
+ Disallow:/Read_more_draft/*
 Disallow:/templates/advertiseWithUs.html
 Disallow:/form
 Disallow:/message

@@ -624,7 +624,7 @@ html {
         align-content: center
     }
     #slider {
-        background-color: #000;
+        background-color: rgba(0, 0, 0, 0.4);
         display: none;
         flex-direction: column;
         justify-items: space-around;

@@ -4,6 +4,10 @@
     box-sizing: border-box
 }
 
+:root {
+    --mobileLinks: calc(15px + (40 - 14) * (90vh - 300px) / (1500 - 300));
+}
+
 *,
 ::before,
 ::after {
@@ -309,7 +313,7 @@ html {
 
 .nav-links {
     color: #F2C36B;
-    font-size: var(--mobileIndex);
+    font-size: var(--mobileLinks);
     letter-spacing: 2px;
     font-family: 'Orbitron', sans-serif
 }
@@ -488,7 +492,7 @@ html {
         margin-left: 2%;
         list-style: none;
         font-family: 'Orbitron', sans-serif;
-        font-size: var(--mobileIndex);
+        font-size: var(--mobileLinks);
         font-weight: 300
     }
     .welcome {

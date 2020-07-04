@@ -235,7 +235,6 @@
     for (const key in imgs) {
         if (imgs.hasOwnProperty(key)) {
             const element = imgs[key];
-            console.log(`thumb${parseInt(key)}`, `url(/static/images/${element})`)
             document.getElementById(`thumbBasic${parseInt(key)+1}`).style.backgroundImage = `url(/static/images/${element})`
 
         }

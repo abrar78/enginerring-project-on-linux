@@ -77,7 +77,6 @@
     data = `{{data|safe}}`
     data = JSON.parse(data)
     current = data.current
-    console.log(current)
     document.getElementById(current).classList.add('active')
 </script>
 {% endblock %}

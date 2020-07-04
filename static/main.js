@@ -13,8 +13,6 @@ function myFunction() {
         location.reload()
     }
 
-
-    console.log(txt);
 }
 // if(searchBarOpen==true){
 //     mobileNav.style.display="flex"
@@ -24,7 +22,6 @@ function myFunction() {
 
 
 var nav = document.getElementById("navBar")
-console.log(nav)
 var bottom = document.getElementById("bottom")
 
 
@@ -75,7 +72,7 @@ var search = document.getElementById("search")
 var closeSearch = document.getElementById("closeSearch");
 var lock = true;
 search.onclick = function() {
-    console.log("seacrh clicked");
+
     mobileSearchBar.style.display = "flex";
     mobileNav.style.display = "none";
     lock = false;
@@ -96,7 +93,6 @@ burger.onclick = function() {
     lockSlider = false;
 }
 closeSearch.onclick = function() {
-    console.log("clicked parallex function");
     if (lock == false) {
 
         mobileSearchBar.style.display = "none";
@@ -110,7 +106,6 @@ closeSearch.onclick = function() {
     }
 }
 closeSlider.onclick = function() {
-    console.log("clicked close");
     slider.classList.remove("slideInLeft")
     slider.classList.add("slideOutLeft")
 
@@ -164,9 +159,7 @@ function Temp(id, button) {
 
 
     resultEMail = emailRegExp.test(document.getElementById(`${id}`).value);
-    console.log(resultEMail)
     footer = false;
-    console.log(id.slice(0, 6))
     if (id.slice(0, 6) == "footer") {
         footer = true
 
@@ -231,15 +224,12 @@ function subscribe(type) {
             } else {
                 console.log("eroor 404, data not posted")
                 subscribeBtnSpinner.style.display = "none";
-                alert("NOT SENT: PLEASE TRY AGAIn")
+                alert("NOT SENT: PLEASE TRY AGAIN")
             }
             response.json().then(data => {
 
                 console.log(data)
-                    //   var heading1=document.getElementById(`${code}head1`)
 
-
-                //  container.style.display=""   
             })
         })
     } else {

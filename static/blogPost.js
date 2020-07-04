@@ -101,7 +101,6 @@ var search = document.getElementById("search")
 var closeSearch = document.getElementById("closeSearch");
 var lock = true;
 search.onclick = function() {
-    console.log("seacrh clicked");
     mobileSearchBar.style.display = "flex";
     mobileNav.style.display = "none";
     lock = false;

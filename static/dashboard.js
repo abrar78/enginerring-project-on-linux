@@ -68,7 +68,7 @@ var col1_arr = []
 var col2_arr = []
 window.tableRow = 0
 var tableHtml = ""
-console.log("dashboard js connected succesfully");
+
 
 // document.getElementById(`li${data2.current}`).classList.add("active")
 
@@ -102,13 +102,7 @@ if (document.getElementById('typeS')) {
 }
 var check = 0
 
-function testG() {
-    console.log("In dashboard.js QuickAbswers", countQuickAnswers)
-    console.log("In dashboard.js FAq", countFaq)
-    console.log("In dashboard.js Para", countPara)
-    console.log("In dashboard.js Index", countIndex)
 
-}
 
 function typeChecked() {
     if (typeArdBtn.checked) {
@@ -133,11 +127,11 @@ function typeChecked() {
 function intendChecked() {
     if (intendInfo.checked) {
         intend = "Info";
-        console.log(type);
+
     }
     if (intendTuto.checked) {
         intend = "Tuto";
-        console.log(type);
+
 
     }
     check++
@@ -150,7 +144,6 @@ function uploadImg(type, num) {
     if (type == "cover") {
         formData = new FormData();
         file = coverImage.files[0];
-        console.log(file);
         formData.append("file", coverImage.files[0]);
 
         fetch(`${window.origin}/dashboard_upload/${type}`, {
@@ -158,11 +151,9 @@ function uploadImg(type, num) {
             body: formData,
         }).then((response) => {
             if (response.status == 200) {
-                console.log("DOne uploading");
                 let name = coverImage.files[0].name;
                 name = name.replace(/ /g, "_");
                 document.getElementById("cover").src = "/static/images/" + name;
-                console.log(name);
             } else {
                 console.log("error 404");
             }
@@ -171,7 +162,6 @@ function uploadImg(type, num) {
     if (type == "thumbnail") {
         formData = new FormData();
         file = thumbnail.files[0];
-        console.log(file);
         formData.append("file", thumbnail.files[0]);
 
         fetch(`${window.origin}/dashboard_upload/${type}`, {
@@ -179,18 +169,16 @@ function uploadImg(type, num) {
             body: formData,
         }).then((response) => {
             if (response.status == 200) {
-                console.log("DOne uploading");
                 let name = thumbnail.files[0].name;
                 name = name.replace(/ /g, "_");
                 document.getElementById("thumbnail").src = "/static/images/" + name;
-                console.log(name);
+
             } else {
                 console.log("error 404");
             }
         });
     }
     if (type == "para") {
-        console.log(num);
         const paraImage = document.getElementById(`paraImgUploader${num}`);
         formData = new FormData();
         file = paraImage.files[0];
@@ -262,7 +250,6 @@ function addNew(type) {
         for (const key in backupAnswer) {
             if (backupAnswer.hasOwnProperty(key)) {
                 const element = backupAnswer[key];
-                console.log(parseInt(key), element);
                 if (element != "") {
                     document.getElementById(
                         `quick_answer${parseInt(key)}`

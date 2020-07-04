@@ -76,8 +76,6 @@ function validateEmail(id, button) {
 
 function validateMessage(id, button) {
     messageRegExp.lastIndex = 0;
-    console.log(resultMessage);
-
     resultMessage = messageRegExp.test(document.getElementById(`${id}`).value);
 
     if (resultMessage == true) {
@@ -92,7 +90,7 @@ function validateMessage(id, button) {
 
 
     }
-    console.log(resultMessage);
+
     if (emailMessage && txtMessage) {
         document.getElementById(`${button}`).disabled = false
 
@@ -103,7 +101,6 @@ function sendMessage() {
     console.log("in function");
     var mailValue = mail.value;
     var messageTxt = message.value;
-    console.log(mailValue, messageTxt);
     var url = `${window.origin}/message`
 
     var entry = {

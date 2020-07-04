@@ -46,8 +46,6 @@
 <script>
     var data = '{{data|safe}}'
     data2 = JSON.parse(data)
-    console.log(typeof(data2))
-    console.log(data2.current)
     document.getElementById(`li${data2.current}`).classList.add("active")
 </script>
 {% endblock %}

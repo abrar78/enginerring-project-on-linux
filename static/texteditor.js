@@ -39,14 +39,10 @@ tinymce.init({
 var url = ""
 
 function submit(version, type = 0, id = 0) {
-    alert("insubmit")
     content = tinymce.get('texteditor').getContent();
-    console.log(content)
     if (version == "new") {
-        console.log("in new")
         url = `${window.origin}/dashboard/submit-article`;
     } else {
-        console.log("in old")
         url = `${window.origin}/save_edited/${id}/${type}`;
 
     }

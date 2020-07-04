@@ -1,0 +1,18 @@
+{
+    "params": {
+        "local_server": "True",
+        "local_uri_all_post": "mysql://abrar:Abrar.786@35.222.70.194/main",
+        "local_uri_other": "mysql://root:Abrar.786@localhost/main",
+        "fb_url": "https://facebook.com/codingthunder",
+        "tw_url": "https://twitter.com/codingthunder",
+        "gh_url": "https://github.com/codingthunder",
+        "blog_name": "Coding Thunder",
+        "tag_line": "Heaven for programmers",
+        "gmail-user": "abrar.blog2020@gmail.com",
+        "gmail-password": "blog.786",
+        "recipient": "9529693800aa@gmail.com",
+        "upload_location": "/home/g9529693800aa/enginerring-project-on-linux/static/images",
+        "upload_location_coverImg": "/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/static/images",
+        "test": "Te"
+    }
+}

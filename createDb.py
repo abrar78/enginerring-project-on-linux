@@ -8,7 +8,7 @@ import json
 with open('config.json', 'r') as c:
     params = json.load(c)["params"]
 
-app = Flask(__name__,instance_path='/home/g9529693800aa/enginerring-project-on-linux/special_files')
+app = Flask(__name__,instance_path='/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/special_files')
 app.config['SQLALCHEMY_DATABASE_URI']=params['local_uri_all_post']
 app.config["SECRET_KEY"]="###@@@***786786"
 app.config["SECURITY_PASSWORD_SALT"]="###@@@***abrar"

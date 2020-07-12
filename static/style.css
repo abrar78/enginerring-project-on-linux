@@ -140,7 +140,6 @@ html {
     width: 70%;
     z-index: 3;
     padding: 5px;
-    margin-top: 11px
 }
 
 .searchBar {
@@ -163,7 +162,9 @@ html {
     font-size: 60px;
     position: relative;
     top: 190px;
-    font-family: 'Roboto Slab', serif
+    /* left: 50%;
+    translate: -50%; */
+    font-family: 'Orbitron', sans-serif;
 }
 
 .typeWriterDiv {
@@ -228,7 +229,8 @@ html {
     background-attachment: fixed;
     margin-top: 40px;
     padding: 0;
-    overflow: hidden
+    overflow: hidden;
+    z-index: -10;
 }
 
 .parallexTwo {
@@ -497,7 +499,8 @@ html {
     }
     .welcome {
         font-size: 40px;
-        top: 150px
+        top: 150px;
+        font-family: 'Orbitron', sans-serif;
     }
     .typeWriterDiv {
         top: 120px;
@@ -649,7 +652,8 @@ html {
     }
     .welcome {
         font-size: 40px;
-        top: 150px
+        top: 150px;
+        font-family: 'Orbitron', sans-serif;
     }
     .typeWriterDiv {
         top: 120px;

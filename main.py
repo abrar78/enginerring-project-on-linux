@@ -11,12 +11,14 @@ from flask_login import LoginManager
 from jinja2 import Undefined
 from time import gmtime, strftime
 from random import randint
+from flask_optimize import FlaskOptimize
 import jinja2
 
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app.config['UPLOAD_FOLDER']={'upload':params["upload_location"],
                              'cover_image':params["upload_location_coverImg"] }
-
+app.config['OPTIMIZE_ALL_RESPONSE']=True
+flask_optimize=FlaskOptimize()
 cache=Cache()
 cache = Cache(config={'CACHE_TYPE': 'filesystem',
                       'CACHE_DIR':'/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/static'
@@ -35,13 +37,10 @@ app.config.update(
     )
 results=[]
 mail=Mail(app);
-@app.route('/cache-test')
-@cache.cached(timeout=10)
-def cacheTest():
-    randnum=randint(1,100)
-    return f'<h1>The number is {randnum}</h1>'
+
 @app.route('/')
-@cache.cached(timeout=1800)
+@flask_optimize.optimize()
+@cache.memoize(timeout=1800)
 def index_file():
 
      profile=About_me.query.first()
@@ -95,6 +94,8 @@ def index_file():
                             txt=txt
                             )
 @app.route('/arduino-projects-page/<int:page>')
+@flask_optimize.optimize()
+@cache.memoize(timeout=1800)
 def arduino_projects(page):
      post=Arduinoproject_posts.query.order_by(desc(Arduinoproject_posts.id)).paginate(per_page=6,page=page,error_out=True)
      thumbnails={"images":[],"current":page}
@@ -103,6 +104,8 @@ def arduino_projects(page):
       
      return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="arduino-projects",thumbnails=json.dumps(thumbnails))
 @app.route('/basic-projects-page/<int:page>')
+@flask_optimize.optimize()
+@cache.memoize(timeout=1800)
 def basic_projects(page):
      post=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=6,page=page,error_out=True)
      thumbnails={"images":[],"current":page}
@@ -111,6 +114,8 @@ def basic_projects(page):
       
      return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="basic-projects",thumbnails=json.dumps(thumbnails))
 @app.route('/iot-projects-page/<int:page>')
+@flask_optimize.optimize()
+@cache.memoize(timeout=1800)
 def iot_projects(page):
      post=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=6,page=page,error_out=True)
      thumbnails={"images":[],"current":page}
@@ -119,6 +124,8 @@ def iot_projects(page):
       
      return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="iot-projects",thumbnails=json.dumps(thumbnails))
 @app.route('/tech-posts-page/<int:page>')
+@flask_optimize.optimize()
+@cache.memoize(timeout=1800)
 def other_projects(page):
      post=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=6,page=page,error_out=True)
      thumbnails={"images":[],"current":page}
@@ -129,6 +136,7 @@ def other_projects(page):
 
 
 @app.route('/arduino-tutorial/<string:url>')
+@flask_optimize.optimize()
 @cache.memoize(timeout=1800)
 def arduinoRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).all()
@@ -154,6 +162,8 @@ def arduinoRead(url):
          
     return render_template('readMoreOther.html', post_db=arduino_post,related_post=related[0:4],latest_posts=latest_posts,url_type="Arduino")
 @app.route('/basic-electronics/<string:url>')
+@flask_optimize.optimize()
+@cache.memoize(timeout=1800)
 def basicRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).all()
@@ -174,6 +184,8 @@ def basicRead(url):
         related.remove(basic_post)
     return render_template('readMoreOther.html', post_db=basic_post,related_post=related[0:4],latest_posts=latest_posts)
 @app.route('/iot-projects/<string:url>')
+@flask_optimize.optimize()
+@cache.memoize(timeout=1800)
 def iotRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
@@ -195,6 +207,8 @@ def iotRead(url):
 
     return render_template('readMoreOther.html', post_db=iot_post,related_post=related[0:4],latest_posts=latest_posts)
 @app.route('/tech-posts/<string:url>')
+@flask_optimize.optimize()
+@cache.memoize(timeout=1800)
 def otherRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
@@ -397,6 +411,7 @@ def search(page):
     return render_template('search.html',result=result,totalPages=pages,next=next,prev=prev,data=json.dumps(data))
 
 @app.route('/upload',methods=['GET','POST'])
+@login_required
 def upload():
        f=request.files['file'];
        f.save(os.path.join(app.config['UPLOAD_FOLDER']['upload'],secure_filename(f.filename)))
@@ -857,6 +872,7 @@ def draft():
     print(draft)
     return render_template('draft.html' ,draft=draft)
 @app.route('/Edit/<string:type>/<int:id>')
+@login_required
 def EditPost(type,id):
     if type=="Ard":
         post=Arduinoproject_posts.query.filter_by(id=id).first()
@@ -1351,5 +1367,5 @@ def before_request():
 if __name__ == '__main__':
   app.jinja_env.auto_reload = True
   app.config['TEMPLATES_AUTO_RELOAD'] = True
-  app.run(host='0.0.0.0')
+  app.run(host='127.0.0.1', debug=True)
 

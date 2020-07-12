@@ -12,8 +12,7 @@
     <!--! Prism -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/static/prism (2).css" rel="stylesheet" />
-    <!-- ?Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <!-- ?custom css -->
     <link rel="stylesheet" href="/static/blogPost.css">
     <link rel="stylesheet" href="/static/style.css">
@@ -67,7 +66,7 @@
 
             </ul>
         </div>
-        <form style="display: flex; margin-top:10px;" action="/search/1" method='POST'>
+        <form style="display: flex;" action="/search/1" method='POST'>
 
 
             <p>
@@ -196,22 +195,41 @@
         </div>
 
     </nav>
-    <!-- end navbar -->
-    <div class="animated flipInX alert alert-success show fixed-top mt-5" style="width: 50%; margin:0 auto;display:none;" id="submitted" role="alert">
-        <strong>Thankyou!!</strong> message sent succesfully.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <!--! end navbar -->
+
+    <div style="z-index: 100;" id="popup1" class="overlay">
+        <div class="popup">
+            <h2>Subscribed succesfully!</h2>
+            <a style="z-index:101;" class="close" href="#">&times;</a>
+            <div class="content">
+                Thankyou for your subscription!, It will motivate me to give you quality content.
+            </div>
+        </div>
     </div>
-    <div class="animated flipInX alert alert-success show fixed-top" id="messageS" role="alert" style="width: 50%; margin:0 auto;display:none;">
-        <strong>Thankyou!! For subscribing our blog ,if you want to unsubscribe please message us through contact Form
-            in the footer </strong> .
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div style="z-index: 100;" id="popup2" class="overlay">
+        <div class="popup">
+            <h2>Message sent succesfully!</h2>
+            <a style="z-index:101;" class="close" href="#">&times;</a> Thankyou for contacting with us! We wil contact you within 24hrs.
+            <div class="content">
+            </div>
+        </div>
     </div>
 
-    <!-- end navbar -->
+    <!-- *<div class="animated flipInX alert alert-success show fixed-top mt-5" style="width: 50%; margin:0 auto;display:none;" id="submitted" role="alert">
+       * <strong>Thankyou!!</strong> message sent succesfully.
+        *<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         *   <span aria-hidden="true">&times;</span>
+        *</button>
+    *</div> -->
+    <!-- *<div class="animated flipInX alert alert-success show fixed-top" id="messageS" role="alert" style="width: 50%; margin:0 auto;display:none;">
+       *<strong>Thankyou!! For subscribing our blog ,if you want to unsubscribe please message us through *  contact Form
+           *in the footer </strong> .
+        *<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            *<span aria-hidden="true">&times;</span>
+         *</button>
+    *</div> -->
+
+    <!-- ! end navbar -->
     {% block content %} {% endblock %}
 
 
@@ -294,19 +312,9 @@
 
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js " integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n " crossorigin="anonymous ">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous ">
-</script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js " integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6 " crossorigin="anonymous ">
-</script>
 <script src="/static/prism (2).js "></script>
 <script src="/static/blogPost.js "></script>
-<script src="/static/message.js"></script>
-
-
 {% block script %} {% endblock %}
 
 </html>

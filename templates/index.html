@@ -3,27 +3,24 @@
 <meta name="title" content="Get knowloedge about engineeringprojects"> {% endblock meta_tags %} {% block content %}
 <!-- Parallex effect -->
 <div class="parallexOne">
-    <div class="typing">
-        <h1 class="text-center welcome">Welcome</h1>
+    <div class="typing" style="text-align:center;">
+        <h1 class="welcome">Welcome</h1>
     </div>
-    <div class="text-center typeWriterDiv">
+    <div style="text-align: center;" class="typeWriterDiv">
         <h1 id="typeWriter">:</h1>
     </div>
     <div>
 
 
 
-        <div class="text-center justify-item-center" style="margin-top: 190px;">
+        <div style="display:flex;flex-direction:column; margin-top: 190px; width:70vw;margin-left:15vw">
+            <input id="sEmail" onblur="validateEmail(this.id,'subscribeBtn')" type="email" placeholder="Email-----" style="outline:none; width: 100%;padding:5px;border-radius:10px 10px 10px 10px">
+            <button type="button" onclick="subscribe('D')" style="margin:0 auto; margin-top:10px; width:30%;height:auto;border-radius:10px 10px 10px 10px;background:none;" id="btnSearchBar">Subscribe
 
-            <input type="email" style="width: 70%;margin:0 auto;" onblur="validateEmail(this.id,'subscribeBtn')" id="sEmail" class="form-control" placeholder="E-mail">
-            <button type="button" id="subscribeBtn" onclick="subscribe('D')" class="btn btn-outline-warning" style="font-family: 'Roboto Slab', serif; margin-top: 20px;">
-        <div>Subscribe</div>
-        <div class="spinner-border spinner-border-sm " id="subs_btn_spinner" style="display:none; margin:0 auto;"
-          role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
 
-      </button>
+
+                <div id="subs_btn_spinner" style="display:none; height:10px;width:10px; margin:0 auto; " class="spinner"></div>
+                </button>
         </div>
         </form>
     </div>
@@ -200,21 +197,11 @@
 
 
 <!-- Optional JavaScript -->
-{% endblock %} {% block script %}
+{% endblock %}
+ {% block script %}
 
 <script src="/static/main.js "></script>
 
-<script src="/static/message.js "></script>
-<script>
-    $('#exampleModal').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget)
-        var recipient = button.data('whatever')
-        var modal = $(this)
-        modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body input').val(recipient)
-    })
-
-</script>
 <script>
     console.log("IN SCRIPT FOR IMAGE INSERTIOn ")
 

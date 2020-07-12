@@ -220,11 +220,11 @@ function subscribe(type) {
             if (response.status == 200) {
                 console.log("succesfully_posted")
                 subscribeBtnSpinner.style.display = "none";
-                alertMessageS.style.display = "block";
+                window.location.replace('#popup1');
             } else {
                 console.log("eroor 404, data not posted")
                 subscribeBtnSpinner.style.display = "none";
-                alert("NOT SENT: PLEASE TRY AGAIN")
+                alert("error: PLEASE TRY AGAIN or contact us throug contact@engineeringproject.net")
             }
             response.json().then(data => {
 

@@ -71,21 +71,20 @@ class Arduinoproject_posts(db.Model):
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
-    description=db.Column(db.String(100), nullable=False);
+    description=db.Column(db.String(200), nullable=False);
+    article=db.Column(db.Text);
 
    
         # * one to many relationship tables down
     
-    paragraphs=db.relationship('Para_arduino',backref="post_name",uselist=False)
+
     quick_answers=db.relationship('Quick_answers_arduino', backref='post_name')
     index=db.relationship('Index_arduino',backref='post_name');
 
     faq=db.relationship('Faq_arduino',backref='post_name');
     comment=db.relationship('Comments_arduino',backref='post_name');  #! currently this comment fuunctuanilitiy is not added
     
-class Para_arduino(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    content=db.Column(db.Text)
+
    
     arduino_id=db.Column(db.Integer,db.ForeignKey('arduinoproject_posts.id'))
 class Index_arduino(db.Model):
@@ -140,10 +139,11 @@ class Basicproject_posts(db.Model):
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
-    description=db.Column(db.String(100), nullable=False);
+    description=db.Column(db.String(200), nullable=False);
+    article=db.Column(db.Text);
    
 
-    paragraphs=db.relationship('Para_basic',backref="post_name",uselist=False)
+
 
     quick_answers=db.relationship('Quick_answers_basic', backref='post_name')
     index=db.relationship('Index_basic',backref='post_name');
@@ -205,9 +205,9 @@ class Iotproject_posts(db.Model):
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
-    description=db.Column(db.String(100), nullable=False);
-    
-    paragraphs=db.relationship('Para_iot',backref="post_name",uselist=False)
+    description=db.Column(db.String(200), nullable=False);
+    article=db.Column(db.Text);
+ 
     quick_answers=db.relationship('Quick_answers_iot', backref='post_name')
     index=db.relationship('Index_iot',backref='post_name');
     faq=db.relationship('Faq_iot',backref='post_name');
@@ -276,20 +276,14 @@ class Other_posts(db.Model):
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
-    description=db.Column(db.String(100), nullable=False);
-   
-
-    paragraphs=db.relationship('Para_other',backref="post_name",uselist=False)
+    description=db.Column(db.String(200), nullable=False);
+    article=db.Column(db.Text);
+ 
     quick_answers=db.relationship('Quick_answers_other', backref='post_name')
     index=db.relationship('Index_other',backref='post_name');
     faq=db.relationship('Faq_other',backref='post_name');
     comment=db.relationship('Comments_other',backref='post_name');
-    
-class Para_other(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    content=db.Column(db.Text)
-   
-    other_id=db.Column(db.Integer,db.ForeignKey('other_posts.id'))
+
 class Quick_answers_other(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
@@ -343,23 +337,16 @@ class Draft(db.Model):
     keyword=db.Column(db.String(100), nullable=False);
     type=db.Column(db.String(100), nullable=True);
     heading=db.Column(db.String(100), nullable=False);
-    description=db.Column(db.String(100), nullable=False);
+    description=db.Column(db.String(200), nullable=False);
+    article=db.Column(db.Text);
    
     
-    paragraphs=db.relationship('Para_draft',backref="post_name",uselist=False)
+
     quick_answers=db.relationship('Quick_answers_draft', backref='post_name')
     index=db.relationship('Index_draft',backref='post_name');
     faq=db.relationship('Faq_draft',backref='post_name');
-
-    
-
-    
-class Para_draft(db.Model):
-    id=db.Column(db.Integer,primary_key=True,nullable=False)
-    content=db.Column(db.Text)
-   
-    draft_id=db.Column(db.Integer,db.ForeignKey('draft.id'))
-    
+ 
+      
 class Quick_answers_draft(db.Model):
     id=db.Column(db.Integer,primary_key=True,nullable=False)
     ques=db.Column(db.String(100),nullable=True)
@@ -402,12 +389,56 @@ class About_me(db.Model):
 
 #! end---------------------------------------------------------------------------------------------------------
 
+
+class Variables(db.Model):
+    id=db.Column(db.Integer,primary_key=True, nullable=False)
+    url=db.Column(db.Text,nullable=True)
+    title=db.Column(db.Text,nullable=True)
+    cover_image=db.Column(db.Text,nullable=True)
+    cover_image_description=db.Column(db.Text,nullable=True)
+    meta_keywords=db.Column(db.Text,nullable=True)
+    type_=db.Column(db.Text,nullable=True)
+    thumbnail=db.Column(db.Text,nullable=True)
+    keyword=db.Column(db.Text,nullable=True)
+    heading=db.Column(db.Text,nullable=True)
+    description=db.Column(db.Text,nullable=True)
+    quick_questions=db.Column(db.Text,nullable=True)
+    quick_answers=db.Column(db.Text,nullable=True)
+    index=db.Column(db.Text,nullable=True)
+    faq_q=db.Column(db.Text,nullable=True)
+    faq_ans=db.Column(db.Text,nullable=True)
+    article=db.Column(db.Text,nullable=True)
+
 def putPassword(password,email):
             user_datastore.create_user(
                 email=email,
                 password=password
             )
             db.session.commit()
+
+def createVariables():
+    var=Variables(
+    url="",    
+    title="",
+    cover_image="",
+    cover_image_description="",
+    meta_keywords="",
+    type_="",
+    thumbnail="",
+    keyword="",
+    heading="",
+    description="",
+    quick_questions="[]",
+    quick_answers="[]",
+    index="[]",
+    faq_q="[]",
+    faq_ans="[]",
+    article=""
+        
+    )
+    db.session.add(var)
+    db.session.commit()
+    
             
 
  

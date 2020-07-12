@@ -2,6 +2,7 @@ from createDb import *
 from sqlalchemy import or_,desc
 import math
 from flask import jsonify,make_response,request,redirect,session,Response
+from flask_caching import Cache
 import os
 import datetime
 from werkzeug.utils import secure_filename
@@ -9,46 +10,19 @@ from flask_mail import Mail
 from flask_login import LoginManager
 from jinja2 import Undefined
 from time import gmtime, strftime
+from random import randint
 import jinja2
 
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app.config['UPLOAD_FOLDER']={'upload':params["upload_location"],
                              'cover_image':params["upload_location_coverImg"] }
-global url
-global title
-global cover_image
-global cover_image_description
-global meta_keywords
-cover_image=""
-url=""
 
-title=""
-cover_image_description=""
-meta_keywords=""
-global type_
-type_=''
-global thumbnail
-thumbnail=""
-global keyword
-keyword=""
-global heading
-heading=""
-global description
-description=""
-global quick_questions
-quick_questions=[]
-global quick_asnwers
-quick_answers=[]
-global index
-index=[]
-global faq_q
-faq_q=[]
-global faq_ans
-faq_ans=[]
-global article
-article=""
-
-
+cache=Cache()
+cache = Cache(config={'CACHE_TYPE': 'filesystem',
+                      'CACHE_DIR':'/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/static'
+                     
+                      })
+cache.init_app(app)
 app.app_context().push()
 app.config.update(
 
@@ -61,7 +35,13 @@ app.config.update(
     )
 results=[]
 mail=Mail(app);
+@app.route('/cache-test')
+@cache.cached(timeout=10)
+def cacheTest():
+    randnum=randint(1,100)
+    return f'<h1>The number is {randnum}</h1>'
 @app.route('/')
+@cache.cached(timeout=1800)
 def index_file():
 
      profile=About_me.query.first()
@@ -89,13 +69,13 @@ def index_file():
      if latest_posts[0] and latest_posts[1] and latest_posts[2] and latest_posts[3]:
       for i in latest_posts:
          latest_thumbnails["imgs"].append(i.thumbnail)
-      for i in arduino.items:
+     for i in arduino.items:
          arduino_thumbnails["imgs"].append(i.thumbnail)
-      for i in basic.items:
+     for i in basic.items:
          basic_thumbnails["imgs"].append(i.thumbnail)
-      for i in iot.items:
+     for i in iot.items:
          iot_thumbnails["imgs"].append(i.thumbnail)
-      for i in other.items:
+     for i in other.items:
          other_thumbnails["imgs"].append(i.thumbnail)
       
    
@@ -149,6 +129,7 @@ def other_projects(page):
 
 
 @app.route('/arduino-tutorial/<string:url>')
+@cache.memoize(timeout=1800)
 def arduinoRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).all()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
@@ -428,121 +409,96 @@ def dashboard_upload(type):
        f=request.files['file'];
        file_name=f.filename
        file_name=file_name.replace(" ","_")
-       global thumbnail
-       
-       thumbnail=file_name
-       print(thumbnail)
+       var=Variables.query.filter_by(id=1).first()
+       var.thumbnail=file_name
+       db.session.commit()
        f.save(os.path.join(app.config['UPLOAD_FOLDER']['cover_image'],secure_filename(f.filename)))
     if type=='cover':
        f=request.files['file'];
        file_name=f.filename
        file_name=file_name.replace(" ","_")
-       global cover_image
-       
-       cover_image=file_name
-       print(cover_image)
+       var=Variables.query.filter_by(id=1).first()
+       var.cover_image=file_name
+       db.session.commit()
        f.save(os.path.join(app.config['UPLOAD_FOLDER']['cover_image'],secure_filename(f.filename)))
     if type=='para':
        f=request.files['file'];
        file_name=f.filename
-
        f.save(os.path.join(app.config['UPLOAD_FOLDER']['cover_image'],secure_filename(f.filename)))
     return "SUCCESS"
 
 @app.route('/dashboard_create_post/<string:type>',methods=['GET','POST'])
 @login_required
 def dashboard_create_post(type):
-    global type_
-    # type='description
-    # '
+    
     if type=="url":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      global url
-      url=req['url']
-      print(url)
+      var.url=req['url']
+      db.session.commit()
       
     if type=="coverImgDescription":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      global cover_image_description
-      cover_image_description=req['coverImgDescription']
-      print(cover_image_description)
+      var.cover_image_description=req['coverImgDescription']
+      db.session.commit()
         
     if type=="keywordsMeta":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      global meta_keywords
-      meta_keywords=req['meta_keywords']
+      var.meta_keywords=req['meta_keywords']
+      db.session.commit()
     if type=="title":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      global title
-      title=req['title']
+      var.title=req['title']
+      db.session.commit()
   
     if type=="keyword":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      print("------------------------------------------------------------------")
-      print(req) 
-      global keyword
-      keyword=req['keyword']
+      var.keyword=req['keyword']
+      db.session.commit()
       
     if type=="heading":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      global heading
-      global type_
-      heading=req['heading']
-      type_=req['type_']
+      var.heading=req['heading']
+      db.session.commit()
 
     if type=="type":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      type_=req['type_']
+      var.type_=req['type_']
+      db.session.commit()
     
     if type=="description":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      global description
-      description=req['description']
+      var.description=req['description']
+      db.session.commit()
    
     if type=="quickAnswers":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      global quick_answers
-      global quick_questions
-      quick_answers=req['quick_answers']
-      quick_questions=req['quick_questions']
+      var.quick_answers=str(req['quick_answers'])
+      var.quick_questions=str(req['quick_questions'])
+      db.session.commit()
     
     if type=="index":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      global index
-      index=req['index']
-    if type=="para":
-      req=request.get_json()
-      
-      
-     
-      
-      para=req['para']
-      para_ImgDescription=req['thumbnail_desc']
-      para_subheading=req['subheading']
-      para_thumbnail=req['thumbnail']
-      print(para_ImgDescription)
-    if type=="conclusion":
-      req=request.get_json()
-  
-      conclusion=req['conclusion']
+      var.index=str(req['index'])
+      db.session.commit()
       
     if type=="faq":
+      var=Variables.query.filter_by(id=1).first()
       req=request.get_json()
-      global faq_q
-      global faq_ans
-      faq_q=req['faq_q']
-      faq_ans=req['faq_ans']
-    if type=="table":
-      req=request.get_json()
-    
-      
-      global table_col1
-      global table_col2
-      table_col1=req['col1']
-      table_col2=req['col2']
-      heading1=req['heading1']
-      heading2=req['heading2']
-      
+      print(req['faq_q'])
+      print(req['faq_ans'])
+      var.faq_q=str(req['faq_q'])
+      var.faq_ans=str(req['faq_ans'])
+      db.session.commit()      
     
     return "SUCCESS"
 @app.route('/all_post/<int:page_no>')
@@ -591,14 +547,12 @@ def delete(id,type):
     print(id,type)
     if type=='Ard':
         delete=Arduinoproject_posts.query.filter_by(id=id).first()
-        deleteContent=Para_arduino.query.filter_by(arduino_id=id).first()
         deleteIndex=Index_arduino.query.filter_by(arduinopost_id=id).all()
         deleteFaq=Faq_arduino.query.filter_by(arduinopost_id=id).all()
         deleteQuickanswers=Quick_answers_arduino.query.filter_by(arduinopost_id=id).all()
         returnPath="/all_post/1"
     if type=='Basic':
         delete=Basicproject_posts.query.filter_by(id=id).first()
-        deleteContent=Para_basic.query.filter_by(basic_id=id).first()
         deleteIndex=Index_basic.query.filter_by(basicpost_id=id).all()
         deleteFaq=Faq_basic.query.filter_by(basicpost_id=id).all()
         deleteQuickanswers=Quick_answers_basic.query.filter_by(basicpost_id=id).all()
@@ -606,14 +560,12 @@ def delete(id,type):
         
     if type=='Iot':
         delete=Iotproject_posts.query.filter_by(id=id).first()
-        deleteContent=Para_iot.query.filter_by(iot_id=id).first()
         deleteIndex=Index_iot.query.filter_by(iotpost_id=id).all()
         deleteFaq=Faq_iot.query.filter_by(iotpost_id=id).all()
         deleteQuickanswers=Quick_answers_iot.query.filter_by(iotpost_id=id).all()
         returnPath="/dashboard_iot/1"
     if type=='Other':
         delete=Other_posts.query.filter_by(id=id).first()
-        deleteContent=Para_other.query.filter_by(other_id=id).first()
         deleteIndex=Index_other.query.filter_by(otherpost_id=id).all()
         deleteFaq=Faq_other.query.filter_by(otherpost_id=id).all()
         deleteQuickanswers=Quick_answers_other.query.filter_by(otherpost_id=id).all()
@@ -621,14 +573,10 @@ def delete(id,type):
     
     if type=='draft':
         delete=Draft.query.filter_by(id=id).first()
-        deleteContent=Para_draft.query.filter_by(draft_id=id).first()
         deleteIndex=Index_draft.query.filter_by(draft_id=id).all()
         deleteFaq=Faq_draft.query.filter_by(draft_id=id).all()
         deleteQuickanswers=Quick_answers_draft.query.filter_by(draft_id=id).all()
         returnPath="/dashboard/draft"
-    if deleteContent:
-        db.session.delete(deleteContent)
-        db.session.commit()
     if deleteIndex:
             for d in deleteIndex:
              db.session.delete(d)
@@ -650,8 +598,25 @@ def delete(id,type):
 @app.route('/create_post')
 @login_required
 def create_post():
-    global article
-    article=""
+    var=Variables.query.filter_by(id=1).first()
+    var.url=""
+    var.title=""
+    var.cover_image=""
+    var.cover_image_description=""
+    var.meta_keywords=""
+    var.type_=""
+    var.thumbnail=""
+    var.keyword=""
+    var.heading=""
+    var.description=""
+    var.quick_questions="[]"
+    var.quick_answers="[]"
+    var.index="[]"
+    var.faq_q="[]"
+    var.faq_ans="[]"
+    var.article=""
+    db.session.commit()
+    
     return render_template('create_post.html')
 @app.route('/logout')
 def logout():
@@ -764,111 +729,127 @@ def search_dashboard(type,page):
       
     return render_template('dashboard_search.html')
 @app.route('/test')
+@login_required
 def test():
-    
-    print('type=',type_)
-    print("heading=",heading)
-    print("thumbnail=",thumbnail)
-    print("cover_image=",cover_image)
-    print("keyword=",keyword)
-    
-    print("description=",description)
-    print("index=",index)
-    print("quickQuestions=",quick_questions)
-    print("quickAnsweers=",quick_answers)
-    print("para=",para)
-    print("para_subheading=",para_subheading)
-    print("para_thumbnail=",para_thumbnail)
-    print("conclusion=",conclusion)
-    print("faq_q=",faq_q)
-    print("faq_ans=",faq_ans)
-    print("col1=",table_col1)
-    print("col2=",table_col2)
+    var=Variables.query.filter_by(id=1).first()
+    print('type=',var.type_)
+    print("heading=",var.heading)
+    print("thumbnail=",var.thumbnail)
+    print("cover_image=",var.cover_image)
+    print("keyword=",var.keyword)
+    print("description=",var.description)
+    print("index=",eval(var.index))
+    print("quickQuestions=",eval(var.quick_questions))
+    print("quickAnsweers=",eval(var.quick_answers))
+    print("faq_q=",eval(var.faq_q))
+    print("faq_ans=",eval(var.faq_ans))
+    print("url=",var.url)
+    print("title=",var.title)
+    print("cover_image=",var.cover_image)
+    print("cover_image_description=",var.cover_image_description)
+    print("meta_keywords=",var.meta_keywords)
 
-    
-    print("url=",url)
-    print("title=",title)
-    print("cover_image=",cover_image)
-    print("cover_image_description=",cover_image_description)
-    print("meta_keywords=",meta_keywords)
-    print("para_ImgDescription=",para_ImgDescription)
-    return "CHECK THE  CONSOLE"
+    return render_template('test.html',
+                           description=var.description,
+                           index=var.index,
+                           meta_keywords=var.meta_keywords,
+                           faq_q=var.faq_q,
+                           faq_ans=var.faq_ans,
+                           quickQuestions=var.quick_questions,
+                           quickAnsweers=var.quick_answers,
+                           url=var.url,
+                           title=var.title,
+                           cover_image=var.cover_image,
+                           cover_image_description=var.cover_image_description,
+                           type=var.type_,
+                           heading=var.heading,
+                           thumbnail=var.thumbnail,
+                   
+                           keyword=var.keyword
+                           
+                           
+                           
+                           )
 
     
 @app.route('/save_draft',methods=['GET','POST'])
 @login_required
 def save_as_draft():
     current_date=strftime("%Y-%m-%d ", gmtime())
-    global url
-    global title
-    global cover_image_description
-    global meta_keywords
-    global heading
-    global type_
-    global quick_questions
-    global quick_answers
-    global faq_q
-    global faq_ans
-    global description
-    global keyword
-    global thumbnail
-    global cover_image
-    global index
-    global article
+    var = Variables.query.filter_by(id=1).first()
     
     
     draft=Draft(date=current_date,
-                thumbnail=thumbnail,
-                cover_img=cover_image,
-                url=url,
-                meta_keywords=meta_keywords,
-                meta_title=title,
-                img_description=cover_image_description,
-                keyword=keyword,
-                type=type_,
-                heading=heading,
-                description=description)
+                thumbnail=var.thumbnail,
+                cover_img=var.cover_image,
+                url=var.url,
+                meta_keywords=var.meta_keywords,
+                meta_title=var.title,
+                img_description=var.cover_image_description,
+                keyword=var.keyword,
+                type=var.type_,
+                heading=var.heading,
+                description=var.description,
+                article=var.article)
  
     db.session.add(draft)
     db.session.commit()
 
-    if quick_questions:
-      for Q,A in zip(quick_questions, quick_answers) :
+    if var.quick_questions:
+      for Q,A in zip(eval(var.quick_questions), eval(var.quick_answers)) :
         draftQA=Quick_answers_draft(ques=Q,ans=A,post_name=draft)
         db.session.add(draftQA)
         db.session.commit()
         
-    if faq_q or faq_ans:
-      for Q,A in zip(faq_q, faq_ans) :
+    if var.faq_q or var.faq_ans:
+      for Q,A in zip(eval(var.faq_q), eval(var.faq_ans)) :
         draftQA=Faq_draft(faq_q=Q,faq_ans=A,post_name=draft)
         db.session.add(draftQA)
         db.session.commit()
-    if index:
-     for ind in index:
+    if var.index:
+     for ind in eval(var.index):
         indexDraft=Index_draft(topic=ind,post_name=draft)
         db.session.add(indexDraft)
         db.session.commit()
-    if article:
-        article=Para_draft(content=article,post_name=draft)
-        db.session.add(article)
-        db.session.commit()
-        article=""
-
     return redirect('/dashboard/draft')
 @app.route('/dashboard/submit-article',methods=["GET","POST"])
 @login_required
 def submitArticle():
+    var=Variables.query.filter_by(id=1).first()
     req=request.get_json()
-    global article
-    article=req['article']
+    var.article=req['article']
+    db.session.commit()
     response=make_response(jsonify("/save_draft"),200)
     return response
 @app.route('/dashboard/texteditor/<int:id>/<string:type>',methods=["GET","POST"] )
 @login_required
 def texteditor(id,type):
-    global article
-    print(article)
-    return render_template('texteditor.html',content=article,id=id,type=type)
+    print("|||||||||||||||||||||||||||||||||||||||||")
+    print(id,type)
+    print("|||||||||||||||||||||||||||||||||||||||||")
+    
+    if type == "Ard":
+        post=Arduinoproject_posts.query.filter_by(id=id).first()
+    if type == "Basic":
+        post=Basicproject_posts.query.filter_by(id=id).first()
+    if type == "Iot":
+        post=Iotproject_posts.query.filter_by(id=id).first()
+    if type == "Other":
+        post=Other_posts.query.filter_by(id=id).first()
+    if type == "draft":
+        post=Draft.query.filter_by(id=id).first()
+    
+    if id==0:
+        new=True
+    else:
+        new=False
+    if post:
+        article=post.article
+    else:
+        article=""
+    print("new=",new)
+
+    return render_template('texteditor.html',content=article,id=id,type=type,new=new)
 @app.route('/dashboard/draft' ,methods=['GET','POST'])
 @login_required
 def draft():
@@ -891,83 +872,59 @@ def EditPost(type,id):
         
     if type=="draft":
         post=Draft.query.filter_by(id=id).first()
-        
     
-    para_ImgDescription=[]
-    global type_
-    type_=post.type
-
+    post_type=post.type[0:-4]
+    intend=post.type[len(post_type):]
   
-  
-    #! todo----------------------------------------
-    #! todo----------------------------------------
-    
-    global thumbnail
-    thumbnail=post.thumbnail
-    global keyword
-    keyword=post.keyword
-    global meta_keywords
-    meta_keywords=post.meta_keywords
-    global cover_image
-    cover_image=post.cover_img
-    global url
-    url=post.url
-    global title
-    title=post.meta_title
-    global cover_image_description
-    cover_image_description=post.img_description
-    global heading
-    heading=post.heading
-    global description
-    description=post.description
-    global quick_questions
-    global quick_asnwers
     quick_questions=[]
     quick_answers=[]
-    
-    for db in post.quick_answers:
-        quick_answers.append(db.ans)
-        quick_questions.append(db.ques)
-    #! todo --------------------------------------------
-    #! todo --------------------------------------------
-    
-    global index
     index=[]
-    for db in post.index:
-        index.append(db.topic)
-
-
-
-    
-    global faq_q
-    global faq_ans
     faq_q=[]
     faq_ans=[]
-    for db in post.faq:
-        faq_q.append(db.faq_q)
-        faq_ans.append(db.faq_ans)
-
-   
-    post_type=type_[0:-4]
-    intend=type_[len(post_type):]
-    if post.paragraphs:
-        global article
-        article=post.paragraphs.content
-    print("======================")
-    print(article)
-    print("******************************")
+  
+    for database in post.quick_answers:
+        quick_answers.append(database.ans)
+        quick_questions.append(database.ques)
+    for database in post.index:
+        index.append(database.topic)  
+    for database in post.faq:
+        faq_q.append(database.faq_q)
+        faq_ans.append(database.faq_ans)
+    
+    var=Variables.query.filter_by(id=1).first()
+    var.url=post.url
+    var.title=post.meta_title
+    var.cover_image=post.cover_img
+    var.cover_image_description=post.img_description
+    var.meta_keywords=post.meta_keywords
+    var.type_=post.type
+    var.thumbnail=post.thumbnail
+    var.keyword=post.keyword
+    var.heading=post.heading
+    var.description=post.description
+    var.quick_questions=str(quick_questions)
+    var.quick_answers=str(quick_answers)
+    var.index=str(index)
+    var.faq_q=str(faq_q)
+    var.faq_ans=str(faq_ans)
+    var.article=post.article
+    db.session.commit()
+    print("-----------------------------")
+    print(post.cover_img)    
+    print(len(faq_q))
+    print(len(faq_ans))
     json_for_texteditor={"id":id,"type":type}
     return render_template('edit_post.html',
                            text_editor_json=json.dumps(json_for_texteditor),
-                           coverImg=cover_image,
-                           metaKeywords=meta_keywords,
-                           coverImgDescription=cover_image_description,
-                           title=title,
-                           url=url,
+                           coverImg=post.cover_img,
+                           metaKeywords=post.meta_keywords,
+                           coverImgDescription=post.img_description,
+                           title=post.meta_title,
+                           url=post.url,
                            quickAnswersDb=post.quick_answers,
                            indexDb=post.index,
                            faqDb=post.faq,
-                           totalType=json.dumps(type_),
+                           totalType=json.dumps(post.type),
                            countQuickQuestions=json.dumps(len(quick_questions)),
                            countQuickAnswers=json.dumps(len(quick_answers)),
                            countFaq_q=json.dumps(len(faq_q)),
@@ -975,26 +932,27 @@ def EditPost(type,id):
                            countIndex=json.dumps(len(index)),
                            type=type,
                            post_type=post_type,
-                           keyword=keyword,
+                           keyword=post.keyword,
                            intend=intend,
-                           heading=heading,
-                           thumbnail=thumbnail,
-                           description=description,
+                           heading=post.heading,
+                           thumbnail=post.thumbnail,
+                           description=post.description,
                            index=index,
                            quickQuestions=quick_questions,
                            quickAnswers=quick_answers,
                            faq_q=faq_q,
                            faq_ans=faq_ans,
                            id=id
-                           )
+                        )
+    # todo: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Change the variablses in edit-post.html<<<<<<<<<<<<........
 @app.route('/save_edited/<string:type>/<int:id>',methods=['GET','POST'])
 @login_required
 def save_edited(type,id):
     req=request.get_json()
+    print(type,id)
     if type=='Ard':
       post=Arduinoproject_posts.query.filter_by(id=id).first()
       returnPath="/all_post/1"
-
       
     if type=='Basic':
       post=Basicproject_posts.query.filter_by(id=id).first()
@@ -1009,134 +967,123 @@ def save_edited(type,id):
       returnPath="/dashboard_other/1"
       
     if type=='draft':
+      print("IN DRAFT=================")
+      print(id,type)  
       post=Draft.query.filter_by(id=id).first()
       returnPath="/dashboard/draft"
       
-    global heading
-    global type_
-    global description
-    global keyword
-    global quick_answers
-    global quick_questions
-    global index
-    global faq_q
-    global faq_ans
-    global thumbnail
-    global url
-    global title
-    global cover_image
-    global cover_image_description
-    global meta_keywords
-    global article
-    article=req['article']
-    post.paragraphs.content=article
-    post.url=url
-    post.title=title
-    post.cover_img=cover_image
-    post.meta_keywords=meta_keywords
-    post.img_description=cover_image_description
-    post.heading=heading
-    post.description=description
-    post.type=type_
-    post.thumbnail=thumbnail
-    post.keyword=keyword
+    var=Variables.query.filter_by(id=1).first()
+    var.article=req['article']
+    post.article=var.article
+    post.url=var.url
+    post.title=var.title
+    post.cover_img=var.cover_image
+    post.meta_keywords=var.meta_keywords
+    post.img_description=var.cover_image_description
+    post.heading=var.heading
+    post.description=var.description
+    post.type=var.type_
+    post.thumbnail=var.thumbnail
+    post.keyword=var.keyword
     db.session.commit()
     
     
-    if quick_answers or quick_questions:
+    if var.quick_answers or var.quick_questions:
         
       for ind in range(0,len(post.quick_answers)):
           try:
-              post.quick_answers[ind].ans=quick_answers[ind]
+              post.quick_answers[ind].ans=eval(var.quick_answers)[ind]
           except IndexError:
               pass
           try:
-              post.quick_answers[ind].ques=quick_questions[ind]
+              post.quick_answers[ind].ques=eval(var.quick_questions)[ind]
               
           except IndexError:
               pass
               
           db.session.commit()  
-      if len(post.quick_answers)<len(quick_answers) or len(post.quick_answers)<len(quick_questions):
-           for i in range(len(post.quick_answers),len(quick_questions)):
+      if len(post.quick_answers)<len(eval(var.quick_answers)) or len(post.quick_answers)<len(eval(var.quick_questions)):
+           for i in range(len(post.quick_answers),len(eval(var.quick_questions))):
              if type=='Ard':
-                addedData=Quick_answers_arduino(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                addedData=Quick_answers_arduino(ques=eval(var.quick_questions)[i],ans=eval(var.quick_answers)[i],post_name=post)
                  
              if type=='Basic':
-                addedData=Quick_answers_basic(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                addedData=Quick_answers_basic(ques=eval(var.quick_questions)[i],ans=eval(var.quick_answers)[i],post_name=post)
                  
              if type=='Iot':
-                addedData=Quick_answers_iot(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                addedData=Quick_answers_iot(ques=eval(var.quick_questions)[i],ans=eval(var.quick_answers)[i],post_name=post)
                  
              if type=='Other':
-                addedData=Quick_answers_other(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                addedData=Quick_answers_other(ques=eval(var.quick_questions)[i],ans=eval(var.quick_answers)[i],post_name=post)
                  
              if type=='draft':
-                 addedData=Quick_answers_draft(ques=quick_questions[i],ans=quick_answers[i],post_name=post)
+                 addedData=Quick_answers_draft(ques=eval(var.quick_questions)[i],ans=eval(var.quick_answers)[i],post_name=post)
                  
              db.session.add(addedData)   
              db.session.commit()   
-    
-    if faq_ans or faq_q:
+    print("---------------------")
+    print(var.faq_q)
+    print( eval(var.faq_q))
+    if var.faq_ans or var.faq_q:
         
       for ind in range(0,len(post.faq)):
           try:
-              post.faq[ind].faq_ans=faq_ans[ind]
+              post.faq[ind].faq_ans=eval(var.faq_ans)[ind]
           except IndexError:
               pass
           try:
-              post.faq[ind].faq_q=faq_q[ind]
+              post.faq[ind].faq_q=eval(var.faq_q)[ind]
               
           except IndexError:
               pass
               
           db.session.commit()
             
-      if len(post.faq)<len(faq_q) or len(post.faq)<len(faq_ans):
-           for i in range(len(post.faq),len(faq_q)):
+      if len(post.faq)<len(eval(var.faq_q)) or len(post.faq)<len(eval(var.faq_ans)):
+           for i in range(len(post.faq),len(eval(var.faq_q))):
             if type=='Ard':
-                addedData=Faq_arduino(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+                addedData=Faq_arduino(faq_q=eval(var.faq_q)[i],faq_ans=eval(var.faq_ans)[i],post_name=post)
                  
             if type=='Basic':
-                addedData=Faq_basic(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+                addedData=Faq_basic(faq_q=eval(var.faq_q)[i],faq_ans=eval(var.faq_ans)[i],post_name=post)
                  
             if type=='Iot':
-                addedData=Faq_iot(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+                addedData=Faq_iot(faq_q=eval(var.faq_q)[i],faq_ans=eval(var.faq_ans)[i],post_name=post)
                  
             if type=='Other':
-                addedData=Faq_other(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+                addedData=Faq_other(faq_q=eval(var.faq_q)[i],faq_ans=eval(var.faq_ans)[i],post_name=post)
                  
             if type=='draft':
-                 addedData=Faq_draft(faq_q=faq_q[i],faq_ans=faq_ans[i],post_name=post)
+                 addedData=Faq_draft(faq_q=eval(var.faq_q)[i],faq_ans=eval(var.faq_ans)[i],post_name=post)
             db.session.add(addedData)   
             db.session.commit()   
  
 
    
  
-    if index:
+    if var.index:
       for ind in range(0,len(post.index)):
           try:
-            post.index[ind].topic=index[ind]
+            post.index[ind].topic=eval(var.index)[ind]
           except IndexError:
               pass
           db.session.commit()   
-      if len(post.index)<len(index):
-         for i in range(len(post.index),len(index)):
+      if len(post.index)<len(eval(var.index)):
+         for i in range(len(post.index),len(eval(var.index))):
              if type=='Ard':
-                addedData=Index_arduino(topic=index[i],post_name=post)
+                addedData=Index_arduino(topic=eval(var.index)[i],post_name=post)
                  
              if type=='Basic':
-                addedData=Index_basic(topic=index[i],post_name=post)
+                addedData=Index_basic(topic=eval(var.index)[i],post_name=post)
                  
              if type=='Iot':
-                addedData=Index_iot(topic=index[i],post_name=post)
+                addedData=Index_iot(topic=eval(var.index)[i],post_name=post)
                  
              if type=='Other':
-                addedData=Index_other(topic=index[i],post_name=post)
+                addedData=Index_other(topic=eval(var.index)[i],post_name=post)
                  
              if type=='draft':
-                 addedData=Index_draft(topic=index[i],post_name=post)
+                 addedData=Index_draft(topic=eval(var.index)[i],post_name=post)
              db.session.add(addedData)   
              db.session.commit()    
 
@@ -1147,16 +1094,6 @@ def save_edited(type,id):
 @app.route('/delete_item', methods=['POST','GET'])
 @login_required
 def delete_item():
-       global heading
-       global type_
-       global quick_answers
-       global quick_questions
-       global faq_q
-       global faq_ans
-       global description
-       global keyword
-       global thumbnail
-       global index
        req=request.get_json()
        post_type=req['post_type']
        print(req['type']) 
@@ -1166,20 +1103,15 @@ def delete_item():
        if post_type=="Ard":
         
           if req['type']=='index':
-              index=[]
               print(req['id'])
               delete=Index_arduino.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='quickAnswers':
               delete=Quick_answers_arduino.query.filter_by(id=req['id']).first()
-              quickAnswers=[]
-              quickQuestions=[]
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='faq':
-              faq_q=[]
-              faq_ans=[]
               delete=Faq_arduino.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
@@ -1187,21 +1119,16 @@ def delete_item():
        if post_type=="Basic":
            
           if req['type']=='index':
-              index=[]
               print(req['id'])
               delete=Index_basic.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='quickAnswers':
-              quickAnswers=[]
-              quickQuestions=[]
               delete=Quick_answers_basic.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
 
           if req['type']=='faq':
-              faq_q=[]
-              faq_ans=[]
               delete=Faq_basic.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
@@ -1209,19 +1136,14 @@ def delete_item():
        if post_type=="Iot":
            
           if req['type']=='index':
-              index=[]
               delete=Index_iot.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='quickAnswers':
-              quickAnswers=[]
-              quickQuestions=[]
               delete=Quick_answers_iot.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='faq':
-              faq_q=[]
-              faq_ans=[]
               delete=Faq_iot.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
@@ -1229,19 +1151,14 @@ def delete_item():
        if post_type=="Other":
            
           if req['type']=='index':
-              index=[]
               delete=Index_other.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='quickAnswers':
-              quickAnswers=[]
-              quickQuestions=[]
-              delete=Quick_answer_other.query.filter_by(id=req['id']).first()
+              delete=Quick_answers_other.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='faq':
-              faq_q=[]
-              faq_ans=[]
               delete=Faq_other.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
@@ -1249,20 +1166,15 @@ def delete_item():
        if post_type=="draft":
           print(req['type'])  
           if req['type']=='index':
-              index=[]
               delete=Index_draft.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
           if req['type']=='quickAnswers':
-              quickAnswers=[]
-              quickQuestions=[]
               delete=Quick_answers_draft.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
 
           if req['type']=='faq':
-              faq_q=[]
-              faq_ans=[]
               delete=Faq_draft.query.filter_by(id=req['id']).first()
               db.session.delete(delete)
               db.session.commit()
@@ -1284,14 +1196,13 @@ def publish(type,draft_id):
                                keyword=draft.keyword,
                                type=draft.type,
                                heading=draft.heading,
-                               description=draft.description
+                               description=draft.description,
+                               article=draft.article
                               )
 
       db.session.add(add)
       db.session.commit()
-      para=Para_arduino(content=draft.paragraphs.content,post_name=add)
-      db.session.add(para)
-      db.session.commit()
+
       for i in draft.index:
           addIndex=Index_arduino(topic=i.topic,post_name=add)
           db.session.add(addIndex)
@@ -1318,13 +1229,11 @@ def publish(type,draft_id):
                              keyword=draft.keyword,
                              type=draft.type,
                              heading=draft.heading,
-                             description=draft.description
+                             description=draft.description,
+                             article=draft.article
                            
                            )
       db.session.add(add)
-      db.session.commit()
-      para=Para_basic(content=draft.paragraphs.content,post_name=add)
-      db.session.add(para)
       db.session.commit()
       for i in draft.index:
           addIndex=Index_basic(topic=i.topic,post_name=add)
@@ -1349,13 +1258,12 @@ def publish(type,draft_id):
                            keyword=draft.keyword,
                            type=draft.type,
                            heading=draft.heading,
-                           description=draft.description
+                           description=draft.description,
+                           article=draft.article
                            )
       db.session.add(add)
       db.session.commit()
-      para=Para_iot(content=draft.paragraphs.content,post_name=add)
-      db.session.add(para)
-      db.session.commit()
+
       for i in draft.index:
           addIndex=Index_iot(topic=i.topic,post_name=add)
           db.session.add(addIndex)
@@ -1379,12 +1287,12 @@ def publish(type,draft_id):
                       keyword=draft.keyword,
                       type=draft.type,
                       heading=draft.heading,
-                      description=draft.description)
+                      description=draft.description,
+                      article=draft.article
+                      )
       db.session.add(add)
       db.session.commit()
-      para=Para_other(content=draft.paragraphs.content,post_name=add)
-      db.session.add(para)
-      db.session.commit()
+
       for i in draft.index:
           addIndex=Index_other(topic=i.topic,post_name=add)
           db.session.add(addIndex)
@@ -1399,16 +1307,13 @@ def publish(type,draft_id):
           db.session.commit()
  # todo : ------------------------------------------------------------------------------------
     print(id)
-    deleteContent=Para_draft.query.filter_by(draft_id=draft_id).first()
+
     deleteIndex=Index_draft.query.filter_by(draft_id=draft_id).all()
     deleteFaq=Faq_draft.query.filter_by(draft_id=draft_id).all()
     deleteQuickanswers=Quick_answers_draft.query.filter_by(draft_id=draft_id).all()
      
     print("+++++++++++++",draft_id)
-    print(deleteContent)
-    if deleteContent:
-         db.session.delete(deleteContent)
-         db.session.commit()
+ 
     if deleteIndex:
             for d in deleteIndex:
              db.session.delete(d)
@@ -1429,6 +1334,10 @@ def publish(type,draft_id):
     return redirect('/dashboard/draft')
     #   todo: ----Tomorrow do complete this publis
 #  todo make robots.txt file at the end  
+@app.route('/test-login')
+@login_required
+def test_login():
+    return "SUCCESFULLY LOGGED IN"
 @app.route('/robots.txt')
 def robots():
     return send_from_directory(os.path.join(app.instance_path,''),'robots.txt')
@@ -1443,3 +1352,4 @@ if __name__ == '__main__':
   app.jinja_env.auto_reload = True
   app.config['TEMPLATES_AUTO_RELOAD'] = True
   app.run(host='0.0.0.0')
+

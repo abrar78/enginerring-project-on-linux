@@ -1,5 +1,5 @@
 console.log("Text editor .js is succesfully attached")
-var content;
+var content = "";
 
 
 tinymce.init({
@@ -38,14 +38,17 @@ tinymce.init({
 })
 var url = ""
 
-function submit(version, type = 0, id = 0) {
+function submit(version, id = 0, type = 0) {
     content = tinymce.get('texteditor').getContent();
+
     if (version == "new") {
         url = `${window.origin}/dashboard/submit-article`;
+
     } else {
-        url = `${window.origin}/save_edited/${id}/${type}`;
+        url = `${window.origin}/save_edited/${type}/${id}`;
 
     }
+    console.log(url)
     var entry = {
         article: content
     };

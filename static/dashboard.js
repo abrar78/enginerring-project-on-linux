@@ -290,72 +290,14 @@ function addNew(type) {
             }
         }
     }
-    if (type == "para") {
 
-        countPara++;
-
-        contaPara.innerHTML += `
-    <div id="paraDiv${countPara}">
-    <label class="text-secondary mt-2" for="para_heading1"><b>Subheading</b></label>
-    <textarea class="form-control" onblur="backup('para_heading','${countPara}')" style="width: 50%; margin:0 auto;border-width:5px;"
-     id="para_heading${countPara}" rows="1"></textarea>
-     <label class="text-secondary mt-2" for="para_imgDescription${countPara}"><b>Image Description</b></label>
-     <textarea class="form-control" onblur="backup('para_imgDescription','${countPara}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para_imgDescription${countPara}" rows="1"></textarea>
-    <label class="text-secondary mt-3 " for="para${countPara}"><b>Para</b></label>
-    <textarea class="form-control" onblur="backup('para','${countPara}')" style="width: 50%; margin:0 auto;border-width:5px;" id="para${countPara}" rows="4"></textarea>
-  <!-- *---upload image -->
-  <img class="mt-3" id="paraImg${countPara}"   width="40%" alt="upload image">
-  <h5 class="text-secondary mt-1">Preview</h5>
-    <div class="input-group my-3" style="width: 50%; margin: 0 auto;">
-    <input type="file" class="form-control-file" id="paraImgUploader${countPara}">
-
-    <button class="mt-1 btn btn-secondary btn-sm"  onclick="uploadImg('para','${countPara}')">upload</button>
-</div>
-</div>
-   
-        `;
-        for (const key in backupPara) {
-            if (backupPara.hasOwnProperty(key)) {
-                const element = backupPara[key];
-                console.log(parseInt(key), element);
-                if (element != "") {
-
-                    document.getElementById(`para${parseInt(key)}`).value = element;
-                }
-            }
-        }
-        for (const key in backupParaSubheading) {
-            if (backupParaSubheading.hasOwnProperty(key)) {
-                const element = backupParaSubheading[key];
-                console.log(parseInt(key), element);
-                if (element != "") {
-
-                    document.getElementById(
-                        `para_heading${parseInt(key)}`
-                    ).value = element;
-                }
-            }
-        }
-        for (const key in backupParaImgDescription) {
-            if (backupParaImgDescription.hasOwnProperty(key)) {
-                const element = backupParaImgDescription[key];
-                console.log(parseInt(key), element);
-                if (element != "") {
-
-                    document.getElementById(
-                        `para_imgDescription${parseInt(key)}`
-                    ).value = element;
-                }
-            }
-        }
-    }
     if (type == "faq") {
 
 
         countFaq++;
         contaFaq.innerHTML += `
        
-        <div id="faq${countFaq}">
+        <div id="faqDiv${countFaq}">
         <label class="text-secondary mt-2" for="description"><b>Question</b></label>
         <textarea
         id="faq_q${countFaq}"
@@ -562,13 +504,18 @@ function submitCreatePost(type_) {
     if (type_ == "quickAnswers") {
         quickQuestions = []
         quickAnswers = []
+        console.log(countQuickAnswers)
         for (let index = 1; index <= countQuickAnswers; index++) {
             console.log(index);
             // console.log(document.getElementById('quick_question1'))
-            let quest = document.getElementById(`quick_question${index}`).value;
-            quickQuestions.push(quest);
-            let answers = document.getElementById(`quick_answer${index}`).value;
-            quickAnswers.push(answers);
+            if (document.getElementById(`quick_question${index}`)) {
+                let quest = document.getElementById(`quick_question${index}`).value;
+                quickQuestions.push(quest);
+            }
+            if (document.getElementById(`quick_answer${index}`)) {
+                let answers = document.getElementById(`quick_answer${index}`).value;
+                quickAnswers.push(answers);
+            }
         }
         entry = {
             quick_questions: quickQuestions,
@@ -578,8 +525,10 @@ function submitCreatePost(type_) {
     if (type_ == "index") {
         index_arr = []
         for (let index = 1; index <= countIndex; index++) {
-            let index_val = document.getElementById(`index${index}`).value;
-            index_arr.push(index_val);
+            if (document.getElementById(`index${index}`)) {
+                let index_val = document.getElementById(`index${index}`).value;
+                index_arr.push(index_val);
+            }
         }
         entry = {
             index: index_arr,
@@ -590,11 +539,18 @@ function submitCreatePost(type_) {
     if (type_ == "faq") {
         faq_q_arr = []
         faq_ans_arr = []
+        console.log(countFaq)
         for (let index = 1; index <= countFaq; index++) {
-            let faq_q_val = document.getElementById(`faq_q${index}`).value;
-            faq_q_arr.push(faq_q_val);
-            let faq_ans_val = document.getElementById(`faq_ans${index}`).value;
-            faq_ans_arr.push(faq_ans_val);
+            if (document.getElementById(`faq_q${index}`)) {
+
+                let faq_q_val = document.getElementById(`faq_q${index}`).value;
+                faq_q_arr.push(faq_q_val);
+            }
+            if (document.getElementById(`faq_ans${index}`)) {
+
+                let faq_ans_val = document.getElementById(`faq_ans${index}`).value;
+                faq_ans_arr.push(faq_ans_val);
+            }
         }
         entry = {
             faq_q: faq_q_arr,
@@ -709,23 +665,7 @@ function backup(type, num) {
 }
 
 function deleteThis(type_, num, id, post_type) {
-    if (type_ == 'index') {
-        countIndex--
-    }
-
-    if (type_ == 'table') {
-        tableRow = 0
-        tableHtml = ""
-    }
-    if (type_ == 'faq') {
-        countFaq--
-    }
-    if (type_ == 'quickAnswers') {
-        countQuickAnswers--
-    }
-    if (type_ == 'code') {
-        countCode--
-    }
+    console.log(`${type_}Div${num}`)
     document.getElementById(`${type_}Div${num}`).remove()
     entry = {
         id: id,

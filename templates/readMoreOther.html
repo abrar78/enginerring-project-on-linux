@@ -1,14 +1,14 @@
 {% extends "template.html" %} {% block title %} {{post_db.meta_title}} {% endblock title %} {% block meta_tags %}
 <meta name="description" content="{{post_db.description}}">
-<meta name="keyword" content="{{post_db.meta_keywords}}"> {% endblock meta_tags %} {% block content %}
+<meta name="keyword" content="{{post_db.meta_keywords}}">
 <meta name="title" content="{{post_db.heading}}"> {% endblock meta_tags %} {% block content %}
-<style>
 
-</style>
 <section class="blogPost">
     <div class="jumbotronHeading">
         <span class="jumbotronText">
+           
             <h1>{{post_db.heading}} </h1>
+            
         </span>
     </div>
     <div id="coverImgDiv">
@@ -46,7 +46,7 @@
 
     <div id="paragraphs">
 
-        {{post_db.paragraphs.content|safe}}
+        {{post_db.article|safe}}
 
     </div>
 

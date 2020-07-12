@@ -145,7 +145,7 @@
         <div class="text-secondary" style="font-size: 6vh; font-weight: bold;">
             FAQ
         </div>
-        <div id="faq1">
+        <div id="faqDiv1">
 
             <label class="text-secondary mt-2" for="description"><b>Question</b></label>
             <textarea id="faq_q1" class="form-control" style="width: 50%; margin: 0 auto; border-width: 5px;" id="description" rows="1" onblur="backup('faq_q','1')"></textarea>
@@ -160,7 +160,7 @@
     <button onclick="addNew('faq')" class="mb-3 btn btn-dark btn-sm">+</button>
 
 
-    <form action="/dashboard/texteditor/0/0" method="post">
+    <form action="/dashboard/texteditor/0/draft" method="post">
         <button id="publishBtn" type="submit" class="btn btn-outline-dark btn-block my-2 btn-lg" style="width: 60%; margin-left:20%;">Create main content|<b>Please submit all the content so it will not be lost </b></button>
     </form>
 </div>

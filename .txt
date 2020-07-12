@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+		ServerName 35.188.190.11
+        ServerAdmin 9529693800aa@gmail.com
+		WSGIScriptAlias / /var/www/ep/ep.wsgi
+		<Directory /var/www/ep/ep/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		Alias /static /var/www/ep/ep/static
+		<Directory /var/www/ep/ep/static/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		LogLevel warn
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+/var/www/ep/ep/static

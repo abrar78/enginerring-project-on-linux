@@ -15,7 +15,11 @@
     <input type="file" class="form-control-file" id="paraImgUploader1">
     <button class="mt-1 btn btn-secondary btn-sm" onclick="uploadImg('para',1)">upload</button>
 </div>
-<button class="btn btn-outline-secondary btn-block my-3" style="width: 50%;margin-left:30%;" onclick="submit('old',id='{{id}}',type='{{type}}')" type="button">Submit</button> {% else %}
+{% if new %}
+
+<button class="btn btn-outline-secondary btn-block my-3" style="width: 50%;margin-left:30%;" onclick="submit('new',id=0,type='{{type}}')" type="button">Submit</button> {% else %}
+
+<button class="btn btn-outline-secondary btn-block my-3" style="width: 50%;margin-left:30%;" onclick="submit('old',id='{{id}}',type='{{type}}')" type="button">Submit</button> {% endif %} {% else %}
 
 <div style="padding-left: 20vw;padding-top:20px;">
 
@@ -33,10 +37,14 @@
     <input type="file" class="form-control-file" id="paraImgUploader1">
     <button class="mt-1 btn btn-secondary btn-sm" onclick="uploadImg('para',1)">upload</button>
 </div>
-<button class="btn btn-outline-secondary btn-block my-3" style="width: 50%;margin-left:30%;" onclick="submit('new')" type="button">Submit</button> {% endif %} {% endblock %} {% block script %}
+{% if new %}
+
+<button class="btn btn-outline-secondary btn-block my-3" style="width: 50%;margin-left:30%;" onclick="submit('new',id=0,type='{{type}}')" type="button">Submit</button> {% else %}
+
+<button class="btn btn-outline-secondary btn-block my-3" style="width: 50%;margin-left:30%;" onclick="submit('old',id='{{id}}',type='{{type}}')" type="button">Submit</button> {% endif %} {% endif %} {% endblock %} {% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/tinymce.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/jquery.tinymce.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/jquery.tinymce.min.js"></script>
 <script src="/static/texteditor.js"></script>
 
 {% endblock %}

@@ -4,7 +4,8 @@ a {
 }
 
 :root {
-    --mobileheading: calc(20px + (63 - 20) * ((100vw - 300px) / (1200 - 300)));
+    /* --mobileheading: calc(30px + (63 - 20) * ((100vw - 300px) / (1200 - 300))); */
+    --mobileheading: 20px;
     --mobilequestions: calc(17px + (25 - 14) * ((100vw - 300px) / (1400 - 300)));
     --mobilepara: calc(19px + (40 - 17) * ((80vw - 300px) / (1200 - 300)));
     --desktopheading: calc(20px + (24 - 14) * ((100vw - 300px) / (1200 - 300)));
@@ -619,18 +620,15 @@ body {
 }
 
 #paragraphs h1 {
-    font-size: var(--desktopHeading);
     font-family: 'Orbitron', sans-serif;
     font-weight: 800
 }
 
 #paragraphs h2 {
-    font-size: calc(var(--desktopHeading) - 8px);
     font-family: 'Orbitron', sans-serif
 }
 
 #paragraphs h3 {
-    font-size: calc(var(--desktopHeading) - 16px);
     font-family: 'Orbitron', sans-serif
 }
 
@@ -1041,16 +1039,16 @@ body {
     }
     #paragraphs h1 {
         margin-bottom: 3.2vw;
-        font-size: var(--mobileHeading);
+        font-size: var(--mobileheading);
         font-family: 'Orbitron', sans-serif;
-        font-weight: 500
+        font-weight: 800
     }
     #paragraphs h2 {
-        font-size: calc(var(--mobileHeading) - 8px);
+        font-size: calc(var(--mobileheading) - 8px);
         font-family: 'Orbitron', sans-serif
     }
     #paragraphs h3 {
-        font-size: calc(var(--mobileHeading) - 16px);
+        font-size: calc(var(--mobileheading) - 16px);
         font-family: 'Orbitron', sans-serif
     }
     #paragraphs p {

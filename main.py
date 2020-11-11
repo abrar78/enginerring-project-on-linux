@@ -40,7 +40,6 @@ mail=Mail(app);
 
 @app.route('/')
 @flask_optimize.optimize()
-@cache.memoize(timeout=1800)
 def index_file():
 
      profile=About_me.query.first()
@@ -105,7 +104,6 @@ def arduino_projects(page):
      return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="arduino-projects",thumbnails=json.dumps(thumbnails))
 @app.route('/basic-projects-page/<int:page>')
 @flask_optimize.optimize()
-@cache.memoize(timeout=1800)
 def basic_projects(page):
      post=Basicproject_posts.query.order_by(desc(Basicproject_posts.id)).paginate(per_page=6,page=page,error_out=True)
      thumbnails={"images":[],"current":page}
@@ -115,7 +113,6 @@ def basic_projects(page):
      return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="basic-projects",thumbnails=json.dumps(thumbnails))
 @app.route('/iot-projects-page/<int:page>')
 @flask_optimize.optimize()
-@cache.memoize(timeout=1800)
 def iot_projects(page):
      post=Iotproject_posts.query.order_by(desc(Iotproject_posts.id)).paginate(per_page=6,page=page,error_out=True)
      thumbnails={"images":[],"current":page}
@@ -125,7 +122,6 @@ def iot_projects(page):
      return render_template('all_projects.html',project=post,title="DIY arduino projects for arduino learners",type="iot-projects",thumbnails=json.dumps(thumbnails))
 @app.route('/tech-posts-page/<int:page>')
 @flask_optimize.optimize()
-@cache.memoize(timeout=1800)
 def other_projects(page):
      post=Other_posts.query.order_by(desc(Other_posts.id)).paginate(per_page=6,page=page,error_out=True)
      thumbnails={"images":[],"current":page}
@@ -137,7 +133,6 @@ def other_projects(page):
 
 @app.route('/arduino-tutorial/<string:url>')
 @flask_optimize.optimize()
-@cache.memoize(timeout=1800)
 def arduinoRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).all()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
@@ -163,7 +158,6 @@ def arduinoRead(url):
     return render_template('readMoreOther.html', post_db=arduino_post,related_post=related[0:4],latest_posts=latest_posts,url_type="Arduino")
 @app.route('/basic-electronics/<string:url>')
 @flask_optimize.optimize()
-@cache.memoize(timeout=1800)
 def basicRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).all()
@@ -183,9 +177,9 @@ def basicRead(url):
     if basic_post in related:
         related.remove(basic_post)
     return render_template('readMoreOther.html', post_db=basic_post,related_post=related[0:4],latest_posts=latest_posts)
+
 @app.route('/iot-projects/<string:url>')
 @flask_optimize.optimize()
-@cache.memoize(timeout=1800)
 def iotRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
@@ -208,7 +202,6 @@ def iotRead(url):
     return render_template('readMoreOther.html', post_db=iot_post,related_post=related[0:4],latest_posts=latest_posts)
 @app.route('/tech-posts/<string:url>')
 @flask_optimize.optimize()
-@cache.memoize(timeout=1800)
 def otherRead(url):
     arduino_latest=Arduinoproject_posts.query.filter().order_by(desc(Arduinoproject_posts.id)).first()
     basic_latest=Basicproject_posts.query.filter().order_by(desc(Basicproject_posts.id)).first()
@@ -242,7 +235,7 @@ def draftRead(num):
     search="%{0}%".format(search_value)
 
       
-    print(draft_type)
+
     if draft_type=="Ard":
             print("im Ard")
             related=Arduinoproject_posts.query.filter(or_(Other_posts.description.like(search), Other_posts.heading.like(search))).all()
@@ -311,35 +304,35 @@ def advertise():
 @app.route('/form',methods = ['GET', 'POST'])
 def form_submit():
     req=request.get_json()
-    print(req)
-    message=""
-    if req['with_only_text']==True:
-           message="only text advertisement is requested by "+req['first_name']+"About the advertisement is:\r\n"+req['something_about_add']
-           mail.send_message(
-                            'new message from blog for advertisement'+'  name:'+req['first_name']+req['last_name'],
-                            sender=req['email'],
-                            recipients = [params['recipient']],
-                            body=message
-                            )
-    if req['image']==True:
-                if req['have_image']==True:
-                   message="advertisement with image is requested by "+req['first_name']+'client already has an image and uploaded on server'+"\r\nAbout the advertisement is:\r\n"+req['somethingh_about_add']
-                if req['dont_have']==True:
-                    if req['make_image']==True:
-                         message="advertisement with image is requested by "+req['first_name']+'client dont have an image and he dont want to make one for him by us'+"\r\nAbout the advertisement is:\r\n"+req['somethingh_about_add']
-                    else:
-                         message="advertisement with image is requested by "+req['first_name']+'client dont have an image and he  want to make one for him by us'+"\r\nAbout the advertisement is:\r\n"+req['somethingh_about_add']
+    # print(req)
+    # message=""
+    # if req['with_only_text']==True:
+    #        message="only text advertisement is requested by "+req['first_name']+"About the advertisement is:\r\n"+req['something_about_add']
+    #        mail.send_message(
+    #                         'new message from blog for advertisement'+'  name:'+req['first_name']+req['last_name'],
+    #                         sender=req['email'],
+    #                         recipients = [params['recipient']],
+    #                         body=message
+    #                         )
+    # if req['image']==True:
+    #             if req['have_image']==True:
+    #                message="advertisement with image is requested by "+req['first_name']+'client already has an image and uploaded on server'+"\r\nAbout the advertisement is:\r\n"+req['somethingh_about_add']
+    #             if req['dont_have']==True:
+    #                 if req['make_image']==True:
+    #                      message="advertisement with image is requested by "+req['first_name']+'client dont have an image and he dont want to make one for him by us'+"\r\nAbout the advertisement is:\r\n"+req['somethingh_about_add']
+    #                 else:
+    #                      message="advertisement with image is requested by "+req['first_name']+'client dont have an image and he  want to make one for him by us'+"\r\nAbout the advertisement is:\r\n"+req['somethingh_about_add']
 
-    if req['other']==True:
-                message="other type of advertisemet is requested by "+req['first_name']+'\r\nSpecification of type is \r\n'+req['specification_forOther']+"\r\nAbout the advertisement is:\r\n"+req['somethingh_about_add']
+    # if req['other']==True:
+    #             message="other type of advertisemet is requested by "+req['first_name']+'\r\nSpecification of type is \r\n'+req['specification_forOther']+"\r\nAbout the advertisement is:\r\n"+req['somethingh_about_add']
 
 
-    mail.send_message(
-                            'new message from blog for advertisement'+'  name:'+req['first_name']+req['last_name'],
-                            sender=req['email'],
-                            recipients = [params['recipient']],
-                            body=message
-                            )
+    # mail.send_message(
+    #                         'new message from blog for advertisement'+'  name:'+req['first_name']+req['last_name'],
+    #                         sender=req['email'],
+    #                         recipients = [params['recipient']],
+    #                         body=message
+    #                         )
     content={"response":"Thankyou"}
     response=make_response(jsonify(content))
     return response
@@ -347,11 +340,6 @@ def form_submit():
 @app.route('/message',methods = ['GET', 'POST'])
 def message():
     req=request.get_json();
-    print(req)
-    mail.send_message('new message from blog',
-                      sender=req['e_mail'],
-                      recipients = [params['recipient']],
-                      body=req['message']+"\r\n sender email is :"+req['e_mail'])
     message=Messages(email=req['e_mail'],messsage=req['message'])
     db.session.add(message)
     db.session.commit()
@@ -559,7 +547,6 @@ def dashboard_other(page_no):
 @app.route('/Delete/<string:type>/<int:id>' , methods=['GET','POST'])
 @login_required
 def delete(id,type):
-    print(id,type)
     if type=='Ard':
         delete=Arduinoproject_posts.query.filter_by(id=id).first()
         deleteIndex=Index_arduino.query.filter_by(arduinopost_id=id).all()
@@ -572,7 +559,6 @@ def delete(id,type):
         deleteFaq=Faq_basic.query.filter_by(basicpost_id=id).all()
         deleteQuickanswers=Quick_answers_basic.query.filter_by(basicpost_id=id).all()
         returnPath="/dashboard_basic/1"
-        
     if type=='Iot':
         delete=Iotproject_posts.query.filter_by(id=id).first()
         deleteIndex=Index_iot.query.filter_by(iotpost_id=id).all()
@@ -649,12 +635,9 @@ def dashboard():
 @login_required
 def about():
     about=About_me.query.first()
-    print("-------------------------------------------------------------------------------")
     if about:
-        print("PROFILE YES")
         txt=about.profile
     else:
-        print("PROFILE NO")
         txt=""
         
     return render_template('about.html',about=txt) 
@@ -663,14 +646,11 @@ def about():
 def about_apply():
     form=request.form
     txt=form['about']
-    print("-0000000000000000000000 ")
     if About_me.query.filter_by(id=1).first():
-        print("YES")
         apply=About_me.query.filter_by(id=1).first()
         apply.profile=txt
         db.session.commit()
     else :
-        print("NO")
         apply=About_me(profile=txt)
         db.session.add(apply)
         db.session.commit()
@@ -691,7 +671,6 @@ def emailSearch():
             form=request.form
             search_value=form['email_search_string']
             search="%{0}%".format(search_value)
-            print(search)
             result=Subscribers.query.filter(Subscribers.email.like(search)).all()
             return render_template("email_search.html",result_email=result)
 @app.route('/dashboard/email/delete/<int:id>', methods=['GET','POST'])
@@ -710,7 +689,6 @@ def search_dashboard(type,page):
             form=request.form
             search_value=form['search_string']
             search="%{0}%".format(search_value)
-            print(search)
             result=Arduinoproject_posts.query.filter(Arduinoproject_posts.heading.like(search)).paginate(per_page=12,page=page,error_out=True)
             return render_template("dashboard_search.html",result_ard=result)
     if type=='Other':
@@ -839,9 +817,6 @@ def submitArticle():
 @app.route('/dashboard/texteditor/<int:id>/<string:type>',methods=["GET","POST"] )
 @login_required
 def texteditor(id,type):
-    print("|||||||||||||||||||||||||||||||||||||||||")
-    print(id,type)
-    print("|||||||||||||||||||||||||||||||||||||||||")
     
     if type == "Ard":
         post=Arduinoproject_posts.query.filter_by(id=id).first()
@@ -1037,9 +1012,7 @@ def save_edited(type,id):
                  
              db.session.add(addedData)   
              db.session.commit()   
-    print("---------------------")
-    print(var.faq_q)
-    print( eval(var.faq_q))
+    
     if var.faq_ans or var.faq_q:
         
       for ind in range(0,len(post.faq)):
@@ -1112,9 +1085,6 @@ def save_edited(type,id):
 def delete_item():
        req=request.get_json()
        post_type=req['post_type']
-       print(req['type']) 
-       print(req['id']) 
-       print(post_type)
     #    print(req['post_type']) 
        if post_type=="Ard":
         

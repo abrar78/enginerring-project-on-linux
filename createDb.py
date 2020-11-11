@@ -3,13 +3,16 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_security import Security,SQLAlchemyUserDatastore,UserMixin, RoleMixin, login_required
 from flask_security.utils import hash_password
 import json
+import os
+
+file_path = os.path.abspath(os.getcwd())+"\main.db"
 
 
 with open('config.json', 'r') as c:
     params = json.load(c)["params"]
 
 app = Flask(__name__,instance_path='/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/special_files')
-app.config['SQLALCHEMY_DATABASE_URI']=params['local_uri_all_post']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+file_path
 app.config["SECRET_KEY"]="###@@@***786786"
 app.config["SECURITY_PASSWORD_SALT"]="###@@@***abrar"
 # app.config['SECURITY_LOGIN_USER_TEMPLATE'] = '/security/login_user.html'

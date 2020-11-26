@@ -2,7 +2,6 @@ from createDb import *
 from sqlalchemy import or_,desc
 import math
 from flask import jsonify,make_response,request,redirect,session,Response
-from flask_caching import Cache
 import os
 import datetime
 from werkzeug.utils import secure_filename
@@ -19,11 +18,7 @@ app.config['UPLOAD_FOLDER']={'upload':params["upload_location"],
                              'cover_image':params["upload_location_coverImg"] }
 app.config['OPTIMIZE_ALL_RESPONSE']=True
 flask_optimize=FlaskOptimize()
-cache=Cache()
-cache = Cache(config={'CACHE_TYPE': 'filesystem',
-                      'CACHE_DIR':'/home/abrar/Desktop/Abrar/myBlog/engineering-blog-repository-master/static'
-                     
-                      })
+
 cache.init_app(app)
 app.app_context().push()
 app.config.update(
